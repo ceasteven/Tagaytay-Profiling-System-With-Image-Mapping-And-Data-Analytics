@@ -1,0 +1,22 @@
+
+/* Custom style for changing separator  */
+.breadcrumb-item+.breadcrumb-item::before {
+  content: ">";
+}
+
+  .nav-pills .nav-item .nav-link.active {
+    background-color: transparent;
+    color: #0080FF;
+  }
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
