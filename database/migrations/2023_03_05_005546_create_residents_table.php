@@ -29,7 +29,6 @@ return new class extends Migration
             $table->date('startdate')->nullable();
             $table->time('timestart')->nullable();
             $table->string('enumname', 100)->nullable();
-         
             $table->string('housecontrolnum')->nullable();
             $table->string('housetype', 100)->nullable();
             $table->string('bedroomnum', 100)->nullable();

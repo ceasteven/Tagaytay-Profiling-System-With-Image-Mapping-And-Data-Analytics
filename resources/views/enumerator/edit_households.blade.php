@@ -8,7 +8,8 @@
             </div>
             <div class="modal-body">
                 <form action="{{ route('household.update' , $household->id) }}" method="POST">
-                    @csrf
+                           @csrf
+                    @method('PUT')
                     <div class="tab">
                         <div class="row">
                             <div class="col-md-6">
@@ -628,12 +629,13 @@
     <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Water and Sanitation</h4>
+                <h4 class="modal-title">Edit Source of Income</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
                 <form action="{{ route('household.update' , $household->id) }}" method="POST">
-                    @csrf
+                           @csrf
+                    @method('PUT')
                     <div class="tab">
                         <div class="row">
                             <div class="col-md-6">
@@ -771,7 +773,7 @@
                                         abroad</p>
                                 </div>
                                 <div class="form-group row">
-                                    <p class="col-sm-12 col-form-label">(106 Cash receipts, support, assistance, and relief from domestic sources</p>
+                                    <p class="col-sm-12 col-form-label">(106) Cash receipts, support, assistance, and relief from domestic sources</p>
                                 </div>
                                 <div class="form-group row">
                                     <p class="col-sm-12 col-form-label">(107) Pension and retirement, workmen's compensation, and social security
@@ -1099,12 +1101,13 @@
     <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Water and Sanitation</h4>
+                <h4 class="modal-title">Edit Agriculture Farming</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
                 <form action="{{ route('household.update' , $household->id) }}" method="POST">
-                    @csrf
+                           @csrf
+                    @method('PUT')
                     <div class="tab">
                         <div class="row">
                             <div class="col-md-6">
@@ -1629,7 +1632,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-5">
-                                        <input name="fishtwoown" class="form-control input-sm" type="number" min="0" placeholder="" id="fishtwoown" value="{{$household->fishtwoown}} />
+                                        <input name="fishtwoown" class="form-control input-sm" type="number" min="0" placeholder="" id="fishtwoown" value="{{$household->fishtwoown}}" />
                                     </div>
                                     <div class=" col-sm-6">
                                         <input name="fishthree" class="form-control input-sm" type="text" placeholder="" id="fishthree" value="{{$household->fishthree}}" />
@@ -1815,12 +1818,13 @@
     <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Water and Sanitation</h4>
+                <h4 class="modal-title">Edit Livestock and Poultry</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
                 <form action="{{ route('household.update' , $household->id) }}" method="POST">
-                    @csrf
+                           @csrf
+                    @method('PUT')
                     <div class="tab">
                         <div class="row">
                             <div class="col-md-6">
@@ -2168,12 +2172,13 @@
     <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Water and Sanitation</h4>
+                <h4 class="modal-title">Edit Calamity</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
                 <form action="{{ route('household.update' , $household->id) }}" method="POST">
-                    @csrf
+                           @csrf
+                    @method('PUT')
                     <div class="tab">
                         <div class="row">
                             <div class="col-md-6">
@@ -2406,7 +2411,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
-                                        <input name="firenum" class="form-control input-sm" type="number" placeholder="" id="firenum" value="{{$household->firenum}} />
+                                        <input name="firenum" class="form-control input-sm" type="number" placeholder="" id="firenum" value="{{$household->firenum}}" />
                                         </select>
                                     </div>
                                     <div class=" col-sm-2">
@@ -2702,7 +2707,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-5">
-                                        <input name="docunum" class="form-control input-sm" type="number" min="0" placeholder="" id="docunum" value="{{$household->docunum}} />
+                                        <input name="docunum" class="form-control input-sm" type="number" min="0" placeholder="" id="docunum" value="{{$household->docunum}}" />
                                     </div>
                                     <p class=" col-sm-3 col-form-label">13. Others, specify</p>
                                         <div class="col-sm-3">
@@ -2747,8 +2752,8 @@
                                         </div>
                                         <div class="col-sm-3">
                                             <input name="deathotime" class="form-control input-sm" type="number" placeholder="" id="deathotime" value="{{$household->deathotime}}" />
-                                    </div>
-                                    <div class="col-sm-3">
+                                        </div>
+                                        <div class="col-sm-3">
 
                                             <select class="form-control" name="deathocause" id="deathocause">
                                                 <option value="" {{$household->deathocause == '' ? 'selected':'' }}>Select</option>
@@ -2856,13 +2861,13 @@
 
                             </div>
 
-                        
-                    </div>
-                    
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-info btn-sm">Save</button>
-                    </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-info btn-sm">Save</button>
+                        </div>
                 </form>
             </div>
         </div>
@@ -2873,5 +2878,719 @@
 
 
 @foreach ($all as $household)
+<div class="modal  fade text-left" id="edit6" tabindex="-2" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Edit Programs</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form action="{{ route('household.update' , $household->id) }}" method="POST">
+                           @csrf
+                    @method('PUT')
+                    <div class="tab">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5><strong>T. PROGRAMS</strong></h5>
+                                <div class="form-group row">
+                                    <p class="col-sm-6 col-form-label">182. During the past 12 months, did you or any member of your household receive
+                                        or avail of any of the following programs?</p>
+                                    <p class="col-sm-5 col-form-label">183. What is the name of the program? </p>
 
-@endforeach
+                                </div>
+                                <div class="form-group row">
+                                    <p class="col-sm-4 col-form-label">1. Sustainable Livelihood Program (SLP)</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="slp" id="slp" >
+                                        <option value="" {{$household->slp == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->slp == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->slp == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="slpname" class="form-control input-sm" type="text" placeholder="" id="slpname" value="{{$household->slpname}}" />
+                                    </div>
+
+                                    <p class="col-sm-4 col-form-label">2. Food for Work</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="ffw" id="ffw">
+                                             <option value="" {{$household->ffw == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->ffw == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->ffw == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="ffwname" class="form-control input-sm" type="text" placeholder="" id="ffwname" value="{{$household->ffwname}}" />
+                                        <br>
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">3. Cash for Work</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="cfw" id="cfw">
+                                             <option value="" {{$household->cfw == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->cfw == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->cfw == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="cfwname" class="form-control input-sm" type="text" placeholder="" id="cfwname" value="{{$household->cfwname}}" />
+                                        <br>
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">4. Social Pension for the Indigent Senior Citizens</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="pension" id="pension">
+                                             <option value="" {{$household->pension == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->pension == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->pension == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="pensionaname" class="form-control input-sm" type="text" placeholder="" id="pensionaname" value="{{$household->pensionaname}}" />
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">5. Pantawid Pamilyang Pilipino Program
+                                        (4Ps)</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="ppp" id="ppp">
+                                             <option value="" {{$household->ppp == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->ppp == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->ppp == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="pppname" class="form-control input-sm" type="text" placeholder="" id="pppname" value="{{$household->pppname}}" />
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">6. Agrarian Reform Community
+                                        Development Program (ARCDP)</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="arcdp" id="arcdp">
+                                             <option value="" {{$household->arcdp == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->arcdp == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->arcdp == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="arcdpname" class="form-control input-sm" type="text" placeholder="" id="arcdpname" value="{{$household->arcdpname}}" />
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">7. Training for Work Scholarship
+                                        Program (TWSP)</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="twsp" id="twsp">
+                                             <option value="" {{$household->twsp == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->twsp == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->twsp == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="twspname" class="form-control input-sm" type="text" placeholder="" id="twspname" value="{{$household->twspname}}" />
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">8. Community-Based Employment
+                                        Program (CBEP)</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="cbep" id="cbep">
+                                             <option value="" {{$household->cbep == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->cbep == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->cbep == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="cbepname" class="form-control input-sm" type="text" placeholder="" id="cbepname" value="{{$household->cbepname}}" />
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">9. Other health insurance (Maxicare,
+                                        Medicare, Intellicare, etc.)</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="ohi" id="ohi">
+                                             <option value="" {{$household->ohi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->ohi == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->ohi == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="ohiname" class="form-control input-sm" type="text" placeholder="" id="ohiname" value="{{$household->ohiname}}" />
+                                        <input name="othi" class="form-control input-sm" type="text" placeholder="" id="othi" value="{{$household->othi}}" />
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">10. Health assistance</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="health" id="health">
+                                             <option value="" {{$household->health == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->health == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->health == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="healthname" class="form-control input-sm" type="text" placeholder="" id="healthname" value="{{$household->healthname}}" />
+                                        <input name="namehealth" class="form-control input-sm" type="text" placeholder="" id="namehealth" value="{{$household->namehealth}}" />
+                                        <br>
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">11. Supplemental feeding</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="feeding" id="feeding">
+                                             <option value="" {{$household->feeding == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->feeding == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->feeding == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="feedingname" class="form-control input-sm" type="text" placeholder="" id="feedingname" value="{{$household->feedingname}}" />
+                                        <input name="namefeeding" class="form-control input-sm" type="text" placeholder="" id="namefeeding" value="{{$household->namefeeding}}" />
+                                        <br>
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">12. Education/scholarship program</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="scholar" id="scholar">
+                                             <option value="" {{$household->scholar == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->scholar == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->scholar == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="namescholar" class="form-control input-sm" type="text" placeholder="" id="namescholar"  value="{{$household->namescholar}}" />
+                                        <input name="scholarname" class="form-control input-sm" type="text" placeholder="" id="scholarname"  value="{{$household->scholarname}}" />
+                                        <br>
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">13. Skills or livelihood training program</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="sltrp" id="sltrp">
+                                             <option value="" {{$household->sltrp == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->sltrp == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->sltrp == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="sltrpname" class="form-control input-sm" type="text" placeholder="" id="sltrpname"  value="{{$household->sltrpname}}" />
+                                        <input name="namesltrp" class="form-control input-sm" type="text" placeholder="" id="namesltrp"  value="{{$household->namesltrp}}" />
+                                        <br>
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">14. Credit program</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="credit" id="credit">
+                                             <option value="" {{$household->credit == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->credit == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->credit == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="namecredit" class="form-control input-sm" type="text" placeholder="" id="namecredit"  value="{{$household->namecredit}}" />
+                                        <input name="creditname" class="form-control input-sm" type="text" placeholder="" id="creditname"  value="{{$household->creditname}}" />
+                                        <br>
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">15. Housing Program</p>
+                                    <div class="col-sm-2">
+                                        <select class="form-control" name="housing" id="housing">
+                                             <option value="" {{$household->housing == '' ? 'selected':'' }}>Select</option>
+                                            <option value="Yes" {{$household->housing == 'Yes' ? 'selected':'' }}>Yes</option>
+                                            <option value="No" {{$household->housing == 'No' ? 'selected':'' }}>No</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="housingname" class="form-control input-sm" type="text" placeholder="" id="housingname"  value="{{$household->housingname}}" />
+                                        <input name="namehousing" class="form-control input-sm" type="text" placeholder="" id="namehousing"  value="{{$household->namehousing}}" />
+                                        <br>
+                                    </div>
+                                    <p class="col-sm-4 col-form-label">16. Other programs, specify</p>
+                                    <div class="col-sm-2">
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="programname" class="form-control input-sm" type="text" placeholder="" id="programname" value="{{$household->programname}}"/>
+                                        <input name="nameprogram" class="form-control input-sm" type="text" placeholder="" id="nameprogram" value="{{$household->nameprogram}}" />
+                                        <input name="programoname" class="form-control input-sm" type="text" placeholder="" id="programoname" value="{{$household->programoname}}" />
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                                <div class="form-group row">
+                                    <p class="col-sm-4 col-form-label">184. How many household members are covered by or are members of this
+                                        program?</p>
+                                    <p class="col-sm-4 col-form-label">185. What is/are the name/s of the household member/s who is/are beneficiary/ies
+                                        /members of the program? </p>
+                                    <p class="col-sm-3 col-form-label">186. Who implemented this program?</p>
+                                    <p class="col-sm-3 col-form-label"></p>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="col-sm-3">
+
+                                        <input name="memo" class="form-control input-sm" type="number" placeholder="" id="memo"  value="{{$household->memo}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memop" class="form-control input-sm" type="text" placeholder="" id="memop"  value="{{$household->memop}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memoi" id="memoi">
+                                             <option value="" {{$household->memoi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memoi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memoi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memoi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memoi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memoi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memoi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memoi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memoi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+
+                                    <div class="col-sm-3">
+                                        <input name="memtw" class="form-control input-sm" type="number" placeholder="" id="memtw"  value="{{$household->memtw}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memtwp" class="form-control input-sm" type="text" placeholder="" id="memtwp"  value="{{$household->memtwp}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memtwpi" id="memtwpi">
+                                             <option value="" {{$household->memtwpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memtwpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memtwpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memtwpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memtwpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memtwpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memtwpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memtwpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memtwpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memth" class="form-control input-sm" type="number" placeholder="" id="memth"  value="{{$household->memth}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memthp" class="form-control input-sm" type="text" placeholder="" id="memthp"  value="{{$household->memthp}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memthpi" id="memthpi">
+                                             <option value="" {{$household->memthpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memthpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memthpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memthpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memthpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memthpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memthpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memthpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memthpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memf" class="form-control input-sm" type="number" placeholder="" id="memf"  value="{{$household->memf}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memfp" class="form-control input-sm" type="text" placeholder="" id="memfp"  value="{{$household->memfp}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memfpi" id="memfpi">
+                                             <option value="" {{$household->memfpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memfpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memfpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memfpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memfpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memfpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memfpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memfpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memfpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memfiv" class="form-control input-sm" type="number" placeholder="" id="memfiv"  value="{{$household->memfiv}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memfip" class="form-control input-sm" type="text" placeholder="" id="memfip"  value="{{$household->memfip}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memfipi" id="memfipi"  >
+                                             <option value="" {{$household->memfipi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memfipi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memfipi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memfipi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memfipi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memfipi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memfipi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memfipi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memfipi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="mems" class="form-control input-sm" type="number" placeholder="" id="mems"  value="{{$household->mems}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memsp" class="form-control input-sm" type="text" placeholder="" id="memsp"  value="{{$household->memsp}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memspi" id="memspi">
+                                             <option value="" {{$household->memspi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memspi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memspi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memspi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memspi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memspi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memspi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memspi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memspi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memse" class="form-control input-sm" type="number" placeholder="" id="memse"  value="{{$household->memse}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memsep" class="form-control input-sm" type="text" placeholder="" id="memsep"  value="{{$household->memsep}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memsepi" id="memsepi"  >
+                                             <option value="" {{$household->memsepi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memsepi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memsepi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memsepi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memsepi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memsepi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memsepi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memsepi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memsepi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="meme" class="form-control input-sm" type="number" placeholder="" id="meme"  value="{{$household->meme}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memep" class="form-control input-sm" type="text" placeholder="" id="memep"  value="{{$household->memep}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memepi" id="memepi"  >
+                                             <option value="" {{$household->memepi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memepi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memepi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memepi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memepi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memepi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memepi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memepi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memepi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br><br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memn" class="form-control input-sm" type="number" placeholder="" id="memn"  value="{{$household->memn}}" />
+                                        <input name="memnt" class="form-control input-sm" type="number" placeholder="" id="memnt"  value="{{$household->memnt}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memnp" class="form-control input-sm" type="text" placeholder="" id="memnp"  value="{{$household->memnp}}" />
+                                        <input name="memntp" class="form-control input-sm" type="text" placeholder="" id="memntp"  value="{{$household->memntp}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memnpi" id="memnpi" >
+                                             <option value="" {{$household->memnpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memnpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memnpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memnpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memnpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memnpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memnpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memnpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memnpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <select class="form-control" name="memntpi" id="memntpi" >
+                                             <option value="" {{$household->memntpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memntpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memntpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memntpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memntpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memntpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memntpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memntpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memntpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memte" class="form-control input-sm" type="number" placeholder="" id="memte"  value="{{$household->memte}}" />
+                                        <input name="memten" class="form-control input-sm" type="number" placeholder="" id="memten"  value="{{$household->memten}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memtep" class="form-control input-sm" type="text" placeholder="" id="memtep"  value="{{$household->memtep}}" />
+                                        <input name="memtenp" class="form-control input-sm" type="text" placeholder="" id="memtenp"  value="{{$household->memtenp}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memtepi" id="memtepi"  >
+                                             <option value="" {{$household->memtepi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memtepi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memtepi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memtepi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memtepi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memtepi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memtepi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memtepi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memtepi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <select class="form-control" name="memtenpi" id="memtenpi"  >
+                                             <option value="" {{$household->memtenpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memtenpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memtenpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memtenpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memtenpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memtenpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memtenpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memtenpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memtenpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memel" class="form-control input-sm" type="number" placeholder="" id="memel"  value="{{$household->memel}}" />
+                                        <input name="memele" class="form-control input-sm" type="number" placeholder="" id="memele"  value="{{$household->memele}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memelp" class="form-control input-sm" type="text" placeholder="" id="memelp"  value="{{$household->memelp}}" />
+                                        <input name="memelep" class="form-control input-sm" type="text" placeholder="" id="memelep"  value="{{$household->memelep}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memelpi" id="memelpi">
+                                             <option value="" {{$household->memelpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memelpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memelpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memelpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memelpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memelpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memelpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memelpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memelpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <select class="form-control" name="memelepi" id="memelepi"  >
+                                             <option value="" {{$household->memelepi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memelepi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memelepi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memelepi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memelepi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memelepi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memelepi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memelepi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memelepi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memtwe" class="form-control input-sm" type="number" placeholder="" id="memtwe"  value="{{$household->memtwe}}" />
+                                        <input name="memtwel" class="form-control input-sm" type="number" placeholder="" id="memtwel"  value="{{$household->memtwel}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memtwep" class="form-control input-sm" type="text" placeholder="" id="memtwep"  value="{{$household->memtwep}}" />
+                                        <input name="memtwelp" class="form-control input-sm" type="text" placeholder="" id="memtwelp"  value="{{$household->memtwelp}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memtwepi" id="memtwepi" >
+                                             <option value="" {{$household->memtwepi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memtwepi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memtwepi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memtwepi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memtwepi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memtwepi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memtwepi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memtwepi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memtwepi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <select class="form-control" name="memtwelpi" id="memtwelpi"  >
+                                             <option value="" {{$household->memtwelpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memtwelpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memtwelpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memtwelpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memtwelpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memtwelpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memtwelpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memtwelpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memtwelpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memthr" class="form-control input-sm" type="number" placeholder="" id="memthr"  value="{{$household->memthr}}" />
+                                        <input name="memthri" class="form-control input-sm" type="number" placeholder="" id="memthri"  value="{{$household->memthri}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memthrp" class="form-control input-sm" type="text" placeholder="" id="memthrp"  value="{{$household->memthrp}}" />
+                                        <input name="memthrip" class="form-control input-sm" type="text" placeholder="" id="memthrip"  value="{{$household->memthrip}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memthrpi" id="memthrpi"  >
+                                             <option value="" {{$household->memthrpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memthrpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memthrpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memthrpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memthrpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memthrpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memthrpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memthrpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memthrpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <select class="form-control" name="memthripi" id="memthripi" >
+                                             <option value="" {{$household->memthripi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memthripi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memthripi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memthripi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memthripi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memthripi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memthripi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memthripi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memthripi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memfou" class="form-control input-sm" type="number" placeholder="" id="memfou"  value="{{$household->memfou}}" />
+                                        <input name="memfour" class="form-control input-sm" type="number" placeholder="" id="memfour"  value="{{$household->memfour}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memfoup" class="form-control input-sm" type="text" placeholder="" id="memfoup"  value="{{$household->memfoup}}" />
+                                        <input name="memfourp" class="form-control input-sm" type="text" placeholder="" id="memfourp"  value="{{$household->memfourp}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memfoupi" id="memfoupi"  >
+                                             <option value="" {{$household->memfoupi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memfoupi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memfoupi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memfoupi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memfoupi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memfoupi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memfoupi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memfoupi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memfoupi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <select class="form-control" name="memfourpi" id="memfifpi">
+                                             <option value="" {{$household->memfifpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memfifpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memfifpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memfifpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memfifpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memfifpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memfifpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memfifpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memfifpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memfi" class="form-control input-sm" type="number" placeholder="" id="memfi"  value="{{$household->memfi}}" />
+                                        <input name="memfif" class="form-control input-sm" type="number" placeholder="" id="memfif"  value="{{$household->memfif}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memfifp" class="form-control input-sm" type="text" placeholder="" id="memfifp"  value="{{$household->memfifp}}" />
+                                        <input name="memfiftp" class="form-control input-sm" type="text" placeholder="" id="memfiftp"  value="{{$household->memfiftp}}" />
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memfifpi" id="memfifpi"  >
+                                             <option value="" {{$household->memfifpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memfifpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memfifpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memfifpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memfifpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memfifpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memfifpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memfifpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memfifpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <select class="form-control" name="memfiftpi" id="memfiftpi"  >
+                                             <option value="" {{$household->memfiftpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memfiftpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memfiftpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memfiftpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memfiftpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memfiftpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memfiftpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memfiftpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memfiftpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <br>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input name="memsix" class="form-control input-sm" type="number" placeholder="" id="memsix"  value="{{$household->memsix}}"/>
+                                        <input name="memsixt" class="form-control input-sm" type="number" placeholder="" id="memsixt"  value="{{$household->memsixt}}"/>
+                                        <input name="memsixte" class="form-control input-sm" type="number" placeholder="" id="memsixte"  value="{{$household->memsixte}}"/>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-5">
+                                        <input name="memsixp" class="form-control input-sm" type="text" placeholder="" id="memsixp"  value="{{$household->memsixp}}"/>
+                                        <input name="memsixtp" class="form-control input-sm" type="text" placeholder="" id="memsixtp"  value="{{$household->memsixtp}}"/>
+                                        <input name="memsixtep" class="form-control input-sm" type="text" placeholder="" id="memsixtep"  value="{{$household->memsixtep}}"/>
+                                        </select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" name="memsixpi" id="memsixpi">
+                                             <option value="" {{$household->memsixpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memsixpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memsixpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memsixpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memsixpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memsixpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memsixpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memsixpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memsixpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <select class="form-control" name="memsixtpi" id="memsixtpi">
+                                             <option value="" {{$household->memsixtpi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memsixtpi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memsixtpi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memsixtpi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memsixtpi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memsixtpi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memsixtpi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memsixtpi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memsixtpi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                        <select class="form-control" name="memsixtepi" id="memsixtepi">
+                                             <option value="" {{$household->memsixtepi == '' ? 'selected':'' }}>Select</option>
+                                            <option value="National" {{$household->memsixtepi == 'National' ? 'selected':'' }}>National</option>
+                                            <option value="Province" {{$household->memsixtepi == 'Province' ? 'selected':'' }}>Province</option>
+                                            <option value="City or Municipality" {{$household->memsixtepi == 'City or Municipality' ? 'selected':'' }}>City/Municipality</option>
+                                            <option value="Barangay" {{$household->memsixtepi == 'Barangay' ? 'selected':'' }}>Barangay</option>
+                                            <option value="Congress or District" {{$household->memsixtepi == 'Congress or District' ? 'selected':'' }}>Congress/District</option>
+                                            <option value="Private Organizations or NGO" {{$household->memsixtepi == 'Private Organizations or NGO' ? 'selected':'' }}>Private Organizations/NGOs</option>
+                                            <option value="Dont know" {{$household->memsixtepi == 'Dont know' ? 'selected':'' }}>Don't know</option>
+                                            <option value="Others" {{$household->memsixtepi == 'Others' ? 'selected':'' }}>Others</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-info btn-sm">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+                                @endforeach

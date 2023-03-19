@@ -2890,7 +2890,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-5">
-                                            <input name="twspname" class="form-control input-sm" type="text" placeholder="" id="twspnamee" disabled="disabled" />
+                                            <input name="twspname" class="form-control input-sm" type="text" placeholder="" id="twspname" disabled="disabled" />
                                         </div>
                                         <p class="col-sm-4 col-form-label">8. Community-Based Employment
                                             Program (CBEP)</p>
