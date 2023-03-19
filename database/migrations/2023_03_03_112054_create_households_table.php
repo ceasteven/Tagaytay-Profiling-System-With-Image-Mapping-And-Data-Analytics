@@ -390,15 +390,15 @@ return new class extends Migration
             $table->text('deathhousehold')->nullable();
             $table->text('deatho')->nullable();
             $table->text('deathosex')->nullable();
-            $table->time('deathotime')->nullable();
+            $table->text('deathotime')->nullable();
             $table->text('deathocause')->nullable();
             $table->text('deatht')->nullable();
             $table->text('deathtsex')->nullable();
-            $table->time('deathttime')->nullable();
+            $table->text('deathttime')->nullable();
             $table->text('deathtcause')->nullable();
             $table->text('deathth')->nullable();
             $table->text('deaththsex')->nullable();
-            $table->time('deaththtime')->nullable();
+            $table->text('deaththtime')->nullable();
             $table->text('deatthcause')->nullable();
 
             $table->text('slp')->nullable();

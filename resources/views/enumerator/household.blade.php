@@ -114,7 +114,7 @@
                               <table id="example10" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
-                                       <th>No</th>
+                                     
                                        <th>House Control Number</th>
                                        <th>Household Head Name</th>
                                        <th>Water Supply</th>
@@ -211,7 +211,7 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                       <td>{{$household->id}}</td>
+                                      
                                        <td>{{$household->housecontrolnum}}</td>
                                        <td>{{$household->headname}}</td>
                                        <td>{{$household->watersupply}}</td>
@@ -322,7 +322,7 @@
                               <table id="example11" class="table table-bordered table-striped table-hover dataTable nowrap" width="100%">
                                  <thead>
                                     <tr>
-                                       <th>No</th>
+                                     
                                        <th>Crop Farming</th>
                                        <th>Cash</th>
                                        <th>Kind</th>
@@ -394,7 +394,7 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                       <td>{{$household->id}}</td>
+                                      
 
                                        <td>{{$household->crop}}</td>
                                        <td>{{$household->cropkind}}</td>
@@ -478,7 +478,7 @@
                               <table id="example12" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
-                                       <th>No</th>
+                                     
                                        <th>Agricultural Land Tenure Status</th>
                                        <th>Area of Agricultural Land</th>
                                        <th>Temporary Crops</th>
@@ -604,7 +604,7 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                       <td>{{$household->id}}</td>
+                                      
                                        <td>{{$household->tenurestatus}}</td>
                                        <td>{{$household->agrilandnum}}</td>
                                        <td>{{$household->tempcrops}}</td>
@@ -742,7 +742,7 @@
                               <table id="example13" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
-                                       <th>No</th>
+                                     
                                        <th>Poultry Years</th>
                                        <th>Poultry (3 years ago) </th>
                                        <th>Decrease Reason</th>
@@ -776,7 +776,7 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                       <td>{{$household->id}}</td>
+                                      
                                        <td>{{$household->livestocknum}}</td>
                                        <td>{{$household->livestockc}}</td>
                                        <td>{{$household->livestockr}}</td>
@@ -822,7 +822,7 @@
                               <table id="example14" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
-                                       <th>No</th>
+                                     
                                        <th>Typhoon</th>
                                        <th>Number</th>
                                        <th>Assistance</th>
@@ -925,7 +925,7 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                       <td>{{$household->id}}</td>
+                                      
                                        <td>{{$household->typhoon}}</td>
                                        <td>{{$household->typhoonnum}}</td>
                                        <td>{{$household->typhoona}}</td>
@@ -1037,7 +1037,7 @@
                               <table id="example15" class="table table-bordered table-striped table-hover dataTable nowrap" width="100%">
                                  <thead>
                                     <tr>
-                                       <th>No</th>
+                                     
                                        <th>Sustainable Livelihood Program</th>
                                        <th>Program Name</th>
                                        <th>Household Member Cover Number</th>
@@ -1178,7 +1178,7 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                       <td>{{$household->id}}</td>
+                                      
                                        <td>{{$household->slp}}</td>
                                        <td>{{$household->slpname}}</td>
                                        <td>{{$household->memo}}</td>
@@ -1370,6 +1370,6 @@
 </div>
 @include('enumerator.add_household')
 @include('enumerator.edit_households')
-@include('enumerator.import')
+@include('enumerator.import_households')
 <script src="{{asset('plugins/residents/household.js')}}"></script>
 @endsection

@@ -8,11 +8,11 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Hash;
-use  Illuminate\Support\Facades\SoftDeletes;
+use Illuminate\Support\Facades\SoftDeletes;
 use App\Imports\HouseholdsImport;
 use Maatwebsite\Excel\Facades\Excel;
-
 use App\Models\Households;
+use Carbon\Carbon;
 
 class HouseholdsController extends Controller
 {
@@ -28,25 +28,44 @@ class HouseholdsController extends Controller
 
     public function imports(Request $request)
     {
-        $validator = \Validator::make($request->all(), [
-            'file'  => 'required|mimes:csv,txt,xls,xlsx|max:10000|',
-            'housecontrolnum' => 'required',
-            'headname' => 'required',
-        ]);
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-            
-        } 
-     
-        
-        Excel::import(new HouseholdsImport, request()->file('file'));
-    
-    
-        return redirect()->route('household.index')
-            ->with('success', 'Records imported successfully!');
-    
+        if (empty($request->file('file'))) {
+            return back()->with('error', 'Empty File');
+        } else {
+            request()->validate([
+                'file'  => 'required|mimes:xls,xlsx,csv,txt|max:10000',
+            ]);
+            $pathTofile = $request->file('file');
+            $import = new HouseholdsImport;
+            $import->import($pathTofile);
+            if ($import->failures()->isNotEmpty()) {
+                $failures = $import->failures();
+                return redirect()->back()->with('error', $failures);
 
-}
+            }
+            else{
+                return redirect()->back()->with('error', 'Please check the number of your column');
+            }
+            
+            return redirect()->route('household.index')
+            ->with('success','Households imported successfully!');
+     }
+             // $validator=\Validator::make($request->all(),[
+             //     'file'  => 'required|mimes:xls,xlsx,csv,txt|max:10000',
+            
+     
+             
+             // ]);
+             // if ($validator->fails())
+             // {
+             //     return redirect()->back()->withErrors($validator)->withInput();
+             // }
+           
+             // Excel::import(new ResidentsImport,request()->file('file'));
+             
+             // return redirect()->route('residents.index')
+             // ->with('success','Records imported successfully!');
+             
+         }
     public function index(Request $request)
     {
         $all = Households::get();

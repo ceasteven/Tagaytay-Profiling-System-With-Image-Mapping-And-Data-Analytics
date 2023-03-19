@@ -1318,7 +1318,7 @@
                                         raised and provided the following product? </p>
                                     <p class="col-sm-3 col-form-label">124. (a) Volume of production sold</p>
                                     <p class="col-sm-3 col-form-label">(b) Volume of production consumed</p>
-                                    <p class="col-sm-2 col-form-label">Live Animals (number of heads</p>
+                                    <p class="col-sm-2 col-form-label">Live Animals (number of heads)</p>
                                     <div class="col-sm-3">
                                         <select class="form-control" name="animals" id="animals">
                                             <option value="" {{$household->animals == '' ? 'selected':'' }}>Select</option>
@@ -2746,9 +2746,9 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input name="deathotime" class="form-control input-sm" type="time" placeholder="" id="deathotime" value="{{$household->deathotime}} />
+                                            <input name="deathotime" class="form-control input-sm" type="number" placeholder="" id="deathotime" value="{{$household->deathotime}}" />
                                     </div>
-                                    <div class=" col-sm-3">
+                                    <div class="col-sm-3">
 
                                             <select class="form-control" name="deathocause" id="deathocause">
                                                 <option value="" {{$household->deathocause == '' ? 'selected':'' }}>Select</option>
@@ -2784,7 +2784,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input name="deathttime" class="form-control input-sm" type="time" placeholder="" id="deathttime" value="{{$household->deathttime}}" />
+                                            <input name="deathttime" class="form-control input-sm" type="number" placeholder="" id="deathttime" value="{{$household->deathttime}}" />
                                         </div>
                                         <div class="col-sm-3">
 
@@ -2822,7 +2822,7 @@
                                             </select>
                                         </div>
                                         <div class="col-sm-3">
-                                            <input name="deaththtime" class="form-control input-sm" type="time" placeholder="" id="deaththtime" value="{{$household->deathtime}}" />
+                                            <input name="deaththtime" class="form-control input-sm" type="number" placeholder="" id="deaththtime" value="{{$household->deathtime}}" />
                                         </div>
                                         <div class="col-sm-3">
 

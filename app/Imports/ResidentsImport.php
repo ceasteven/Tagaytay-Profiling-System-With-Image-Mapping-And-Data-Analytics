@@ -11,8 +11,15 @@ use Maatwebsite\Excel\Concerns\WithValidation;
 use Maatwebsite\Excel\Concerns\SkipsFailures;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Carbon\Carbon;
+use Maatwebsite\Excel\Concerns\SkipsErrors;
+use Maatwebsite\Excel\Concerns\SkipsOnError;
 use PhpOffice\PhpSpreadsheet\Shared\Date;
-class ResidentsImport implements ToModel, WithStartRow
+use Throwable;
+use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
+use Maatwebsite\Excel\Concerns\WithHeadingRow;
+use Maatwebsite\Excel\Concerns\WithHeadings;
+
+class ResidentsImport implements ToModel, WithHeadingRow,WithValidation,SkipsEmptyRows
 {
     /**
     * @param array $row
@@ -20,8 +27,7 @@ class ResidentsImport implements ToModel, WithStartRow
     * @return \Illuminate\Database\Eloquent\Model|null
     */
     
-    use Importable;
-    public $data;
+    use Importable,SkipsFailures;
     public function model(array $row)
     {
        
@@ -125,8 +131,33 @@ class ResidentsImport implements ToModel, WithStartRow
         ]);
         
     }
-    public function startRow(): int
+    public function headingRow(): int
     {
-        return 2;
+        return 1 ;
     }
+    public function rules(): array
+    {
+        return [
+            '*.1' => 'required',
+            '*.2' => 'required',
+            '*.3' => 'required',
+            '*.15' => 'required',
+            '*.24' => 'required',
+            '*.25' => 'required',
+        
+        ];
+    }
+    public function customValidationMessages()
+    {
+        return [
+            '1' => 'Region field is required',
+            '2' => 'Province field is required',
+            '3' => 'City field is required',
+            '15' => 'Household Control Number field is required',
+            '24' => 'Household Head field is required',
+            '25' => 'Household Member Name field is required',
+            
+        ];
+    }
+    
 }

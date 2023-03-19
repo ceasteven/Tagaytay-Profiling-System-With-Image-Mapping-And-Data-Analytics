@@ -2692,7 +2692,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                        <input name="deathotime" class="form-control input-sm" type="time" placeholder="" id="deathotime" disabled="disabled" />
+                                        <input name="deathotime" class="form-control input-sm" type="number" placeholder="" id="deathotime" disabled="disabled" />
                                     </div>
                                     <div class="col-sm-3">
 
@@ -2730,7 +2730,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                        <input name="deathttime" class="form-control input-sm" type="time" placeholder="" id="deathttime" disabled="deathttime" />
+                                        <input name="deathttime" class="form-control input-sm" type="number" placeholder="" id="deathttime" disabled="deathttime" />
                                     </div>
                                     <div class="col-sm-3">
 
@@ -2768,7 +2768,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-3">
-                                        <input name="deaththtime" class="form-control input-sm" type="time" placeholder="" id="deaththtime" disabled="disabled" />
+                                        <input name="deaththtime" class="form-control input-sm" type="number" placeholder="" id="deaththtime" disabled="disabled" />
                                     </div>
                                     <div class="col-sm-3">
 

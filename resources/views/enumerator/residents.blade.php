@@ -122,7 +122,7 @@
                     <table id="example4" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
                       <thead>
                         <tr>
-                          <th>No</th>
+                   
                           <th>Region</th>
                           <th>Province</th>
                           <th>City</th>
@@ -149,7 +149,7 @@
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                        <td>{{$resident->id}}</td>
+                      
                           <td>{{$resident->region}}</td>
                           <td>{{$resident->province}}</td>
                           <td>{{$resident->city}}</td>
@@ -194,7 +194,7 @@
                     <table id="example5" class="table table-bordered table-striped table-hover dataTable nowrap" width="100%">
                       <thead>
                         <tr>
-                          <th>No</th>
+                   
                           <th>Building Type</th>
                           <th>Bedrooms Number</th>
                           <th>Storeys Number</th>
@@ -211,7 +211,7 @@
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                        <td>{{$resident->id}}</td>
+                      
                           <td>{{$resident->housetype}}</td>
                           <td>{{$resident->bedroomnum}}</td>
                           <td>{{$resident->storeysnum}}</td>
@@ -243,7 +243,7 @@
                     <table id="example6" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
                       <thead>
                         <tr>
-                          <th>No</th>
+                   
                           <th>Household Head Name</th>
                           <th>Household Member Name</th>
                           <th>Relationship to the Household Head</th>
@@ -268,7 +268,7 @@
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                        <td>{{$resident->id}}</td>
+                      
                           <td>{{$resident->householdhead}}</td>
                           <td>{{$resident->householdmembername}}</td>
                           <td>{{$resident->nucfambelong}}</td>
@@ -306,7 +306,7 @@
                    <div class="tab-pane" id="tab-table4">
                     <table id="example7" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
                       <thead>
-                        <th>No</th>
+                 
                           <th>Currenty Attending School</th>
                           <th>Grade or Year</th>
                           <th>School Type</th>
@@ -329,7 +329,7 @@
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                        <td>{{$resident->id}}</td>
+                      
                           <td>{{$resident->attendschool}}</td>
                           <td>{{$resident->yearlevel}}</td>
                           <td>{{$resident->schooltype}}</td>
@@ -366,7 +366,7 @@
                     <table id="example8" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
                       <thead>
                         <tr>
-                          <th>No</th>
+                   
                           <th>Work in the past week</th>
                           <th>Past week Work </th>
                           <th>Work Number</th>
@@ -403,7 +403,7 @@
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                        <td>{{$resident->id}}</td>
+                      
                           <td>{{$resident->job}}</td>
                           <td>{{$resident->nwork}}</td>
                           <td>{{$resident->jobnum}}</td>
@@ -453,7 +453,7 @@
                     <table id="example9" class="table table-bordered table-striped table-hover dataTable nowrap" width="100%">
                       <thead>
                         <tr>
-                          <th>No</th>
+                   
                           <th>Pregnant</th>
                           <th>Solo Parent</th>
                           <th>Solo Parent ID</th>
@@ -480,7 +480,7 @@
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                        <td>{{$resident->id}}</td>
+                      
                           <td>{{$resident->pregnant}}</td>
                           <td>{{$resident->soloparent}}</td>
                           <td>{{$resident->soloparentid}}</td>
@@ -533,6 +533,6 @@
 </div>
 
 @include('enumerator.add_residents')
-@include('enumerator.importr')
+@include('enumerator.import_residents')
 <script src="{{asset('plugins/residents/residents.js')}}"></script>
 @endsection

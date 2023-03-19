@@ -30,28 +30,45 @@ class ResidentsController extends Controller
       
     public function import(Request $request) 
     {
-        $validator=\Validator::make($request->all(),[
+        if (empty($request->file('file')))
+        {
+            return back()->with('error','Empty File');
+        
+        }
+        else{
+            request()->validate([
             'file'  => 'required|mimes:xls,xlsx,csv,txt|max:10000',
-            'region' => 'required',
-            'province' => 'required',
-            'city' => 'required',
-            'housecontrolnum' => 'required',
-            'householdhead' => 'required',
-            'householdmembername' => 'required',
+            
+            ]);
+            $pathTofile=$request->file('file');
+          $import = new ResidentsImport;
+$import->import($pathTofile);
+if ($import->failures()->isNotEmpty()){
+    $failures=$import->failures();
+    return redirect()->back()->with('error',$failures);
+}
+else{
+    return redirect()->back()->with('error', 'Please check the number of your column');
+}
+return redirect()->route('residents.index')
+       ->with('success','Residents imported successfully!');
+}
+        // $validator=\Validator::make($request->all(),[
+        //     'file'  => 'required|mimes:xls,xlsx,csv,txt|max:10000',
+       
 
         
-        ]);
-        if ($validator->fails())
-        {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
+        // ]);
+        // if ($validator->fails())
+        // {
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // }
       
-        Excel::import(new ResidentsImport,request()->file('file'));
+        // Excel::import(new ResidentsImport,request()->file('file'));
         
-        return redirect()->route('residents.index')
-        ->with('success','Records imported successfully!');;
+        // return redirect()->route('residents.index')
+        // ->with('success','Records imported successfully!');
         
-    
     }
     
       
