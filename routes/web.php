@@ -4,8 +4,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ResidentsController;
 use App\Http\Controllers\HouseholdsController;
-
+use App\Http\Controllers\BackupController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,13 +18,15 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
+Route::get('/login', function () {
     return view('auth.login');
 });
-Route::post('/logout', [App\Http\Controllers\LoginController::class, 'logout'])->middleware('auth')->name('logout');
+
+
 Auth::routes();
+
 Route::group(['middleware' => 'prevent-back-history'],function(){
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->middleware('auth')->name('logout');
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
 Route::get('/change_password', [App\Http\Controllers\HomeController::class, 'changePassword'])->middleware('auth')->name('change_password');
@@ -89,4 +93,8 @@ Route::get('/exports', [App\Http\Controllers\HouseholdsController::class, 'expor
 Route::get('/csvexport', [App\Http\Controllers\HouseholdsController::class, 'csvexport'])->middleware('auth')->name('households.csvexport');
 
 Route::post('/imports', [App\Http\Controllers\HouseholdsController::class, 'imports'])->middleware('auth')->name('households.import');
+Route::get('/backup', [App\Http\Controllers\BackupController::class, 'index'])->middleware('auth')->name('backup.backups');
+Route::post('/backups', [App\Http\Controllers\BackupController::class, 'create'])->middleware('auth')->name('backup.create');
+Route::delete('/backups/{backup}', [App\Http\Controllers\BackupController::class, 'destroy'])->middleware('auth')->name('backup.destroy');
+
 });

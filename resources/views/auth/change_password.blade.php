@@ -14,23 +14,25 @@
                         <form action="{{ route('update_password') }}" method="POST">
                             @csrf
                             <div class="card-body">
-                            <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
-                                @if (session('status'))
-                                <div class="alert alert-success alert-dismissible" role="alert">
-                                <button type="button" class="close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
-        </button>
-                                    {{ session('status') }}
+                                <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
+                                    @if (session('status'))
+                                    <div class="alert alert-success">
+                                        <button type="button" class="close" onclick="this.closest('.alert').style.display = 'none';">
+                                          x
+                                        </button>
+                                        <i class="fas fa-check faa-pulse animated"></i>
+                                        {{ session('status') }}
+                                    </div>
+                                    @elseif (session('error'))
+                                    <div class="alert alert-danger" >
+                                        <button type="button" class="close"onclick="this.closest('.alert').style.display = 'none';">
+                                            <i class="fa fa-times"></i>
+                                        </button>
+                                        <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
+                                        {{ session('error') }}
+                                    </div>
+                                    @endif
                                 </div>
-                                @elseif (session('error'))
-                                <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
-        </button>
-                                    {{ session('error') }}
-                                </div>
-                                @endif
-                            </div>
                                 <div class="mb-3">
                                     <label for="oldpassword" class="form-label">Old Password</label>
                                     <input oncopy="return false" onpaste="return false" oncut="return false" name="old_password" type="password" class="form-control @error('old_password') is-invalid @enderror" id="oldPasswordInput" placeholder="Old Password" required>

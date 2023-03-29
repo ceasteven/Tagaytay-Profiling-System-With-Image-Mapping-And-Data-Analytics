@@ -47,6 +47,9 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/residents/residents.css')}}">
+  
+  <link rel="stylesheet" href="{{asset('plugins/data/button.css')}}">
+  
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -149,6 +152,7 @@ All rights reserved.
         "buttons": [{
           extend: 'collection',
           text: '<i class="fa-solid fa-download"></i> Export',
+          
           buttons: ["copy", {
             extend: "csv",
             filename: 'residents_list'
@@ -163,28 +167,16 @@ All rights reserved.
       }).buttons().container().appendTo('#test');
 
       $('#example2').DataTable({
+        order: [[2, 'desc']],
         "responsive": false,
         "lengthChange": true,
         "autoWidth": false,
         "scrollX": true,
-        "buttons": [{
-          extend: 'collection',
-          text: '<i class="fa-solid fa-download"></i> Export',
-          buttons: [ "copy", {
-            extend: "csv",
-            filename: 'users_activitylogs'
-          }, {
-            extend: "excel",
-            filename: 'users_activitylogs'
-          }, {
-            extend: "pdf",
-            filename: 'users_activitylogs'
-          }, "print", ]
-        }]
+    
 
-      }).buttons().container().appendTo('#test');
+      });
 
-      $('#example4 thead tr').clone(true).addClass('filters').appendTo( '#example4 thead' );
+      // $('#example4 thead tr').clone(true).addClass('filters').appendTo( '#example4 thead' );
       $('#example4').DataTable({
         "responsive": false,
         "lengthChange": true,
@@ -205,34 +197,34 @@ All rights reserved.
             filename: 'identification'
           }, "print", ]
         }],
-        orderCellsTop: true,
-        fixedHeader: true,
-        initComplete: function() {
-            var api = this.api();
-            // For each column
-            api.columns().eq(0).each(function(colIdx) {
-                // Set the header cell to contain the input element
-                var cell = $('.filters th').eq($(api.column(colIdx).header()).index());
-                var title = $(cell).text();
-                $(cell).html( '<input type="text" placeholder="'+title+'" />' );
-                // On every keypress in this input
-                $('input', $('.filters th').eq($(api.column(colIdx).header()).index()) )
-                    .off('keyup change')
-                    .on('keyup change', function (e) {
-                        e.stopPropagation();
-                        // Get the search value
-                        $(this).attr('title', $(this).val());
-                        var regexr = '({search})'; $(this).parents('th').find('select').val();
-                        var cursorPosition = this.selectionStart;
-                        // Search the column for that value
-                        api
-                            .column(colIdx)
-                            .search((this.value != "") ? regexr.replace('{search}', '((('+this.value+')))') : "", this.value != "", this.value == "")
-                            .draw();
-                        $(this).focus()[0].setSelectionRange(cursorPosition, cursorPosition);
-                    });
-            });
-        }
+        // orderCellsTop: true,
+        // fixedHeader: true,
+        // initComplete: function() {
+        //     var api = this.api();
+        //     // For each column
+        //     api.columns().eq(0).each(function(colIdx) {
+        //         // Set the header cell to contain the input element
+        //         var cell = $('.filters th').eq($(api.column(colIdx).header()).index());
+        //         var title = $(cell).text();
+        //         $(cell).html( '<input type="text" placeholder="'+title+'" />' );
+        //         // On every keypress in this input
+        //         $('input', $('.filters th').eq($(api.column(colIdx).header()).index()) )
+        //             .off('keyup change')
+        //             .on('keyup change', function (e) {
+        //                 e.stopPropagation();
+        //                 // Get the search value
+        //                 $(this).attr('title', $(this).val());
+        //                 var regexr = '({search})'; $(this).parents('th').find('select').val();
+        //                 var cursorPosition = this.selectionStart;
+        //                 // Search the column for that value
+        //                 api
+        //                     .column(colIdx)
+        //                     .search((this.value != "") ? regexr.replace('{search}', '((('+this.value+')))') : "", this.value != "", this.value == "")
+        //                     .draw();
+        //                 $(this).focus()[0].setSelectionRange(cursorPosition, cursorPosition);
+        //             });
+        //     });
+        // }
 
       });
       
@@ -365,6 +357,12 @@ All rights reserved.
       });
  
     });
+ 
+        $('#backup-table').DataTable({
+            "searching": true,
+            "dom": '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+        });
+  
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
          .columns.adjust()

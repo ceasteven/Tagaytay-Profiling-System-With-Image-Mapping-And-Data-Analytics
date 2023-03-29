@@ -50,7 +50,7 @@
     enabled: false
 },
     title: {
-        text: 'Total Gender'
+        text: 'Total Number of Male and Female'
     },
     subtitle: {
         text: ''
@@ -73,7 +73,7 @@
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y}</b></td></tr>',
         footerFormat: '</table>',
-        shared: true,
+        shared: false,
         useHTML: true,
         valueDecimals: 0,
     },
@@ -85,21 +85,22 @@
     },
     series: [{
         name: 'Male',
-        data: [{{$male}}],
+        data: ['{{$male}}'],
         color: '#003A6B'
 
     }, {
         name: 'Female',
-        data: [{{$female}}],
+        data: ['{{$female}}'],
         color:'#ff8dc6'
 
     },  
 
     ],
- 
+    exporting: { enabled: true }
     
 });
               </script>
+       
 
             </div>
             </div>
@@ -124,64 +125,64 @@
               </div>
              
               <script>
-Highcharts.chart('school', {
-  
-    
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        
-        type: 'pie'
-        
-    },
-    credits: {
-    enabled: false
-},
-    title: {
-        text: 'Total Number of Schooling and Not Schooling',
-        align: 'center'
-    },
-    tooltip: {
-      
-      valueDecimals: 0,
-        pointFormat: '{point.name}: <b>{point.y:.0f}</b>',
-    
-    },
-    accessibility: {
-        point: {
-           
-        }
-    },
-    plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: false
-            },
-            showInLegend: true
-        }
-    },
-    series: [{
-     
-        colorByPoint: true,
-        data: [{
-            name: 'Schooling',
-            y: {{$school}},
-            color: '#A0D2E7',
-           
-        },  {
-            name: 'Not Schooling',
-            y: {{$noschool}},
-            color: '#3D60A7',
-        },  ]
-    }],
- 
-    
-});
-
-              </script>
+                
+                Highcharts.chart('school', {
+                  chart: {
+                    
+                    type: 'pie'
+                  },
+                  credits: {
+                    enabled: false
+                },
+                  title: {
+                    text: 'Total Number of Schooling and Not Schooling'
+                  },
+                  tooltip: {
+                    pointFormat: '{point.name}: <b>{point.y:.0f}</b>',
+                    shared: false,
+                    valueDecimals: 0,
+                    formatter: function() {
+                        return this.point.name + ': <b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
+                    }
+                
+                  },
+                  accessibility: {
+                        point: {
+                           
+                        }
+                    },
+                    plotOptions: {
+                        pie: {
+                            allowPointSelect: true,
+                            cursor: 'pointer',
+                            dataLabels: {
+                                enabled: false
+                            },
+                            showInLegend: true,
+                            states: {
+                            hover: null,
+                            }
+                        }
+                    },
+                  series: [{
+                    name: 'Schooling Status',
+                    colorByPoint: true,
+                    data: [{
+                      name: 'Schooling',
+                      y: {{$school}},
+                      color: '#A0D2E7'
+                    }, {
+                      name: 'Not Schooling',
+                      y: {{$noschool}},
+                      color: '#3D60A7'
+                    }]
+                  }],
+                  exporting: { enabled: true }
+                });
+                
+                
+                
+                              </script>
 
             </div>
             </div>
@@ -239,7 +240,7 @@ Highcharts.chart('school', {
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y}</b></td></tr>',
         footerFormat: '</table>',
-        shared: true,
+        shared: false,
         useHTML: true,
         valueDecimals: 0,
     },
@@ -262,7 +263,7 @@ Highcharts.chart('school', {
     },  
 
     ],
- 
+    exporting: { enabled: true }
     
 });
               </script>
@@ -288,7 +289,6 @@ Highcharts.chart('school', {
 </figure>
 
               </div>
-             
               <script>
                 Highcharts.chart('age', {
     chart: {
@@ -323,7 +323,7 @@ Highcharts.chart('school', {
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y}</b></td></tr>',
         footerFormat: '</table>',
-        shared: true,
+        shared: false,
         useHTML: true,
         valueDecimals: 0,
     },
@@ -364,7 +364,7 @@ Highcharts.chart('school', {
     
 
     ],
- 
+    exporting: { enabled: true }
     
 });
               </script>

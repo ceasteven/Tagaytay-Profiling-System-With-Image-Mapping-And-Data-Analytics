@@ -30,7 +30,8 @@
                         <button type="button" class="close" data-dismiss="alert">
                            <i class="fa fa-times"></i>
                         </button>
-                        <strong>Success!</strong> {{ session('success') }}
+                        <i class="fas fa-check faa-pulse animated"></i>
+                        <strong>Success:</strong> {{ session('success') }}
                      </div>
 
                      @elseif (Session::has('error'))
@@ -38,14 +39,15 @@
                         <button type="button" class="close" data-dismiss="alert">
                            <i class="fa fa-times"></i>
                         </button>
-                        <strong>Error!</strong> {{ session('error') }}
+                        <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
+                        <strong>Error:</strong> {{ session('error') }}
                      </div>
 
                      @elseif ($errors->any())
                      {!! implode('', $errors->all('<div class="alert alert-danger alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert">
                            <i class="fa fa-times"></i>
-                        </button><strong>:message</strong>
+                        </button> <i class="fas fa-exclamation-triangle faa-pulse animated"></i><strong>:message</strong>
                      </div>')) !!}
                      @endif
                   </div>
@@ -111,7 +113,7 @@
 
                         <div class="tab-content">
                            <div class="tab-pane active" id="tab-table1">
-                              <table id="example10" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
+                              <table id="example10" class="table table-bordered table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
                                      
@@ -319,7 +321,7 @@
 
                            </div>
                            <div class="tab-pane" id="tab-table2">
-                              <table id="example11" class="table table-bordered table-striped table-hover dataTable nowrap" width="100%">
+                              <table id="example11" class="table table-bordered table-hover dataTable nowrap" width="100%">
                                  <thead>
                                     <tr>
                                      
@@ -475,7 +477,7 @@
                               </table>
                            </div>
                            <div class="tab-pane" id="tab-table3">
-                              <table id="example12" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
+                              <table id="example12" class="table table-bordered table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
                                      
@@ -739,7 +741,7 @@
 
                            </div>
                            <div class="tab-pane" id="tab-table4">
-                              <table id="example13" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
+                              <table id="example13" class="table table-bordered table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
                                      
@@ -819,7 +821,7 @@
                               </table>
                            </div>
                            <div class="tab-pane" id="tab-table5">
-                              <table id="example14" class="table table-bordered table-striped table-hover dataTable nowrap " width="100%">
+                              <table id="example14" class="table table-bordered table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
                                      
@@ -1034,7 +1036,7 @@
                               </table>
                            </div>
                            <div class="tab-pane" id="tab-table6">
-                              <table id="example15" class="table table-bordered table-striped table-hover dataTable nowrap" width="100%">
+                              <table id="example15" class="table table-bordered table-hover dataTable nowrap" width="100%">
                                  <thead>
                                     <tr>
                                      

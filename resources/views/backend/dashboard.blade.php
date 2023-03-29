@@ -1,11 +1,6 @@
 @extends('backend.app')
 @section('content')
-<style>
-    /* Custom style for changing separator  */
-    .breadcrumb-item + .breadcrumb-item::before {
-        content: ">";
-    }
-</style>
+
 <div class="content-wrapper" style="min-height: 539px;">
   <!-- Content Header (Page header) -->
   <div class="content-header">

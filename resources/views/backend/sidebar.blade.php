@@ -13,7 +13,7 @@
       </div>
       <div class="info">
         @auth
-        <a class="d-block">Hello, <b> {{auth()->user()->name}}!</b></a>
+        <a class="d-block">Hello, <b> {{auth()->user()->username}}!</b></a>
         @endauth
       </div>
     </div>
@@ -31,7 +31,7 @@
           <a href="#" class="list-group-item">
             <div class="search-title"><strong class="text-light"></strong>N<strong class="text-light"></strong>o<strong class="text-light"></strong> <strong class="text-light"></strong>e<strong class="text-light"></strong>l<strong class="text-light"></strong>e<strong class="text-light"></strong>m<strong class="text-light"></strong>e<strong class="text-light"></strong>n<strong class="text-light"></strong>t<strong class="text-light"></strong> <strong class="text-light"></strong>f<strong class="text-light"></strong>o<strong class="text-light"></strong>u<strong class="text-light"></strong>n<strong class="text-light"></strong>d<strong class="text-light"></strong>!<strong class="text-light"></strong></div>
             <div class="search-path">
-              
+
             </div>
           </a>
         </div>
@@ -42,9 +42,9 @@
       <ul class="nav nav-pills nav-sidebar flex-column nav-collapse-hide-child nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-           @auth
+        @auth
         @if(auth()->user()->role=='System Admin')
-       
+
         <li class="nav-item">
           <a href="{{ route('home') }}" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -72,7 +72,7 @@
         </li>
         <li class="nav-item">
           <a href="#" class="nav-link">
-          <i class="nav-icon fas fa-house-chimney"></i>
+            <i class="nav-icon fas fa-house-chimney"></i>
             <p>
               Barangays
               <i class="right fas fa-angle-left"></i>
@@ -287,7 +287,7 @@
         </li>
         <li class="nav-item">
           <a href="{{route('household.index')}}" class="nav-link">
-          <i class="nav-icon fas fa-house-user"></i>
+            <i class="nav-icon fas fa-house-user"></i>
             <p>
               Households
             </p>
@@ -308,17 +308,17 @@
               Logs
             </p>
           </a>
-</li>
-<!-- <li class="nav-item">
-          <a href="#" class="nav-link">
+        </li>
+        <li class="nav-item">
+          <a href="{{route('backup.backups')}}" class="nav-link">
             <i class="nav-icon fa fa-database"></i>
             <p>
-              Backup
+              Backups
             </p>
           </a>
-</li> -->
+        </li>
         @else
-       
+
         <li class="nav-item">
           <a href="{{ route('home') }}" class="nav-link">
             <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -339,11 +339,11 @@
           <a href="{{route('household.index')}}" class="nav-link">
             <i class="nav-icon fas fa-house-user"></i>
             <p>
-             Households
+              Households
             </p>
           </a>
         </li>
-        
+
 
         @endif
         @endauth

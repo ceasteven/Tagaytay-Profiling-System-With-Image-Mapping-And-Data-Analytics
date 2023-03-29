@@ -29,7 +29,8 @@
         <button type="button" class="close" data-dismiss="alert">
             <i class="fa fa-times"></i>
         </button>
-        <strong>Success!</strong> {{ session('success') }}
+        <i class="fas fa-check faa-pulse animated"></i>
+        <strong>Success:</strong> {{ session('success') }}
     </div>
     
             @elseif (Session::has('error'))
@@ -37,14 +38,15 @@
         <button type="button" class="close" data-dismiss="alert">
             <i class="fa fa-times"></i>
         </button>
-        <strong>Error!</strong> {{ session('error') }}
+        <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
+        <strong>Error:</strong> {{ session('error') }}
     </div>
     
     @elseif ($errors->any())
     {!! implode('', $errors->all('<div class="alert alert-danger alert-dismissible" role="alert">
         <button type="button" class="close" data-dismiss="alert">
             <i class="fa fa-times"></i>
-        </button><strong>:message</strong>
+        </button><i class="fas fa-exclamation-triangle faa-pulse animated"></i><strong>:message</strong>
     </div>')) !!}
             @endif
           </div>
@@ -86,8 +88,8 @@
                                         </td>
                                         @endif
                     <td>
-                    <a href="#" button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#viewmodal{{$users->id}}" title="Edit"><i class="fa-solid fa-eye"></i> </button></a>
-                      <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-target="#editmodal{{$users->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i>Edit </button></a>
+                    <!-- <a href="#" button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#viewmodal{{$users->id}}" title="Edit"><i class="fa-solid fa-eye"></i> </button></a> -->
+                      <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-target="#editmodal{{$users->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                       
               
                     </td>
@@ -195,7 +197,7 @@
 
 
 
-@foreach ($all as $users)
+<!-- @foreach ($all as $users)
 <div class="modal fade text-left" id="viewmodal{{$users->id}}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
@@ -241,7 +243,7 @@
 </div>
 </div>
 
-@endforeach
+@endforeach -->
 
 @foreach ($all as $users)
 <div class="modal fade text-left" id="editmodal{{$users->id}}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">

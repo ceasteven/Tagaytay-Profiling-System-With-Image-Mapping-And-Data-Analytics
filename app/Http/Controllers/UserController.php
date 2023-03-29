@@ -132,7 +132,7 @@ class UserController extends Controller
     }
     public function activityLog()
     {
-        $activityLog = DB::table('activity_log')->orderBy('updated_at', 'asc')->get();
+        $activityLog = DB::table('activity_log')->orderBy('updated_at', 'desc')->get();
         return view('systemadmin.user_activitylogs',compact('activityLog'));
     }
 

@@ -23,12 +23,10 @@
       <div class="row">
         <div class="col-12">
           <div class="card">
-            <div class="card-header">
-      
-            </div>
+          
             <!-- /.card-header -->
             <div class="card-body">
-              <table id="example2" class="table table-bordered table-striped table-hover nowrap " style="width:100%">
+              <table id="example2" class="table table-bordered table-hover nowrap " style="width:100%">
                 <thead>
                   <tr role="row">
                     <th>Name</th>

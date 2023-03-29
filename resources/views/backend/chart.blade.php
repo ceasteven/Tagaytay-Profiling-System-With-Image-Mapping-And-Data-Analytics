@@ -1,16 +1,50 @@
+<style>
+.card-body {
+  position: relative;
+  overflow: hidden;
+}
+.zoom-btns {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 9999;
+}
 
+.zoom-btn {
+  display: block;
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: 20px;
+  color: #000;
+  background-color: #fff;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+
+#zoom-out {
+  margin-top: 5px;
+}
+
+
+
+  </style>
   <div class="col-12">
     <div class="card" style="background-color:#00acdf;">
       <div class="card-header border-0">
         <h3 class="card-title">
-          <i class="fas fa-map-marker-alt mr-1"></i>
-          Tagaytay City Barangays
+      
         </h3>
       </div>
       <div class="card-body">
-        <div>
+ 
           <link rel="stylesheet" href="{{asset('plugins/map/style.css')}}">
           <div class="mapdiv" id="mapdiv">
+          <div class="zoom-btns">
+  <div id="zoom-in" class="zoom-btn">+</div>
+  <div id="zoom-out" class="zoom-btn">-</div>
+</div>
 
            <svg id="svg" version="1.1" viewBox="0 0 1122.24 793.59998" xmlns="http://www.w3.org/2000/svg">
         
@@ -256,15 +290,83 @@ Total Land Area: 446.38 hectares
                         </a>
                     
                     </svg>
+                    
+          </div>                   
 
-          </div>
-        </div>
-      </div>
 <script>
-  </script>
 
-      </div>
-    </div>
+var svg = document.getElementById("svg");
+var initialViewBox = svg.getAttribute("viewBox");
+var zoomLevel = 1.0;
+var startX = 0;
+var startY = 0;
+var isDragging = false;
+var paths = document.querySelectorAll("path");
+for (var i = 0; i < paths.length; i++) {
+  paths[i].addEventListener("click", function(e) {
+    e.preventDefault();
+  });
+}
+
+
+document.getElementById("zoom-in").addEventListener("click", function() {
+  zoomLevel += 0.1;
+  updateViewBox();
+});
+
+document.getElementById("zoom-out").addEventListener("click", function() {
+  zoomLevel -= 0.1;
+  updateViewBox();
+});
+
+function updateViewBox() {
+  var newWidth = parseFloat(initialViewBox.split(" ")[2]) / zoomLevel;
+  var newHeight = parseFloat(initialViewBox.split(" ")[3]) / zoomLevel;
+  var newViewBox = "0 0 " + newWidth + " " + newHeight;
+  svg.setAttribute("viewBox", newViewBox);
+  
+  if (zoomLevel == 1.0) {
+    isDragging = false;
+    svg.style.cursor = "default";
+  } else {
+    svg.style.cursor = "grab";
+  }
+}
+
+svg.addEventListener("mousedown", function(e) {
+  if (zoomLevel > 1.0) {
+    startX = e.clientX;
+    startY = e.clientY;
+    isDragging = true;
+    svg.style.cursor = "grabbing";
+  }
+});
+
+svg.addEventListener("mousemove", function(e) {
+  if (isDragging && zoomLevel > 1.0) {
+    var dx = (e.clientX - startX) / zoomLevel;
+    var dy = (e.clientY - startY) / zoomLevel;
+    var viewBox = svg.getAttribute("viewBox").split(" ");
+    viewBox[0] -= dx;
+    viewBox[1] -= dy;
+    svg.setAttribute("viewBox", viewBox.join(" "));
+    startX = e.clientX;
+    startY = e.clientY;
+  }
+});
+
+svg.addEventListener("mouseup", function(e) {
+  isDragging = false;
+  svg.style.cursor = "grab";
+});
+svg.addEventListener("click", function(e) {
+  if (isDragging) {
+    e.preventDefault();
+  }
+});
+</script>
+
+          </div></div></div>
       <div class="col-12">
         <div class="card">
           <div class="card-header border-0">
@@ -274,286 +376,105 @@ Total Land Area: 446.38 hectares
             </h3>
           </div>
           <div class="card-body">
-            <div class="chart-container">
+          <div>
 
-              <canvas id="myChart"  width="400" height="400"></canvas>
-              <script>
-                const ctx = document.getElementById('myChart');
 
-                new Chart(ctx, {
-                  type: 'bar',
-                  data: {
-                    labels: ['Population'],
-                    datasets: [{
-                        label: 'Asisan',
-                        data:  ['{{$asisan}}'],
-                        backgroundColor: '#f0b88d',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                      },
-                      
-                      {
-                        label: 'Bagong Tubig',
-                        data: ['{{$bagongtubig}}'],
-                        backgroundColor: '#b8c852',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                      },
-                      {
-                        label: 'Calabuso',
-                        data: ['{{$calabuso}}'],
-                        backgroundColor: '#9882f0',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                      },
-                      {
-                        label: 'Dapdap East',
-                        data:  ['{{$dapdapeast}}'],
-                        backgroundColor: '#11dc77',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                      },
-                      {
-                        label: 'Dapdap West',
-                        data: ['{{$dapdapwest}}'],
-                        backgroundColor: '#d75ebb',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Francisco',
-                        data:  ['{{$francisco}}'],
-                        backgroundColor: '#a6e064',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Guinhawa North',
-                        data:  ['{{$guinhawanorth}}'],
-                        backgroundColor: '#5396dd',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Guinhawa South',
-                        data:  ['{{$guinhawasouth}}'],
-                        backgroundColor: '#4bdead',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Iruhin Central',
-                        data:  ['{{$iruhincentral}}'],
-                        backgroundColor: '#1c37e8',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                      },
-                      
-                      {
-                        label: 'Iruhin East',
-                        data: ['{{$iruhineast}}'],
-                        backgroundColor: '#b2e737',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                      },
-                      {
-                        label: 'Iruhin West',
-                        data: ['{{$iruhinwest}}'],
-                        backgroundColor: '#42ccb5',
-                        borderColor: 'transparent',
-                        borderWidth: 1,
-                      },
-                      {
-                        label: 'Kaybagal Central',
-                        data: ['{{$kaybagalcentral}}'],
-                        backgroundColor: '#7193e2',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Kaybagal North',
-                        data: ['{{$kaybagalnorth}}'],
-                        backgroundColor: '#c9b159',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Kaybagal South',
-                        data: ['{{$kaybagalsouth}}'],
-                        backgroundColor: '#42ccb5',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Mag-asawang Ilat',
-                        data: ['{{$magasawangilat}}'],
-                        backgroundColor: '#68b6c8',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Maharlika East',
-                        data: ['{{$maharlikaeast}}'],
-                        backgroundColor: '#efe644',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Maharlika West',
-                        data: ['{{$maharlikawest}}'],
-                        backgroundColor: '#ec77aa',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Maitim II Central',
-                        data: ['{{$maitimcentral}}'],
-                        backgroundColor: '#6ecf7d',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Maitim II East',
-                        data: ['{{$maitimeast}}'],
-                        backgroundColor: '#a349ed',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Maitim II West',
-                        data: ['{{$maitimwest}}'],
-                        backgroundColor: '#de6ced',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Mendez Crossing East',
-                        data: ['{{$mendezeast}}'],
-                        backgroundColor: '#de1cd1',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Mendez Crossing West',
-                        data: ['{{$mendezwest}}'],
-                        backgroundColor: '#de1cd1',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Neogan',
-                        data: ['{{$neogan}}'],
-                        backgroundColor: '#90f058',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Patutong Malaki North',
-                        data:  ['{{$patutonorth}}'],
-                        backgroundColor: '#db108a',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Patutong Malaki South',
-                        data:  ['{{$patutosouth}}'],
-                        backgroundColor: '#d081ef',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Sambong',
-                        data:  ['{{$sambong}}'],
-                        backgroundColor: '#dd525e',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'San Jose',
-                        data:  ['{{$sanjose}}'],
-                        backgroundColor: '#cc6a83',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Silang Crossing East',
-                        data:  ['{{$silangeast}}'],
-                        backgroundColor: '#5d13d3',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Silang Crossing West',
-                        data:  ['{{$silangwest}}'],
-                        backgroundColor: '#f0a01f',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Sungay East',
-                        data:  ['{{$sungayeast}}'],
-                        backgroundColor: '#44b1ec',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Sungay West',
-                        data:  ['{{$sungaywest}}'],
-                        backgroundColor: '#dc7066',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Tolentino East',
-                        data: ['{{$tolentinoeast}}'],
-                        backgroundColor: '#4dd92d',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Tolentino West',
-                        data:  ['{{$tolentinowest}}'],
-                        backgroundColor: '#18ca50',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      },
-                      {
-                        label: 'Zambal',
-                        data: ['{{$zambal}}'],
-                        backgroundColor: '#44d341',
-                        borderColor: 'transparent',
-                        borderWidth: 1
-                      }
-                    ]
+<figure class="highcharts-figure">
+    <div id="myChart"></div>
+    
+</figure>
 
-                  },
-                  options: {
-                    maintainAspectRatio: false,
-                    scales: {
-      y: {
-   
-        ticks: {
-          stepSize: 1
-        },
+              </div>
+    <script>
+      Highcharts.chart('myChart', {
+  chart: {
+    type: 'column',
+
+  },
+  credits: {
+    enabled: false
+  },
+  title: {
+    text: 'Total Population of 34 Barangays in Tagaytay City'
+  },
+  xAxis: {
+    categories: ["Asisan", "Bagong Tubig", "Calabuso", "Dapdap East", "Dapdap West", "Francisco", "Guinhawa North", "Guinhawa South", "Iruhin Central", "Iruhin East", "Iruhin West", "Kaybagal Central", "Kaybagal North", "Kaybagal South", "Mag-asawang Ilat", "Maharlika East", "Maharlika West", "Maitim II Central", "Maitim II East", "Maitim II West", "Mendez Crossing East", "Mendez Crossing East","Neogan", "Patutong Malaki North", "Patutong Malaki South", "Sambong", "San Jose", "Silang Crossing East", "Silang Crossing West", "Sungay East", "Sungay West", "Tolentino East", "Tolentino West", "Zambal"],
+  },
+  yAxis: {
+    title: {
+      text: ' Number'
+    }
+  },
+  tooltip: {
+    pointFormat: '{point.category}: <b>{point.y:.0f}</b>',
+    formatter: function() {
+        return this.point.category + ': <b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
+    }
+
+  },
+  plotOptions: {
+    
+    series: {
+      dataLabels: {
+        enabled: false,
+        format: '{point.y:.0f}'
+        
       }
-    },
-                    plugins: {
-                      legend: {
-                        position: 'bottom'
-                      }
-                    }
-                  }
-                });
+    }
+  },
+  series: [{
+    name: 'Population',
+    data: [
+      { y: {{$asisan}}, color: '#f0b88d' },
+      { y: {{$bagongtubig}}, color: '#b8c852' },
+      { y: {{$calabuso}}, color: '#9882f0' },
+      { y: {{$dapdapeast}}, color: '#11dc77' },
+      { y: {{$dapdapwest}}, color: '#d75ebb' },
+      { y: {{$francisco}}, color: '#a6e064' },
+      { y: {{$guinhawanorth}}, color: '#5396dd' },
+      { y: {{$guinhawasouth}}, color: '#4bdead' },
+      { y: {{$iruhincentral}}, color: '#1c37e8' },
+      { y: {{$iruhineast}}, color: '#b2e737' },
+      { y: {{$iruhinwest}}, color: '#42ccb5' },
+      { y: {{$kaybagalcentral}}, color: '#7193e2' },
+      { y: {{$kaybagalnorth}}, color: '#c9b159' },
+      { y: {{$kaybagalsouth}}, color: '#42ccb5' },
+      { y: {{$magasawangilat}}, color: '#68b6c8' },
+      { y: {{$maharlikaeast}}, color: '#efe644' },
+      { y: {{$maharlikawest}}, color: '#ec77aa' },
+      { y: {{$maitimcentral}}, color: '#6ecf7d' },
+      { y: {{$maitimeast}}, color: '#a349ed' },
+      { y: {{$maitimwest}}, color: '#de6ced' },
+      { y: {{$mendezeast}}, color: '#de1cd1' },
+      { y: {{$mendezwest}}, color: '#de6ced' },
+      { y: {{$neogan}}, color: '#90f058' },
+      { y: {{$patutonorth}}, color: '#db108a' },
+      { y: {{$patutosouth}}, color: '#d081ef' },
+      { y: {{$sambong}}, color: '#dd525e' },
+      { y: {{$sanjose}}, color: '#cc6a83' },
+      { y: {{$silangeast}}, color: '#5d13d3' },
+      { y: {{$silangwest}}, color: '#f0a01f' },
+      { y: {{$sungayeast}}, color: '#44b1ec' },
+      { y: {{$sungaywest}}, color: '#dc7066' },
+      { y: {{$tolentinoeast}}, color: '#4dd92d' },
+      { y: {{$tolentinowest}}, color: '#18ca50' },
+      { y: {{$zambal}}, color: '#44d341' },
+],
+
+  }],
+  exporting: { enabled: false },
+  legend: {
+  enabled: false
+},
+
+});
+
+
               </script>
-            </div>
-
-
           </div>
-
-
-
         </div>
       </div>
+    
       <div class="col-6">
           <div class="card">
             <div class="card-header border-0">
@@ -584,7 +505,7 @@ Total Land Area: 446.38 hectares
     enabled: false
 },
     title: {
-        text: 'Total Gender'
+        text: 'Total Number of Male and Female'
     },
     subtitle: {
         text: ''
@@ -607,7 +528,7 @@ Total Land Area: 446.38 hectares
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y}</b></td></tr>',
         footerFormat: '</table>',
-        shared: true,
+        shared: false,
         useHTML: true,
         valueDecimals: 0,
     },
@@ -619,12 +540,12 @@ Total Land Area: 446.38 hectares
     },
     series: [{
         name: 'Male',
-        data: [{{$male}}],
+        data: ['{{$male}}'],
         color: '#003A6B'
 
     }, {
         name: 'Female',
-        data: [{{$female}}],
+        data: ['{{$female}}'],
         color:'#ff8dc6'
 
     },  
@@ -658,31 +579,28 @@ Total Land Area: 446.38 hectares
               </div>
              
               <script>
+                
 Highcharts.chart('school', {
-  
+  chart: {
     
-    chart: {
-        plotBackgroundColor: null,
-        plotBorderWidth: null,
-        plotShadow: false,
-        
-        type: 'pie'
-        
-    },
-    credits: {
+    type: 'pie'
+  },
+  credits: {
     enabled: false
 },
-    title: {
-        text: 'Total Number of Schooling and Not Schooling',
-        align: 'center'
-    },
-    tooltip: {
-      
-      valueDecimals: 0,
-        pointFormat: '{point.name}: <b>{point.y:.0f}</b>',
-    
-    },
-    accessibility: {
+  title: {
+    text: 'Total Number of Schooling and Not Schooling'
+  },
+  tooltip: {
+    pointFormat: '{point.name}: <b>{point.y:.0f}</b>',
+    shared: false,
+    valueDecimals: 0,
+    formatter: function() {
+        return this.point.name + ': <b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
+    }
+
+  },
+  accessibility: {
         point: {
            
         }
@@ -694,26 +612,29 @@ Highcharts.chart('school', {
             dataLabels: {
                 enabled: false
             },
-            showInLegend: true
+            showInLegend: true,
+            states: {
+            hover: null,
+            }
         }
     },
-    series: [{
-     
-        colorByPoint: true,
-        data: [{
-            name: 'Schooling',
-            y: {{$school}},
-            color: '#A0D2E7',
-           
-        },  {
-            name: 'Not Schooling',
-            y: {{$noschool}},
-            color: '#3D60A7',
-        },  ]
-    }],
-    exporting: { enabled: false }
-    
+  series: [{
+    name: 'Schooling Status',
+    colorByPoint: true,
+    data: [{
+      name: 'Schooling',
+      y: {{$school}},
+      color: '#A0D2E7'
+    }, {
+      name: 'Not Schooling',
+      y: {{$noschool}},
+      color: '#3D60A7'
+    }]
+  }],
+  exporting: { enabled: false }
 });
+
+
 
               </script>
 
@@ -773,7 +694,7 @@ Highcharts.chart('school', {
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y}</b></td></tr>',
         footerFormat: '</table>',
-        shared: true,
+        shared: false,
         useHTML: true,
         valueDecimals: 0,
     },
@@ -857,7 +778,7 @@ Highcharts.chart('school', {
         pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y}</b></td></tr>',
         footerFormat: '</table>',
-        shared: true,
+        shared: false,
         useHTML: true,
         valueDecimals: 0,
     },

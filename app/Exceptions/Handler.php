@@ -43,14 +43,11 @@ class Handler extends ExceptionHandler
      */
     public function register()
     {
-        $this->reportable(function (Throwable $e) {
-          
-                if ($e->getPrevious() instanceof \Illuminate\Session\TokenMismatchException) {
-                    return redirect()->route('login');
-                };
-          
-            //
-        });
+        $this->renderable(function (\Symfony\Component\HttpKernel\Exception\HttpException $e, $request) {
+            if ($e->getStatusCode() == 419) {
+              return redirect('login')->with('error','Your session expired due to inactivity. Please login again.');
+            }
+          });
     }
     
 }

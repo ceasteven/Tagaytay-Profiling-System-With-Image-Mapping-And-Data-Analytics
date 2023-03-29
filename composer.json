@@ -13,6 +13,7 @@
         "laravel/ui": "^4.0",
         "laravelcollective/html": "^6.3",
         "maatwebsite/excel": "^3.1",
+        "spatie/db-dumper": "^3.3",
         "spatie/laravel-activitylog": "^4.7",
         "spatie/laravel-backup": "^8.1"
     },
@@ -29,7 +30,8 @@
         "psr-4": {
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
-            "Database\\Seeders\\": "database/seeders/"
+            "Database\\Seeders\\": "database/seeders/",
+            "Spatie\\Backup\\": "vendor/spatie/laravel-backup/src/"
         }
     },
     "autoload-dev": {

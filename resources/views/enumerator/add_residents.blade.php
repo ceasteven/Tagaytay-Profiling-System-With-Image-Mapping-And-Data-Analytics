@@ -617,6 +617,7 @@
                                         </select>
                                     </div>
                                 </div>
+                                <br>
                                 <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                 <h5><strong>E. POLITICAL PARTICIPATION</strong></h5>
                                 <small> (FOR 16 YEARS OLD AND ABOVE)</small>
@@ -767,7 +768,7 @@
 
                                     <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                     <h5><strong>G. OTHER CHARACTERISTICS OF HOUSEHOLD MEMBERS</strong></h5>
-                                    <small>IF CODE 2 IN (12)</small>
+                                 
                                     <div class="form-group row">
                                         <label class="col-sm-5 col-form-label">59. Is ___ pregnant?</label>
                                         <div class="col-sm-6">

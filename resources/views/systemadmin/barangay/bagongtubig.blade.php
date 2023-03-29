@@ -1,5 +1,6 @@
 @extends('backend.app')
 @section('content')
+
 <div class="content-wrapper">
   <section class="content-header">
     <div class="container-fluid">

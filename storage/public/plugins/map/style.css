@@ -1,0 +1,245 @@
+
+.mapdiv path{
+    stroke: black;
+    stroke-width: 2.75;
+    transition: fill 0,3s;
+}
+.asisan{
+    fill: #f0b88d; 
+ }
+ 
+.asisan:hover {
+   fill: #06015a;
+}
+
+.bagongtubig{
+    fill: #b8c852; 
+ }
+ 
+.bagongtubig:hover {
+   fill: #06015a;
+}
+.calabuso{
+    fill: #9882f0; 
+ }
+ 
+.calabuso:hover {
+   fill: #06015a;
+}
+.dapdapeast{
+    fill: #11dc77; 
+ }
+ 
+.dapdapeast:hover {
+   fill: #06015a;
+}
+.dapdapwest{
+    fill: #d75ebb; 
+ }
+ 
+.dapdapwest:hover {
+   fill: #06015a;
+}
+.francisco{
+    fill: #a6e064; 
+ }
+ 
+.francisco:hover {
+   fill: #06015a;
+}
+.guinhawanorth{
+    fill: #5396dd; 
+ }
+ 
+.guinhawanorth:hover {
+   fill: #06015a;
+}
+.guinhawasouth{
+    fill: #4bdead; 
+ }
+ 
+.guinhawasouth:hover {
+   fill: #06015a;
+}
+.iruhincentral{
+    fill: #1c37e8; 
+ }
+ 
+.iruhincentral:hover {
+   fill: #06015a;
+}
+.iruhineast{
+    fill: #b2e737; 
+ }
+ 
+.iruhineast:hover {
+   fill: #06015a;
+}
+.iruhinwest{
+    fill: #42ccb5; 
+ }
+ 
+.iruhinwest:hover {
+   fill: #06015a;
+}
+.kaybagalcentral{
+    fill: #7193e2; 
+ }
+ 
+.kaybagalcentral:hover {
+   fill: #06015a;
+}
+.kaybagalnorth{
+    fill: #c9b159; 
+ }
+ 
+.kaybagalnorth:hover {
+   fill: #06015a;
+}
+.kaybagalsouth{
+        fill: #42ccb5; 
+     }
+     
+.kaybagalsouth:hover {
+       fill: #06015a;
+}
+.magasawangilat{
+    fill: #68b6c8; 
+ }
+ 
+.magasawangilat:hover {
+   fill: #06015a;
+}
+.maharlikaeast{
+    fill: #efe644; 
+ }
+ 
+.maharlikaeast:hover {
+   fill: #06015a;
+}
+.maharlikawest{
+    fill: #ec77aa; 
+ }
+ 
+.maharlikawest:hover {
+   fill: #06015a;
+}
+.maitimcentral{
+    fill: #6ecf7d; 
+ }
+ 
+.maitimcentral:hover {
+   fill: #06015a;
+}
+.maitimeast{
+    fill: #a349ed; 
+ }
+ 
+.maitimeast:hover {
+   fill: #06015a;
+}
+.maitimwest{
+    fill: #de6ced; 
+ }
+ 
+.maitimwest:hover {
+   fill: #06015a;
+}
+.mendezeast{
+    fill: #de1cd1; 
+ }
+ 
+.mendezeast:hover {
+   fill: #06015a;
+}
+.mendezwest{
+    fill: #90f058; 
+ }
+ 
+.mendezwest:hover {
+   fill: #06015a;
+}
+.neogan{
+    fill: #90f058; 
+ }
+ 
+.neogan:hover {
+   fill: #06015a;
+}
+.patutonorth{
+    fill: #db108a; 
+ }
+ 
+.patutonorth:hover {
+   fill: #06015a;
+}
+.patutosouth{
+    fill: #d081ef; 
+ }
+ 
+.patutosouth:hover {
+   fill: #06015a;
+}
+.sambong{
+    fill: #dd525e; 
+ }
+ 
+.sambong:hover {
+   fill: #06015a;
+}
+.sanjose{
+    fill: #cc6a83; 
+ }
+ 
+.sanjose:hover {
+   fill: #06015a;
+}
+.silangeast{
+    fill: #5d13d3; 
+ }
+ 
+.silangeast:hover {
+   fill: #06015a;
+}
+.silangwest{
+    fill: #f0a01f; 
+ }
+ 
+.silangwest:hover {
+   fill: #06015a;
+}
+.sungayeast{
+    fill: #44b1ec; 
+ }
+ 
+.sungayeast:hover {
+   fill: #06015a;
+}
+.sungaywest{
+    fill: #dc7066; 
+ }
+ 
+.sungaywest:hover {
+   fill: #06015a;
+}
+.tolentinoeast{
+    fill:#4dd92d;
+ }
+ 
+.tolentinoeast:hover {
+   fill: #06015a;
+}
+.tolentinowest{
+    fill: #18ca50; 
+ }
+ 
+.tolentinowest:hover {
+   fill: #06015a;
+}
+.zambal{
+    fill: #44d341; 
+ }
+ 
+.zambal:hover {
+   fill: #06015a;
+}

@@ -7,8 +7,7 @@
     <title>Reset Password</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- icheck bootstrap -->
@@ -24,14 +23,12 @@
     </script>
 </head>
 
-<body class="hold-transition login-page"
-    style="background-image:url('/dist/img/tc.jpg'); background-repeat:no-repeat; background-size:cover;">
+<body class="hold-transition login-page" style="background-image:url('/dist/img/tc.jpg'); background-repeat:no-repeat; background-size:cover;">
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ route('login') }}">
                 <div>
-                    <img class="img-responsive" src="{{ asset('dist/img/seal.png') }}"
-                        style="max-height:130px;margin:0 auto;">
+                    <img class="img-responsive" src="{{ asset('dist/img/seal.png') }}" style="max-height:130px;margin:0 auto;">
                 </div>
 
             </a>
@@ -42,35 +39,42 @@
                 <hr>
                 <p class="login-box-msg">Reset Password</p>
 
-<div>
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
+                <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
+                    @if (session('status'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                       
                         {{ session('status') }}
-                @endif
-    </div>
+                    </div>
+                    @elseif (session('error'))
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                       
+                        {{ session('error') }}
+                    </div>
+                    @endif
+                </div>
                 <form method="POST" action="{{ route('password.email') }}">
                     @csrf
 
 
                     <div>
-                          
 
-                            <div class="input-group mb-3">
-                                <input id="email" Placeholder="Enter your email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-            </div>
-          </div>
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+
+                        <div class="input-group mb-3">
+                            <input id="email" Placeholder="Enter your email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                            <div class="input-group-append">
+                                <div class="input-group-text">
+                                    <span class="fas fa-envelope"></span>
+                                </div>
                             </div>
+                            @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
+                    </div>
 
-                        <div class="col-md-12 text-center">
+                    <div class="col-md-12 text-center">
                         <button type="submit" class="btn btn-primary btn-block">Send Password Link</button>
                     </div>
 

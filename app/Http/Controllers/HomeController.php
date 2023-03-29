@@ -43,7 +43,7 @@ class HomeController extends Controller
     {
         $resident = Residents::count();
         $users = User::count('id');
-        $hcn =DB::table('residents')->distinct()->count('housecontrolnum');
+        $hcn =DB::table('households')->count('housecontrolnum');
         $asisan = DB::table('residents')->where('barangay', 'Asisan')->count();
         $asisanh = DB::table('residents')->where('barangay', 'Asisan')->distinct()->count('housecontrolnum');
         $bagongtubig = DB::table('residents')->where('barangay', 'Bagong Tubig')->count();

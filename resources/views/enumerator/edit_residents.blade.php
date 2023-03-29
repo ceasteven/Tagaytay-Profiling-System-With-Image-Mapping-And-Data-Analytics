@@ -43,7 +43,7 @@
                                 <div class="form-group row">
                                     <p class="col-sm-5 col-form-label">d. Barangay:</p>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="barangay" value="{{$residents->barangay}}">
+                                        <select class="form-control" name="barangay" value="{{$residents->barangay}}" required>
                                             <option value=""> Select barangay </option>
                                             <option value="Asisan" {{$residents->barangay == 'Asisan' ? 'selected':'' }}>Asisan</option>
                                             <option value="Bagong Tubig" {{$residents->barangay == 'Bagong Tubig' ? 'selected':'' }}>Bagong Tubig</option>
@@ -85,13 +85,13 @@
                                 <div class="form-group row">
                                     <p class="col-sm-5 col-form-label">e. Purok/Sitio:</p>
                                     <div class="col-sm-6">
-                                        <input name="purok" class="form-control input-sm" type="text" placeholder="" value="{{$residents->purok}}" />
+                                        <input name="purok" class="form-control input-sm" type="text" placeholder="" value="{{$residents->purok}}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <p class="col-sm-5 col-form-label">f. Street:</p>
                                     <div class="col-sm-6">
-                                        <input name="street" class="form-control input-sm" type="text" placeholder="" value="{{$residents->street}}" />
+                                        <input name="street" class="form-control input-sm" type="text" placeholder="" value="{{$residents->street}}" required />
                                     </div>
                                 </div>
 
@@ -100,20 +100,20 @@
                                 <div class="form-group row">
                                     <p class="col-sm-5 col-form-label">g. House/Building Number:</p>
                                     <div class="col-sm-6">
-                                        <input name="housenum" class="form-control input-sm" min="0" max="99999999999999" type="number" placeholder="" value="{{$residents->housenum}}" />
+                                        <input name="housenum" class="form-control input-sm" min="0" max="99999999999999" type="number" placeholder="" value="{{$residents->housenum}}" required />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <p class="col-sm-5 col-form-label">h. Unit Number:</p>
                                     <div class="col-sm-6">
-                                        <input name="unitnum" class="form-control input-sm" min="0" max="99999999999999" type="number" placeholder="" value="{{$residents->unitnum}}" />
+                                        <input name="unitnum" class="form-control input-sm" min="0" max="99999999999999" type="number" placeholder="" value="{{$residents->unitnum}}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">III. House Control Number
                                         (HCN):</label>
                                     <div class="col-sm-6">
-                                        <input name="housecontrolnum" class="form-control input-sm" min="0" max="99999999999999" type="number" value="{{$residents->housecontrolnum}}" placeholder="" />
+                                        <input name="housecontrolnum" class="form-control input-sm" min="0" max="99999999999999" type="number" value="{{$residents->housecontrolnum}}" required />
                                     </div>
                                 </div>
 
@@ -121,32 +121,32 @@
                                     <label class="col-sm-5 col-form-label">IV. Name of Household
                                         Head:</label>
                                     <div class="col-sm-6">
-                                        <input name="headname" class="form-control input-sm" type="text" placeholder="" value="{{$residents->headname}}" />
+                                        <input name="headname" class="form-control input-sm" type="text" placeholder="" value="{{$residents->headname}}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">V. Name of Respondent:</label>
                                     <div class="col-sm-6">
-                                        <input name="respondentname" class="form-control input-sm" type="text" placeholder="" value="{{$residents->respondentname}}" />
+                                        <input name="respondentname" class="form-control input-sm" type="text" placeholder="" value="{{$residents->respondentname}}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">VI. Start Date of
                                         Interview:</label>
                                     <div class="col-sm-6">
-                                        <input name="startdate" class="form-control input-sm" type="date" placeholder="" value="{{$residents->startdate}}" />
+                                        <input name="startdate" class="form-control input-sm" type="date" placeholder="" value="{{$residents->startdate}}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">VII. Time Started:</label>
                                     <div class="col-sm-6">
-                                        <input name="timestart" class="form-control input-sm" type="time" placeholder="" value="{{$residents->timestart}}" />
+                                        <input name="timestart" class="form-control input-sm" type="time" placeholder="" value="{{$residents->timestart}}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">VIII. Name of Enumerator:</label>
                                     <div class="col-sm-6">
-                                        <input name="enumname" class="form-control input-sm" type="name" placeholder="" value="{{$residents->enumname}}" />
+                                        <input name="enumname" class="form-control input-sm" type="name" placeholder="" value="{{$residents->enumname}}" required />
                                     </div>
                                 </div>
 
@@ -186,7 +186,7 @@
                                     <label class="col-sm-5 col-form-label">1. In what type of building does the
                                         household reside?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="housetype" value="{{$residents->housetype}}">
+                                        <select class="form-control" name="housetype" value="{{$residents->housetype}}" required>
                                             <option value="">Select Building Type</option>
                                             <option value="Single house" {{$residents->housetype == 'Single house' ? 'selected':'' }}>Single house </option>
                                             <option value="Duplex" {{$residents->housetype == 'Duplex' ? 'selected':'' }}>Duplex </option>
@@ -201,21 +201,21 @@
                                     <label class="col-sm-5 col-form-label">2. How many bedrooms does this
                                         housing unit have?</label>
                                     <div class="col-sm-6">
-                                        <input name="bedroomnum" class="form-control input-sm" min="0" type="number" placeholder="" value="{{$residents->bedroomnum}}" />
+                                        <input name="bedroomnum" class="form-control input-sm" min="0" type="number" placeholder="" value="{{$residents->bedroomnum}}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">3. How many storeys does this housing
                                         unit have?</label>
                                     <div class="col-sm-6">
-                                        <input name="storeysnum" class="form-control input-sm" min="0" type="number" placeholder="" value="{{$residents->storeysnum}}" />
+                                        <input name="storeysnum" class="form-control input-sm" min="0" type="number" placeholder="" value="{{$residents->storeysnum}}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">4. What type of construction
                                         materials are the roof made of?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="rooftype" value="{{$residents->rooftype}}">
+                                        <select class="form-control" name="rooftype" value="{{$residents->rooftype}}" required>
                                             <option value="">Select Roof Type</option>
                                             <option value="Strong materials" {{$residents->rooftype == 'Strong materials' ? 'selected':'' }}>Strong materials (e.g. galvanized iron, aluminum, tile,
                                                 concrete, brick, stone, asbestos)</option>
@@ -237,7 +237,7 @@
                                     <label class="col-sm-5 col-form-label">5. What type of construction
                                         materials are the outer walls made of?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="walltype" value="{{$residents->walltype}}">
+                                        <select class="form-control" name="walltype" value="{{$residents->walltype}}" required>
                                             <option>Select Wall Type</option>
                                             <option value="Strong materials" {{$residents->walltype == 'Strong materials' ? 'selected':'' }}>Strong materials (e.g. galvanized iron, aluminum, tile,
                                                 concrete, brick, stone, asbestos)</option>
@@ -256,7 +256,7 @@
                                     <label class="col-sm-5 col-form-label">6. What type of construction
                                         materials are the floors made of?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="floortype" value="{{$residents->floortype}}">
+                                        <select class="form-control" name="floortype" value="{{$residents->floortype}}" required>
                                             <option value="">Select Floor Type</option>
                                             <option value="Marble" {{$residents->floortype == 'Marble' ? 'selected':'' }}>Marble</option>
                                             <option value="Ceramic" {{$residents->floortype == 'Ceramic' ? 'selected':'' }}>Ceramic tiles </option>
@@ -274,14 +274,14 @@
                                     <label class="col-sm-5 col-form-label">7. How many nuclear families are
                                         there in the household?</label>
                                     <div class="col-sm-6">
-                                        <input name="nucfam" class="form-control input-sm" min="0" type="number" placeholder="" value="{{$residents->nucfam}}" />
+                                        <input name="nucfam" class="form-control input-sm" min="0" type="number" placeholder="" value="{{$residents->nucfam}}" required />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">8. How many members are there in the
                                         household, including OFWs?</label>
                                     <div class="col-sm-6">
-                                        <input name="housemembernum" class="form-control input-sm" min="0" type="number" placeholder="" value="{{$residents->housemembernum}}" />
+                                        <input name="housemembernum" class="form-control input-sm" min="0" type="number" placeholder="" value="{{$residents->housemembernum}}" required/>
                                     </div>
                                 </div>
                             </div>
@@ -317,7 +317,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">9. Who is the head of household?</label>
                                     <div class="col-sm-6">
-                                        <input name="householdhead" class="form-control input-sm" type="text" placeholder="Surname, First Name Middle Name" value="{{$residents->householdhead}}" />
+                                        <input name="householdhead" class="form-control input-sm" type="text" placeholder="Surname, First Name Middle Name" value="{{$residents->householdhead}}" required/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -434,10 +434,22 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">19. Where is ___'s country of destination? </label>
                                     <div class="col-sm-6">
-                                        <input name="ofwcountry" class="form-control input-sm" type="text" value="{{$residents->ofwcountry}}" id="ofwcountry" />
+                                    <input name="ofwcountry" class="form-control input-sm" type="text" value="{{$residents->ofwcountry}}" id="ofwcountry" {{$residents->ofw == 'No' ? 'disabled' : ''}} />
                                     </div>
 
                                 </div>
+                                <script>
+    const ofwSelect = document.getElementById('ofw');
+    const ofwCountryInput = document.getElementById('ofwcountry');
+
+    ofwSelect.addEventListener('change', () => {
+        if (ofwSelect.value === 'No') {
+            ofwCountryInput.disabled = true;
+        } else {
+            ofwCountryInput.disabled = false;
+        }
+    });
+</script>
                                 <small> (FOR 3 YEARS OLD AND ABOVE)</small>
                                 <div class="form-group row">
 

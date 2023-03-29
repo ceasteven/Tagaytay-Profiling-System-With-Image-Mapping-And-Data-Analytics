@@ -138,6 +138,6 @@ $todaydate=$dt->toDateTimeString();
         Session::flush();
         Session::regenerate();
         
-        return redirect('/login');
+        return redirect('/login')->with('status','You have successfully logged out!');
     }
 }

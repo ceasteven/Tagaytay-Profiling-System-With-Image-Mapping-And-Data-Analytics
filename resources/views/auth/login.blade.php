@@ -41,7 +41,18 @@
                 <div class="login-logo"> <b><strong>Tagaytay</strong></b><br>Profiling System</div>
                 <hr>
                 <p class="login-box-msg">Log in to start your session</p>
-
+<div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
+                                    @if (session('status'))
+                                    <div class="alert alert-success" >
+                                        <button type="button" class="close" onclick="this.closest('.alert').style.display = 'none';">
+                                          x
+                                        </button>
+                                        <i class="fas fa-check faa-pulse animated"></i>
+                                        {{ session('status') }}
+                                    </div>
+                                   
+                                    @endif
+                                </div>
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 

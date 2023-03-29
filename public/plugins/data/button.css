@@ -1,0 +1,16 @@
+.btn {
+    padding: .25rem .5rem;
+      padding-top: 0.25rem;
+      padding-right: 0.5rem;
+      padding-bottom: 0.25rem;
+      padding-left: 0.5rem;
+      font-size: .875rem;
+  }
+  .dt-button-collection{
+    max-height: 200px;
+    max-width: 100px;
+  
+  }
+  div.dt-button-collection .dt-button {
+      min-width: 100px;
+  }
