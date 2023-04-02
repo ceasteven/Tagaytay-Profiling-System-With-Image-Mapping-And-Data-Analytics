@@ -438,18 +438,7 @@
                                     </div>
 
                                 </div>
-                                <script>
-    const ofwSelect = document.getElementById('ofw');
-    const ofwCountryInput = document.getElementById('ofwcountry');
-
-    ofwSelect.addEventListener('change', () => {
-        if (ofwSelect.value === 'No') {
-            ofwCountryInput.disabled = true;
-        } else {
-            ofwCountryInput.disabled = false;
-        }
-    });
-</script>
+            
                                 <small> (FOR 3 YEARS OLD AND ABOVE)</small>
                                 <div class="form-group row">
 

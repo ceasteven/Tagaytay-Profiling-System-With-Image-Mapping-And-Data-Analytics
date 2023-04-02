@@ -108,10 +108,8 @@ All rights reserved.
   <!-- ChartJS -->
 
   <!-- Sparkline -->
-  <script src="{{asset('plugins/sparklines/sparkline.js')}}"></script>
   <!-- JQVMap -->
-  <script src="{{asset('plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-  <script src="{{asset('plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
+
 
   <!-- jQuery Knob Chart -->
   <script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
@@ -139,7 +137,7 @@ All rights reserved.
 
   <script src="{{asset('dist/js/adminlte.js')}}"></script>
   <!-- AdminLTE for demo purposes -->
-  <script src="{{asset('dist/js/pages/dashboard.js')}}"></script>
+
   <script>
        
     $(function() {
@@ -365,8 +363,8 @@ All rights reserved.
   
     $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
       $($.fn.dataTable.tables(true)).DataTable()
-         .columns.adjust()
-         .fixedColumns().relayout();
+         .columns.adjust();
+      
        
    });
    $('#addnew').on('hidden.bs.modal', function(e) {

@@ -22,11 +22,11 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
-
+Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->middleware('auth')->name('logout');
 Auth::routes();
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
-Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->middleware('auth')->name('logout');
+
 Route::get('/dashboard', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
 
 Route::get('/change_password', [App\Http\Controllers\HomeController::class, 'changePassword'])->middleware('auth')->name('change_password');

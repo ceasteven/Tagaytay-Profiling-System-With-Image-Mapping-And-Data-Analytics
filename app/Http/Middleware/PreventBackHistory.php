@@ -17,15 +17,24 @@ class PreventBackHistory
     public function handle(Request $request, Closure $next)
     {
         $headers = [
-            'Cache-Control'      => 'nocache, no-store, max-age=0, must-revalidate',
-            'Pragma'     => 'no-cache',
-            'Expires' => 'Sun, 02 Jan 1990 00:00:00 GMT'
+            'Cache-Control' => 'no-cache, no-store, must-revalidate, max-age=0',
+            'Pragma' => 'no-cache',
+            'X-Content-Type-Options' => 'nosniff',
+            'X-Frame-Options' => 'SAMEORIGIN',
+            'X-XSS-Protection' => '1; mode=block',
+            'Referrer-Policy' => 'strict-origin-when-cross-origin',
         ];
+
         $response = $next($request);
-        foreach($headers as $key => $value) {
+        foreach ($headers as $key => $value) {
             $response->headers->set($key, $value);
         }
- 
+
+        // Add the 'immutable' directive to static resource cache-control headers
+        if ($response->isSuccessful() && strpos($request->getRequestUri(), '/public/') !== false) {
+            $response->header('Cache-Control', 'public, max-age=31536000, immutable');
+        }
+
         return $response;
     }
 }

@@ -38,13 +38,13 @@
         </h3>
       </div>
       <div class="card-body">
- 
-          <link rel="stylesheet" href="{{asset('plugins/map/style.css')}}">
-          <div class="mapdiv" id="mapdiv">
-          <div class="zoom-btns">
+   <div class="zoom-btns">
   <div id="zoom-in" class="zoom-btn">+</div>
   <div id="zoom-out" class="zoom-btn">-</div>
 </div>
+          <link rel="stylesheet" href="{{asset('plugins/map/style.css')}}">
+          <div class="mapdiv" id="mapdiv">
+        
 
            <svg id="svg" version="1.1" viewBox="0 0 1122.24 793.59998" xmlns="http://www.w3.org/2000/svg">
         
