@@ -8,7 +8,7 @@
     <div class="icon">
       <i class="fas fa-users"></i>
     </div>
-    <a href="{{route('residents.index')}}" class="small-box-footer">View information of residents <i class="fas fa-arrow-circle-right"></i></a>
+    <a href="{{route('residents.index')}}" class="small-box-footer">View residents <i class="fas fa-arrow-circle-right"></i></a>
   </div>
 </div>
 <div class="col-md-4 col-sm-8 col-xs-12">
@@ -21,6 +21,6 @@
     <div class="icon">
       <i class="fas fa-house-user"></i>
     </div>
-    <a href="{{route('household.index')}}" class="small-box-footer">View household <i class="fas fa-arrow-circle-right"></i></a>
+    <a href="{{route('household.index')}}" class="small-box-footer">View households <i class="fas fa-arrow-circle-right"></i></a>
   </div>
 </div>

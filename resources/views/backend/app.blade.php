@@ -43,7 +43,7 @@
   <link rel="stylesheet" href="{{asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css')}}">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="{{asset('plugins/daterangepicker/daterangepicker.css')}}">
+
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/residents/residents.css')}}">
@@ -115,7 +115,7 @@ All rights reserved.
   <script src="{{asset('plugins/jquery-knob/jquery.knob.min.js')}}"></script>
   <!-- daterangepicker -->
   <script src="{{asset('plugins/moment/moment.min.js')}}"></script>
-  <script src="{{asset('plugins/daterangepicker/daterangepicker.js')}}"></script>
+
   <!-- Tempusdominus Bootstrap 4 -->
   <script src="{{asset('plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js')}}"></script>
   <!-- Summernote -->
@@ -195,6 +195,7 @@ All rights reserved.
             filename: 'identification'
           }, "print", ]
         }],
+        
         // orderCellsTop: true,
         // fixedHeader: true,
         // initComplete: function() {

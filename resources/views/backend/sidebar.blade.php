@@ -39,7 +39,7 @@
     </div>
     <!-- Sidebar Menu -->
     <nav class="mt-2">
-      <ul class="nav nav-pills nav-sidebar flex-column nav-collapse-hide-child nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
+      <ul class="nav nav-pills nav-sidebar flex-column nav-collapse-hide-child nav-legacy nav-child-indent" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
         @auth
@@ -55,12 +55,28 @@
         </li>
 
         <li class="nav-item">
-          <a href="{{route('users.index')}}" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-user"></i>
             <p>
               Users
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
+        
+        <ul class="nav nav-treeview">
+            <li class="nav-item">
+              <a href="{{route('users.create')}}" class="nav-link ">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Add User</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{{route('users.index')}}" class="nav-link">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>View Users</p>
+              </a>
+            </li>
+        </ul>
         </li>
         <li class="nav-item">
           <a href="{{route('residents.index')}}" class="nav-link">
@@ -295,7 +311,7 @@
         </li>
         <li class="nav-item">
           <a href="{{route('reports')}}" class="nav-link">
-            <i class="nav-icon fa fa-file"></i>
+            <i class="nav-icon fas fa-chart-bar"></i>
             <p>
               Reports
             </p>
@@ -328,20 +344,55 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="{{route('residents.index')}}" class="nav-link">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-users"></i>
             <p>
               Residents
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
-        </li>
+      
+        
+        <ul class="nav nav-treeview">
         <li class="nav-item">
-          <a href="{{route('household.index')}}" class="nav-link">
+              <a href="{{route('residents.index')}}" class="nav-link">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>View Residents</p>
+              </a>
+            </li>
+            <li class="nav-item">
+            <a href="{{ route('residents.index', ['view_deleted' => 'ArchivedUsers']) }}" class="nav-link ">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Archive</p>
+              </a>
+            </li>
+            
+        </ul>
+        </li>
+
+        <li class="nav-item">
+          <a href="#" class="nav-link">
             <i class="nav-icon fas fa-house-user"></i>
             <p>
               Households
+              <i class="right fas fa-angle-left"></i>
             </p>
           </a>
+          <ul class="nav nav-treeview">
+        <li class="nav-item">
+              <a href="{{route('household.index')}}" class="nav-link">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>View Households</p>
+              </a>
+            </li>
+            <li class="nav-item">
+            <a href="{{ route('household.index', ['view_deleted' => 'ArchivedUsers']) }}" class="nav-link ">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Archive</p>
+              </a>
+            </li>
+            
+        </ul>
         </li>
 
 

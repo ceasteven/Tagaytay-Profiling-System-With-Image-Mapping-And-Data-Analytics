@@ -81,7 +81,7 @@
 
               @if (auth()->user()->role=='Enumerator')
               <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addnew"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Resident</button>
-              <a href="{{ route('residents.index', ['view_deleted' => 'ArchivedUsers']) }}" class="btn btn-info btn-sm"><i class="fas fa-solid fa-eye"></i> View Archive</a>
+           
              
               <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#import"><i class="fa-solid fa-upload"></i> Import</button>
               

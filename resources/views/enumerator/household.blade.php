@@ -82,7 +82,7 @@
 
                      @if (auth()->user()->role=='Enumerator')
                      <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addhousehold"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Household</button>
-                     <a href="{{ route('household.index', ['view_deleted' => 'ArchivedUsers']) }}" class="btn btn-info btn-sm"><i class="fas fa-solid fa-eye"></i> View Archive</a>
+                    
                      <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#imports"><i class="fa-solid fa-upload"></i> Import</button>
                      <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-download"></i>
                         Export

@@ -18,11 +18,16 @@ class HouseholdsController extends Controller
 {
     public function exports()
     {
-        return Excel::download(new ExportHouseholds, 'households.xlsx');
+   
+        $date = date('Y-m-d');
+        $fileName = 'households-' . $date . '.xlsx'; // add date 
+        return Excel::download(new ExportHouseholds, $fileName);
     }
     public function csvexport()
     {
-        return Excel::download(new ExportHouseholds, 'households.csv');
+        $date = date('Y-m-d');
+        $fileName = 'households-' . $date . '.csv'; // add date 
+        return Excel::download(new ExportHouseholds, $fileName);
     }
 
 
@@ -80,7 +85,7 @@ class HouseholdsController extends Controller
         $household = Households::find($id)->delete();
 
         return redirect()->route('household.index')
-            ->with('message', 'Household archived successfully.');
+            ->with('success', 'Household archived successfully.');
     }
     public function restore($id)
     {

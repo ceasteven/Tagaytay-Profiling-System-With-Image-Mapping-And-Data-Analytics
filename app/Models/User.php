@@ -23,7 +23,9 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'firstname',
+        'middlename',
+        'lastname',
         'username',
         'email',
         'password',
@@ -32,7 +34,7 @@ class User extends Authenticatable
     ];
     
     protected static $logName = 'User';
-    protected static $logAttributes=['name', 'email'];
+    protected static $logAttributes=['firstname','lastname', 'email'];
     protected static $ignoredChangedAttributes=['password'];
     protected static $logOnlyDirty = true;
     protected static $recordEvents=['Created','Updated','Deleted', 'Restored'];
@@ -42,7 +44,7 @@ class User extends Authenticatable
     public function getActivitylogOptions(): LogOptions
 {
     return LogOptions::defaults()
-    ->setDescriptionForEvent(fn(string $eventName) =>  "{$eventName} {$this->role} named {$this->name}")
+    ->setDescriptionForEvent(fn(string $eventName) =>  "{$eventName} {$this->role} named {$this->firstname} {$this->lastname}")
     ->useLogName(Auth::check() ? Auth::user()->name : null);
 }
 
@@ -70,4 +72,8 @@ class User extends Authenticatable
 // {
 //     return $date->format('m-d-Y');
 // }
+public function getNameAttribute()
+    {
+        return $this->lastname . ', ' . $this->firstname . ' ' . $this->middlename;
+    }
 }

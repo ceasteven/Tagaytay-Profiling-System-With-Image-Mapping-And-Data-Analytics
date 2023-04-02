@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="{{asset('icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+    <script src="{{asset('plugins/alpine/alpine.min.js')}}"></script>
     <script type="text/javascript">
         window.history.forward();
 
@@ -23,6 +24,7 @@
             window.history.forward();
         }
     </script>
+      <!-- <script src="{{asset('plugins/alpine/alpine.min.js')}}"></script> -->
 </head>
 
 <body class="hold-transition login-page" style="background-image:url('dist/img/tc.jpg'); background-repeat:no-repeat; background-size:cover;">

@@ -1,12 +1,9 @@
 <style>
-.card-body {
-  position: relative;
-  overflow: hidden;
-}
+
 .zoom-btns {
   position: absolute;
   top: 10px;
-  left: 10px;
+  right: 10px;
   z-index: 9999;
 }
 
@@ -27,26 +24,28 @@
   margin-top: 5px;
 }
 
+#fullscreen {
+  margin-top: 5px;
+}
+
 
 
   </style>
   <div class="col-12">
-    <div class="card" style="background-color:#00acdf;">
-      <div class="card-header border-0">
-        <h3 class="card-title">
+    <div class="card">
       
-        </h3>
-      </div>
-      <div class="card-body">
+   
    <div class="zoom-btns">
-  <div id="zoom-in" class="zoom-btn">+</div>
-  <div id="zoom-out" class="zoom-btn">-</div>
+   <div id="fullscreen" class="zoom-btn"><i class="fas fa-regular fa-expand fa-xs"></i></div>
+  <div id="zoom-in" class="zoom-btn"><i class="fas fa-regular fa-plus fa-xs"></i></div>
+  <div id="zoom-out" class="zoom-btn"><i class="fas fa-regular fa-minus fa-xs"></i></div>
+ 
 </div>
           <link rel="stylesheet" href="{{asset('plugins/map/style.css')}}">
           <div class="mapdiv" id="mapdiv">
-        
+  
 
-           <svg id="svg" version="1.1" viewBox="0 0 1122.24 793.59998" xmlns="http://www.w3.org/2000/svg">
+           <svg id="svg" version="1.1" viewBox="0 0 1122.24 793.59998" xmlns="http://www.w3.org/2000/svg" style="background-color: #f2f2f2;">
         
                     <a href="{{route('kaybagal_south')}}" ><title>Kaybagal South
 Population: {{$kaybagalsouth}}
@@ -315,15 +314,22 @@ document.getElementById("zoom-in").addEventListener("click", function() {
 });
 
 document.getElementById("zoom-out").addEventListener("click", function() {
-  zoomLevel -= 0.1;
-  updateViewBox();
+  if (zoomLevel > 1.0) {
+    zoomLevel -= 0.1;
+    updateViewBox();
+  }
 });
+
 
 function updateViewBox() {
   var newWidth = parseFloat(initialViewBox.split(" ")[2]) / zoomLevel;
   var newHeight = parseFloat(initialViewBox.split(" ")[3]) / zoomLevel;
   var newViewBox = "0 0 " + newWidth + " " + newHeight;
-  svg.setAttribute("viewBox", newViewBox);
+
+  // prevent zoom out to zero viewBox
+  if (newWidth >= 1 && newHeight >= 1) {
+    svg.setAttribute("viewBox", newViewBox);
+  }
   
   if (zoomLevel == 1.0) {
     isDragging = false;
@@ -364,15 +370,58 @@ svg.addEventListener("click", function(e) {
     e.preventDefault();
   }
 });
+
+document.getElementById("fullscreen").addEventListener("click", function() {
+var fullWidth = window.screen.width;
+var fullHeight = window.screen.height;
+var newViewBoxX = (parseFloat(initialViewBox.split(" ")[2]) - fullWidth / zoomLevel) / 2;
+var newViewBoxY = (parseFloat(initialViewBox.split(" ")[3]) - fullHeight / zoomLevel) / 2;
+var newViewBox = newViewBoxX + " " + newViewBoxY + " " + fullWidth / zoomLevel + " " + fullHeight / zoomLevel;
+svg.setAttribute("viewBox", newViewBox);
+
+  var elem = document.getElementById("mapdiv");
+  if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+  } else if (elem.webkitRequestFullscreen) {
+    elem.webkitRequestFullscreen();
+  }
+  
+  // enable zoom buttons in full screen mode
+  document.getElementById("zoom-in").style.display = "block";
+  document.getElementById("zoom-out").style.display = "block";
+
+  // make map draggable in full screen mode
+  svg.addEventListener("mousedown", function(e) {
+    startX = e.clientX;
+    startY = e.clientY;
+    isDragging = true;
+    svg.style.cursor = "grabbing";
+  });
+
+  svg.addEventListener("mousemove", function(e) {
+    if (isDragging) {
+      var dx = e.movementX / zoomLevel;
+      var dy = e.movementY / zoomLevel;
+      var viewBox = svg.getAttribute("viewBox").split(" ");
+      viewBox[0] -= dx;
+      viewBox[1] -= dy;
+      svg.setAttribute("viewBox", viewBox.join(" "));
+    }
+  });
+
+  svg.addEventListener("mouseup", function(e) {
+    isDragging = false;
+    svg.style.cursor = "grab";
+  });
+});
 </script>
 
-          </div></div></div>
+          </div></div>
       <div class="col-12">
         <div class="card">
           <div class="card-header border-0">
             <h3 class="card-title">
-              <i class="fas fa-th mr-1"></i>
-              Tagaytay City Population per Barangay
+             
             </h3>
           </div>
           <div class="card-body">
@@ -395,7 +444,7 @@ svg.addEventListener("click", function(e) {
     enabled: false
   },
   title: {
-    text: 'Total Population of 34 Barangays in Tagaytay City'
+    text: 'Total Population per Barangay in Tagaytay City'
   },
   xAxis: {
     categories: ["Asisan", "Bagong Tubig", "Calabuso", "Dapdap East", "Dapdap West", "Francisco", "Guinhawa North", "Guinhawa South", "Iruhin Central", "Iruhin East", "Iruhin West", "Kaybagal Central", "Kaybagal North", "Kaybagal South", "Mag-asawang Ilat", "Maharlika East", "Maharlika West", "Maitim II Central", "Maitim II East", "Maitim II West", "Mendez Crossing East", "Mendez Crossing East","Neogan", "Patutong Malaki North", "Patutong Malaki South", "Sambong", "San Jose", "Silang Crossing East", "Silang Crossing West", "Sungay East", "Sungay West", "Tolentino East", "Tolentino West", "Zambal"],
@@ -786,6 +835,7 @@ Highcharts.chart('school', {
         column: {
           
             borderWidth: 0
+            
         }
     },
     series: [{

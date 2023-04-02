@@ -18,12 +18,16 @@ class ResidentsController extends Controller
 {
     public function export() 
     {
-        return Excel::download(new ExportResidents, 'residents.xlsx');
+        $date = date('Y-m-d');
+        $fileName = 'residents-' . $date . '.xlsx'; // add date 
+        return Excel::download(new ExportResidents, $fileName);
 
     }
     public function exportcsv() 
     {
-        return Excel::download(new ExportResidents, 'residents.csv');
+        $date = date('Y-m-d');
+        $fileName = 'residents-' . $date . '.csv'; // add date 
+        return Excel::download(new ExportResidents, $fileName);
 
     }
 
@@ -110,7 +114,7 @@ return redirect()->route('residents.index')
         $resident = Residents::find($id)->delete();
       
         return redirect()->route('residents.index')
-        ->with('message','Residents archived successfully.');
+        ->with('success','Residents archived successfully.');
     }
     public function repair($id) 
     {

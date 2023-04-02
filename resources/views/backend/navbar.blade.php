@@ -12,7 +12,7 @@
    <ul class="navbar-nav ml-auto">
      <li class="nav-item">
        <a class="nav-link" data-widget="fullscreen" href="#" role="button" style="color:black">
-         <i class="fas fa-expand-arrows-alt"></i>
+       <i class="fas fa-regular fa-expand"></i>
        </a>
      </li>
      <li class="dropdown user user-menu">
@@ -34,7 +34,7 @@
 
          <li class="user-body">
          <div class="float-left">
-             <a href="{{route('change_password')}}" class="btn btn-default btn-flat">Change Password</a>
+             <!-- <a href="{{route('change_password')}}" class="btn btn-default btn-flat">Change Password</a> -->
            </div>
            <div class="float-right">
              <a href="{{ route('logout') }}" onclick="event.preventDefault();
