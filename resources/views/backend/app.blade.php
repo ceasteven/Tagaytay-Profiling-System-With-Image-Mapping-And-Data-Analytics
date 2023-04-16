@@ -188,18 +188,27 @@ All rights reserved.
           }]
         }]
       }).buttons().container().appendTo('#test');
-
       $('#example2').DataTable({
-        order: [
-          [2, 'desc']
-        ],
         "responsive": false,
         "lengthChange": true,
         "autoWidth": false,
         "scrollX": true,
+        "buttons": [{
+          extend: 'collection',
+          text: '<i class="fa-solid fa-download"></i> Export',
+          buttons: [ "copy", {
+            extend: "csv",
+            filename: 'users_activitylogs'
+          }, {
+            extend: "excel",
+            filename: 'users_activitylogs'
+          }, {
+            extend: "pdf",
+            filename: 'users_activitylogs'
+          }, "print", ]
+        }]
 
-
-      });
+      }).buttons().container().appendTo('#test');
 
       // $('#example4 thead tr').clone(true).addClass('filters').appendTo( '#example4 thead' );
       var tables = $('#example4, #example5, #example6, #example7, #example8, #example9').DataTable({
