@@ -48,7 +48,6 @@ class Residents extends Model
         'nucfambelong',
         'gender',
         'birthdate',
-  
         'birthregistered',
         'civilstatus',
         'ethnicity',

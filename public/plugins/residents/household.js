@@ -342,7 +342,7 @@ document.getElementById("gcollection").onchange = function () {
 
 
 document.getElementById("crop").onchange = function () {
-    if (this.value == 'No' || this.value =='') {
+    if (this.value == 'No' || this.value == '') {
         document.getElementById("tenurestatus").disabled = true;
         document.getElementById("harvestyrs").disabled = true;
         document.getElementById("agrilandnum").disabled = true;
@@ -504,7 +504,7 @@ document.getElementById("livestock").onchange = function () {
 document.getElementById("livestocknum").onchange = function () {
     if (this.value == 'Not more than 3 years' || this.value == '') {
 
-       
+
         document.getElementById("livestockc").disabled = true;
         document.getElementById("livestockr").disabled = true;
         document.getElementById("livestocki").disabled = true;
@@ -514,7 +514,7 @@ document.getElementById("livestocknum").onchange = function () {
 
     }
     else {
-     
+
         document.getElementById("livestockc").disabled = false;
         document.getElementById("livestockr").disabled = false;
         document.getElementById("livestocki").disabled = false;
@@ -525,42 +525,42 @@ document.getElementById("livestocknum").onchange = function () {
 document.getElementById("livestockc").onchange = function () {
     if (this.value == 'Remain the same' || this.value == 'Increase') {
 
-       
-      
+
+
         document.getElementById("livestockr").disabled = true;
         document.getElementById("livestocki").disabled = false;
-       
+
 
 
 
     }
     else {
-     
-        
+
+
         document.getElementById("livestockr").disabled = false;
         document.getElementById("livestocki").disabled = true;
-      
+
     }
 
 }
 document.getElementById("livestocki").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
-       
-      
-     
+
+
+
         document.getElementById("livestockip").disabled = true;
-       
+
 
 
 
     }
     else {
-     
-        
-  
+
+
+
         document.getElementById("livestockip").disabled = false;
-      
+
     }
 
 }
@@ -635,7 +635,7 @@ document.getElementById("forestry").onchange = function () {
 
         document.getElementById("forestcash").disabled = true;
         document.getElementById("forestkind").disabled = true;
-   
+
 
 
 
@@ -643,7 +643,7 @@ document.getElementById("forestry").onchange = function () {
     else {
         document.getElementById("forestcash").disabled = false;
         document.getElementById("forestkind").disabled = false;
-      
+
     }
 
 }
@@ -653,7 +653,7 @@ document.getElementById("forestry").onchange = function () {
 
         document.getElementById("forestcash").disabled = true;
         document.getElementById("forestkind").disabled = true;
-   
+
 
 
 
@@ -661,7 +661,7 @@ document.getElementById("forestry").onchange = function () {
     else {
         document.getElementById("forestcash").disabled = false;
         document.getElementById("forestkind").disabled = false;
-      
+
     }
 
 }
@@ -670,7 +670,7 @@ document.getElementById("wholesale").onchange = function () {
 
         document.getElementById("wholesalecash").disabled = true;
         document.getElementById("wholesalekind").disabled = true;
-   
+
 
 
 
@@ -678,7 +678,7 @@ document.getElementById("wholesale").onchange = function () {
     else {
         document.getElementById("wholesalecash").disabled = false;
         document.getElementById("wholesalekind").disabled = false;
-      
+
     }
 
 }
@@ -687,7 +687,7 @@ document.getElementById("manufacturing").onchange = function () {
 
         document.getElementById("manucash").disabled = true;
         document.getElementById("manukind").disabled = true;
-   
+
 
 
 
@@ -695,7 +695,7 @@ document.getElementById("manufacturing").onchange = function () {
     else {
         document.getElementById("manucash").disabled = false;
         document.getElementById("manukind").disabled = false;
-      
+
     }
 
 }
@@ -704,7 +704,7 @@ document.getElementById("community").onchange = function () {
 
         document.getElementById("servcash").disabled = true;
         document.getElementById("servkind").disabled = true;
-   
+
 
 
 
@@ -712,7 +712,7 @@ document.getElementById("community").onchange = function () {
     else {
         document.getElementById("servcash").disabled = false;
         document.getElementById("servkind").disabled = false;
-      
+
     }
 
 }
@@ -721,7 +721,7 @@ document.getElementById("storage").onchange = function () {
 
         document.getElementById("transpocash").disabled = true;
         document.getElementById("transpokind").disabled = true;
-   
+
 
 
 
@@ -729,7 +729,7 @@ document.getElementById("storage").onchange = function () {
     else {
         document.getElementById("transpocash").disabled = false;
         document.getElementById("transpokind").disabled = false;
-      
+
     }
 
 }
@@ -739,7 +739,7 @@ document.getElementById("mining").onchange = function () {
 
         document.getElementById("miningcash").disabled = true;
         document.getElementById("miningkind").disabled = true;
-   
+
 
 
 
@@ -747,7 +747,7 @@ document.getElementById("mining").onchange = function () {
     else {
         document.getElementById("miningcash").disabled = false;
         document.getElementById("miningkind").disabled = false;
-      
+
     }
 
 }
@@ -756,7 +756,7 @@ document.getElementById("construct").onchange = function () {
 
         document.getElementById("constcash").disabled = true;
         document.getElementById("constkind").disabled = true;
-   
+
 
 
 
@@ -764,7 +764,7 @@ document.getElementById("construct").onchange = function () {
     else {
         document.getElementById("constcash").disabled = false;
         document.getElementById("constkind").disabled = false;
-      
+
     }
 
 }
@@ -773,7 +773,7 @@ document.getElementById("elsewhere").onchange = function () {
 
         document.getElementById("actcash").disabled = true;
         document.getElementById("actkind").disabled = true;
-   
+
 
 
 
@@ -781,7 +781,7 @@ document.getElementById("elsewhere").onchange = function () {
     else {
         document.getElementById("actcash").disabled = false;
         document.getElementById("actkind").disabled = false;
-      
+
     }
 
 }
@@ -943,7 +943,7 @@ document.getElementById("cropi").onchange = function () {
 
 }
 document.getElementById("agrif").onchange = function () {
-    if (this.value == 'No' || this.value == '')  {
+    if (this.value == 'No' || this.value == '') {
 
         document.getElementById("agrifprov").disabled = true;
 
@@ -1099,7 +1099,7 @@ document.getElementById("flood").onchange = function () {
         document.getElementById("floodnum").disabled = true;
         document.getElementById("flooda").disabled = true;
 
-  
+
 
 
 
@@ -1109,7 +1109,7 @@ document.getElementById("flood").onchange = function () {
 
         document.getElementById("flooda").disabled = false;
 
-   
+
 
 
 
@@ -1139,7 +1139,7 @@ document.getElementById("drough").onchange = function () {
         document.getElementById("droughnum").disabled = true;
         document.getElementById("droughta").disabled = true;
 
-  
+
 
 
 
@@ -1178,7 +1178,7 @@ document.getElementById("quake").onchange = function () {
         document.getElementById("quakenum").disabled = true;
         document.getElementById("quakea").disabled = true;
 
- 
+
 
 
 
@@ -1228,7 +1228,7 @@ document.getElementById("erupt").onchange = function () {
 
         document.getElementById("erupta").disabled = false;
 
-       
+
 
 
 
@@ -1259,7 +1259,7 @@ document.getElementById("landslide").onchange = function () {
         document.getElementById("landslidenum").disabled = true;
         document.getElementById("landslinea").disabled = true;
 
-     
+
 
 
 
@@ -1298,7 +1298,7 @@ document.getElementById("tsunami").onchange = function () {
         document.getElementById("tsunaminum").disabled = true;
         document.getElementById("tsunamia").disabled = true;
 
-      
+
 
 
 
@@ -1308,7 +1308,7 @@ document.getElementById("tsunami").onchange = function () {
 
         document.getElementById("tsunamia").disabled = false;
 
-       
+
 
 
 
@@ -1339,7 +1339,7 @@ document.getElementById("fire").onchange = function () {
         document.getElementById("firenum").disabled = true;
         document.getElementById("firea").disabled = true;
 
-    
+
 
 
 
@@ -1349,7 +1349,7 @@ document.getElementById("fire").onchange = function () {
 
         document.getElementById("firea").disabled = false;
 
-     
+
 
 
 
@@ -1390,7 +1390,7 @@ document.getElementById("forest").onchange = function () {
 
         document.getElementById("foresta").disabled = false;
 
- 
+
 
 
 
@@ -1432,7 +1432,7 @@ document.getElementById("conflict").onchange = function () {
     if (this.value == 'No' || this.value == '') {
         document.getElementById("conflictnum").disabled = true;
         document.getElementById("conflicta").disabled = true;
-    
+
 
 
 
@@ -1488,31 +1488,31 @@ document.getElementById("disasterprepaidnesskit").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
         document.getElementById("watery").disabled = true;
-      
+
         document.getElementById("food").disabled = true;
-     
+
         document.getElementById("match").disabled = true;
-   
+
         document.getElementById("light").disabled = true;
-    
+        document.getElementById("radio").disabled = true;
         document.getElementById("casette").disabled = true;
-      
+
         document.getElementById("candle").disabled = true;
 
         document.getElementById("kit").disabled = true;
         document.getElementById("whistle").disabled = true;
 
         document.getElementById("clothe").disabled = true;
-      
+
         document.getElementById("blanket").disabled = true;
-    
+
         document.getElementById("batt").disabled = true;
-       
+
         document.getElementById("batt").disabled = true;
-    
+
         document.getElementById("docu").disabled = true;
         document.getElementById("othr").disabled = true;
-    
+
 
 
 
@@ -1520,29 +1520,29 @@ document.getElementById("disasterprepaidnesskit").onchange = function () {
     else {
 
         document.getElementById("watery").disabled = false;
-    
+
         document.getElementById("food").disabled = false;
-      
+
         document.getElementById("match").disabled = false;
-       
+
         document.getElementById("light").disabled = false;
-     
+
         document.getElementById("radio").disabled = false;
-       
+
         document.getElementById("candle").disabled = false;
-       ;
+        ;
         document.getElementById("kit").disabled = false;
         document.getElementById("whistle").disabled = false;
-       
+
         document.getElementById("clothe").disabled = false;
-        
+
         document.getElementById("blanket").disabled = false;
-     
+
         document.getElementById("batt").disabled = false;
-     
+
         document.getElementById("docu").disabled = false;
         document.getElementById("othr").disabled = false;
-       
+
 
 
 
@@ -1576,7 +1576,7 @@ document.getElementById("osa").onchange = function () {
 
     }
 
-    
+
 }
 document.getElementById("watery").onchange = function () {
     if (this.value == 'No' || this.value == '') {
@@ -1602,7 +1602,7 @@ document.getElementById("watery").onchange = function () {
 
     }
 
-    
+
 }
 document.getElementById("food").onchange = function () {
     if (this.value == 'No' || this.value == '') {
@@ -1669,6 +1669,31 @@ document.getElementById("light").onchange = function () {
     else {
 
         document.getElementById("lightnum").disabled = false;
+
+
+
+
+
+
+
+
+    }
+
+}
+document.getElementById("radio").onchange = function () {
+    if (this.value == 'No' || this.value == '') {
+
+
+        document.getElementById("radionum").disabled = true;
+
+
+
+
+
+    }
+    else {
+
+        document.getElementById("radionum").disabled = false;
 
 
 
@@ -1883,7 +1908,7 @@ document.getElementById("hungerhappen").onchange = function () {
         document.getElementById("mhungers").disabled = false;
         document.getElementById("nhungert").disabled = false;
         document.getElementById("mhungert").disabled = false;
-       
+
 
 
 
@@ -1901,7 +1926,7 @@ document.getElementById("deathhousehold").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
 
         document.getElementById("deatho").disabled = true;
         document.getElementById("deathosex").disabled = true;
@@ -1916,7 +1941,7 @@ document.getElementById("deathhousehold").onchange = function () {
         document.getElementById("deaththtime").disabled = true;
         document.getElementById("deaththcause").disabled = true;
 
-      
+
 
 
 
@@ -1946,12 +1971,12 @@ document.getElementById("slp").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("slpname").disabled = true;
         document.getElementById("memo").disabled = true;
         document.getElementById("memop").disabled = true;
         document.getElementById("memoi").disabled = true;
-      
+
 
 
 
@@ -1972,12 +1997,12 @@ document.getElementById("ffw").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("ffwname").disabled = true;
         document.getElementById("memtw").disabled = true;
         document.getElementById("memtwp").disabled = true;
         document.getElementById("memtwpi").disabled = true;
-      
+
 
 
 
@@ -1999,12 +2024,12 @@ document.getElementById("cfw").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("cfwname").disabled = true;
         document.getElementById("memth").disabled = true;
         document.getElementById("memthp").disabled = true;
         document.getElementById("memthpi").disabled = true;
-      
+
 
 
 
@@ -2025,12 +2050,12 @@ document.getElementById("pension").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("pensionaname").disabled = true;
         document.getElementById("memf").disabled = true;
         document.getElementById("memfp").disabled = true;
         document.getElementById("memfpi").disabled = true;
-      
+
 
 
 
@@ -2052,12 +2077,12 @@ document.getElementById("ppp").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("pppname").disabled = true;
         document.getElementById("memfiv").disabled = true;
         document.getElementById("memfip").disabled = true;
         document.getElementById("memfipi").disabled = true;
-      
+
 
 
 
@@ -2078,12 +2103,12 @@ document.getElementById("arcdp").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("arcdpname").disabled = true;
         document.getElementById("mems").disabled = true;
         document.getElementById("memsp").disabled = true;
         document.getElementById("memspi").disabled = true;
-      
+
 
 
 
@@ -2104,12 +2129,12 @@ document.getElementById("twsp").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("twspname").disabled = true;
         document.getElementById("memse").disabled = true;
         document.getElementById("memsep").disabled = true;
         document.getElementById("memsepi").disabled = true;
-      
+
 
 
 
@@ -2130,12 +2155,12 @@ document.getElementById("cbep").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("cbepname").disabled = true;
         document.getElementById("meme").disabled = true;
         document.getElementById("memep").disabled = true;
         document.getElementById("memepi").disabled = true;
-      
+
 
 
 
@@ -2156,7 +2181,7 @@ document.getElementById("ohi").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("ohiname").disabled = true;
         document.getElementById("othi").disabled = true;
         document.getElementById("memn").disabled = true;
@@ -2165,7 +2190,7 @@ document.getElementById("ohi").onchange = function () {
         document.getElementById("memntp").disabled = true;
         document.getElementById("memnpi").disabled = true;
         document.getElementById("memntpi").disabled = true;
-      
+
 
 
 
@@ -2189,7 +2214,7 @@ document.getElementById("health").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("healthname").disabled = true;
         document.getElementById("namehealth").disabled = true;
         document.getElementById("memte").disabled = true;
@@ -2223,7 +2248,7 @@ document.getElementById("feeding").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("feedingname").disabled = true;
         document.getElementById("namefeeding").disabled = true;
         document.getElementById("memel").disabled = true;
@@ -2232,7 +2257,7 @@ document.getElementById("feeding").onchange = function () {
         document.getElementById("memelep").disabled = true;
         document.getElementById("memelpi").disabled = true;
         document.getElementById("memelepi").disabled = true;
-      
+
 
 
 
@@ -2257,7 +2282,7 @@ document.getElementById("scholar").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("namescholar").disabled = true;
         document.getElementById("scholarname").disabled = true;
         document.getElementById("memtwe").disabled = true;
@@ -2266,7 +2291,7 @@ document.getElementById("scholar").onchange = function () {
         document.getElementById("memtwelp").disabled = true;
         document.getElementById("memtwepi").disabled = true;
         document.getElementById("memtwelpi").disabled = true;
-      
+
 
 
 
@@ -2291,7 +2316,7 @@ document.getElementById("sltrp").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("sltrpname").disabled = true;
         document.getElementById("namesltrp").disabled = true;
         document.getElementById("memthr").disabled = true;
@@ -2300,7 +2325,7 @@ document.getElementById("sltrp").onchange = function () {
         document.getElementById("memthrip").disabled = true;
         document.getElementById("memthrpi").disabled = true;
         document.getElementById("memthripi").disabled = true;
-      
+
 
 
 
@@ -2325,7 +2350,7 @@ document.getElementById("credit").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("namecredit").disabled = true;
         document.getElementById("creditname").disabled = true;
         document.getElementById("memfou").disabled = true;
@@ -2334,7 +2359,7 @@ document.getElementById("credit").onchange = function () {
         document.getElementById("memfourp").disabled = true;
         document.getElementById("memfoupi").disabled = true;
         document.getElementById("memfourpi").disabled = true;
-      
+
 
 
 
@@ -2360,7 +2385,7 @@ document.getElementById("housing").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
 
-     
+
         document.getElementById("housingname").disabled = true;
         document.getElementById("namehousing").disabled = true;
         document.getElementById("memfi").disabled = true;
@@ -2369,7 +2394,7 @@ document.getElementById("housing").onchange = function () {
         document.getElementById("memfiftp").disabled = true;
         document.getElementById("memfifpi").disabled = true;
         document.getElementById("memfiftpi").disabled = true;
-      
+
 
 
 

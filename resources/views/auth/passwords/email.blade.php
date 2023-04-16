@@ -7,13 +7,15 @@
     <title>Reset Password</title>
 
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{ asset('icheck-bootstrap/icheck-bootstrap.min.css') }}">
+ <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- Theme style -->
-    <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
+    <script src="{{asset('plugins/alpine/alpine.min.js')}}"></script>
     <script type="text/javascript">
         window.history.forward();
 
@@ -23,7 +25,8 @@
     </script>
 </head>
 
-<body class="hold-transition login-page" style="background-image:url('/dist/img/tc.jpg'); background-repeat:no-repeat; background-size:cover;">
+<body class="hold-transition login-page" style="background-image:url('{{ asset('dist/img/tc.jpg') }}'); background-repeat:no-repeat; background-size:cover;">
+
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ route('login') }}">
@@ -41,13 +44,13 @@
 
                 <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
                     @if (session('status'))
-                    <div class="alert alert-success alert-dismissible" role="alert">
-                       
+                    <div class="alert alert-success alert-dismissible small" role="alert">
+                    <i class="fas fa-check faa-pulse animated"></i>
                         {{ session('status') }}
                     </div>
                     @elseif (session('error'))
-                    <div class="alert alert-danger alert-dismissible" role="alert">
-                       
+                    <div class="alert alert-danger alert-dismissible small" role="alert">
+                    <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
                         {{ session('error') }}
                     </div>
                     @endif
@@ -87,9 +90,10 @@
     </div>
     <!-- /resources/views/post/create.blade.php -->
     <!-- jQuery -->
-    <script src="{{ asset('jquery/jquery.min.js') }}"></script>
+    <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    
+  <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 </body>

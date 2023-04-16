@@ -5,4 +5,5 @@ canvas {
 .chart-container {
   position: relative;
   margin: auto;
+  overflow: visible;
 }

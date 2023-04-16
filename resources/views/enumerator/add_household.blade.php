@@ -2034,7 +2034,7 @@
                                     <p class="col-sm-6 col-form-label">159. During the past 12 months, how long did it usually take for the flood to
                                         subside (Specify the number of hours)?</p>
                                     <div class="col-sm-5">
-                                        <input name="floodmnths" class="form-control input-sm" type="number" min="0" placeholder="" id="floodmths" disabled="disabled" />
+                                        <input name="floodmnths" class="form-control input-sm" type="number" min="0" placeholder="" id="floodmnths" disabled="disabled" />
                                     </div>
                                 </div>
                                 <hr style="height:2px;border-width:0;color:black;background-color:black" />
@@ -2105,7 +2105,7 @@
                                 <div class="form-group row">
                                     <p class="col-sm-6 col-form-label">165. During your last temporary evacuation, where did you stay?</p>
                                     <div class="col-sm-5">
-                                        <select class="form-control" name="evacuateloc" id="evacauteloc" disabled="disabled">
+                                        <select class="form-control" name="evacuateloc" id="evacuateloc" disabled="disabled">
                                             <option value="">Select</option>
                                             <option value="School">School</option>
                                             <option value="Church">Church</option>
@@ -2487,7 +2487,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-5">
-                                        <input name="waterynum" class="form-control input-sm" type="number" min="0" placeholder="" id="waternum" disabled="disabled" />
+                                        <input name="waterynum" class="form-control input-sm" type="number" min="0" placeholder="" id="waterynum" disabled="disabled" />
                                     </div>
                                     <p class="col-sm-3 col-form-label">2. Food (canned goods, biscuits, bread)</p>
                                     <div class="col-sm-3">
@@ -2700,7 +2700,7 @@
                                             <option value="">Select</option>
                                             <option value="Diseases of the heart">Diseases of the heart (e.g. heart attack)</option>
                                             <option value="Diseases of the vascular system">Diseases of the vascular system (e.g. stroke)</option>
-                                            <option value=">Malignant neoplasms">Malignant neoplasms (e.g. cancer)</option>
+                                            <option value="Malignant neoplasms">Malignant neoplasms (e.g. cancer)</option>
                                             <option value="Pneumonia">Pneumonia</option>
                                             <option value=">Road or Vehicular accidents">Road/Vehicular accidents</option>
                                             <option value="Other accidents">Other accidents</option>
@@ -2738,7 +2738,7 @@
                                             <option value="">Select</option>
                                             <option value="Diseases of the heart">Diseases of the heart (e.g. heart attack)</option>
                                             <option value="Diseases of the vascular system">Diseases of the vascular system (e.g. stroke)</option>
-                                            <option value=">Malignant neoplasms">Malignant neoplasms (e.g. cancer)</option>
+                                            <option value="Malignant neoplasms">Malignant neoplasms (e.g. cancer)</option>
                                             <option value="Pneumonia">Pneumonia</option>
                                             <option value=">Road or Vehicular accidents">Road/Vehicular accidents</option>
                                             <option value="Other accidents">Other accidents</option>
@@ -2776,7 +2776,7 @@
                                             <option value="">Select</option>
                                             <option value="Diseases of the heart">Diseases of the heart (e.g. heart attack)</option>
                                             <option value="Diseases of the vascular system">Diseases of the vascular system (e.g. stroke)</option>
-                                            <option value=">Malignant neoplasms">Malignant neoplasms (e.g. cancer)</option>
+                                            <option value="Malignant neoplasms">Malignant neoplasms (e.g. cancer)</option>
                                             <option value="Pneumonia">Pneumonia</option>
                                             <option value=">Road or Vehicular accidents">Road/Vehicular accidents</option>
                                             <option value="Other accidents">Other accidents</option>

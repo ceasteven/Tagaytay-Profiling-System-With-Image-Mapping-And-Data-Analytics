@@ -30,7 +30,8 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
-        'status'
+        'status',
+ 
     ];
     
     protected static $logName = 'User';

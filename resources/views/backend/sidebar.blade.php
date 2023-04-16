@@ -361,7 +361,7 @@
               </a>
             </li>
             <li class="nav-item">
-            <a href="{{ route('residents.index', ['view_deleted' => 'ArchivedUsers']) }}" class="nav-link ">
+            <a href="{{ route('residents.index', ['view_deleted' => 'ArchivedResidents']) }}" class="nav-link ">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Archive</p>
               </a>
@@ -386,7 +386,7 @@
               </a>
             </li>
             <li class="nav-item">
-            <a href="{{ route('household.index', ['view_deleted' => 'ArchivedUsers']) }}" class="nav-link ">
+            <a href="{{ route('household.index', ['view_deleted' => 'ArchivedHouseholds']) }}" class="nav-link ">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>Archive</p>
               </a>

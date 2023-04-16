@@ -13,7 +13,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('plugins/fontawesome-free/css/all.min.css')}}">
     <!-- icheck bootstrap -->
-    <link rel="stylesheet" href="{{asset('icheck-bootstrap/icheck-bootstrap.min.css')}}">
+ <link rel="stylesheet" href="{{asset('plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('dist/css/adminlte.min.css')}}">
     <script src="{{asset('plugins/alpine/alpine.min.js')}}"></script>
@@ -27,12 +27,13 @@
       <!-- <script src="{{asset('plugins/alpine/alpine.min.js')}}"></script> -->
 </head>
 
-<body class="hold-transition login-page" style="background-image:url('dist/img/tc.jpg'); background-repeat:no-repeat; background-size:cover;">
+<body class="hold-transition login-page" style="background-image:url('{{ asset('dist/img/tc.jpg') }}'); background-repeat:no-repeat; background-size:cover;">
+
     <div class="login-box">
         <div class="login-logo">
             <a href="{{ route('login') }}">
                 <div>
-                    <img class="img-responsive" src="{{ asset('dist/img/seal.png') }}" style="max-height:130px;margin:0 auto;" alt="seal">
+                    <img class="img-responsive" src="{{ asset('dist/img/seal.png') }}" style="max-height:160px;margin:0 auto;" alt="seal">
                 </div>
 
             </a>
@@ -46,13 +47,28 @@
 <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
                                     @if (session('status'))
                                     <div class="alert alert-success" >
-                                        <button type="button" class="close" onclick="this.closest('.alert').style.display = 'none';">
-                                          x
-                                        </button>
+                                    <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
                                         <i class="fas fa-check faa-pulse animated"></i>
                                         {{ session('status') }}
                                     </div>
-                                   
+                                    @elseif (session('message'))
+                <div class="alert alert-danger alert-dismissible small" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+                    <i class="fas fa-exclamation-triangle faa-pulse animated"></i> 
+                    {{ session('message') }}
+                </div>
+                @elseif (session('error'))
+                <div class="alert alert-danger alert-dismissible small" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+            <i class="fa fa-times"></i>
+        </button>
+                    <i class="fas fa-exclamation-triangle faa-pulse animated"></i> 
+                    {{ session('error') }}
+                </div>
                                     @endif
                                 </div>
                 <form method="POST" action="{{ route('login') }}">
@@ -80,11 +96,7 @@
                             </div>
                         </div>
 
-                        @if (session('error'))
-                        <div style="color:#f02849;text-align: center;">
-                            {{ session('error') }}
-                        </div>
-                        @endif
+                        
                     </div>
 
                     <!-- /.col -->
@@ -109,9 +121,10 @@
     </div>
     <!-- /resources/views/post/create.blade.php -->
     <!-- jQuery -->
-    <script src="{{ asset('jquery/jquery.min.js') }}"></script>
+    <script src="{{asset('plugins/jquery/jquery.min.js')}}"></script>
     <!-- Bootstrap 4 -->
-    <script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    
+  <script src="{{asset('plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 </body>

@@ -7,12 +7,20 @@
       <div class="container-fluid">
          <div class="row mb-2">
             <div class="col-sm-6">
-               <h1>Household</h1>
+               @if (request()->has('view_deleted'))
+               <h1>Archived Households</h1>
+               @else
+               <h1>Households</h1>
+               @endif
             </div>
             <div class="col-sm-6 text-sm">
                <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{route('home')}}" style="color:#444;"><i class="fas fa-home"></i> Home</a></li>
-                  <li class="breadcrumb-item active">Household</li>
+                  @if (request()->has('view_deleted'))
+                  <li class="breadcrumb-item active">Archived Households</li>
+                  @else
+                  <li class="breadcrumb-item active">Households</li>
+                  @endif
                </ol>
             </div>
          </div>
@@ -82,25 +90,14 @@
 
                      @if (auth()->user()->role=='Enumerator')
                      <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addhousehold"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Household</button>
-                    
+
                      <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#imports"><i class="fa-solid fa-upload"></i> Import</button>
-                     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-download"></i>
-                        Export
-                     </button>
-                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{ route('households.export') }}">Excel</a>
-                        <a class="dropdown-item" href="{{ route('households.csvexport') }}">CSV</a>
 
-                     </div>
+                     <a href="#" id="test" >
+              </a>
                      @elseif (auth()->user()->role=='System Admin')
-                     <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right"><i class="fa-solid fa-download"></i>
-                        Export
-                     </button>
-                     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{ route('households.export') }}">Excel</a>
-                        <a class="dropdown-item" href="{{ route('households.csvexport') }}">CSV</a>
-
-                     </div>
+                     <a href="#" id="test" >
+              </a>
                      @endif
                      @endif
 
@@ -116,25 +113,29 @@
                               <table id="example10" class="table table-bordered table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
-                                     
                                        <th>House Control Number</th>
                                        <th>Household Head Name</th>
                                        <th>Water Supply</th>
                                        <th>Water Supply Number</th>
+                                       <th>Toilet Type</th>
                                        <th>Tenure Status</th>
                                        <th>Rent</th>
-                                       <th>Street</th>
                                        <th>Cooking Fuel</th>
                                        <th>Electricity</th>
                                        <th>Electric</th>
                                        <th>Generator</th>
+                                       <th>Solar</th>
                                        <th>Battery</th>
                                        <th>Others</th>
                                        <th>Land (Agricultural)</th>
                                        <th>Number</th>
                                        <th>Land (Residential)</th>
                                        <th>Number</th>
+                                       <th>Land (Commercial)</th>
+                                       <th>Number</th>
                                        <th>Car jeep, van</th>
+                                       <th>Number</th>
+                                       <th>Tricycle, Motorcycle, E-bike</th>
                                        <th>Number</th>
                                        <th>Bicycle</th>
                                        <th>Number</th>
@@ -142,11 +143,9 @@
                                        <th>Number</th>
                                        <th>Television</th>
                                        <th>Number</th>
-                                       <th>Radio/Radio casette</th>
-                                       <th>Number</th>
                                        <th>CD/VCD/DVD player</th>
                                        <th>Number</th>
-                                       <th>Tricycle, motorcycle, e-bike</th>
+                                       <th>Radio/Radio casette</th>
                                        <th>Number</th>
                                        <th>Component/Stereo/Karaoke/Videoke</th>
                                        <th>Number</th>
@@ -158,7 +157,9 @@
                                        <th>Number</th>
                                        <th>Electric fan</th>
                                        <th>Number</th>
-                                       <th>Electric iron/steamer/th>
+                                       <th>Airconditioner/air cooler</th>
+                                       <th>Number</th>
+                                       <th>Electric iron/steamer</th>
                                        <th>Number</th>
                                        <th>Washing machine</th>
                                        <th>Number</th>
@@ -185,26 +186,23 @@
                                        <th>Others</th>
                                        <th>Number</th>
                                        <th>Internet</th>
-                                       <th>Number</th>
-                                       <th>Others</th>
-                                       <th>Number</th>
                                        <th>House</th>
                                        <th>Insurance Provider</th>
-                                       <th>House</th>
                                        <th>Motor Vehicle</th>
+                                       <th>Insurance Provider</th>
                                        <th>Appliances</th>
                                        <th>Insurance Provider</th>
                                        <th>Garbage collection</th>
                                        <th>Burning</th>
                                        <th>Composting</th>
                                        <th>Recycling</th>
-                                       <th>Pit with cover</th>
+                                       <th>Waste segregation</th>
                                        <th>Pit without cover</th>
-                                       <th>Throwing of garbage in river</th>
-                                       <th>Other Systen of Garbage Disposal</th>
+                                       <th>Throwing of garbage</th>
                                        <th>Others</th>
                                        <th>Garbage Collector</th>
                                        <th>Garbage Collected</th>
+
                                        @if (auth()->user()->role=='Enumerator')
                                        <th data-orderable="false">Action</th>
                                        @endif
@@ -213,7 +211,7 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                      
+
                                        <td>{{$household->housecontrolnum}}</td>
                                        <td>{{$household->headname}}</td>
                                        <td>{{$household->watersupply}}</td>
@@ -232,6 +230,8 @@
                                        <td>{{$household->landagrinum}}</td>
                                        <td>{{$household->landres}}</td>
                                        <td>{{$household->landresum}}</td>
+                                       <td>{{$household->landcom}}</td>
+                                       <td>{{$household->landcomnum}}</td>
                                        <td>{{$household->car}}</td>
                                        <td>{{$household->carnum}}</td>
                                        <td>{{$household->tricycle}}</td>
@@ -309,7 +309,7 @@
                                           @else
                                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit1" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                           {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}
-                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
+                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
                                           {!! Form::close() !!}
                                           @endif
                                        </td>
@@ -324,7 +324,7 @@
                               <table id="example11" class="table table-bordered table-hover dataTable nowrap" width="100%">
                                  <thead>
                                     <tr>
-                                     
+
                                        <th>Crop Farming</th>
                                        <th>Cash</th>
                                        <th>Kind</th>
@@ -358,10 +358,8 @@
                                        <th>Activities</th>
                                        <th>Cash</th>
                                        <th>Kind</th>
-                                       <th>Total Net Cash</th>
-                                       <th>Total Net Kind</th>
-                                       <th>Remittance Cash</th>
-                                       <th>Remittance Kind</th>
+                                       <th>Total Net Income (CASH)</th>
+                                       <th>Total Net Income (KIND)</th>
                                        <th>Total Salaries Cash</th>
                                        <th>Total Salaries Kind</th>
                                        <th>Remittance Cash</th>
@@ -382,11 +380,13 @@
                                        <th>Dividends Kind</th>
                                        <th>Other sources Cash</th>
                                        <th>Other sources Kind</th>
-                                       <th>Total Income Other Cash</th>
-                                       <th>Total Income Kind</th>
-                                       <th>Total Imputed Cash</th>
+                                       <th>Total Income Other Sources Cash</th>
+                                       <th>Total Income Other Sources Kind</th>
+                                       <th>Total Imputed Rent Cash</th>
                                        <th>Total Income Cash</th>
                                        <th>Total Income Kind</th>
+                                       <th>Total Household Income</th>
+
 
                                        @if (auth()->user()->role=='Enumerator')
                                        <th data-orderable="false">Action</th>
@@ -396,40 +396,33 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                      
-
-                                       <td>{{$household->crop}}</td>
-                                       <td>{{$household->cropkind}}</td>
-                                       <td>{{$household->cropcash}}</td>
-                                       <td>{{$household->livestock}}</td>
-                                       <td>{{$household->fishing}}</td>
-                                       <td>{{$household->forestry}}</td>
-                                       <td>{{$household->wholesale}}</td>
-                                       <td>{{$household->manufacturing}}</td>
-                                       <td>{{$household->community}}</td>
-                                       <td>{{$household->storage}}</td>
-                                       <td>{{$household->mining}}</td>
-                                       <td>{{$household->construct}}</td>
-                                       <td>{{$household->elsewhere}}</td>
-                                       <td>{{$household->cropkind}}</td>
                                        <td>{{$household->livecash}}</td>
                                        <td>{{$household->livekind}}</td>
+                                       <td>{{$household->fishing}}</td>
                                        <td>{{$household->fishcash}}</td>
                                        <td>{{$household->fishkind}}</td>
+                                       <td>{{$household->forestry}}</td>
                                        <td>{{$household->forestycash}}</td>
                                        <td>{{$household->forestykind}}</td>
+                                       <td>{{$household->wholesale}}</td>
                                        <td>{{$household->wholesalecash}}</td>
                                        <td>{{$household->wholesalekind}}</td>
+                                       <td>{{$household->manufacturing}}</td>
                                        <td>{{$household->manucash}}</td>
                                        <td>{{$household->manukind}}</td>
+                                       <td>{{$household->community}}</td>
                                        <td>{{$household->servcash}}</td>
                                        <td>{{$household->servkind}}</td>
+                                       <td>{{$household->storage}}</td>
                                        <td>{{$household->transpocash}}</td>
                                        <td>{{$household->transpokind}}</td>
+                                       <td>{{$household->mining}}</td>
                                        <td>{{$household->miningcash}}</td>
                                        <td>{{$household->miningkind}}</td>
+                                       <td>{{$household->construct}}</td>
                                        <td>{{$household->constcash}}</td>
                                        <td>{{$household->constkind}}</td>
+                                       <td>{{$household->elsewhere}}</td>
                                        <td>{{$household->actcash}}</td>
                                        <td>{{$household->actkind}}</td>
                                        <td>{{$household->totalnetincomecash}}</td>
@@ -460,6 +453,7 @@
                                        <td>{{$household->totalcash}}</td>
                                        <td>{{$household->totalkind}}</td>
                                        <td>{{$household->totalincome}}</td>
+
                                        @if (auth()->user()->role=='Enumerator')
                                        <td>
                                           @if(request()->has('view_deleted'))
@@ -467,7 +461,7 @@
                                           @else
                                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit2" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                           {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}
-                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
+                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
                                           {!! Form::close() !!}
                                           @endif
                                        </td>
@@ -480,7 +474,7 @@
                               <table id="example12" class="table table-bordered table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
-                                     
+
                                        <th>Agricultural Land Tenure Status</th>
                                        <th>Area of Agricultural Land</th>
                                        <th>Temporary Crops</th>
@@ -592,7 +586,6 @@
                                        <th>Reason</th>
                                        <th>Changed major crop</th>
                                        <th>Reason</th>
-
                                        <th>Crops</th>
                                        <th>Insurance Provider</th>
                                        <th>Agricultural equipment/facilities</th>
@@ -606,7 +599,7 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                      
+
                                        <td>{{$household->tenurestatus}}</td>
                                        <td>{{$household->agrilandnum}}</td>
                                        <td>{{$household->tempcrops}}</td>
@@ -710,7 +703,6 @@
                                        <td>{{$household->fishfourown}}</td>
                                        <td>{{$household->fishfive}}</td>
                                        <td>{{$household->fishfiveown}}</td>
-
                                        <td>{{$household->livingnum}}</td>
                                        <td>{{$household->harvestyrs}}</td>
                                        <td>{{$household->harvestr}}</td>
@@ -730,7 +722,7 @@
                                           @else
                                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit3" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                           {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}
-                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
+                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
                                           {!! Form::close() !!}
                                           @endif
                                        </td>
@@ -744,7 +736,7 @@
                               <table id="example13" class="table table-bordered table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
-                                     
+
                                        <th>Poultry Years</th>
                                        <th>Poultry (3 years ago) </th>
                                        <th>Decrease Reason</th>
@@ -778,7 +770,7 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                      
+
                                        <td>{{$household->livestocknum}}</td>
                                        <td>{{$household->livestockc}}</td>
                                        <td>{{$household->livestockr}}</td>
@@ -811,7 +803,7 @@
                                           @else
                                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit4" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                           {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}
-                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
+                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
                                           {!! Form::close() !!}
                                           @endif
                                        </td>
@@ -824,7 +816,7 @@
                               <table id="example14" class="table table-bordered table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
-                                     
+
                                        <th>Typhoon</th>
                                        <th>Number</th>
                                        <th>Assistance</th>
@@ -908,12 +900,10 @@
                                        <th>Gender</th>
                                        <th>Age</th>
                                        <th>Cause</th>
-
                                        <th>Death Name</th>
                                        <th>Gender</th>
                                        <th>Age</th>
                                        <th>Cause</th>
-
                                        <th>Death Name</th>
                                        <th>Gender</th>
                                        <th>Age</th>
@@ -927,7 +917,7 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                      
+
                                        <td>{{$household->typhoon}}</td>
                                        <td>{{$household->typhoonnum}}</td>
                                        <td>{{$household->typhoona}}</td>
@@ -1026,7 +1016,7 @@
                                           @else
                                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit5" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                           {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}
-                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
+                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
                                           {!! Form::close() !!}
                                           @endif
                                        </td>
@@ -1039,138 +1029,126 @@
                               <table id="example15" class="table table-bordered table-hover dataTable nowrap" width="100%">
                                  <thead>
                                     <tr>
-                                     
+
                                        <th>Sustainable Livelihood Program</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Food for Work</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Covmber Name</th>
-                                       <th>Implemener Number</th>
-                                       <th>Household Metor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
+                                       <th>Food for Work</th>>
                                        <th>Cash for Work</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Social Pension for the Indigent Senior Citizens</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Pantawid Pamilyang Pilipino Program </th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Agrarian Reform Community
                                           Development Program</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Training for Work Scholarship
                                           Program</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Community-Based Employment
                                           Program</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Other health insurance</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Health assistance</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Supplemental feeding</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Education/scholarship program </th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Skills or livelihood training Program</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Credit Program</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Housing Program</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
-
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Other Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Other Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
                                        <th>Other Program Name</th>
-                                       <th>Household Member Cover Number</th>
-                                       <th>Household Member Name</th>
-                                       <th>Implementor</th>
+                                      <th>Number of  Household Member Covered</th>
+                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Program Implementor</th>
 
                                        @if (auth()->user()->role=='Enumerator')
                                        <th data-orderable="false">Action</th>
@@ -1180,160 +1158,118 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-                                      
+
                                        <td>{{$household->slp}}</td>
                                        <td>{{$household->slpname}}</td>
                                        <td>{{$household->memo}}</td>
                                        <td>{{$household->memop}}</td>
                                        <td>{{$household->memoi}}</td>
-
-
                                        <td>{{$household->ffw}}</td>
                                        <td>{{$household->ffwname}}</td>
                                        <td>{{$household->memtw}}</td>
                                        <td>{{$household->memtwp}}</td>
                                        <td>{{$household->memtwpi}}</td>
-
                                        <td>{{$household->cfw}}</td>
                                        <td>{{$household->cfwname}}</td>
                                        <td>{{$household->memth}}</td>
                                        <td>{{$household->memthp}}</td>
                                        <td>{{$household->memthpi}}</td>
-
                                        <td>{{$household->pension}}</td>
                                        <td>{{$household->pensionaname}}</td>
                                        <td>{{$household->memf}}</td>
                                        <td>{{$household->memfp}}</td>
                                        <td>{{$household->memfpi}}</td>
-
                                        <td>{{$household->ppp}}</td>
                                        <td>{{$household->pppname}}</td>
                                        <td>{{$household->memfiv}}</td>
                                        <td>{{$household->memfip}}</td>
                                        <td>{{$household->memfipi}}</td>
-
                                        <td>{{$household->arcdp}}</td>
                                        <td>{{$household->arcdpname}}</td>
                                        <td>{{$household->mems}}</td>
                                        <td>{{$household->memsp}}</td>
                                        <td>{{$household->memspi}}</td>
-
-
-
-
-
                                        <td>{{$household->twsp}}</td>
                                        <td>{{$household->twspname}}</td>
                                        <td>{{$household->memse}}</td>
                                        <td>{{$household->memsep}}</td>
                                        <td>{{$household->memsepi}}</td>
-
-
-
                                        <td>{{$household->cbep}}</td>
                                        <td>{{$household->cbepname}}</td>
                                        <td>{{$household->meme}}</td>
                                        <td>{{$household->memep}}</td>
                                        <td>{{$household->memepi}}</td>
-
-
-
                                        <td>{{$household->ohi}}</td>
                                        <td>{{$household->ohiname}}</td>
                                        <td>{{$household->memn}}</td>
                                        <td>{{$household->memnp}}</td>
                                        <td>{{$household->memnpi}}</td>
-
                                        <td>{{$household->othi}}</td>
                                        <td>{{$household->memnt}}</td>
                                        <td>{{$household->memntp}}</td>
                                        <td>{{$household->memntpi}}</td>
-
-
-
                                        <td>{{$household->health}}</td>
                                        <td>{{$household->healthname}}</td>
                                        <td>{{$household->memte}}</td>
                                        <td>{{$household->memtep}}</td>
                                        <td>{{$household->memtepi}}</td>
-
-
                                        <td>{{$household->namehealth}}</td>
                                        <td>{{$household->memten}}</td>
                                        <td>{{$household->memtenp}}</td>
                                        <td>{{$household->memtenpi}}</td>
-
-
-
                                        <td>{{$household->feeding}}</td>
                                        <td>{{$household->feedingname}}</td>
                                        <td>{{$household->memel}}</td>
                                        <td>{{$household->memelp}}</td>
                                        <td>{{$household->memelpi}}</td>
-
-
                                        <td>{{$household->namefeeding}}</td>
                                        <td>{{$household->memele}}</td>
                                        <td>{{$household->memelep}}</td>
                                        <td>{{$household->memelepi}}</td>
-
-
-
                                        <td>{{$household->scholar}}</td>
                                        <td>{{$household->namescholar}}</td>
                                        <td>{{$household->memtwe}}</td>
                                        <td>{{$household->memtwep}}</td>
                                        <td>{{$household->memtwepi}}</td>
-
                                        <td>{{$household->scholarname}}</td>
                                        <td>{{$household->memtwel}}</td>
                                        <td>{{$household->memtwelp}}</td>
                                        <td>{{$household->memtwelpi}}</td>
-
                                        <td>{{$household->sltrp}}</td>
                                        <td>{{$household->sltrpname}}</td>
                                        <td>{{$household->memthr}}</td>
                                        <td>{{$household->memthrp}}</td>
                                        <td>{{$household->memthrpi}}</td>
-
                                        <td>{{$household->namesltrp}}</td>
                                        <td>{{$household->memthri}}</td>
                                        <td>{{$household->memthrip}}</td>
                                        <td>{{$household->memthripi}}</td>
-
                                        <td>{{$household->credit}}</td>
                                        <td>{{$household->namecredit}}</td>
                                        <td>{{$household->memfou}}</td>
                                        <td>{{$household->memfoup}}</td>
                                        <td>{{$household->memfoupi}}</td>
-
                                        <td>{{$household->creditname}}</td>
                                        <td>{{$household->memfour}}</td>
                                        <td>{{$household->memfourp}}</td>
                                        <td>{{$household->memfourpi}}</td>
-
                                        <td>{{$household->housing}}</td>
                                        <td>{{$household->housingname}}</td>
                                        <td>{{$household->memfi}}</td>
                                        <td>{{$household->memfifp}}</td>
                                        <td>{{$household->memfifpi}}</td>
-
-
                                        <td>{{$household->namehousing}}</td>
                                        <td>{{$household->memfif}}</td>
                                        <td>{{$household->memfiftp}}</td>
                                        <td>{{$household->memfiftpi}}</td>
-
                                        <td>{{$household->programname}}</td>
                                        <td>{{$household->memsix}}</td>
                                        <td>{{$household->memsixp}}</td>
                                        <td>{{$household->memsixpi}}</td>
-
                                        <td>{{$household->nameprogram}}</td>
                                        <td>{{$household->memsixt}}</td>
                                        <td>{{$household->memsixtp}}</td>
                                        <td>{{$household->memsixtpi}}</td>
-
                                        <td>{{$household->programoname}}</td>
                                        <td>{{$household->memsixte}}</td>
                                        <td>{{$household->memsixtep}}</td>
@@ -1347,7 +1283,7 @@
                                           @else
                                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit6" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                           {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}
-                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
+                                          {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
                                           {!! Form::close() !!}
                                           @endif
                                        </td>

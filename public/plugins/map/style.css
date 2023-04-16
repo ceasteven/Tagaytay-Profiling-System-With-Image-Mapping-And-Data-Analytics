@@ -4,242 +4,242 @@
     stroke-width: 2.75;
     transition: fill 0,3s;
 }
-.asisan{
+#asisan{
     fill: #f0b88d; 
  }
  
-.asisan:hover {
+#asisan:hover {
    fill: #06015a;
 }
 
-.bagongtubig{
+#bagongtubig{
     fill: #b8c852; 
  }
  
-.bagongtubig:hover {
+#bagongtubig:hover {
    fill: #06015a;
 }
-.calabuso{
+#calabuso{
     fill: #9882f0; 
  }
  
-.calabuso:hover {
+#calabuso:hover {
    fill: #06015a;
 }
-.dapdapeast{
+#dapdapeast{
     fill: #11dc77; 
  }
  
-.dapdapeast:hover {
+#dapdapeast:hover {
    fill: #06015a;
 }
-.dapdapwest{
+#dapdapwest{
     fill: #d75ebb; 
  }
  
-.dapdapwest:hover {
+#dapdapwest:hover {
    fill: #06015a;
 }
-.francisco{
+#francisco{
     fill: #a6e064; 
  }
  
-.francisco:hover {
+#francisco:hover {
    fill: #06015a;
 }
-.guinhawanorth{
+#guinhawanorth{
     fill: #5396dd; 
  }
  
-.guinhawanorth:hover {
+#guinhawanorth:hover {
    fill: #06015a;
 }
-.guinhawasouth{
+#guinhawasouth{
     fill: #4bdead; 
  }
  
-.guinhawasouth:hover {
+#guinhawasouth:hover {
    fill: #06015a;
 }
-.iruhincentral{
+#iruhincentral{
     fill: #1c37e8; 
  }
  
-.iruhincentral:hover {
+#iruhincentral:hover {
    fill: #06015a;
 }
-.iruhineast{
+#iruhineast{
     fill: #b2e737; 
  }
  
-.iruhineast:hover {
+#iruhineast:hover {
    fill: #06015a;
 }
-.iruhinwest{
+#iruhinwest{
     fill: #42ccb5; 
  }
  
-.iruhinwest:hover {
+#iruhinwest:hover {
    fill: #06015a;
 }
-.kaybagalcentral{
+#kaybagalcentral{
     fill: #7193e2; 
  }
  
-.kaybagalcentral:hover {
+#kaybagalcentral:hover {
    fill: #06015a;
 }
-.kaybagalnorth{
+#kaybagalnorth{
     fill: #c9b159; 
  }
  
-.kaybagalnorth:hover {
+#kaybagalnorth:hover {
    fill: #06015a;
 }
-.kaybagalsouth{
-        fill: #42ccb5; 
-     }
+#kaybagalsouth{
+   fill: #42ccb5; 
+}
      
-.kaybagalsouth:hover {
+#kaybagalsouth:hover {
        fill: #06015a;
 }
-.magasawangilat{
+#magasawangilat{
     fill: #68b6c8; 
  }
  
-.magasawangilat:hover {
+#magasawangilat:hover {
    fill: #06015a;
 }
-.maharlikaeast{
+#maharlikaeast{
     fill: #efe644; 
  }
  
-.maharlikaeast:hover {
+#maharlikaeast:hover {
    fill: #06015a;
 }
-.maharlikawest{
+#maharlikawest{
     fill: #ec77aa; 
  }
  
-.maharlikawest:hover {
+#maharlikawest:hover {
    fill: #06015a;
 }
-.maitimcentral{
+#maitimcentral{
     fill: #6ecf7d; 
  }
  
-.maitimcentral:hover {
+#maitimcentral:hover {
    fill: #06015a;
 }
-.maitimeast{
+#maitimeast{
     fill: #a349ed; 
  }
  
-.maitimeast:hover {
+#maitimeast:hover {
    fill: #06015a;
 }
-.maitimwest{
+#maitimwest{
     fill: #de6ced; 
  }
  
-.maitimwest:hover {
+#maitimwest:hover {
    fill: #06015a;
 }
-.mendezeast{
+#mendezeast{
     fill: #de1cd1; 
  }
  
-.mendezeast:hover {
+#mendezeast:hover {
    fill: #06015a;
 }
-.mendezwest{
+#mendezwest{
     fill: #90f058; 
  }
  
-.mendezwest:hover {
+#mendezwest:hover {
    fill: #06015a;
 }
-.neogan{
+#neogan{
     fill: #90f058; 
  }
  
-.neogan:hover {
+#neogan:hover {
    fill: #06015a;
 }
-.patutonorth{
+#patutonorth{
     fill: #db108a; 
  }
  
-.patutonorth:hover {
+#patutonorth:hover {
    fill: #06015a;
 }
-.patutosouth{
+#patutosouth{
     fill: #d081ef; 
  }
  
-.patutosouth:hover {
+#patutosouth:hover {
    fill: #06015a;
 }
-.sambong{
+#sambong{
     fill: #dd525e; 
  }
  
-.sambong:hover {
+#sambong:hover {
    fill: #06015a;
 }
-.sanjose{
+#sanjose{
     fill: #cc6a83; 
  }
  
-.sanjose:hover {
+#sanjose:hover {
    fill: #06015a;
 }
-.silangeast{
+#silangeast{
     fill: #5d13d3; 
  }
  
-.silangeast:hover {
+#silangeast:hover {
    fill: #06015a;
 }
-.silangwest{
+#silangwest{
     fill: #f0a01f; 
  }
  
-.silangwest:hover {
+#silangwest:hover {
    fill: #06015a;
 }
-.sungayeast{
+#sungayeast{
     fill: #44b1ec; 
  }
  
-.sungayeast:hover {
+#sungayeast:hover {
    fill: #06015a;
 }
-.sungaywest{
+#sungaywest{
     fill: #dc7066; 
  }
  
-.sungaywest:hover {
+#sungaywest:hover {
    fill: #06015a;
 }
-.tolentinoeast{
+#tolentinoeast{
     fill:#4dd92d;
  }
  
-.tolentinoeast:hover {
+#tolentinoeast:hover {
    fill: #06015a;
 }
-.tolentinowest{
+#tolentinowest{
     fill: #18ca50; 
  }
  
-.tolentinowest:hover {
+#tolentinowest:hover {
    fill: #06015a;
 }
-.zambal{
+#zambal{
     fill: #44d341; 
  }
  
-.zambal:hover {
+#zambal:hover {
    fill: #06015a;
 }

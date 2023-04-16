@@ -47,7 +47,6 @@ class ExportResidents implements FromCollection,WithHeadings
             "nucfambelong",
             "gender",
             "birthdate",
-            "age",
             "birthregistered",
             "civilstatus",
             "ethnicity",
@@ -55,6 +54,7 @@ class ExportResidents implements FromCollection,WithHeadings
             "ofw",
             "ofwcountry",
             "residing",
+            "residingo",
             "attendschool",
             "yearlevel",
             "schooltype",
@@ -114,7 +114,8 @@ class ExportResidents implements FromCollection,WithHeadings
             "treatment",
             "treatmentloc",
             "enddate",
-            "endtime",];
+            "endtime",
+        ];
         }
 }
 

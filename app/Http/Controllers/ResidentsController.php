@@ -44,19 +44,28 @@ class ResidentsController extends Controller
             'file'  => 'required|mimes:xls,xlsx,csv,txt|max:10000',
             
             ]);
-            $pathTofile=$request->file('file');
-          $import = new ResidentsImport;
-$import->import($pathTofile);
-if ($import->failures()->isNotEmpty()){
-    $failures=$import->failures();
-    return redirect()->back()->with('error',$failures);
-}
-else{
-    return redirect()->back()->with('error', 'Please check the number of your column');
-}
-return redirect()->route('residents.index')
-       ->with('success','Residents imported successfully!');
-}
+            $pathToFile = $request->file('file');
+            $import = new ResidentsImport();
+            $rows = $import->toArray($pathToFile)[0];
+    
+            // Get the number of rows in the CSV file
+            $rowCount = count($rows);
+            
+            // Import the CSV file
+            $import->import($pathToFile);
+    
+            // Get the number of rows imported
+            $importedRowCount = $import->getRowCount();
+    
+            if ($importedRowCount !== ($rowCount - 1)) {
+                return redirect()->back()->with('error', 'Row count is not the same as the heading row.');
+            } else if ($import->failures()->isNotEmpty()) {
+                $failures = $import->failures();
+                return redirect()->back()->with('error', $failures);
+            } else {
+                return redirect()->route('residents.index')->with('success', 'Residents imported successfully!');
+            }
+        }
         // $validator=\Validator::make($request->all(),[
         //     'file'  => 'required|mimes:xls,xlsx,csv,txt|max:10000',
        

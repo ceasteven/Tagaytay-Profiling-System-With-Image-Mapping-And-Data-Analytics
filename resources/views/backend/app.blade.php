@@ -17,7 +17,7 @@
           
         window.onunload = function () { null }; 
     </script> -->
-      <script src="{{asset('plugins/highcharts/highcharts.js')}}"></script>
+  <script src="{{asset('plugins/highcharts/highcharts.js')}}"></script>
   <script src="{{asset('plugins/highcharts/modules/data.js')}}"></script>
   <script src="{{asset('plugins/highcharts/modules/accessibility.js')}}"></script>
   <script src="{{asset('plugins/highcharts/modules/exporting.js')}}"></script>
@@ -47,12 +47,13 @@
   <!-- summernote -->
   <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
   <link rel="stylesheet" href="{{asset('plugins/residents/residents.css')}}">
-  
+
   <link rel="stylesheet" href="{{asset('plugins/data/button.css')}}">
-  
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
+
 
   <!-- Navbar -->
   @include('backend.navbar')
@@ -139,7 +140,6 @@ All rights reserved.
   <!-- AdminLTE for demo purposes -->
 
   <script>
-       
     $(function() {
 
       $('#example1').DataTable({
@@ -150,231 +150,158 @@ All rights reserved.
         "buttons": [{
           extend: 'collection',
           text: '<i class="fa-solid fa-download"></i> Export',
-          
-          buttons: ["copy", {
+
+          buttons: [{
             extend: "csv",
-            filename: 'residents_list'
+            filename: 'residents_list',
+
           }, {
             extend: "excel",
             filename: 'residents_list'
           }, {
             extend: "pdf",
-            filename: 'residents_list'
-          }, "print", ]
+            filename: 'residents_list',
+            title: 'List of Residents',
+            exportOptions: {
+              columns: ':not(:last-child)' // exclude last column
+            },
+
+          }, {
+            extend: "print",
+            title: 'List of Residents',
+            exportOptions: {
+              columns: ':not(:last-child)' // exclude last column
+            },
+            customize: function(win) {
+              // Add logo to the left of the title
+              $(win.document.body).prepend('<div style="text-align:center;"><img src="{{asset('
+                dist / img / seal.png ')}}" style="float:left;width:100px;height:100px;margin-right:5px;"><h1 style="display:inline-block;font-size:20px;font-weight:bold;margin:0; font-family:sans-serif;">Republic of the Philippines <br> City of Tagaytay <br> OFFICE OF THE CITY PLANNING AND DEVELOPMENT</h1></div>');
+
+              // Style the title
+              $(win.document.body).find('h1')
+                .css('text-align', 'center')
+                .css('font-size', '20')
+                .css('font-weight', 'bold')
+                .css('margin-top', '20px')
+                .css('margin-bottom', '30px');
+            }
+          }]
         }]
       }).buttons().container().appendTo('#test');
 
       $('#example2').DataTable({
-        order: [[2, 'desc']],
+        order: [
+          [2, 'desc']
+        ],
         "responsive": false,
         "lengthChange": true,
         "autoWidth": false,
         "scrollX": true,
-    
+
 
       });
 
       // $('#example4 thead tr').clone(true).addClass('filters').appendTo( '#example4 thead' );
-      $('#example4').DataTable({
+      var tables = $('#example4, #example5, #example6, #example7, #example8, #example9').DataTable({
         "responsive": false,
         "lengthChange": true,
         "autoWidth": false,
         "scrollX": true,
-        
-        "buttons": [{
-          extend: 'collection',
-          text: '<i class="fa-solid fa-download"></i> Export',
-          buttons: [ "copy", {
-            extend: "csv",
-            filename: 'identification'
-          }, {
-            extend: "excel",
-            filename: 'identification'
-          }, {
-            extend: "pdf",
-            filename: 'identification'
-          }, "print", ]
-        }],
-        
-        // orderCellsTop: true,
-        // fixedHeader: true,
-        // initComplete: function() {
-        //     var api = this.api();
-        //     // For each column
-        //     api.columns().eq(0).each(function(colIdx) {
-        //         // Set the header cell to contain the input element
-        //         var cell = $('.filters th').eq($(api.column(colIdx).header()).index());
-        //         var title = $(cell).text();
-        //         $(cell).html( '<input type="text" placeholder="'+title+'" />' );
-        //         // On every keypress in this input
-        //         $('input', $('.filters th').eq($(api.column(colIdx).header()).index()) )
-        //             .off('keyup change')
-        //             .on('keyup change', function (e) {
-        //                 e.stopPropagation();
-        //                 // Get the search value
-        //                 $(this).attr('title', $(this).val());
-        //                 var regexr = '({search})'; $(this).parents('th').find('select').val();
-        //                 var cursorPosition = this.selectionStart;
-        //                 // Search the column for that value
-        //                 api
-        //                     .column(colIdx)
-        //                     .search((this.value != "") ? regexr.replace('{search}', '((('+this.value+')))') : "", this.value != "", this.value == "")
-        //                     .draw();
-        //                 $(this).focus()[0].setSelectionRange(cursorPosition, cursorPosition);
-        //             });
-        //     });
-        // }
 
-      });
-      
-      $('#example5').DataTable({
-        "responsive": false,
-        "lengthChange": true,
-        "autoWidth": false,
-        "scrollX": true,
         "buttons": [{
           extend: 'collection',
           text: '<i class="fa-solid fa-download"></i> Export',
-          buttons: [ "copy", {
-            extend: "csv",
-            filename: 'housing'
-          }, {
-            extend: "excel",
-            filename: 'housing'
-          }, "print", ]
+          buttons: [{
+              text: 'Excel',
+              action: function(e, dt, node, config) {
+                window.location.href = "{{ route('residents.export') }}";
+              }
+            },
+            {
+              text: 'CSV',
+              action: function(e, dt, node, config) {
+                window.location.href = "{{ route('residents.exportcsv') }}";
+              }
+            },
+            {
+              extend: 'pdf',
+              text: 'Print',
+              title: 'Residents',
+              download: 'open',
+              orientation: 'landscape',
+              pageSize: 'LEGAL',
+              exportOptions: {
+                columns: ':not(:last-child)' // exclude last column
+              }
+            }
+          ]
         }]
-
       });
-      
-      $('#example6').DataTable({
+
+      tables.buttons().container().appendTo($('#test'));
+
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+        var table = $(e.target.hash).find('table').DataTable();
+        $('#test').html(table.buttons().container());
+      });
+
+      var tables = $('#example10, #example11, #example12, #example13, #example14, #example15').DataTable({
         "responsive": false,
         "lengthChange": true,
         "autoWidth": false,
         "scrollX": true,
+
         "buttons": [{
           extend: 'collection',
           text: '<i class="fa-solid fa-download"></i> Export',
-          buttons: [ "copy", {
-            extend: "csv",
-            filename: 'demography'
-          }, {
-            extend: "excel",
-            filename: 'demography'
-          },  "print", ]
+          buttons: [{
+              text: 'Excel',
+              action: function(e, dt, node, config) {
+                window.location.href = "{{ route('residents.export') }}";
+              }
+            },
+            {
+              text: 'CSV',
+              action: function(e, dt, node, config) {
+                window.location.href = "{{ route('residents.exportcsv') }}";
+              }
+            },
+            {
+              extend: 'pdf',
+              text: 'Print',
+              title: 'Households',
+              download: 'open',
+              orientation: 'landscape',
+              pageSize: 'A0',
+              exportOptions: {
+                columns: ':not(:last-child)' // exclude last column
+              }
+            }
+          ]
         }]
+      });
 
-      });
-      $('#example7').DataTable({
-        "responsive": false,
-        "lengthChange": true,
-        "autoWidth": false,
-        "scrollX": true,
-        "buttons": [{
-          extend: 'collection',
-          text: '<i class="fa-solid fa-download"></i> Export',
-          buttons: [ "copy", {
-            extend: "csv",
-            filename: 'education'
-          }, {
-            extend: "excel",
-            filename: 'education'
-          },  "print", ]
-        }]
+      tables.buttons().container().appendTo($('#test'));
 
+      $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
+        var table = $(e.target.hash).find('table').DataTable();
+        $('#test').html(table.buttons().container());
       });
-      $('#example8').DataTable({
-        "responsive": false,
-        "lengthChange": true,
-        "autoWidth": false,
-        "scrollX": true,
-        "buttons": [{
-          extend: 'collection',
-          text: '<i class="fa-solid fa-download"></i> Export',
-          buttons: ["copy", {
-            extend: "csv",
-            filename: 'economic'
-          }, {
-            extend: "excel",
-            filename: 'economic'
-          },  "print", ]
-        }]
 
-      });
-      $('#example9').DataTable({
-        "responsive": false,
-        "lengthChange": true,
-        "autoWidth": false,
-        "scrollX": true,
-        "buttons": [{
-          extend: 'collection',
-          text: '<i class="fa-solid fa-download"></i> Export',
-          buttons: ["copy", {
-            extend: "csv",
-            filename: 'economic'
-          }, {
-            extend: "excel",
-            filename: 'economic'
-          },  "print", ]
-        }]
-
-      });
-      $('#example10').DataTable({
-        "responsive": false,
-        "lengthChange": true,
-        "autoWidth": false,
-        "scrollX": true,
-      });
-      $('#example11').DataTable({
-        "responsive": false,
-        "lengthChange": true,
-        "autoWidth": false,
-        "scrollX": true,
-      });
-      $('#example12').DataTable({
-        "responsive": false,
-        "lengthChange": true,
-        "autoWidth": false,
-        "scrollX": true,
-      });
-      $('#example13').DataTable({
-        "responsive": false,
-        "lengthChange": true,
-        "autoWidth": false,
-        "scrollX": true,
-      });
-      $('#example14').DataTable({
-        "responsive": false,
-        "lengthChange": true,
-        "autoWidth": false,
-        "scrollX": true,
-      });
-      $('#example15').DataTable({
-        "responsive": false,
-        "lengthChange": true,
-        "autoWidth": false,
-        "scrollX": true,
-      });
- 
     });
- 
-        $('#backup-table').DataTable({
-            "searching": true,
-            "dom": '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
-        });
-  
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function(e){
-      $($.fn.dataTable.tables(true)).DataTable()
-         .columns.adjust();
-      
-       
-   });
-   $('#addnew').on('hidden.bs.modal', function(e) {
-    $(this).find('form').trigger('reset');
-})
-$('#addhousehold').on('hidden.bs.modal', function(e) {
-    $(this).find('form').trigger('reset');
-})
 
+    $('#backup-table').DataTable({
+      "searching": true,
+      "dom": '<"row"<"col-sm-12 col-md-6"l><"col-sm-12 col-md-6"f>>t<"row"<"col-sm-12 col-md-5"i><"col-sm-12 col-md-7"p>>',
+    });
+
+
+    $('#addnew').on('hidden.bs.modal', function(e) {
+      $(this).find('form').trigger('reset');
+    })
+    $('#addhousehold').on('hidden.bs.modal', function(e) {
+      $(this).find('form').trigger('reset');
+    })
   </script>
 
 

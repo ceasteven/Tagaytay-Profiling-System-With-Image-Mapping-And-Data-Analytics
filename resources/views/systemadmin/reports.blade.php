@@ -85,12 +85,12 @@
     },
     series: [{
         name: 'Male',
-        data: ['{{$male}}'],
+        data: [{{$male}}],
         color: '#003A6B'
 
     }, {
         name: 'Female',
-        data: ['{{$female}}'],
+        data: [{{$female}}],
         color:'#ff8dc6'
 
     },  

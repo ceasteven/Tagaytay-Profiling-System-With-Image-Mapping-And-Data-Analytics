@@ -434,7 +434,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">19. Where is ___'s country of destination? </label>
                                     <div class="col-sm-6">
-                                    <input name="ofwcountry" class="form-control input-sm" type="text" value="{{$residents->ofwcountry}}" id="ofwcountry" {{$residents->ofw == 'No' ? 'disabled' : ''}} />
+                                    <input name="ofwcountry" class="form-control input-sm" type="text" value="{{$residents->ofwcountry}}" id="ofwcountry" />
                                     </div>
 
                                 </div>
@@ -444,7 +444,7 @@
 
                                     <label class="col-sm-5 col-form-label">20. Where was___ residing 3 years ago?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="residing">
+                                        <select class="form-control" name="residing" id="residing">
                                             <option value="">Select</option>
                                             <option value="Same address now" {{$residents->residing == 'Same address now' ? 'selected':'' }}>Same address now</option>
                                             <option value="Other address" {{$residents->residing == 'Other address' ? 'selected':'' }}>Other address, specify</option>
@@ -500,7 +500,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">21. Is ___ currently attending school? </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="attendschool" id="attendschool" value="{{$residents->attendschool}}">
+                                        <select class="form-control" name="attendschool" id="attendschool" value="{{$residents->attendschool}}" >
                                             <option value="">Select</option>
                                             <option value="Yes" {{$residents->attendschool == 'Yes' ? 'selected':'' }}>Yes </option>
                                             <option value="No" {{$residents->attendschool == 'No' ? 'selected':'' }}>No (Go to 24)</option>
@@ -1093,7 +1093,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">60. Is ___ a solo parent taking care of a child/children?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="soloparent" id="soloparent" value="{{$residents->soloparent}}">
+                                        <select class="form-control" name="soloparent" id="soloparent" value="{{$residents->soloparent}}" >
                                             <option value="">Select</option>
                                             <option value="Yes" {{$residents->soloparent == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->soloparent == 'No' ? 'selected':'' }}>No</option>
@@ -1303,3 +1303,4 @@
     </div>
 </div>
 @endforeach
+<script src="{{asset('plugins/residents/residents.js')}}"></script>

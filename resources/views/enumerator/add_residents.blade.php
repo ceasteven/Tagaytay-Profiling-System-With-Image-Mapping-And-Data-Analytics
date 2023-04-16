@@ -1160,3 +1160,4 @@
     </div>
 </div>
 
+<script src="{{asset('plugins/residents/residents.js')}}"></script>

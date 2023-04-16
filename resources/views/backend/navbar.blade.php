@@ -1,6 +1,6 @@
  <!-- Navbar -->
- 
- <nav class="main-header navbar navbar-expand navbar-light" style="background-color: #30819C;">
+
+ <nav class="main-header navbar navbar-expand navbar-light fixed-top" style="background-color: #30819C;">
    <!-- Left navbar links -->
    <ul class="navbar-nav">
      <li class="nav-item">
@@ -12,7 +12,7 @@
    <ul class="navbar-nav ml-auto">
      <li class="nav-item">
        <a class="nav-link" data-widget="fullscreen" href="#" role="button" style="color:black">
-       <i class="fas fa-regular fa-expand"></i>
+         <i class="fas fa-regular fa-expand"></i>
        </a>
      </li>
      <li class="dropdown user user-menu">
@@ -26,14 +26,14 @@
          <li class="user-header" style="background-color: #30819C;">
            <img src="{{asset('dist/img/default.jpg')}}" class="img-circle" alt="User Image">
            <p>
-            @auth
+             @auth
              <a style="color:#fff;"> {{auth()->user()->name}}</a>
              @endauth
            </p>
          </li>
 
          <li class="user-body">
-         <div class="float-left">
+           <div class="float-left">
              <!-- <a href="{{route('change_password')}}" class="btn btn-default btn-flat">Change Password</a> -->
            </div>
            <div class="float-right">

@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
-
+use App\Models\User;
 class ForgotPasswordController extends Controller
 {
     use SendsPasswordResetEmails;
@@ -19,6 +19,12 @@ class ForgotPasswordController extends Controller
 
     public function sendResetLinkEmail(Request $request)
     {
+        $user = User::where('email', $request->email)->first();
+
+        if ($user && $user->status == 0) {
+            return redirect()->back()
+                ->with('error', 'Your Account is inactive, please contact System Admin.');
+        }
         try {
             $response = $this->broker()->sendResetLink(
                 $this->credentials($request)
@@ -30,11 +36,13 @@ class ForgotPasswordController extends Controller
 
         if ($response == Password::RESET_LINK_SENT) {
             return redirect()->back()
-            ->with('status','Password reset email sent!');
+            ->with('status',trans(Password::RESET_LINK_SENT));
         }
 
         throw ValidationException::withMessages([
             'email' => [trans($response)],
+            'throttled' => [trans('passwords.throttled', ['minutes' => config('auth.passwords.users.throttle') / 60])],
+        'user' => [trans('passwords.user')],
         ]);
     }
 

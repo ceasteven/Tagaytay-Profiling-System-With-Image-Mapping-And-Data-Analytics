@@ -19,7 +19,7 @@ use Maatwebsite\Excel\Concerns\SkipsEmptyRows;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class ResidentsImport implements ToModel, WithHeadingRow,WithValidation,SkipsEmptyRows
+class ResidentsImport implements ToModel, WithStartRow,WithValidation,SkipsEmptyRows
 {
     /**
     * @param array $row
@@ -28,9 +28,10 @@ class ResidentsImport implements ToModel, WithHeadingRow,WithValidation,SkipsEmp
     */
     
     use Importable,SkipsFailures;
+    private $rowCount = -1;
     public function model(array $row)
     {
-       
+        $this->rowCount++;
         return new Residents([
             'region'=>$row[1],
             'province'=>$row[2],
@@ -68,16 +69,17 @@ class ResidentsImport implements ToModel, WithHeadingRow,WithValidation,SkipsEmp
             'ofw'=>$row[34],
             'ofwcountry'=>$row[35],
             'residing'=>$row[36],
-            'attendschool'=>$row[37],
-            'yearlevel'=>$row[38],
-            'schooltype'=>$row[39],
-            'notattending'=>$row[40],
-            'educcompleted'=>$row[41],
-            'shsstrand'=>$row[42],
-            'collegecourse'=>$row[43],
-            'training'=>$row[44],
-            'pasttraining'=>$row[45],
-            'trainnum'=>$row[46],
+            'residingo'=>$row[37],
+            'attendschool'=>$row[38],
+            'yearlevel'=>$row[39],
+            'schooltype'=>$row[40],
+            'notattending'=>$row[41],
+            'educcompleted'=>$row[42],
+            'shsstrand'=>$row[43],
+            'collegecourse'=>$row[44],
+            'training'=>$row[45],
+            'pasttraining'=>$row[46],
+            'trainnum'=>$row[47],
             'trainprogram'=>$row[48],
             'literate'=>$row[49],
             'voter'=>$row[50],
@@ -131,9 +133,10 @@ class ResidentsImport implements ToModel, WithHeadingRow,WithValidation,SkipsEmp
         ]);
         
     }
-    public function headingRow(): int
+  
+    public function startRow(): int
     {
-        return 1 ;
+        return 2;
     }
     public function rules(): array
     {
@@ -159,5 +162,8 @@ class ResidentsImport implements ToModel, WithHeadingRow,WithValidation,SkipsEmp
             
         ];
     }
-    
+    public function getRowCount(): int
+    {
+        return $this->rowCount;
+    }
 }

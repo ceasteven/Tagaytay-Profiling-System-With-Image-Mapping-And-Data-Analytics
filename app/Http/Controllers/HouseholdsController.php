@@ -39,21 +39,26 @@ class HouseholdsController extends Controller
             request()->validate([
                 'file'  => 'required|mimes:xls,xlsx,csv,txt|max:10000',
             ]);
-            $pathTofile = $request->file('file');
+
+            $pathToFile = $request->file('file');
             $import = new HouseholdsImport;
-            $import->import($pathTofile);
-            if ($import->failures()->isNotEmpty()) {
+            $rows = $import->toArray($pathToFile)[0];
+    
+            // Get the number of rows in the CSV file
+            $rowCount = count($rows);
+            $import->import($pathToFile);
+            
+            $importedRowCount = $import->getRowCount();
+    
+            if ($importedRowCount !== ($rowCount - 1)) {
+                return redirect()->back()->with('error', 'Row count is not the same as the heading row.');
+            } else if ($import->failures()->isNotEmpty()) {
                 $failures = $import->failures();
                 return redirect()->back()->with('error', $failures);
-
+            } else {
+                return redirect()->route('household.index')->with('success', 'Households imported successfully!');
             }
-            else{
-                return redirect()->back()->with('error', 'Please check the number of your column');
-            }
-            
-            return redirect()->route('household.index')
-            ->with('success','Households imported successfully!');
-     }
+        }
              // $validator=\Validator::make($request->all(),[
              //     'file'  => 'required|mimes:xls,xlsx,csv,txt|max:10000',
             
@@ -126,6 +131,7 @@ class HouseholdsController extends Controller
         $household->landagrinum = request('landagrinum');
         $household->landres = request('landres');
         $household->landcom = request('landcom');
+        $household->landcomnum = request('landcomnum');
         $household->car = request('car');
         $household->carnum = request('carnum');
         $household->tricycle = request('tricycle');

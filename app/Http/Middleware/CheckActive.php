@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class CheckActive
 {
     /**
@@ -16,17 +17,15 @@ class CheckActive
      */
     public function handle(Request $request, Closure $next)
     {
-        if(auth()->check() && (auth()->user()->status == 0)){
-                Auth::logout();
-    
-                $request->session()->invalidate();
-    
-                $request->session()->regenerateToken();
-    
-                return redirect()->route('login')->with('error', 'Your Account is inactive, please contact System Admin.');
-    
+        if (auth()->check() && auth()->user()->status == 0) {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('login')->with('error', 'Your account is inactive, please contact system admin.');
         }
+
     
+
         return $next($request);
     }
 }

@@ -7,12 +7,20 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
+          @if (request()->has('view_deleted'))
+          <h1>Archived Residents</h1>
+          @else
           <h1>Residents</h1>
+          @endif
         </div>
         <div class="col-sm-6 text-sm">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('home')}}" style="color:#444"><i class="fas fa-home"></i> Home</a></li>
+            @if (request()->has('view_deleted'))
+            <li class="breadcrumb-item active">Archived Residents</li>
+            @else
             <li class="breadcrumb-item active">Residents</li>
+            @endif
           </ol>
         </div>
       </div>
@@ -24,36 +32,36 @@
       <div class="row">
         <div class="col-12">
           <div class="card">
-         <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 5000)">
-            @if (Session::has('success'))
-            <div class="alert alert-success alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
-        </button>
-        <i class="fas fa-check faa-pulse animated"></i>
-        <strong>Success:</strong> {{ session('success') }}
-    </div>
-    
-            @elseif (Session::has('error'))
-            <div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
-        </button>
-        <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
-        <strong>Error:</strong> {{ session('error') }}
-    </div>
-    
-    @elseif ($errors->any())
-    {!! implode('', $errors->all('<div class="alert alert-danger alert-dismissible" role="alert">
-        <button type="button" class="close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
-        </button><i class="fas fa-exclamation-triangle faa-pulse animated"></i><strong>:message</strong>
-    </div>')) !!}
-            @endif
-          </div>
+            <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 5000)">
+              @if (Session::has('success'))
+              <div class="alert alert-success alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                  <i class="fa fa-times"></i>
+                </button>
+                <i class="fas fa-check faa-pulse animated"></i>
+                <strong>Success:</strong> {{ session('success') }}
+              </div>
+
+              @elseif (Session::has('error'))
+              <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                  <i class="fa fa-times"></i>
+                </button>
+                <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
+                <strong>Error:</strong> {{ session('error') }}
+              </div>
+
+              @elseif ($errors->any())
+              {!! implode('', $errors->all('<div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert">
+                  <i class="fa fa-times"></i>
+                </button><i class="fas fa-exclamation-triangle faa-pulse animated"></i><strong>:message</strong>
+              </div>')) !!}
+              @endif
+            </div>
             <div class="card-header">
               <ul class="nav nav-pills " role="tablist">
-                <li class="nav-item text-sm" >
+                <li class="nav-item text-sm">
                   <a class="nav-link active" href="#tab-table1" data-toggle="tab">IDENTIFICATION</a>
                 </li>
                 <li class="nav-item text-sm">
@@ -61,7 +69,7 @@
                 </li>
                 <li class="nav-item text-sm">
                   <a class="nav-link" href="#tab-table3" data-toggle="tab">DEMOGRAPHY</a>
-                  <li class="nav-item text-sm">
+                <li class="nav-item text-sm">
                   <a class="nav-link" href="#tab-table4" data-toggle="tab">EDUCATION & LITERACY</a>
                 </li>
                 </li>
@@ -81,50 +89,38 @@
 
               @if (auth()->user()->role=='Enumerator')
               <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addnew"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Resident</button>
-           
-             
+
+
               <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#import"><i class="fa-solid fa-upload"></i> Import</button>
-              
+
+
+              <a href="#" id="test" >
+              </a>
           
-  <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-download"></i> Export
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="{{ route('residents.export') }}">Excel</a>
-    <a class="dropdown-item" href="{{ route('residents.exportcsv') }}">CSV</a>
 
-
-
-</div>
-              
               @elseif (auth()->user()->role=='System Admin')
-              <button class="btn btn-secondary btn-sm dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  style="float:right"><i class="fa-solid fa-download"></i>
-   Export
-  </button>
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-    <a class="dropdown-item" href="{{ route('residents.export') }}">Excel</a>
-    <a class="dropdown-item" href="{{ route('residents.exportcsv') }}">CSV</a>
+              <a href="#" id="test" >
+              </a>
+              @endif
+              @endif
 
-</div>
-              @endif
-              @endif
-             
-              
-            
-              
+
+
+
             </div>
 
             <!-- /.card-header -->
             <div class="card-body">
 
-              <div>
+         
 
                 <div class="tab-content">
                   <div class="tab-pane active" id="tab-table1">
-                    
+
                     <table id="example4" class="table table-bordered table-hover dataTable nowrap " width="100%">
                       <thead>
                         <tr>
-                   
+
                           <th>Region</th>
                           <th>Province</th>
                           <th>City</th>
@@ -139,8 +135,8 @@
                           <th>Start Date of Interview</th>
                           <th>Time Started</th>
                           <th>Enumerator Name</th>
-                      
-                         
+
+
                           <th>House Control Number</th>
                           @if (auth()->user()->role=='Enumerator')
                           <th data-orderable="false">Action</th>
@@ -151,7 +147,7 @@
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                      
+
                           <td>{{$resident->region}}</td>
                           <td>{{$resident->province}}</td>
                           <td>{{$resident->city}}</td>
@@ -166,20 +162,20 @@
                           <td>{{$resident->startdate}}</td>
                           <td>{{$resident->timestart}}</td>
                           <td>{{$resident->enumname}}</td>
-                       
-                         
+
+
                           <td>{{$resident->housecontrolnum}}</td>
                           @if (auth()->user()->role=='Enumerator')
                           <td>
-                           
-                           @if(request()->has('view_deleted'))
-                        <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
-                        @else
-                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal1{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
-                        {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
-                        {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
-                        {!! Form::close() !!}
-                        @endif
+
+                            @if(request()->has('view_deleted'))
+                            <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                            @else
+                            <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal1{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
+                            {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
+                            {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
+                            {!! Form::close() !!}
+                            @endif
                           </td>
                           @endif
                         </tr>
@@ -196,7 +192,7 @@
                     <table id="example5" class="table table-bordered table-hover dataTable nowrap" width="100%">
                       <thead>
                         <tr>
-                   
+
                           <th>Building Type</th>
                           <th>Bedrooms Number</th>
                           <th>Storeys Number</th>
@@ -213,7 +209,7 @@
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                      
+
                           <td>{{$resident->housetype}}</td>
                           <td>{{$resident->bedroomnum}}</td>
                           <td>{{$resident->storeysnum}}</td>
@@ -224,14 +220,14 @@
                           <td>{{$resident->housemembernum}}</td>
                           @if (auth()->user()->role=='Enumerator')
                           <td>
-                          @if(request()->has('view_deleted'))
-                        <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
-                        @else
-                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal2{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
-                        {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
-                        {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
-                        {!! Form::close() !!}
-                        @endif
+                            @if(request()->has('view_deleted'))
+                            <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                            @else
+                            <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal2{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
+                            {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
+                            {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
+                            {!! Form::close() !!}
+                            @endif
                           </td>
                           @endif
                         </tr>
@@ -245,7 +241,7 @@
                     <table id="example6" class="table table-bordered table-hover dataTable nowrap " width="100%">
                       <thead>
                         <tr>
-                   
+
                           <th>Household Head Name</th>
                           <th>Household Member Name</th>
                           <th>Relationship to the Household Head</th>
@@ -261,7 +257,7 @@
                           <th>Country of Destination</th>
                           <th>Residing (3 years ago)</th>
                           <th>Address</th>
-                         
+
                           @if (auth()->user()->role=='Enumerator')
                           <th data-orderable="false">Action</th>
                           @endif
@@ -270,7 +266,7 @@
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                      
+
                           <td>{{$resident->householdhead}}</td>
                           <td>{{$resident->householdmembername}}</td>
                           <td>{{$resident->nucfambelong}}</td>
@@ -288,14 +284,14 @@
                           <td>{{$resident->residingo}}</td>
                           @if (auth()->user()->role=='Enumerator')
                           <td>
-                          @if(request()->has('view_deleted'))
-                        <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
-                        @else
-                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal3{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
-                        {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
-                        {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
-                        {!! Form::close() !!}
-                        @endif
+                            @if(request()->has('view_deleted'))
+                            <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                            @else
+                            <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal3{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
+                            {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
+                            {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
+                            {!! Form::close() !!}
+                            @endif
                           </td>
                           @endif
                         </tr>
@@ -305,33 +301,33 @@
                   </div>
 
 
-                   <div class="tab-pane" id="tab-table4">
+                  <div class="tab-pane" id="tab-table4">
                     <table id="example7" class="table table-bordered table-hover dataTable nowrap " width="100%">
                       <thead>
-                 
-                          <th>Currenty Attending School</th>
-                          <th>Grade or Year</th>
-                          <th>School Type</th>
-                          <th>Not Attending School Reason</th>
-                          <th>Highest Educational Attainment</th>
-                          <th>SHS Strand</th>
-                          <th>College Course</th>
-                          <th>Current Skills Training</th>
-                          <th>Past Skills Training</th>
-                          <th>Training Program</th>
-                          <th>Training Program Number</th>
-                          <th>Literate</th>
-                          <th>Registered Voter</th>
-                          <th>Last election</th>
-                          @if (auth()->user()->role=='Enumerator')
-                          <th data-orderable="false">Action</th>
-                          @endif
+
+                        <th>Currenty Attending School</th>
+                        <th>Grade or Year</th>
+                        <th>School Type</th>
+                        <th>Not Attending School Reason</th>
+                        <th>Highest Educational Attainment</th>
+                        <th>SHS Strand</th>
+                        <th>College Course</th>
+                        <th>Current Skills Training</th>
+                        <th>Past Skills Training</th>
+                        <th>Training Program</th>
+                        <th>Training Program Number</th>
+                        <th>Literate</th>
+                        <th>Registered Voter</th>
+                        <th>Last election</th>
+                        @if (auth()->user()->role=='Enumerator')
+                        <th data-orderable="false">Action</th>
+                        @endif
                         </tr>
                       </thead>
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                      
+
                           <td>{{$resident->attendschool}}</td>
                           <td>{{$resident->yearlevel}}</td>
                           <td>{{$resident->schooltype}}</td>
@@ -348,14 +344,14 @@
                           <td>{{$resident->votedlast}}</td>
                           @if (auth()->user()->role=='Enumerator')
                           <td>
-                          @if(request()->has('view_deleted'))
-                        <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
-                        @else
-                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal4{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
-                        {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
-                        {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
-                        {!! Form::close() !!}
-                        @endif
+                            @if(request()->has('view_deleted'))
+                            <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                            @else
+                            <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal4{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
+                            {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
+                            {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
+                            {!! Form::close() !!}
+                            @endif
                           </td>
                           @endif
                         </tr>
@@ -368,7 +364,7 @@
                     <table id="example8" class="table table-bordered table-hover dataTable nowrap " width="100%">
                       <thead>
                         <tr>
-                   
+
                           <th>Work in the past week</th>
                           <th>Past week Work </th>
                           <th>Work Number</th>
@@ -405,7 +401,7 @@
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                      
+
                           <td>{{$resident->job}}</td>
                           <td>{{$resident->nwork}}</td>
                           <td>{{$resident->jobnum}}</td>
@@ -436,14 +432,14 @@
                           <td>{{$resident->philhealthdependent}}</td>
                           @if (auth()->user()->role=='Enumerator')
                           <td>
-                          @if(request()->has('view_deleted'))
-                        <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
-                        @else
-                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal5{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
-                        {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
-                        {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
-                        {!! Form::close() !!}
-                        @endif
+                            @if(request()->has('view_deleted'))
+                            <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                            @else
+                            <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal5{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
+                            {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
+                            {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
+                            {!! Form::close() !!}
+                            @endif
                           </td>
                           @endif
                         </tr>
@@ -455,7 +451,7 @@
                     <table id="example9" class="table table-bordered table-hover dataTable nowrap" width="100%">
                       <thead>
                         <tr>
-                   
+
                           <th>Pregnant</th>
                           <th>Solo Parent</th>
                           <th>Solo Parent ID</th>
@@ -482,7 +478,7 @@
                       <tbody>
                         @foreach ($all as $resident)
                         <tr>
-                      
+
                           <td>{{$resident->pregnant}}</td>
                           <td>{{$resident->soloparent}}</td>
                           <td>{{$resident->soloparentid}}</td>
@@ -503,14 +499,14 @@
                           <td>{{$resident->endtime}}</td>
                           @if (auth()->user()->role=='Enumerator')
                           <td>
-                          @if(request()->has('view_deleted'))
-                        <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
-                        @else
-                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal6{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
-                        {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
-                        {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-warning btn-sm' ,'type' =>'submit']) !!}
-                        {!! Form::close() !!}
-                        @endif
+                            @if(request()->has('view_deleted'))
+                            <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                            @else
+                            <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal6{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
+                            {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
+                            {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
+                            {!! Form::close() !!}
+                            @endif
                           </td>
                           @endif
                         </tr>
@@ -520,7 +516,7 @@
                   </div>
                 </div>
               </div>
-            </div>
+          
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
@@ -537,5 +533,6 @@
 @include('enumerator.add_residents')
 @include('enumerator.import_residents')
 @include('enumerator.edit_residents')
-<script src="{{asset('plugins/residents/residents.js')}}"></script>
+
+
 @endsection
