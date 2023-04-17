@@ -93,11 +93,11 @@
 
                      <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#imports"><i class="fa-solid fa-upload"></i> Import</button>
 
-                     <a href="#" id="test" >
-              </a>
+                     <a href="#" id="test">
+                     </a>
                      @elseif (auth()->user()->role=='System Admin')
-                     <a href="#" id="test" >
-              </a>
+                     <a href="#" id="test">
+                     </a>
                      @endif
                      @endif
 
@@ -471,7 +471,7 @@
                               </table>
                            </div>
                            <div class="tab-pane" id="tab-table3">
-                              <table id="example12" class="table table-bordered table-hover dataTable nowrap " width="100%">
+                              <table id="example12" class="table table-bordered table-hover dataTable nowrap" width="100%">
                                  <thead>
                                     <tr>
 
@@ -1029,124 +1029,123 @@
                               <table id="example15" class="table table-bordered table-hover dataTable nowrap" width="100%">
                                  <thead>
                                     <tr>
-
                                        <th>Sustainable Livelihood Program</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Food for Work</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
-                                       <th>Food for Work</th>>
+                                       <th>Food for Work</th>
                                        <th>Cash for Work</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Social Pension for the Indigent Senior Citizens</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Pantawid Pamilyang Pilipino Program </th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Agrarian Reform Community
                                           Development Program</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Training for Work Scholarship
                                           Program</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Community-Based Employment
                                           Program</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Other health insurance</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Health assistance</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Supplemental feeding</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Education/scholarship program </th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Skills or livelihood training Program</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Credit Program</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Housing Program</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Other Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Other Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Other Program Name</th>
-                                      <th>Number of  Household Member Covered</th>
+                                       <th>Number of Household Member Covered</th>
                                        <th>Name of Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
 
@@ -1274,8 +1273,6 @@
                                        <td>{{$household->memsixte}}</td>
                                        <td>{{$household->memsixtep}}</td>
                                        <td>{{$household->memsixtepi}}</td>
-
-
                                        @if (auth()->user()->role=='Enumerator')
                                        <td>
                                           @if(request()->has('view_deleted'))

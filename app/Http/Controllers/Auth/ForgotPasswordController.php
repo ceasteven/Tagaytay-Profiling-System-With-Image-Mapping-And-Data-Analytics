@@ -39,11 +39,22 @@ class ForgotPasswordController extends Controller
             ->with('status',trans(Password::RESET_LINK_SENT));
         }
 
+        if ($response == Password::RESET_LINK_SENT) {
+            return redirect()->back()->with('status', trans(Password::RESET_LINK_SENT));
+        }
+        
+        if ($response == Password::INVALID_USER) {
+            return redirect()->back()->withErrors(['email' => trans($response)]);
+        }
+        
+        if ($response == Password::RESET_THROTTLED) {
+            return redirect()->back()->withErrors(['email' => trans('passwords.throttled', ['minutes' => config('auth.passwords.users.throttle') / 60])]);
+        }
+        
         throw ValidationException::withMessages([
             'email' => [trans($response)],
-            'throttled' => [trans('passwords.throttled', ['minutes' => config('auth.passwords.users.throttle') / 60])],
-        'user' => [trans('passwords.user')],
         ]);
+        
     }
 
     protected function credentials(Request $request)
