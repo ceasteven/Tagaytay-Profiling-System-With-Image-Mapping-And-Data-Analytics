@@ -31,7 +31,7 @@
         <div class="login-logo">
             <a href="{{ route('login') }}">
                 <div>
-                    <img class="img-responsive" src="{{ asset('dist/img/seal.png') }}" style="max-height:130px;margin:0 auto;">
+                    <img class="img-responsive" src="{{ asset('dist/img/seal.png') }}" style="max-height:160px;margin:0 auto;">
                 </div>
 
             </a>

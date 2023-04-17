@@ -444,7 +444,7 @@
 
                                     <label class="col-sm-5 col-form-label">20. Where was___ residing 3 years ago?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="residing" id="residing">
+                                        <select class="form-control" name="residing" id="residing" >
                                             <option value="">Select</option>
                                             <option value="Same address now" {{$residents->residing == 'Same address now' ? 'selected':'' }}>Same address now</option>
                                             <option value="Other address" {{$residents->residing == 'Other address' ? 'selected':'' }}>Other address, specify</option>

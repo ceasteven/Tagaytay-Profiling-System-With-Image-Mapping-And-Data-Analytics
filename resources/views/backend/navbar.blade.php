@@ -1,6 +1,6 @@
  <!-- Navbar -->
-
- <nav class="main-header navbar navbar-expand navbar-light fixed-top" style="background-color: #30819C;">
+ <!-- <nav class="main-header navbar navbar-expand navbar-light fixed-top bg-lightblue"> -->
+ <nav class="main-header navbar navbar-expand navbar-light fixed-top bg-lightblue" style="background-color: #30819C;">
    <!-- Left navbar links -->
    <ul class="navbar-nav">
      <li class="nav-item">

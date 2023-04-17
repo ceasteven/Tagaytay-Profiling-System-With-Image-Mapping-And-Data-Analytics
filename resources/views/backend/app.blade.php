@@ -52,8 +52,13 @@
 
 </head>
 
-<body class="hold-transition sidebar-mini layout-fixed">
 
+<body class="hold-transition sidebar-mini layout-fixed">
+<div class="wrapper">
+
+<div class="preloader flex-column justify-content-center align-items-center">
+<img class="animation__shake" src="{{ asset('dist/img/seal.png') }}" alt="TCLogo" height="60" width="60">
+</div>
 
   <!-- Navbar -->
   @include('backend.navbar')
@@ -89,9 +94,7 @@ All rights reserved.
 
 
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
+
   <!-- /.control-sidebar -->
   </div>
   <!-- ./wrapper -->
@@ -239,7 +242,8 @@ All rights reserved.
               orientation: 'landscape',
               pageSize: 'LEGAL',
               exportOptions: {
-                columns: ':not(:last-child)' // exclude last column
+                columns: '{{ auth()->user()->role == "Enumerator" ? ":not(:last-child)" : "" }}' // exclude last column for System Admins
+   // exclude last column
               }
             }
           ]
@@ -282,7 +286,7 @@ All rights reserved.
               orientation: 'landscape',
               pageSize: 'A0',
               exportOptions: {
-                columns: ':not(:last-child)' // exclude last column
+                columns: '{{ auth()->user()->role == "Enumerator" ? ":not(:last-child)" : "" }}' // exclude last column for System Admins
               }
             }
           ]

@@ -24,7 +24,7 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-            <div id="test" style="float:right">
+            <div id="test">
               </div>
             </div>
             

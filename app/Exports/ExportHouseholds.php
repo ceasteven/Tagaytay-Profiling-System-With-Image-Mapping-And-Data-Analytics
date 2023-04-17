@@ -10,10 +10,23 @@ class ExportHouseholds implements FromCollection,WithHeadings
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
-    {
-        return Households::all();
-    }
+   public function collection()
+{
+    $households = Households::all();
+
+    return $households->map(function($household) {
+        $household = $household->toArray();
+
+        foreach($household as $key => $value) {
+            if(is_null($value)) {
+                $household[$key] = '';
+            }
+        }
+
+        return $household;
+    });
+}
+
     public function headings(): array
     {
         return ['id',

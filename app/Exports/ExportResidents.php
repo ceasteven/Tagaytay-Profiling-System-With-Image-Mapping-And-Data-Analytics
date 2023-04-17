@@ -13,8 +13,21 @@ class ExportResidents implements FromCollection,WithHeadings
     */
     public function collection()
     {
-        return Residents::all();
+        $residents = Residents::all();
+    
+        return $residents->map(function($resident) {
+            $resident = $resident->toArray();
+    
+            foreach($resident as $key => $value) {
+                if(is_null($value)) {
+                    $resident[$key] = '';
+                }
+            }
+    
+            return $resident;
+        });
     }
+    
     public function headings(): array
         {
             return ["id",
