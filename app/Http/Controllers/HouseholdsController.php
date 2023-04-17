@@ -43,7 +43,9 @@ class HouseholdsController extends Controller
             $pathToFile = $request->file('file');
             $import = new HouseholdsImport;
             $rows = $import->toArray($pathToFile)[0];
-    
+            if (empty($rows)) {
+                return redirect()->back()->with('error', 'The imported file is empty!');
+            }
             // Get the number of rows in the CSV file
             $rowCount = count($rows);
             $import->import($pathToFile);
