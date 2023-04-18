@@ -54,11 +54,11 @@
 
 
 <body class="hold-transition sidebar-mini layout-fixed">
-<div class="wrapper">
+<!-- <div class="wrapper">
 
 <div class="preloader flex-column justify-content-center align-items-center">
 <img class="animation__shake" src="{{ asset('dist/img/seal.png') }}" alt="TCLogo" height="60" width="60">
-</div>
+</div> -->
 
   <!-- Navbar -->
   @include('backend.navbar')
@@ -96,7 +96,7 @@ All rights reserved.
   <!-- Control Sidebar -->
 
   <!-- /.control-sidebar -->
-  </div>
+  <!-- </div> -->
   <!-- ./wrapper -->
 
   <!-- jQuery -->
@@ -269,13 +269,13 @@ All rights reserved.
           buttons: [{
               text: 'Excel',
               action: function(e, dt, node, config) {
-                window.location.href = "{{ route('residents.export') }}";
+                window.location.href = "{{ route('households.export') }}";
               }
             },
             {
               text: 'CSV',
               action: function(e, dt, node, config) {
-                window.location.href = "{{ route('residents.exportcsv') }}";
+                window.location.href = "{{ route('households.csvexport') }}";
               }
             },
             {
@@ -285,9 +285,11 @@ All rights reserved.
               download: 'open',
               orientation: 'landscape',
               pageSize: 'A0',
+ 
               exportOptions: {
                 columns: '{{ auth()->user()->role == "Enumerator" ? ":not(:last-child)" : "" }}' // exclude last column for System Admins
-              }
+              },
+             
             }
           ]
         }]

@@ -89,8 +89,6 @@
 
               @if (auth()->user()->role=='Enumerator')
               <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addnew"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Resident</button>
-
-
               <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#import"><i class="fa-solid fa-upload"></i> Import</button>
 
 
@@ -135,8 +133,6 @@
                           <th>Start Date of Interview</th>
                           <th>Time Started</th>
                           <th>Enumerator Name</th>
-
-
                           <th>House Control Number</th>
                           @if (auth()->user()->role=='Enumerator')
                           <th data-orderable="false">Action</th>
@@ -162,8 +158,6 @@
                           <td>{{$resident->startdate}}</td>
                           <td>{{$resident->timestart}}</td>
                           <td>{{$resident->enumname}}</td>
-
-
                           <td>{{$resident->housecontrolnum}}</td>
                           @if (auth()->user()->role=='Enumerator')
                           <td>

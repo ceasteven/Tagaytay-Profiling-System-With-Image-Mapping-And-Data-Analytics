@@ -113,10 +113,10 @@
                               <table id="example10" class="table table-bordered table-hover dataTable nowrap " width="100%">
                                  <thead>
                                     <tr>
-                                       <th>House Control Number</th>
-                                       <th>Household Head Name</th>
+                                       <th>HCN</th>
+                                       <th>Head Name</th>
                                        <th>Water Supply</th>
-                                       <th>Water Supply Number</th>
+                                       <th>In Meters</th>
                                        <th>Toilet Type</th>
                                        <th>Tenure Status</th>
                                        <th>Rent</th>
@@ -133,7 +133,7 @@
                                        <th>Number</th>
                                        <th>Land (Commercial)</th>
                                        <th>Number</th>
-                                       <th>Car jeep, van</th>
+                                       <th>Car, jeep, van</th>
                                        <th>Number</th>
                                        <th>Tricycle, Motorcycle, E-bike</th>
                                        <th>Number</th>
@@ -211,7 +211,6 @@
                                  <tbody>
                                     @foreach ($all as $household)
                                     <tr>
-
                                        <td>{{$household->housecontrolnum}}</td>
                                        <td>{{$household->headname}}</td>
                                        <td>{{$household->watersupply}}</td>
@@ -324,7 +323,6 @@
                               <table id="example11" class="table table-bordered table-hover dataTable nowrap" width="100%">
                                  <thead>
                                     <tr>
-
                                        <th>Crop Farming</th>
                                        <th>Cash</th>
                                        <th>Kind</th>
@@ -386,8 +384,6 @@
                                        <th>Total Income Cash</th>
                                        <th>Total Income Kind</th>
                                        <th>Total Household Income</th>
-
-
                                        @if (auth()->user()->role=='Enumerator')
                                        <th data-orderable="false">Action</th>
                                        @endif
@@ -488,41 +484,41 @@
                                        <th>Temporary Crops</th>
                                        <th>Number</th>
                                        <th>Beast of burden Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Plow Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Harrow Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Mower Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Thresher/Corn sheller Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Insecticide/Pesticide sprayer Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Farm tractor Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Hand tractor Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Turtle/Mudboat Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Planter/Transplanter/Dryer Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Mechanical dryer Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Multipurpose drying pavement Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Rice/corn/feed mill Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Harvester Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Warehouse Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Farmshed Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Irrigation Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Others Number</th>
-                                       <th>Agricultural Equipment Own Number</th>
+                                       <th>Own Number</th>
                                        <th>Live animals</th>
                                        <th>Production sold</th>
                                        <th>Production cosume</th>
@@ -580,7 +576,7 @@
                                        <th>Number</th>
                                        <th>Living years</th>
                                        <th>Crop Farming years</th>
-                                       <th>Harvest (3 years ago)</th>
+                                       <th>Harvest</th>
                                        <th>Decrease Reason</th>
                                        <th>Changed the variety of the same crop</th>
                                        <th>Reason</th>
@@ -738,29 +734,29 @@
                                     <tr>
 
                                        <th>Poultry Years</th>
-                                       <th>Poultry (3 years ago) </th>
+                                       <th>Poultry</th>
                                        <th>Decrease Reason</th>
                                        <th>Insurance</th>
                                        <th>Insurance Provider</th>
                                        <th>Fishing Years</th>
-                                       <th>Fishing (3 years ago) </th>
+                                       <th>Fishing </th>
                                        <th>Decrease Reason</th>
                                        <th>Fish insurance</th>
                                        <th>Insurance Provider</th>
                                        <th>Temperature</th>
                                        <th>Electricity</th>
                                        <th>Sea Level</th>
-                                       <th>Water Supply (3 years ago)</th>
+                                       <th>Water Supply</th>
                                        <th>Decrease Reason</th>
-                                       <th>Flooding (3 years ago)</th>
+                                       <th>Flooding</th>
                                        <th>Subside hours (3 years ago)</th>
                                        <th>Subside hours (12 months ago)</th>
-                                       <th>Drought(3 years ago)</th>
+                                       <th>Drought</th>
                                        <th>Move Out</th>
                                        <th>Reason</th>
-                                       <th>Evacuation (3 years ago)</th>
+                                       <th>Evacuation </th>
                                        <th>Reason</th>
-                                       <th>Temporarily (3 years ago)</th>
+                                       <th>Temporarily</th>
                                        <th>Evacuation</th>
                                        @if (auth()->user()->role=='Enumerator')
                                        <th data-orderable="false">Action</th>
@@ -863,38 +859,38 @@
                                        <th>Assistance Provider</th>
                                        <th>Disaster Preparedness Kit</th>
                                        <th>Water</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Food</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Matches/lighter</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Flaslight/Emergency light</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Radio/Transistor</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Candle</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Medical Kit</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Whistle</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Clothes</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Blanket</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Battery</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Important Documents</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Others</th>
-                                       <th>Number (days will last)</th>
+                                       <th>Number</th>
                                        <th>Hunger</th>
                                        <th>1st Month Name</th>
-                                       <th>Number of Days</th>
+                                       <th>Days</th>
                                        <th>2nd Month Name</th>
-                                       <th>Number of Days</th>
+                                       <th>Days</th>
                                        <th>3rd Month Name</th>
-                                       <th>Number of Days</th>
+                                       <th>Days</th>
                                        <th>Death</th>
                                        <th>Death Name</th>
                                        <th>Gender</th>
@@ -1031,122 +1027,122 @@
                                     <tr>
                                        <th>Sustainable Livelihood Program</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Food for Work</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Food for Work</th>
                                        <th>Cash for Work</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Social Pension for the Indigent Senior Citizens</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
-                                       <th>Pantawid Pamilyang Pilipino Program </th>
+                                       <th>4PS</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Agrarian Reform Community
                                           Development Program</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Training for Work Scholarship
                                           Program</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Community-Based Employment
                                           Program</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Other health insurance</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Health assistance</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Supplemental feeding</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Education/scholarship program </th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Skills or livelihood training Program</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Credit Program</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Housing Program</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Other Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Other Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
                                        <th>Other Program Name</th>
-                                       <th>Number of Household Member Covered</th>
-                                       <th>Name of Households Member Beneficiary</th>
+                                       <th>Household Member Covered #</th>
+                                       <th>Households Member Beneficiary</th>
                                        <th>Program Implementor</th>
 
                                        @if (auth()->user()->role=='Enumerator')
