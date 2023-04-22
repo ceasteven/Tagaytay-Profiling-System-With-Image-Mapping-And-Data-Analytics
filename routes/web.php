@@ -26,7 +26,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
     // Define your login and password reset routes here
-    Route::get('/login', function () {
+    Route::get('/', function () {
         return view('auth.login');})->name('login')->middleware('setSessionTimeout');
 
 
