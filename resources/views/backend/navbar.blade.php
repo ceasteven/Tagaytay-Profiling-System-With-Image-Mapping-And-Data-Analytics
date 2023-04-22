@@ -1,6 +1,6 @@
  <!-- Navbar -->
  <!-- <nav class="main-header navbar navbar-expand navbar-light fixed-top bg-lightblue"> -->
- <nav class="main-header navbar navbar-expand navbar-light fixed-top bg-lightblue" style="background-color: #30819C;">
+ <nav class="main-header navbar navbar-expand navbar-light  bg-lightblue" style="background-color: #30819C;">
    <!-- Left navbar links -->
    <ul class="navbar-nav">
      <li class="nav-item">
@@ -34,7 +34,7 @@
 
          <li class="user-body">
            <div class="float-left">
-             <!-- <a href="{{route('change_password')}}" class="btn btn-default btn-flat">Change Password</a> -->
+             <a href="{{route('change_password')}}" class="btn btn-default btn-flat">Change Password</a>
            </div>
            <div class="float-right">
              <a href="{{ route('logout') }}" onclick="event.preventDefault();

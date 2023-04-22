@@ -89,15 +89,30 @@ class UserController extends Controller
         }
     
         $user = new User;
-        $username = strtolower(str_replace(' ', '', $request->firstname . $request->middlename . $request->lastname));
-        $username .= '_' . substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', 5)), 0, 5);
-    
-        while (User::where('username', $username)->exists()) {
-            // If the username already exists, generate a new one
-            $username = strtolower(str_replace(' ', '', $request->firstname . $request->middlename . $request->lastname));
-            $username .= '_' . substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', 5)), 0, 5);
-        }
-    $user->username = $username;
+     // Generate the initial username
+$username = strtolower(str_replace(' ', '', $request->firstname . $request->lastname));
+
+// Check if the generated username starts with a symbol or a number, if yes add an underscore to the start
+if (preg_match('/^[^a-zA-Z]/', $username)) {
+    $username = '_' . $username;
+}
+
+// Add a random 5-character string to the end of the username to ensure uniqueness
+$username .= '_' . substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', 5)), 0, 5);
+
+// Loop through the usernames until a unique one is found
+while (User::where('username', $username)->exists()) {
+    // Generate a new username with a different random string
+    $username = strtolower(str_replace(' ', '', $request->firstname . $request->lastname));
+    if (preg_match('/^[^a-zA-Z]/', $username)) {
+        $username = '_' . $username;
+    }
+    $username .= '_' . substr(str_shuffle(str_repeat('0123456789abcdefghijklmnopqrstuvwxyz', 5)), 0, 5);
+}
+
+// Set the username of the user object
+$user->username = $username;
+
 
     
         $user->firstname = strtoupper($request->firstname);
