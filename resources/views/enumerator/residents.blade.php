@@ -162,6 +162,7 @@
                             @if(request()->has('view_deleted'))
                             <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
                             @else
+                            
                             <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal1{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                             {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
                             {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}

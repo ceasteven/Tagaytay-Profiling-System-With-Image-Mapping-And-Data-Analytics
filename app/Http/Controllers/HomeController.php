@@ -42,7 +42,7 @@ class HomeController extends Controller
     public function index()
     {
         $resident = Residents::count();
-        $users = User::count('id');
+        $users = DB::table('users')->where('status', '1')->count();
         $hcn =DB::table('households')->count('housecontrolnum');
         $asisan = DB::table('residents')->where('barangay', 'Asisan')->count();
         $asisanh = DB::table('residents')->where('barangay', 'Asisan')->distinct()->count('housecontrolnum');
