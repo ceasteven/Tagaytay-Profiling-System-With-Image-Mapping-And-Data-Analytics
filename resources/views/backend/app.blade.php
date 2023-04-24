@@ -244,7 +244,7 @@ All rights reserved.
               exportOptions: {
                 columns: '{{ auth()->user()->role == "Enumerator" ? ":not(:last-child)" : "" }}' // exclude last column for System Admins
    // exclude last column
-              }
+              },
             }
           ]
         }]
@@ -255,6 +255,9 @@ All rights reserved.
       $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
         var table = $(e.target.hash).find('table').DataTable();
         $('#test').html(table.buttons().container());
+        $($.fn.dataTable.tables(true)).DataTable()
+         .columns.adjust()
+         .fixedColumns().relayout();
       });
 
       var tables = $('#example10, #example11, #example12, #example13, #example14, #example15').DataTable({
@@ -285,7 +288,6 @@ All rights reserved.
               download: 'open',
               orientation: 'landscape',
               pageSize: 'A0',
- 
               exportOptions: {
                 columns: '{{ auth()->user()->role == "Enumerator" ? ":not(:last-child)" : "" }}' // exclude last column for System Admins
               },
@@ -300,9 +302,12 @@ All rights reserved.
       $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
         var table = $(e.target.hash).find('table').DataTable();
         $('#test').html(table.buttons().container());
+        $($.fn.dataTable.tables(true)).DataTable()
+         .columns.adjust()
+         .fixedColumns().relayout();
       });
 
-    });
+
 
     $('#backup-table').DataTable({
       "searching": true,
@@ -316,6 +321,7 @@ All rights reserved.
     $('#addhousehold').on('hidden.bs.modal', function(e) {
       $(this).find('form').trigger('reset');
     })
+  });
   </script>
 
 

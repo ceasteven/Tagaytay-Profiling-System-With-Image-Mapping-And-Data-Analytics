@@ -1625,7 +1625,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-5">
-                                        <input name="fishoneown" class="form-control input-sm" type="number" min="0" placeholder="" id="fishonewown" value="{{$household->fishtwo}}" />
+                                        <input name="fishoneown" class="form-control input-sm" type="number" min="0" placeholder="" id="fishoneown" value="{{$household->fishoneown}}" />
                                     </div>
                                     <div class="col-sm-6">
                                         <input name="fishtwo" class="form-control input-sm" type="text" placeholder="" id="fishtwo" value="{{$household->fishtwo}}" />

@@ -109,9 +109,6 @@
 
             <!-- /.card-header -->
             <div class="card-body">
-
-         
-
                 <div class="tab-content">
                   <div class="tab-pane active" id="tab-table1">
 
@@ -263,8 +260,9 @@
 
                           <td>{{$resident->householdhead}}</td>
                           <td>{{$resident->householdmembername}}</td>
-                          <td>{{$resident->nucfambelong}}</td>
                           <td>{{$resident->reltohead}}</td>
+                          <td>{{$resident->nucfambelong}}</td>
+          
                           <td>{{$resident->gender}}</td>
                           <td>{{$resident->birthdate}}</td>
                           <td>{{$resident->age}}</td>
@@ -327,7 +325,7 @@
                           <td>{{$resident->schooltype}}</td>
                           <td>{{$resident->notattending}}</td>
                           <td>{{$resident->educcompleted}}</td>
-                          <td>{{$resident->shstrand}}</td>
+                          <td>{{$resident->shsstrand}}</td>
                           <td>{{$resident->collegecourse}}</td>
                           <td>{{$resident->training}}</td>
                           <td>{{$resident->pasttraining}}</td>
@@ -510,7 +508,6 @@
                   </div>
                 </div>
               </div>
-          
             <!-- /.card-body -->
           </div>
           <!-- /.card -->

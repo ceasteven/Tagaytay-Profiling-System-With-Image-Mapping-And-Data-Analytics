@@ -528,8 +528,8 @@
                                             <option value="Grade 10">Grade 10</option>
                                             <option value="Grade 11">Grade 11</option>
                                             <option value="Grade 12">Grade 12</option>
-                                            <option value="High school graduate (Old curriculum)">High school graduate (Old curriculum)</option>
-                                            <option value="Senior High school graduate (K-12 curriculum)">Senior High school graduate (K-12 curriculum)</option>
+                                            <option value="High school graduate">High school graduate (Old curriculum)</option>
+                                            <option value="Senior High school graduate">Senior High school graduate (K-12 curriculum)</option>
                                             <option value="1st Year PS or N-T or TV">1st Year PS/N-T/TV</option>
                                             <option value="2nd Year PS or N-T or TV">2nd Year PS/N-T/TV</option>
                                             <option value="Post secondary graduate">Post secondary graduate</option>
