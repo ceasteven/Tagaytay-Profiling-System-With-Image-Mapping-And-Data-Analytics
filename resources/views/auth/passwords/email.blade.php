@@ -45,12 +45,12 @@
                 <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 3000)">
                     @if (session('status'))
                     <div class="alert alert-success alert-dismissible small" role="alert">
-                    <i class="fas fa-check faa-pulse animated"></i>
+                    <!-- <i class="fas fa-check faa-pulse animated"></i> -->
                         {{ session('status') }}
                     </div>
                     @elseif (session('error'))
                     <div class="alert alert-danger alert-dismissible small" role="alert">
-                    <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
+                    <!-- <i class="fas  fa-xmark fa-lg"></i> -->
                         {{ session('error') }}
                     </div>
                     @endif

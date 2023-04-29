@@ -21,7 +21,7 @@ class CheckActive
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            return redirect()->route('login')->with('error', 'Your account is inactive, please contact system admin.');
+            return redirect()->route('login')->with('error', 'Your account is inactive. Please contact System Admin!');
         }
 
     

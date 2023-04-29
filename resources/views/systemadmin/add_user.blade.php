@@ -1,12 +1,13 @@
 @extends('backend.app')
 @section('content')
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-<h1>Add User </h1>
+                    <h1>Add User </h1>
                 </div>
                 <div class="col-sm-6 text-sm">
                     <ol class="breadcrumb float-sm-right">
@@ -23,33 +24,33 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                    <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 5000)">
-              @if (Session::has('success'))
-              <div class="alert alert-success alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert">
-                  <i class="fa fa-times"></i>
-                </button>
-                <i class="fas fa-check faa-pulse animated"></i>
-                <strong>Success:</strong> {{ session('success') }}
-              </div>
+                        <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 5000)">
+                            @if (Session::has('success'))
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <i class="fas fa-check faa-pulse animated"></i>
+                                <strong>Success:</strong> {{ session('success') }}
+                            </div>
 
-              @elseif (Session::has('error'))
-              <div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert">
-                  <i class="fa fa-times"></i>
-                </button>
-                <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
-                <strong>Error:</strong> {{ session('error') }}
-              </div>
+                            @elseif (Session::has('error'))
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
+                                <strong>Error:</strong> {{ session('error') }}
+                            </div>
 
-              @elseif ($errors->any())
-              {!! implode('', $errors->all('<div class="alert alert-danger alert-dismissible" role="alert">
-                <button type="button" class="close" data-dismiss="alert">
-                  <i class="fa fa-times"></i>
-                </button><i class="fas fa-exclamation-triangle faa-pulse animated"></i><strong>:message</strong>
-              </div>')) !!}
-              @endif
-            </div>
+                            @elseif ($errors->any())
+                            {!! implode('', $errors->all('<div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </button><i class="fas fa-exclamation-triangle faa-pulse animated"></i><strong>:message</strong>
+                            </div>')) !!}
+                            @endif
+                        </div>
                         <div class="card-header">
 
                             <h4>Account Information</h4>
@@ -112,7 +113,7 @@
                                             </select>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-md-4 col-lg-3">
+                                    <!-- <div class="col-12 col-md-4 col-lg-3">
                                         <div class="form-group">
                                             <label>Status:</label>
                                             <select class="form-control" name="status" id="status" required>
@@ -120,7 +121,7 @@
                                                 <option value="0">Deactivate</option>
                                             </select>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                 </div>
 

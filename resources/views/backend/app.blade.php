@@ -7,7 +7,11 @@
   <title>Tagaytay Profiling System</title>
   <script src="{{asset('plugins/alpine/alpine.min.js')}}"></script>
   <script src="{{asset('plugins/chart.js/Chart.js')}}"></script>
-
+<!-- <style>
+  body {
+  padding-top: 60px; /* replace 70px with the height of your navbar */
+}
+  </style> -->
   <!-- <script type="text/javascript"> 
         function preventBack() { 
             window.history.forward();  
@@ -253,12 +257,11 @@ All rights reserved.
       tables.buttons().container().appendTo($('#test'));
 
       $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-        var table = $(e.target.hash).find('table').DataTable();
-        $('#test').html(table.buttons().container());
-        $($.fn.dataTable.tables(true)).DataTable()
-         .columns.adjust()
-         .fixedColumns().relayout();
-      });
+    var table = $(e.target.hash).find('table').DataTable();
+    $('#test').html(table.buttons().container());
+    $($.fn.dataTable.tables(true)).DataTable().columns.adjust().fixedColumns().relayout();
+});
+
 
       var tables = $('#example10, #example11, #example12, #example13, #example14, #example15').DataTable({
         "responsive": false,
@@ -300,12 +303,10 @@ All rights reserved.
       tables.buttons().container().appendTo($('#test'));
 
       $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
-        var table = $(e.target.hash).find('table').DataTable();
-        $('#test').html(table.buttons().container());
-        $($.fn.dataTable.tables(true)).DataTable()
-         .columns.adjust()
-         .fixedColumns().relayout();
-      });
+    var table = $(e.target.hash).find('table').DataTable();
+    $('#test').html(table.buttons().container());
+    $($.fn.dataTable.tables(true)).DataTable().columns.adjust().fixedColumns().relayout();
+});
 
 
 

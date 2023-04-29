@@ -675,9 +675,12 @@
     categories: ["Asisan", "Bagong Tubig", "Calabuso", "Dapdap East", "Dapdap West", "Francisco", "Guinhawa North", "Guinhawa South", "Iruhin Central", "Iruhin East", "Iruhin West", "Kaybagal Central", "Kaybagal North", "Kaybagal South", "Mag-asawang Ilat", "Maharlika East", "Maharlika West", "Maitim II Central", "Maitim II East", "Maitim II West", "Mendez Crossing East", "Mendez Crossing East","Neogan", "Patutong Malaki North", "Patutong Malaki South", "Sambong", "San Jose", "Silang Crossing East", "Silang Crossing West", "Sungay East", "Sungay West", "Tolentino East", "Tolentino West", "Zambal"],
   },
   yAxis: {
+    tickInterval: 1,
+        min: 0,
     title: {
       text: ' Number'
-    }
+    },
+    
   },
   tooltip: {
     pointFormat: '{point.category}: <b>{point.y:.0f}</b>',

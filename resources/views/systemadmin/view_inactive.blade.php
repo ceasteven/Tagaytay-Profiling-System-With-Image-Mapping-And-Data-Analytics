@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1>Users</h1>
+          <h1>View Inactive Users</h1>
         </div>
         <div class="col-sm-6 text-sm">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('home')}}" style="color:#444;"><i class="fas fa-home"></i> Home</a></li>
-            <li class="breadcrumb-item active">View Users</li>
+            <li class="breadcrumb-item active">View Inactive Users</li>
           </ol>
         </div>
       </div>
@@ -38,24 +38,24 @@
                 <button type="button" class="close" data-dismiss="alert">
                   <i class="fa fa-times"></i>
                 </button>
-                   <i class="fas  fa-xmark fa-lg"></i>
-                 <strong>Error: </strong> {{ session('error') }}
+                
+                <strong>Error:</strong> {{ session('error') }}
               </div>
 
               @elseif ($errors->any())
               {!! implode('', $errors->all('<div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert">
                   <i class="fa fa-times"></i>
-                </button>   <i class="fas  fa-xmark fa-lg"></i><strong> :message</strong>
+                </button><strong>:message</strong>
               </div>')) !!}
               @endif
             </div>
-            <!-- <div class="card-header">
+            <div class="card-header">
 
               <a href="{{ route('users.create') }}" class="btn btn-success btn-sm"><i class="fa fa-user-plus" aria-hidden="true"></i> Add User</a>
 
 
-            </div> -->
+            </div>
 
             <!-- /.card-header -->
             <div class="card-body">
@@ -70,41 +70,41 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($all as $users)
+                  @foreach ($inactive as $users)
                   <tr>
                     <td>{{ $users->name }}</td>
 
                     <td>{{$users->role}}</td>
                     <td>
-                      @if($users->status == 1)
-                      <form action="{{ route('users.update', $users->id) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                        <input type="hidden" name="firstname" value="{{ $users->firstname }}">
-                        <input type="hidden" name="middlename" value="{{ $users->middlename }}">
-                        <input type="hidden" name="lastname" value="{{ $users->lastname }}">
-                        <input type="hidden" name="username" value="{{ $users->username }}">
-                        <input type="hidden" name="email" value="{{ $users->email }}">
-                        <input type="hidden" name="role" value="{{ $users->role }}">
-                        <input type="hidden" name="status" value="0">
-                        <button type="submit" class="btn btn-success">Active</button>
-                      </form>
-                      @else
-                      <form action="{{ route('users.update', $users->id) }}" method="post">
-                        @csrf
-                        @method('PATCH')
-                        <input type="hidden" name="firstname" value="{{ $users->firstname }}">
-                        <input type="hidden" name="middlename" value="{{ $users->middlename }}">
-                        <input type="hidden" name="lastname" value="{{ $users->lastname }}">
-                        <input type="hidden" name="username" value="{{ $users->username }}">
-                        <input type="hidden" name="email" value="{{ $users->email }}">
-                        <input type="hidden" name="role" value="{{ $users->role }}">
-                        <input type="hidden" name="status" value="1">
-                        <button type="submit" class="btn btn-danger">Inactive</button>
-                      </form>
-                      @endif
-                    </td>
-                    <td>
+        @if($users->status == 0)
+            <form action="{{ route('users.update', $users->id) }}" method="post">
+                @csrf
+                @method('PATCH')
+                <input type="hidden" name="firstname" value="{{ $users->firstname }}">
+                <input type="hidden" name="middlename" value="{{ $users->middlename }}">
+                <input type="hidden" name="lastname" value="{{ $users->lastname }}">
+                <input type="hidden" name="username" value="{{ $users->username }}">
+                <input type="hidden" name="email" value="{{ $users->email }}">
+                <input type="hidden" name="role" value="{{ $users->role }}">
+                <input type="hidden" name="status" value="1">
+                <button type="submit" class="btn btn-danger">Inactive</button>
+            </form>
+        @else
+            <form action="{{ route('users.update', $users->id) }}" method="post">
+                @csrf
+                @method('PATCH')
+                <input type="hidden" name="firstname" value="{{ $users->firstname }}">
+                <input type="hidden" name="middlename" value="{{ $users->middlename }}">
+                <input type="hidden" name="lastname" value="{{ $users->lastname }}">
+                <input type="hidden" name="username" value="{{ $users->username }}">
+                <input type="hidden" name="email" value="{{ $users->email }}">
+                <input type="hidden" name="role" value="{{ $users->role }}">
+                <input type="hidden" name="status" value="0">
+                <button type="submit" class="btn btn-danger">Active</button>
+            </form>
+        @endif
+    </td>
+        <td>
                       <!-- <a href="#" button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#viewmodal{{$users->id}}" title="Edit"><i class="fa-solid fa-eye"></i> </button></a> -->
                       <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-target="#editmodal{{$users->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
 
@@ -145,67 +145,7 @@
   <!-- /.content -->
 </div>
 <!-- Add Modal -->
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- @foreach ($all as $users)
-<div class="modal fade text-left" id="viewmodal{{$users->id}}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      
-      <div class="modal-header">
-        <h4 class="modal-title">{{ __('View User') }}</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      </div>
-      <div class="modal-body">
-        
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-              <label>Name: </label>
-              {{$users->name}}
-            </div>
-            <div class="form-group">
-              <label>Username: </label>
-              {{$users->username}}
-            </div>
-            <div class="form-group">
-              <label>Email: </label>
-              {{$users->email}}
-            </div>
-           
-            <div class="form-group">
-              <label> User Role:</label>
-              {{$users->role}}
-            </div>
-            <div class="form-group">
-              <label>Status: </label>
-              @if ($users->status=='1') Active
-              @elseif ($users->status=='0') Inactive
-@endif
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-@endforeach -->
-
-@foreach ($all as $users)
+@foreach ($inactive as $users)
 <div class="modal fade text-left" id="editmodal{{$users->id}}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-dialog-scrollable" role="document">
     <div class="modal-content">
@@ -278,5 +218,4 @@
 </div>
 
 @endforeach
-
 @endsection

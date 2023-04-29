@@ -1,6 +1,6 @@
  <!-- Navbar -->
  <!-- <nav class="main-header navbar navbar-expand navbar-light fixed-top bg-lightblue"> -->
- <nav class="main-header navbar navbar-expand navbar-light  bg-lightblue" style="background-color: #30819C;">
+ <nav class="main-header navbar navbar-expand navbar-light " style="background-color: #30819C;">
    <!-- Left navbar links -->
    <ul class="navbar-nav">
      <li class="nav-item">
@@ -23,7 +23,7 @@
        <!-- <img src="{{asset('dist/img/123.jpg')}}" class="user-image" style="max-height:120px;margin:0 auto;" alt="User Image"> -->
        </a>
        <ul class="dropdown-menu">
-         <li class="user-header" style="background-color: #30819C;">
+         <li class="user-header " style="background-color: #30819C;">
            <img src="{{asset('dist/img/default.jpg')}}" class="img-circle" alt="User Image">
            <p>
              @auth
@@ -34,7 +34,7 @@
 
          <li class="user-body">
            <div class="float-left">
-             <a href="{{route('change_password')}}" class="btn btn-default btn-flat">Change Password</a>
+             <!-- <a href="{{route('change_password')}}" class="btn btn-default btn-flat">Change Password</a> -->
            </div>
            <div class="float-right">
              <a href="{{ route('logout') }}" onclick="event.preventDefault();

@@ -8,7 +8,7 @@
          <div class="row mb-2">
             <div class="col-sm-6">
                @if (request()->has('view_deleted'))
-               <h1>Archived Households</h1>
+               <h1>Households Archive</h1>
                @else
                <h1>Households</h1>
                @endif
@@ -17,9 +17,9 @@
                <ol class="breadcrumb float-sm-right">
                   <li class="breadcrumb-item"><a href="{{route('home')}}" style="color:#444;"><i class="fas fa-home"></i> Home</a></li>
                   @if (request()->has('view_deleted'))
-                  <li class="breadcrumb-item active">Archived Households</li>
+                  <li class="breadcrumb-item active">Households Archive</li>
                   @else
-                  <li class="breadcrumb-item active">Households</li>
+                  <li class="breadcrumb-item active">View Households</li>
                   @endif
                </ol>
             </div>
@@ -39,7 +39,7 @@
                            <i class="fa fa-times"></i>
                         </button>
                         <i class="fas fa-check faa-pulse animated"></i>
-                        <strong>Success:</strong> {{ session('success') }}
+                        <strong></strong> {{ session('success') }}
                      </div>
 
                      @elseif (Session::has('error'))
@@ -47,15 +47,15 @@
                         <button type="button" class="close" data-dismiss="alert">
                            <i class="fa fa-times"></i>
                         </button>
-                        <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
-                        <strong>Error:</strong> {{ session('error') }}
+                          <i class="fas  fa-xmark fa-lg"></i>
+                         <strong></strong> {{ session('error') }}
                      </div>
 
                      @elseif ($errors->any())
                      {!! implode('', $errors->all('<div class="alert alert-danger alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert">
                            <i class="fa fa-times"></i>
-                        </button> <i class="fas fa-exclamation-triangle faa-pulse animated"></i><strong>:message</strong>
+                        </button>   <i class="fas  fa-xmark fa-lg"></i><strong> :message</strong>
                      </div>')) !!}
                      @endif
                   </div>
@@ -84,12 +84,12 @@
                      </ul>
                      <hr>
                      @if (request() ->has('view_deleted'))
-                     <a href="{{route('household.index')}} " class="btn btn-info btn-sm"><i class="fas fa-solid fa-eye"></i> View Household</a>
+                     <!-- <a href="{{route('household.index')}} " class="btn btn-info btn-sm"><i class="fas fa-solid fa-eye"></i> View Household</a> -->
                      <a href="{{ route('households.restoreAll') }}" class="btn btn-success btn-sm"><i class="fas fa-arrows-rotate"></i> Restore All</a>
                      @else
 
                      @if (auth()->user()->role=='Enumerator')
-                     <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addhousehold"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Household</button>
+                     <!-- <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#addhousehold"><i class="fa fa-user-plus" aria-hidden="true"></i> Add Household</button> -->
                      <button class="btn btn-success btn-sm" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#imports"><i class="fa-solid fa-upload"></i> Import</button>
 
                      <a href="#" id="test">
@@ -306,6 +306,7 @@
                                        @if(request()->has('view_deleted'))
                                        <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
                                        @else
+                                       <a href="{{ route('household.show', $household->id) }}" class="btn btn-sm btn-primary" title="View"><i class="fa-solid fa-eye"></i></a>
                                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit1" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                        {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}
                                        {!! Form::button('<i class="fas fa-solid fa-box-archive" aria-hidden="true"></i>', ['class' => 'btn btn-secondary btn-sm' ,'type' =>'submit']) !!}
@@ -1294,8 +1295,8 @@
       </div>
    </section>
 </div>
-@include('enumerator.add_household')
+
 @include('enumerator.edit_households')
 @include('enumerator.import_households')
-<script src="{{asset('plugins/residents/household.js')}}"></script>
+
 @endsection

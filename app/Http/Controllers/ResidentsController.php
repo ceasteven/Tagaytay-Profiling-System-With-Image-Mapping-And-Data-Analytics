@@ -16,6 +16,10 @@ use Carbon\Carbon;
 
 class ResidentsController extends Controller
 {
+    public function create()
+    {
+        return view('enumerator.add_residents');
+    }
     public function export() 
     {
         $date = date('Y-m-d');
@@ -30,7 +34,13 @@ class ResidentsController extends Controller
         return Excel::download(new ExportResidents, $fileName);
 
     }
-
+    public function show($id)
+    {
+        $resident = Residents::findOrFail($id);
+        return view('enumerator.view_resident', compact('resident'));
+    }
+    
+    
       
     public function import(Request $request) 
     {

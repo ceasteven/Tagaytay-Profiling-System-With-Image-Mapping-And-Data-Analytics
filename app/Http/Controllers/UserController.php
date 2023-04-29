@@ -13,7 +13,7 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\Artisan;
 class UserController extends Controller
 {
     /**
@@ -24,13 +24,23 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $all = User::get();
-
-        if($request->has('view_deleted')) {
-            $all = User::onlyTrashed()->get();;
-        }
+    
         return view ('systemadmin.user_list',compact('all'));
     }
+    // public function index(Request $request)
+    // {
+    //     $all = User::where('status',1)->get();
 
+    
+    //     return view ('systemadmin.user_list',compact('all'));
+    // }
+    // public function inactive(Request $request)
+    // {
+    //     $inactive = User::where('status',0)->get();
+
+    
+    //     return view ('systemadmin.view_inactive',compact('inactive'));
+    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -183,7 +193,7 @@ $user->username = $username;
                 Rule::unique('users')->ignore($user->id)
             ],
             'password' => 'nullable|string|min:8|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!%&@#$^*?_~-]).{8,}$/',
-            'status' => 'required|integer|in:0,1',
+          
             'role' => 'required|string|in:System Admin,Enumerator',
             [
                 'firstname.required' => 'Please enter a first name.',
@@ -224,9 +234,12 @@ $user->username = $username;
             $user->password = Hash::make($request->password);
         }
     
-        $user->save();
-    
-        return redirect('/users')->with('success', 'User updated successfully!');
+        if ($user->isDirty()) {
+            $user->save();
+            return redirect('/users')->with('success', 'User updated successfully!');
+        } else {
+            return redirect()->back()->with('error','No changes were made.');
+        }
     }
     
 
@@ -246,7 +259,7 @@ $user->username = $username;
     }
     public function activityLog()
     {
-        $activityLog = DB::table('activity_log')->orderBy('updated_at', 'desc')->get();
+        $activityLog = DB::table('activity_log')->orderBy('created_at', 'desc')->get();
         return view('systemadmin.user_activitylogs',compact('activityLog'));
     }
 
@@ -267,6 +280,19 @@ public function restore_all()
     return redirect()->route('users.index')->with('error','No users have been restored!');
     
 }
+}
+public function clearLogs()
+{
+ 
+    $olderThan30Days = Carbon::now()->subDays(30);
+
+    $deletedRows = DB::table('activity_log')->where('updated_at', '<', $olderThan30Days)->delete();
+    
+    if ($deletedRows == 0) {
+        return redirect()->route('activityLog')->with('error', 'No activity logs older than 30 days found!');
+    }
+    
+    return redirect()->route('activityLog')->with('success', 'Activity logs cleared!');
 }
 
 }

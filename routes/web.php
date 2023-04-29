@@ -48,8 +48,11 @@ Route::get('/change_password', [App\Http\Controllers\HomeController::class, 'cha
 Route::post('/change_password', [App\Http\Controllers\HomeController::class, 'updatePassword'])->middleware('auth')->name('update_password');
 
 Route::resource('/users', UserController::class);
-Route::get('activity/log', [App\Http\Controllers\UserController::class, 'activityLog'])->middleware('auth')->name('activityLog');
 
+Route::get('/users/inactive', [UserController::class, 'inactive'])->name('inactiveUsers');
+
+Route::get('activity/log', [App\Http\Controllers\UserController::class, 'activityLog'])->middleware('auth')->name('activityLog');
+Route::get('/activity-log/clear', [UserController::class, 'clearLogs'])->name('logsclear');
 Route::resource('/residents', ResidentsController::class)->middleware('auth');
 Route::resource('/household', HouseholdsController::class)->middleware('auth');
 Route::get('/reports', [App\Http\Controllers\ResidentsController::class, 'reports'])->middleware('auth')->name('reports');

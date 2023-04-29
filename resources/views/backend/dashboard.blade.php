@@ -8,7 +8,7 @@
       <div class="row mb-2">
         <div class="col-sm-6 ">
           @auth
-          <h4>{{auth()->user()->role}} Dashboard <small>Welcome</small></h4>
+          <h4>{{auth()->user()->role}} Dashboard <small style="color:#999;">Welcome</small></h4>
           @endauth
         </div><!-- /.col -->
         <div class="col-sm-6 text-sm"> 

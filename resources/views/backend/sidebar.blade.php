@@ -76,6 +76,12 @@
                 <p>View Users</p>
               </a>
             </li>
+            <!-- <li class="nav-item">
+              <a href="{{route('inactiveUsers')}}" class="nav-link">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>View Inactive Users</p>
+              </a>
+            </li> -->
         </ul>
         </li>
         <li class="nav-item">
@@ -321,7 +327,7 @@
           <a href="{{route('activityLog')}}" class="nav-link">
             <i class="nav-icon fa fa-history"></i>
             <p>
-              Logs
+              Activity Logs
             </p>
           </a>
         </li>
@@ -355,6 +361,12 @@
         
         <ul class="nav nav-treeview">
         <li class="nav-item">
+              <a href="{{route('residents.create')}}" class="nav-link">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Add Resident</p>
+              </a>
+            </li>
+        <li class="nav-item">
               <a href="{{route('residents.index')}}" class="nav-link">
                 <i class="fas fa-angle-right nav-icon"></i>
                 <p>View Residents</p>
@@ -379,6 +391,12 @@
             </p>
           </a>
           <ul class="nav nav-treeview">
+          <li class="nav-item">
+              <a href="{{route('household.create')}}" class="nav-link">
+                <i class="fas fa-angle-right nav-icon"></i>
+                <p>Add Household</p>
+              </a>
+            </li>
         <li class="nav-item">
               <a href="{{route('household.index')}}" class="nav-link">
                 <i class="fas fa-angle-right nav-icon"></i>

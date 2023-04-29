@@ -16,6 +16,10 @@ use Carbon\Carbon;
 
 class HouseholdsController extends Controller
 {
+    public function create()
+    {
+        return view('enumerator.add_household');
+    }
     public function exports()
     {
    
@@ -29,7 +33,11 @@ class HouseholdsController extends Controller
         $fileName = 'households-' . $date . '.csv'; // add date 
         return Excel::download(new ExportHouseholds, $fileName);
     }
-
+    public function show($id)
+    {
+        $household = Households::findOrFail($id);
+        return view('enumerator.view_household', compact('household'));
+    }
 
     public function imports(Request $request)
     {

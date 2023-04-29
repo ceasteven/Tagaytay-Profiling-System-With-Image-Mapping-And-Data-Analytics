@@ -1,13 +1,58 @@
-<div class="modal  fade text-left" id="addhousehold" tabindex="-2" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Add New Household</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+@extends('backend.app')
+@section('content')
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Add Household</h1>
+                </div>
+                <div class="col-sm-6 text-sm">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{route('home')}}" style="color:#444;"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item active">Add Household</li>
+                    </ol>
+                </div>
             </div>
-            <div class="modal-body">
+        </div><!-- /.container-fluid -->
+        <hr />
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 5000)">
+                            @if (Session::has('success'))
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <i class="fas fa-check faa-pulse animated"></i>
+                                <strong>Success:</strong> {{ session('success') }}
+                            </div>
+
+                            @elseif (Session::has('error'))
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
+                                <strong>Error:</strong> {{ session('error') }}
+                            </div>
+
+                            @elseif ($errors->any())
+                            {!! implode('', $errors->all('<div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </button><i class="fas fa-exclamation-triangle faa-pulse animated"></i><strong>:message</strong>
+                            </div>')) !!}
+                            @endif
+                        </div>
                 <form action="{{ route('household.store') }}" method="POST">
                     @csrf
+                    <div class="card-header">
                     <div class="tab">
                         <div class="row">
                             <div class="col-md-6">
@@ -332,9 +377,10 @@
                                         </select>
                                     </div>
                                 </div>
-                                <br><br>
-                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
+          
+                            
                             </div>
+                            
                             <div class="col-md-6 col-sm-12">
                                 <div class="form-group row">
                                     <p class="col-sm-6 col-form-label">83. Do you own any of the following?</p>
@@ -656,14 +702,16 @@
                                     </div>
 
                                 </div>
-
-                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
+                            
+                        
 
 
 
                             </div>
                         </div>
+                        <hr style="height:2px;border-width:0;color:black;background-color:black" />
                         <div class="row">
+                            
                             <div class="col-md-6">
 
                                 <h5><strong>M. SOURCES OF INCOME </strong></h5>
@@ -1316,8 +1364,9 @@
                                     <div class="col-sm-5">
                                         <input name="agriequipnum" class="form-control input-sm" type="number" min="0" id="agriequipnum" placeholder="" disabled="disabled" />
                                     </div>
+                                    <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                 </div>
-                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
+                          
                                 <h5><strong>O. AGRICULTURE-LIVESTOCK AND/OR POULTRY RAISING</strong></h5>
 
                                 <div class="form-group row">
@@ -1765,8 +1814,11 @@
                                     <div class="col-sm-5">
                                         <input name="fishfiveown" class="form-control input-sm" type="number" min="0" placeholder="" id="fishfiveown" disabled="disabled" />
                                     </div>
+                                    
                                 </div>
-                                <br><br>
+                           <br>
+                           <br>
+                           <br>
                                 <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                 <h5><strong> Q. CLIMATE CHANGE AND DISASTER RISK MANAGEMENT</strong></h5>
                                 <div class="form-group row">
@@ -2795,7 +2847,7 @@
                                         </select>
                                     </div>
                                 </div>
-                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
+                               
                             </div>
                         </div>
                             <div class="row">
@@ -3007,7 +3059,9 @@
                                     </div>
 
                                 </div>
+                                
                                 <div class="col-md-6 col-sm-12">
+                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                     <div class="form-group row">
                                         <p class="col-sm-4 col-form-label">184. How many household members are covered by or are members of this
                                             program?</p>
@@ -3149,9 +3203,11 @@
                                                 <option value="Dont know">Don't know</option>
                                                 <option value="Others">Others</option>
                                             </select>
-                                            <br>
-                                            <br><br>
+                                            <p class="col-sm-3 col-form-label"></p>
+                                            <p class="col-sm-3 col-form-label"></p>
+                                            <p class="col-sm-3 col-form-label"></p>
                                         </div>
+                                        
                                         <div class="col-sm-3">
                                             <input name="memse" class="form-control input-sm" type="number" placeholder="" id="memse" disabled="disabled" />
                                             </select>
@@ -3172,7 +3228,8 @@
                                                 <option value="Dont know">Don't know</option>
                                                 <option value="Others">Others</option>
                                             </select>
-                                            <br><br>
+                                            <p class="col-sm-3 col-form-label"></p>
+                                            <p class="col-sm-3 col-form-label"></p>
                                         </div>
                                         <div class="col-sm-3">
                                             <input name="meme" class="form-control input-sm" type="number" placeholder="" id="meme" disabled="disabled" />
@@ -3194,7 +3251,8 @@
                                                 <option value="Dont know">Don't know</option>
                                                 <option value="Others">Others</option>
                                             </select>
-                                            <br><br>
+                                            <p class="col-sm-3 col-form-label"></p>
+                                            
                                         </div>
                                         <div class="col-sm-3">
                                             <input name="memn" class="form-control input-sm" type="number" placeholder="" id="memn" disabled="disabled" />
@@ -3229,7 +3287,7 @@
                                                 <option value="Dont know">Don't know</option>
                                                 <option value="Others">Others</option>
                                             </select>
-                                            <br>
+                                            <p class="col-sm-3 col-form-label"></p>
                                         </div>
                                         <div class="col-sm-3">
                                             <input name="memte" class="form-control input-sm" type="number" placeholder="" id="memte" disabled="disabled" />
@@ -3493,11 +3551,16 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+                       
                             <button type="submit" class="btn btn-info btn-sm">Save</button>
                         </div>
+                    </div>
                 </form>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+    </section>
 </div>
+<script src="{{asset('plugins/residents/household.js')}}"></script>
+@endsection

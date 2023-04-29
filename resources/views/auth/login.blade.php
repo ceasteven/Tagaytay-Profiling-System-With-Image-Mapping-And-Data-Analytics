@@ -48,25 +48,25 @@
                                     @if (session('status'))
                                     <div class="alert alert-success" >
                                     <button type="button" class="close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
+            <!-- <i class="fa fa-times"></i> -->
         </button>
-                                        <i class="fas fa-check faa-pulse animated"></i>
+                                        <!-- <i class="fas fa-check faa-pulse animated"></i> -->
                                         {{ session('status') }}
                                     </div>
                                     @elseif (session('message'))
                 <div class="alert alert-danger alert-dismissible small" role="alert">
                 <button type="button" class="close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
+            <!-- <i class="fa fa-times"></i> -->
         </button>
-                    <i class="fas fa-exclamation-triangle faa-pulse animated"></i> 
+                    <!-- <i class="fas  fa-xmark fa-lg"></i> -->
                     {{ session('message') }}
                 </div>
                 @elseif (session('error'))
                 <div class="alert alert-danger alert-dismissible small" role="alert">
                 <button type="button" class="close" data-dismiss="alert">
-            <i class="fa fa-times"></i>
+            <!-- <i class="fa fa-times"></i> -->
         </button>
-                    <i class="fas fa-exclamation-triangle faa-pulse animated"></i> 
+                    <!-- <i class="fas  fa-xmark fa-lg"></i> -->
                     {{ session('error') }}
                 </div>
                                     @endif
