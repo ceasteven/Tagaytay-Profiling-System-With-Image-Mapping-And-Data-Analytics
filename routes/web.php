@@ -21,13 +21,10 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Define a new middleware group
-    // Define your login and password reset routes here
 
 
-    // Define your login and password reset routes here
-    Route::get('/', function () {
-        return view('auth.login');})->name('login')->middleware('setSessionTimeout');
+        Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('setSessionTimeout');
+Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 
 
     Route::post('/password/email', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
@@ -38,7 +35,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 
 
 Route::post('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->middleware('auth')->name('logout');
-Auth::routes();
+
 
 Route::group(['middleware' => 'prevent-back-history'],function(){
 

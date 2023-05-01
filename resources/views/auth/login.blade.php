@@ -71,7 +71,7 @@
                 </div>
                                     @endif
                                 </div>
-                <form method="POST" action="{{ route('login') }}">
+                <form method="POST" action="{{ route('login.post') }}">
                     @csrf
 
                     <div class="input-group mb-3">

@@ -33,33 +33,21 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = RouteServiceProvider::HOME;
+   protected $redirectTo = '/dashboard';
+
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('guest')->except('logout');
-        if (auth()->check()) {
-            return redirect()->route('dashboard');
-        }
-    }
+   
     
     public function username()
     {
         return 'username';
     }
-    public function credentials(Request $request)
-{
-    return [
-        'username'  => $request->username,
-        'password'  => $request->password,
-        'status' => '1'
-    ];
-}
+   
 protected function sendFailedLoginResponse(Request $request)
 {
     throw ValidationException::withMessages([
@@ -68,56 +56,37 @@ protected function sendFailedLoginResponse(Request $request)
     ]);
 }
 public function login(Request $request)
-
-    {   
+{
+    $this->validate($request, [
+        'username' => 'required',
+        'password' => 'required',
+    ]);
     
-        $input = $request->all();
-
-  
-
-        $this->validate($request, [
-
-            'username' => 'required',
-
-            'password' => 'required',
-
-        ]);
+    $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
     
-       $username= $request->username;
-        $user= Auth::User();
-        Session::put('user',$user);
-        $user=Session::get('user');
-        $dt=Carbon::now();
-$todaydate=$dt->toDateTimeString();
-         $activityLog=[
-'log_name'=> $username,
-'description'=>'Log in',
-'updated_at'=>$todaydate,
+    $credentials = [
+        $fieldType => $request->username,
+        'password' => $request->password,
+        'status' => '1'
+    ];
 
-
-         ];
-
-   
-        $fieldType = filter_var($request->username, FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
-        if(auth()->attempt(array($fieldType => $input['username'], 'password' => $input['password'],)))
-
-        {
-          
-            DB::table('activity_log')->insert($activityLog);
-            return redirect()->route('home');
-         
-        }else{
-
-            return redirect()->route('login')
-
-                ->with('error','Incorrect username / email or password.');
-
-        }
-
-          
-
+    if (auth()->attempt($credentials)) {
+        $username = $request->username;
+        $dt = Carbon::now();
+        $todaydate = $dt->toDateTimeString();
+        $activityLog = [
+            'log_name' => $username,
+            'description' => 'Log in',
+            'updated_at' => $todaydate,
+        ];
+        DB::table('activity_log')->insert($activityLog);
+        return redirect()->route('home');
+    } else {
+        return redirect()->route('login')
+            ->with('error', 'Incorrect username / email or password.');
     }
+}
+
     public function logout(Request $request)
     {
         $user= Auth::User();
