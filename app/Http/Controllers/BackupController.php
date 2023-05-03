@@ -46,12 +46,35 @@ class BackupController extends Controller
     return view('backup.backups', compact('backups'));
 }
 
-    public function create(){
+public function create()
+{
+    try {
+        // Run the backup
         Artisan::call('backup:run',['--only-db'=>true]);
-        /// whatever you want to display
-        return redirect()->back()->with('success', 'Backup created successfully');
-       }
-      public function destroy($backup)
+
+        // Get the path of the latest backup file
+        $latestBackup = collect(Storage::disk('backup')->files('TPS'))
+            ->sortByDesc(function ($file) {
+                return Storage::disk('backup')->lastModified($file);
+            })
+            ->first();
+
+        // Get the contents of the backup file
+        $backupContents = Storage::disk('backup')->get($latestBackup);
+        $filename = 'backup-' . date('Y-m-d-H-i-s') . '.sql';
+       
+        // Send the backup file as a download attachment in the HTTP response
+        return response()->make($backupContents, 200, [
+            'Content-Type' => 'application/octet-stream',
+            'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+        ]);
+        
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Unable to create backup: ' . $e->getMessage());
+    }
+}
+
+public function destroy($backup)
 {
     try {
         $path = "backups/TPS/$backup"; // Use $backup as the full path to the backup file
@@ -62,15 +85,5 @@ class BackupController extends Controller
         return redirect()->back()->with('error', 'Unable to delete backup: ' . $e->getMessage());
     }
 }
-       
+
 }
-// public function destroy($backup)
-//     {
-//         try {
-//             Storage::disk('backup')->delete($backup);
-//             return redirect()->back()->with('success', 'Backup deleted successfully!');
-//         } catch (\Exception $e) {
-//             return redirect()->back()->with('error', 'Unable to delete backup: ' . $e->getMessage());
-//         }
-//     }
-// }

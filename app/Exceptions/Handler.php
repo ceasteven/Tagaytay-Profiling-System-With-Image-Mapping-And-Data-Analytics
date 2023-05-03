@@ -18,14 +18,15 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->renderable(function (TokenMismatchException $e, $request) {
-    
             return redirect('login')->with('error', 'Your session expired due to inactivity. Please login again.');
+            
             
         });
    
         $this->renderable(function (HttpException $e, $request) {
             if ($e->getStatusCode() == 419) {
                 return redirect('login')->with('error', 'Your session expired due to inactivity. Please login again.');
+            
             }
         });
 

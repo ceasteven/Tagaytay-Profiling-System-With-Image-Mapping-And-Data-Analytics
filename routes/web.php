@@ -21,8 +21,14 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// Define a new middleware group
+    // Define your login and password reset routes here
 
 
+    // Define your login and password reset routes here
+    Route::get('/', function () {
+        return redirect()->route('login');
+    });    
         Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('setSessionTimeout');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 
