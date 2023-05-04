@@ -61,14 +61,13 @@ public function create()
 
         // Get the contents of the backup file
         $backupContents = Storage::disk('backup')->get($latestBackup);
-        $filename = 'backup-' . date('Y-m-d-H-i-s') . '.sql';
-       
+        $filename = 'backup-' . date('Y-m-d-H-i-s') . '.zip';
+
         // Send the backup file as a download attachment in the HTTP response
         return response()->make($backupContents, 200, [
             'Content-Type' => 'application/octet-stream',
             'Content-Disposition' => 'attachment; filename="' . $filename . '"',
         ]);
-        
     } catch (\Exception $e) {
         return redirect()->back()->with('error', 'Unable to create backup: ' . $e->getMessage());
     }

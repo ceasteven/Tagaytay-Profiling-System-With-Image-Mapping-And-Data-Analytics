@@ -1,5 +1,7 @@
+
 @extends('backend.app')
 @section('content')
+@if (auth()->user()->role=='Enumerator')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <section class="content-header">
@@ -451,7 +453,7 @@
 
                                                 <label class="col-sm-5 col-form-label">20. Where was___ residing 3 years ago?</label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" name="residing" id="residing">
+                                                    <select class="form-control" name="residing" id="residing" value="{{$resident->civilstatus}}">
                                                         <option value="">Select</option>
                                                         <option value="Same address now" {{$resident->residing == 'Same address now' ? 'selected':'' }}>Same address now</option>
                                                         <option value="Other address" {{$resident->residing == 'Other address' ? 'selected':'' }}>Other address, specify</option>
@@ -935,4 +937,680 @@
         </div>
     </section>
 </div>
+@else
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1></h1>
+                </div>
+                <div class="col-sm-6 text-sm">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="{{route('home')}}" style="color:#444;"><i class="fas fa-home"></i> Home</a></li>
+                        <li class="breadcrumb-item active">View Resident</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+        <hr />
+    </section>
+
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+                        <div x-data="{ showMessage: true }" x-show="showMessage" x-init="setTimeout(() => showMessage = false, 5000)">
+                            @if (Session::has('success'))
+                            <div class="alert alert-success alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <i class="fas fa-check faa-pulse animated"></i>
+                                <strong>Success:</strong> {{ session('success') }}
+                            </div>
+
+                            @elseif (Session::has('error'))
+                            <div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                                <i class="fas fa-exclamation-triangle faa-pulse animated"></i>
+                                <strong>Error:</strong> {{ session('error') }}
+                            </div>
+
+                            @elseif ($errors->any())
+                            {!! implode('', $errors->all('<div class="alert alert-danger alert-dismissible" role="alert">
+                                <button type="button" class="close" data-dismiss="alert">
+                                    <i class="fa fa-times"></i>
+                                </button><i class="fas fa-exclamation-triangle faa-pulse animated"></i><strong>:message</strong>
+                            </div>')) !!}
+                            @endif
+                        </div>
+                        <div class="card-header">
+                       You're viewing the residents information of <strong>{{$resident->householdmembername}}.</strong>
+                            </div>
+                        <form action="{{ route('residents.update', $resident->id) }}" method="POST">
+                            @csrf
+                            @method('PUT')
+                            <div class="card-body">
+
+
+                                <div class="tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5><strong> A. IDENTIFICATION</strong></h5>
+                                            <label class="col-sm-5 col-form-label"> II. Location </label><br>
+                                            <div class="form-group row">
+                                                <p class="col-sm-5 col-form-label">a.1 Region:</p>
+                                                <div class="col-sm-6">
+                                                    <input name="region" class="form-control input-sm" min="0" type="text" value="IV-A" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <p class="col-sm-5 col-form-label">a.2 Province:</p>
+                                                <div class="col-sm-6">
+                                                    <input name="province" class="form-control input-sm" min="0" type="text" value="Cavite" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <p class="col-sm-5 col-form-label">b. City/Municipality:</p>
+                                                <div class="col-sm-6">
+                                                    <input name="city" class="form-control input-sm" min="0" type="text" value="Tagaytay City" readonly />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <p class="col-sm-5 col-form-label">c. Zone:</p>
+                                                <div class="col-sm-6">
+                                                    <input name="zone" class="form-control input-sm" min="0" type="text" placeholder="" readonly value="{{$resident->zone}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <p class="col-sm-5 col-form-label">d. Barangay:</p>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="barangay" readonly value="{{$resident->barangay}}">
+                                                     
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <p class="col-sm-5 col-form-label">e. Purok/Sitio:</p>
+                                                <div class="col-sm-6">
+                                                    <input name="purok" class="form-control input-sm" type="text" placeholder="" readonly value="{{$resident->purok}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <p class="col-sm-5 col-form-label">f. Street:</p>
+                                                <div class="col-sm-6">
+                                                    <input name="street" class="form-control input-sm" type="text" placeholder="" readonly value="{{$resident->street}}" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            <div class="form-group row">
+                                                <p class="col-sm-5 col-form-label">g. House/Building Number:</p>
+                                                <div class="col-sm-6">
+                                                    <input name="housenum" class="form-control input-sm" min="0" max="99999999999999" type="number" placeholder="" readonly value="{{$resident->housenum}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <p class="col-sm-5 col-form-label">h. Unit Number:</p>
+                                                <div class="col-sm-6">
+                                                    <input name="unitnum" class="form-control input-sm" min="0" max="99999999999999" type="number" placeholder="" readonly value="{{$resident->unitnum}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">III. House Control Number
+                                                    (HCN):</label>
+                                                <div class="col-sm-6">
+                                                    <input name="housecontrolnum" class="form-control input-sm" min="0" max="99999999999999" type="number" readonly value="{{$resident->housecontrolnum}}" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">IV. Name of Household
+                                                    Head:</label>
+                                                <div class="col-sm-6">
+                                                    <input name="headname" class="form-control input-sm" type="text" placeholder="" readonly value="{{$resident->headname}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">V. Name of Respondent:</label>
+                                                <div class="col-sm-6">
+                                                    <input name="respondentname" class="form-control input-sm" type="text" placeholder="" readonly value="{{$resident->respondentname}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">VI. Start Date of
+                                                    Interview:</label>
+                                                <div class="col-sm-6">
+                                                    <input name="startdate" class="form-control input-sm" type="date" placeholder="" readonly value="{{$resident->startdate}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">VII. Time Started:</label>
+                                                <div class="col-sm-6">
+                                                    <input name="timestart" class="form-control input-sm" type="time" placeholder="" readonly value="{{$resident->timestart}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">VIII. Name of Enumerator:</label>
+                                                <div class="col-sm-6">
+                                                    <input name="enumname" class="form-control input-sm" type="name" placeholder="" readonly value="{{$resident->enumname}}" />
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5><strong>B. HOUSING AND HOUSEHOLD CHARACTERISTICS</strong></h5><br>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">1. In what type of building does the
+                                                    household reside?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="housetype" readonly value="{{$resident->housetype}}">
+                                                     
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">2. How many bedrooms does this
+                                                    housing unit have?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="bedroomnum" class="form-control input-sm" min="0" type="number" placeholder="" readonly value="{{$resident->bedroomnum}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">3. How many storeys does this housing
+                                                    unit have?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="storeysnum" class="form-control input-sm" min="0" type="number" placeholder="" readonly value="{{$resident->storeysnum}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">4. What type of construction
+                                                    materials are the roof made of?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="rooftype" readonly value="{{$resident->rooftype}}">
+                                                     
+                                                    </input>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5><strong></strong></h5><br>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">5. What type of construction
+                                                    materials are the outer walls made of?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="walltype" readonly value="{{$resident->walltype}}">
+                                                      
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">6. What type of construction
+                                                    materials are the floors made of?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="floortype" readonly value="{{$resident->floortype}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">7. How many nuclear families are
+                                                    there in the household?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="nucfam" class="form-control input-sm" min="0" type="number" placeholder="" readonly value="{{$resident->nucfam}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">8. How many members are there in the
+                                                    household, including OFWs?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="housemembernum" class="form-control input-sm" min="0" type="number" placeholder="" readonly value="{{$resident->housemembernum}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5><strong> C. DEMOGRAPHY</strong></h5>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">9. Who is the head of household?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="householdhead" class="form-control input-sm" type="text" placeholder="Surname, First Name Middle Name" readonly value="{{$resident->householdhead}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">9. Who are the other of members of the household?</label>
+
+                                                <div class="col-sm-6"><input name="householdmembername" class="form-control input-sm" type="text" placeholder="Surname, First Name Middle Name" readonly value="{{$resident->householdmembername}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">10. What is the ___'s relationship to head of the household?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="reltohead" readonly value="{{$resident->reltohead}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">11. In which nuclear family does ____ belong?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="nucfambelong" class="form-control input-sm" type="text" placeholder="" readonly value="{{$resident->nucfambelong}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">12. Is ___ male or female?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="gender" id="gender" readonly value="{{$resident->gender}}">
+                                                      
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">13. When is ___'s date of birth</label>
+                                                <div class="col-sm-6">
+                                                    <input name="birthdate" class="form-control input-sm" type="date" placeholder="" readonly value="{{$resident->birthdate}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+
+                                            </div>
+
+
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5><strong></strong></h5><br>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">14. Was ___'s birth registered with the civil registry office?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="birthregistered" readonly value="{{$resident->birthregistered}}">
+                                                      
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small>(For 10 years old and above)</small>
+                                            <div class="form-group row">
+
+                                                <label class="col-sm-5 col-form-label">15. What is ___'s marital status (civil status)? </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="civilstatus" readonly value="{{$resident->civilstatus}}">
+                                                  
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">16. What is ___'s ethnicity by blood?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="ethnicity" class="form-control input-sm" type="text" readonly value="{{$resident->ethnicity}}" placeholder="" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">17. What is religious affilation?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="religiousaffiliation" class="form-control input-sm" type="text" readonly value="{{$resident->religiousaffiliation}}" placeholder="" />
+                                                </div>
+                                            </div>
+                                            <small>(For 10 years old and above)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">18. Is ___ an overseas worker?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" readonly name="ofw" id="ofw">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small>(For 10 years old and above)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">19. Where is ___'s country of destination? </label>
+                                                <div class="col-sm-6">
+                                                    <input name="ofwcountry" class="form-control input-sm" type="text" readonly value="{{$resident->ofwcountry}}" id="ofwcountry" />
+                                                </div>
+
+                                            </div>
+
+                                            <small> (FOR 3 YEARS OLD AND ABOVE)</small>
+                                            <div class="form-group row">
+
+                                                <label class="col-sm-5 col-form-label">20. Where was___ residing 3 years ago?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" readonly name="residing" id="residing">
+                                                      
+                                                    </input>
+
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label class="col-sm-5 col-form-label">Other address</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" id="residingo" class="form-control input-sm" name="residingo" readonly value="{{$resident->residingo == 'residingo' ? 'inputed':'' }}" />
+
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5><strong>D. EDUCATION AND LITERACY</strong></h5>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">21. Is ___ currently attending school? </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="attendschool" id="attendschool" readonly value="{{$resident->attendschool}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small>IF YES IN (21) (FOR 3 YEARS OLD AND ABOVE) </small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">22. What grade or year is ___ currently attending?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="yearlevel" readonly value="{{$resident->yearlevel}}" id="yearlevel">
+                                                        
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small>IF YES IN (21) (FOR 3 YEARS OLD AND ABOVE)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">23. Where does ___ attend school? </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="schooltype" readonly value="{{$resident->schooltype}}">
+                                                        
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small>IF NO IN (21) FOR 3-24 YEARS OLD</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">24. Why is ___ not attending school?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="notattending" onchange='checkvalue(this.value)' readonly value="{{$resident->notattending}}">
+                                                      
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            (FOR 3 YEARS OLD AND ABOVE)
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">25. What is the highest educational attainment completed by ___?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="educcompleted" readonly value="{{$resident->educcompleted}}">
+                                                        
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            (FOR 3 YEARS OLD AND ABOVE)
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">26. If senior high school graduate, what is ___'s track/strand?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="shsstrand" readonly value="{{$resident->shsstrand}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">27. If at least college graduate, what is ___'s college course></label>
+                                                <div class="col-sm-6">
+                                                    <input name="collegecourse" class="form-control input-sm" type="text" placeholder="" readonly value="{{$resident->collegecourse}}" />
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <small> For 10-64 YEARS OLD ONLY </small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">28. Is ___ currently attending any skills training? </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="training" readonly value="{{$resident->training}}">
+                                                      
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">29. Have ___ attended any skills training in the past?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="pasttraining" readonly value="{{$resident->pastraining}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">30. How many skills training have ___ attended including the current one?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="trainnum" class="form-control input-sm" type="number" min="0" placeholder="" readonly value="{{$resident->trainum}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">Training Programs</label>
+                                                <div class="col-sm-6">
+                                                    <input name="trainprogram" class="form-control input-sm" type="text" placeholder="" readonly value="{{$resident->trainprogram}}" />
+                                                </div>
+                                            </div>
+                                            <small> IF NOT AT LEAST HIGH SCHOOL GRADUATE</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">31. Can ___ read and write a simple message in any language or dialect?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="literate" readonly value="{{$resident->literate}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <h5><strong>E. POLITICAL PARTICIPATION</strong></h5>
+                                            <small> (FOR 16 YEARS OLD AND ABOVE)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">32. Is ____ a registered voter? </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="voter" readonly value="{{$resident->voter}}" id="voter">
+                                                      
+                                                    </input>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">33. Did ___ vote in the last election? </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="votedlast" readonly value="{{$resident->votedlast}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5><strong>G. OTHER CHARACTERISTICS OF HOUSEHOLD MEMBERS</strong></h5>
+                                            <small>IF CODE 2 IN (12)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">59. Is ___ pregnant?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="pregnant" id="pregnant" readonly value="{{$resident->pregnant}}">
+                                                      
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">60. Is ___ a solo parent taking care of a child/children?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="soloparent" id="soloparent" readonly value="{{$resident->soloparent}}">
+                                                        
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small> IF YES IN (60)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">61. Does ___ have a Solo Parent ID?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="soloparentid" id="soloparentid" readonly value="{{$resident->soloparentid}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">62. Does ___ have any physical or mental disability?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="disability" id="disability" readonly value="{{$resident->disability}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small> IF YES IN (62)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">63. What type of disability does ___ have?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="disabilitytype" id="disabilitytype" readonly value="{{$resident->disabilitytype}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">64. Does ___ have a PWD ID?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="pwdid" id="pwdid" readonly value="{{$resident->pwdid}}">
+                                                        
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small>FOR 60 YEARS OLD AND ABOVE</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">65. Does ___ have a Senior Citizen's ID?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="seniorcitizenid" readonly value="{{$resident->seniorcitizenid}}">
+                                                        
+                                                    </input>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5><strong>H. CRIME</strong></h5>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">66. Has ___ been a victim of crime in the past 12 months?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="crime" id="crime" readonly value="{{$resident->crime}}">
+                                                        
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small>IF YES IN (66)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">67. What crime/s was/were ___ a victim of?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="crimetype" id="crimetype" readonly value="{{$resident->crimetype}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">68. Where did the crime happen?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="crimeloc" id="crimeloc" readonly value="{{$resident->crimeloc}}">
+                                                        
+                                                    </input>
+                                                </div>
+                                            </div>
+
+                                            <h5><strong> I. HEALTH AND NUTRITION</strong></h5>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">69. What is ___'s blood type?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="bloodtype" readonly value="{{$resident->bloodtype}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small>IF '1', '2', '3' OR '4' IN (69)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">70. What is the Rhesus (Rh) factor of ___'s blood type?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="rhtype" readonly value="{{$resident->rhtype}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <p>FOR 5 YEARS OLD AND BELOW</p>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">71. NUTRITIONAL STATUS OF CHILDREN 0-5 YEARS OLD</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="nutritionstatus" readonly value="{{$resident->nutritionstatus}}">
+                                                      
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">72. DATE OF RECORD OF BARANGAY NUTRITION SCHOLARS</label>
+                                                <div class="col-sm-6">
+                                                    <input name="datebns" class="form-control input-sm" type="date" placeholder="" readonly value="{{$resident->datebns}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">73. During the past 12 months, did you or any member of the household avail of medical treatment for any ilnness?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="treatment" id="treatment" readonly value="{{$resident->treatment}}">
+                                                       
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">74. During the last illness of any member of the household, where did you go to
+                                                    avail medical treatment?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="treatmentloc" id="treatmentloc" readonly value="{{$resident->treatmentloc}}">
+                                                      
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">IX. End Date of Interview:</label>
+                                                <div class="col-sm-6">
+                                                    <input name="enddate" class="form-control input-sm" type="date" placeholder="" readonly value="{{$resident->enddate}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">X. Time Ended:</label>
+                                                <div class="col-sm-6">
+                                                    <input name="endtime" class="form-control input-sm" type="time" placeholder="" readonly value="{{$resident->endtime}}" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                    
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+@endif
 @endsection
