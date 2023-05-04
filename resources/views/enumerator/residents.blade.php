@@ -131,9 +131,9 @@
                         <th>Time Started</th>
                         <th>Enumerator Name</th>
                         <th>House Control Number</th>
-                      
+                        @if (auth()->user()->role=='Enumerator')
                         <th data-orderable="false">Action</th>
-                     
+                     @endif
                       </tr>
                     </thead>
 
@@ -158,7 +158,7 @@
                         <td>{{$resident->housecontrolnum}}</td>
                         @if (auth()->user()->role=='Enumerator')
                        
-<td>
+                        <td>
                           @if(request()->has('view_deleted'))
                           <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
                           @else
@@ -169,10 +169,7 @@
                           {!! Form::close() !!}
                           @endif
                         </td>
-                        @else 
-                        <td>
-                        <a href="{{ route('residents.show', $resident->id) }}" class="btn btn-sm btn-primary" title="View"><i class="fa-solid fa-eye"></i></a>
-                        </td>
+                  
                         @endif
                       </tr>
                       @endforeach
