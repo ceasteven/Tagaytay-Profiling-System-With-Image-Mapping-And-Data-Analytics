@@ -50,11 +50,13 @@
                             </div>')) !!}
                             @endif
                         </div>
-                     
+
                         <form action="{{ route('residents.store') }}" method="POST">
                             @csrf
 
                             <div class="card-body">
+
+
                                 <div class="tab">
                                     <div class="row">
                                         <div class="col-md-6">
@@ -201,6 +203,8 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div class="tab">
                                     <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                     <div class="row">
                                         <div class="col-md-6">
@@ -310,7 +314,8 @@
 
                                         </div>
                                     </div>
-                                    <hr style="height:2px;border-width:0;color:black;background-color:black" />
+                                </div>
+                                <div class="tab">
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h5><strong> C. DEMOGRAPHY</strong></h5>
@@ -372,7 +377,16 @@
                                                     <input name="birthdate" class="form-control input-sm" type="date" placeholder="" required />
                                                 </div>
                                             </div>
+                                            <div class="form-group row">
 
+                                            </div>
+
+
+
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5><strong></strong></h5><br>
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">14. Was ___'s birth registered with the civil registry office?</label>
                                                 <div class="col-sm-6">
@@ -454,21 +468,13 @@
 
 
                                             </div>
-                                            <hr style="height:2px;border-width:0;color:black;background-color:black" />
-                                            <div class="form-group row">
-                                                <label class="col-sm-5 col-form-label">33. Did ___ vote in the last election? </label>
-                                                <div class="col-sm-6">
-                                                    <select class="form-control" name="votedlast" id="votedlast" disabled="disabled" required>
-                                                        <option value="">Select</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                        <option value="Dont know">Don't know</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <br>
-                                            <hr style="height:2px;border-width:0;color:black;background-color:black" />
+
                                         </div>
+                                    </div>
+                                </div>
+                                <div class="tab">
+                                    <hr style="height:2px;border-width:0;color:black;background-color:black" />
+                                    <div class="row">
                                         <div class="col-md-6">
                                             <h5><strong>D. EDUCATION AND LITERACY</strong></h5>
                                             <small>(FOR 3 YEARS OLD AND ABOVE) </small>
@@ -619,6 +625,12 @@
                                                     <input name="collegecourse" class="form-control input-sm" type="text" placeholder="" required />
                                                 </div>
                                             </div>
+
+
+
+
+                                        </div>
+                                        <div class="col-md-6">
                                             <small> For 10-64 YEARS OLD ONLY </small>
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">28. Is ___ currently attending any skills training? </label>
@@ -677,527 +689,549 @@
                                                     </select>
                                                 </div>
                                             </div>
-
-
-                                            <hr style="height:2px;border-width:0;color:black;background-color:black" />
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <h5><strong>F. ECONOMIC ACTIVITY</strong></h5>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">34. Did ___ do any work for at least 1 hour during the past week?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="job" id="job" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes (Go to 36)</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">35. Although ___ did not work, did ___ have a job or business during the past
-                                                        week?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="nwork" id="nwork" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No (Go to 45)</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <small>IF YES IN 34 OR YES IN 35</small>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">36. How many work, jobs, or businesses does ___ have?</label>
-                                                    <div class="col-sm-6">
-                                                        <input name="jobnum" class="form-control input-sm" type="number" min="0" id="jobnum" disabled="disabled" required />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">37. What was ___'s primary occupation during the past week?</label>
-                                                    <div class="col-sm-6">
-                                                        <input name="occup" class="form-control input-sm" type="text" id="occup" disabled="disabled" required />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">Code </label>
-                                                    <div class="col-sm-6">
-                                                        <input name="occupcode" class="form-control input-sm" type="number" min="0" id="occupcode" disabled="disabled" required />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">38. In what kind of industry did ___ work during the past week?</label>
-                                                    <div class="col-sm-6">
-                                                        <input name="industry" class="form-control input-sm" type="text" id="industry" disabled="disabled" required />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">Code</label>
-                                                    <div class="col-sm-6">
-                                                        <input name="industrycode" class="form-control input-sm" type="text" min="0" id="industrycode" disabled="disabled" required />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">39. What is ___'s nature of employment?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="employ" id="employ" disabled="disabled" required>
-                                                            <option value="">Select nature of employment</option>
-                                                            <option value="Permanent job or business or unpaid family work">Permanent job/business/unpaid family work</option>
-                                                            <option value="Short-term or seasonal or casual job or business or unpaid family work">Short-term or seasonal or casual job/business/unpaid family work
-                                                            </option>
-                                                            <option value="Worked for different employeers or customers on day-to-day or
-                                            week-to-week basi">Worked for different employeers or customers on day-to-day or
-                                                                week-to-week basis</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">40. What was ___'s normal working number of hours per day during the past week?</label>
-                                                    <div class="col-sm-6">
-                                                        <input name="employhrs" class="form-control input-sm" type="number" id="employhrs" disabled="disabled" required />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">41. What was __'s total number of hours duing the past week?</label>
-                                                    <div class="col-sm-6">
-                                                        <input name="employthrs" class="form-control input-sm" type="number" id="employthrs" disabled="disabled" required />
-                                                    </div>
-                                                </div>
-                                                <small> FOR 15 YEARS OLD AND ABOVE</small>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">42. Did ___ want more hours or work during the past week?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="addhrsworkpast" id="addhrsworkpast" disabled="disabled" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <small> IF YES IN 34 OR YES IN 35</small>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">43. Did ___ look for additional work during the past week?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="addextrawork" id="addextrawork" disabled="disabled" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">44. What is ___'s class of worker?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="classworker" id="classworker" disabled="disabled" required>
-                                                            <option value="">Select Class of Worker</option>
-                                                            <option value="Working for private household">Working for private household</option>
-                                                            <option value="Working for private business or establishment or farm">Working for private business/establishment/farm</option>
-                                                            <option value="Working for government or government corporation">Working for government/government corporation</option>
-                                                            <option value="Self-employed with no paid employee">Self-employed with no paid employee</option>
-                                                            <option value="Employer in own family-operated farm or business">Employer in own family-operated farm or business</option>
-                                                            <option value="Working with pay on own family-operated farm or business">Working with pay on own family-operated farm or business</option>
-                                                            <option value="Working without pay on own family-operated farm or business">Working without pay on own family-operated farm or business
-                                                            </option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">45. Did ___ look for work or try to establish business during the past week?
-                                                    </label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="fjobpast" id="fjobpast" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes </option>
-                                                            <option value="No">No (Go to 49)</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
-                                                <h5><strong>G. OTHER CHARACTERISTICS OF HOUSEHOLD MEMBERS</strong></h5>
-
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">59. Is ___ pregnant?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="pregnant" id="pregnant" disabled="disabled" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">60. Is ___ a solo parent taking care of a child/children?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="soloparent" id="soloparent" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <small> IF YES IN (60)</small>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">61. Does ___ have a Solo Parent ID?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="soloparentid" id="soloparentid" disabled="disabled" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">62. Does ___ have any physical or mental disability?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="disability" id="disability" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No (Go to 65)</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <small> IF YES IN (62)</small>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">63. What type of disability does ___ have?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="disabilitytype" id="disabilitytype" disabled="disabled" required>
-                                                            <option value="">Select type of Disability</option>
-                                                            <option value="Mental or Intellectual">Mental/Intellectual</option>
-                                                            <option value="Hearing Disability">Hearing Disability</option>
-                                                            <option value="Psychosocial Disability">Psychosocial Disability</option>
-                                                            <option value="Visual Disability">Visual Disability</option>
-                                                            <option value="Speech Impairment">Speech Impairment</option>
-                                                            <option value="Disability due to Chronic illness">Disability due to Chronic illness</option>
-                                                            <option value="Orthopedic or Musculoskeletal Disability">Orthopedic (Musculoskeletal) Disability</option>
-                                                            <option value="Multiple Disabilities">Multiple Disabilities</option>
-                                                            <option value="Learning Disability">Learning Disability</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">64. Does ___ have a PWD ID?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="pwdid" id="pwdid" disabled="disabled" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <small>FOR 60 YEARS OLD AND ABOVE</small>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">65. Does ___ have a Senior Citizen's ID?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="seniorcitizenid" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
-                                                <h5><strong>H. CRIME</strong></h5>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">66. Has ___ been a victim of crime in the past 12 months?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="crime" id="crime" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No (Go to 69)</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <small>IF YES IN (66)</small>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">67. What crime/s was/were ___ a victim of?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="crimetype" id="crimetype" disabled="disabled" required>
-                                                            <option value="">Select Type of Crime</option>
-                                                            <option value="Theft">Theft</option>
-                                                            <option value="Robbery">Robbery</option>
-                                                            <option value="Rape">Rape</option>
-                                                            <option value="Physical Injury">Physical Injury</option>
-                                                            <option value="Carnapping">Carnapping</option>
-                                                            <option value="Cattle rustling">Cattle rustling</option>
-                                                            <option value="Others">Others</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">68. Where did the crime happen?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="crimeloc" id="crimeloc" disabled="disabled" required>
-                                                            <option value="">Select Crime Location</option>
-                                                            <option value="Within the barangay">Within the barangay</option>
-                                                            <option value="Outside the barangay but within municipality or city">Outside the barangay but within municipality/city</option>
-                                                            <option value="Outside the municipality or city but within province">Outside the municipality/city but within province</option>
-                                                            <option value="Outside the province">Outside the province</option>
-                                                        </select>
-                                                    </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">33. Did ___ vote in the last election? </label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="votedlast" id="votedlast" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                        <option value="Dont know">Don't know</option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">46. Was this ___'s first time to look for work or try to establish a
-                                                        business?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="findwork" id="findwork" disabled="disabled" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">47. What has ___ been doing to find work?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="rfindwork" id="rfindwork" disabled="disabled" required>
-                                                            <option value="">Select Reason</option>
-                                                            <option value="Registered in public employment agency">Registered in public employment agency</option>
-                                                            <option value="Registered in private employment agency">Registered in private employment agency</option>
-                                                            <option value="Approached employer directly">Approached employer directly</option>
-                                                            <option value="Approached relatives or friends">Approached relatives or friends</option>
-                                                            <option value="Placed or answered advertisements">Placed or answered advertisements</option>
-                                                            <option value="Search and applied online">Search and applied online</option>
-                                                            <option value="Others">Others</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">48. How many weeks has ___ been looking for work? </label>
-                                                    <div class="col-sm-6">
-                                                        <input name="findworknum" class="form-control input-sm" type="number" min="0" placeholder="" id="findworknum" disabled="disabled" required />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">49. Why did ___ not look for work</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="rfnotwork" id="rfnotwork" disabled="disabled" required>
-                                                            <option value="">Select Reason</option>
-                                                            <option value="Tired or Believes no work is available">Tired/Believes no work is available</option>
-                                                            <option value="Awaiting results of previous job application">Awaiting results of previous job application</option>
-                                                            <option value="Temporary illness or disability">Temporary illness/disability</option>
-                                                            <option value="Bad weather">Bad weather</option>
-                                                            <option value="Waiting for retire">Waiting for retire</option>
-                                                            <option value="Too young or old or retired or permanent disability">Too young/old or retired/permanent disability</option>
-                                                            <option value="Household, family duties">Household, family duties</option>
-                                                            <option value="Schooling">Schooling</option>
-                                                            <option value="Others">Others</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">50. When was the last time ___ looked for work?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="lastlookjob" id="lastlookjob" disabled="disabled" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Within last month">Within last month</option>
-                                                            <option value="One to six months">One to six months</option>
-                                                            <option value="More then six months">More then six months</option>
-                                                            <option value="Never">Never</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">51. Had opportunity for work existed lass week or within two weeks, would ___
-                                                        been available? </label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="pastwillingwork" id="pastwillingwork" disabled="disabled" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">52. Was ___ willing to take up work during the past week or within 2
-                                                        weeks?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="willingtotakeupwork" id="willingtotakeupwork" disabled="disabled" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <small>DO NOT INCLUDE SALARY OF HOUSEHOLD MEMBERS WHO ARE OFW AND HOUSEMAID/BOYS</small>
-                                                <div class="form-group row" class="cashsalary">
-                                                    <label class="col-sm-5 col-form-label">53. In the past 12 months, how much total salary/wages, did ___ receive? (CASH)</label>
-                                                    <div class="col-sm-6">
-                                                        <input name="cashsalary" class="form-control input-sm" type="number" min="0" placeholder="" required />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row" class="kindsalary">
-                                                    <label class="col-sm-5 col-form-label">53. In the past 12 months, how much total salary/wages, did ___ receive? (KIND)</label>
-
-                                                    <div class="col-sm-6">
-                                                        <input name="kindsalary" class="form-control input-sm" type="number" min="0" placeholder="" required />
-                                                    </div>
-                                                </div>
-                                                <small> FOR 18 YEARS OLD AND ABOVE </small>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">54. Is ___ a member of SSS?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="sssmember" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">55. Is ___ a member of GSIS?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="gsismember" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">56. Is ___ a member of PhilHealth?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="philhealthmember" id="philhealthmember" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">57. What is ___'s membership type?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="membertype" id="membertype" disabled="disabled" required>
-                                                            <option value="">Select Membership Type</option>
-                                                            <option value="PhilHealth - OFW">PhilHealth - OFW</option>
-                                                            <option value="PhilHealth - Employed">PhilHealth - Employed</option>
-                                                            <option value="PhilHealth - Individually-paying">PhilHealth - Individually-paying</option>
-                                                            <option value="PhilHealth - Sponsored">PhilHealth - Sponsored</option>
-                                                            <option value="PhilHealth - Lifetime">PhilHealth - Lifetime</option>
-                                                            <option value="PhilHealth - Senior Citizen">PhilHealth - Senior-Citizen</option>
-                                                            <option value="PhilHealth - Indigent">PhilHealth - Indigent</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">58. Is a dependendent of a PhilHealth member?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="philhealthdependent" id="philhealthdependent" disabled="disabled" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes</option>
-                                                            <option value="No">No</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <br><br>
-                                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
-                                                <h5><strong> I. HEALTH AND NUTRITION</strong></h5>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">69. What is ___'s blood type?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="bloodtype" id="bloodtype" required>
-                                                            <option value="">Select Blood Type</option>
-                                                            <option value="O">O</option>
-                                                            <option value="A">A</option>
-                                                            <option value="B">B</option>
-                                                            <option value="AB">AB</option>
-                                                            <option value="Dont Know">Don't Know</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">70. What is the Rhesus (Rh) factor of ___'s blood type?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="rhtype" id="rhtype" disabled="disabled" required>
-                                                            <option value="">Select Rh Blood Type</option>
-                                                            <option value="Positive">Positive</option>
-                                                            <option value="Negative">Negative</option>
-                                                            <option value="Dont Know">Don't Know</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <p>FOR 5 YEARS OLD AND BELOW</p>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">71. NUTRITIONAL STATUS OF CHILDREN 0-5 YEARS OLD</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="nutritionstatus">
-                                                            <option value="">Select Nutritional Status</option>
-                                                            <option value="Overweight">Overweight</option>
-                                                            <option value="Normal">Normal</option>
-                                                            <option value="Underweight">Underweight</option>
-                                                            <option value="Severely underweight">Severely underweight</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">72. DATE OF RECORD OF BARANGAY NUTRITION SCHOLARS</label>
-                                                    <div class="col-sm-6">
-                                                        <input name="datebns" class="form-control input-sm" type="date" placeholder="" />
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">73. During the past 12 months, did you or any member of the household avail of medical treatment for any ilnness?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="treatment" id="treatment" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Yes">Yes (Go to 74)</option>
-                                                            <option value="No">No</option>
-                                                            <option value="Did not get sick">Did not get sick</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">74. During the last illness of any member of the household, where did you go to
-                                                        avail medical treatment?</label>
-                                                    <div class="col-sm-6">
-                                                        <select class="form-control" name="treatmentloc" id="treatmentloc" disabled="disabled" required>
-                                                            <option value="">Select</option>
-                                                            <option value="Public hospital - National">Public hospital (National)</option>
-                                                            <option value="Public hosptital - Provincial">Public hosptital (Provincial)</option>
-                                                            <option value="Public hosptital - Municipal or City">Public hosptital (Municipal/City)</option>
-                                                            <option value="Public hosptital - District">Public hosptital (District)</option>
-                                                            <option value="Public hosptital or clinic">Public hosptital or clinic</option>
-                                                            <option value="Rural health units">Rural health units</option>
-                                                            <option value="Barangay Health Station">Barangay Health Station</option>
-                                                            <option value="Non medical, non-trained Hilot or Personnel">Non-medical/non-trained Hilot/Personnel</option>
-                                                            <option value="Others">Others</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-
-                                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">IX. End Date of Interview:</label>
-                                                    <div class="col-sm-6">
-                                                        <input name="enddate" class="form-control input-sm" type="date" placeholder="" required />
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-5 col-form-label">X. Time Ended:</label>
-                                                    <div class="col-sm-6">
-                                                        <input name="endtime" class="form-control input-sm" type="time" placeholder="" required />
-                                                    </div>
-                                                </div>
-
-
-
-
-                                            </div>
                                         </div>
-
-
-
                                     </div>
                                 </div>
+
+                                <div class="tab">
+                                    <hr style="height:2px;border-width:0;color:black;background-color:black" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5><strong>F. ECONOMIC ACTIVITY</strong></h5>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">34. Did ___ do any work for at least 1 hour during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="job" id="job" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes (Go to 36)</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">35. Although ___ did not work, did ___ have a job or business during the past
+                                                    week?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="nwork" id="nwork" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No (Go to 45)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <small>IF YES IN 34 OR YES IN 35</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">36. How many work, jobs, or businesses does ___ have?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="jobnum" class="form-control input-sm" type="number" min="0" id="jobnum" disabled="disabled" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">37. What was ___'s primary occupation during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="occup" class="form-control input-sm" type="text" id="occup" disabled="disabled" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">Code </label>
+                                                <div class="col-sm-6">
+                                                    <input name="occupcode" class="form-control input-sm" type="number" min="0" id="occupcode" disabled="disabled" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">38. In what kind of industry did ___ work during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="industry" class="form-control input-sm" type="text" id="industry" disabled="disabled" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">Code</label>
+                                                <div class="col-sm-6">
+                                                    <input name="industrycode" class="form-control input-sm" type="text" min="0" id="industrycode" disabled="disabled" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">39. What is ___'s nature of employment?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="employ" id="employ" disabled="disabled" required>
+                                                        <option value="">Select nature of employment</option>
+                                                        <option value="Permanent job or business or unpaid family work">Permanent job/business/unpaid family work</option>
+                                                        <option value="Short-term or seasonal or casual job or business or unpaid family work">Short-term or seasonal or casual job/business/unpaid family work
+                                                        </option>
+                                                        <option value="Worked for different employeers or customers on day-to-day or
+    week-to-week basi">Worked for different employeers or customers on day-to-day or
+                                                            week-to-week basis</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">40. What was ___'s normal working number of hours per day during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="employhrs" class="form-control input-sm" type="number" id="employhrs" disabled="disabled" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">41. What was __'s total number of hours duing the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="employthrs" class="form-control input-sm" type="number" id="employthrs" disabled="disabled" required />
+                                                </div>
+                                            </div>
+                                            <small> FOR 15 YEARS OLD AND ABOVE</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">42. Did ___ want more hours or work during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="addhrsworkpast" id="addhrsworkpast" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <small> IF YES IN 34 OR YES IN 35</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">43. Did ___ look for additional work during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="addextrawork" id="addextrawork" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">44. What is ___'s class of worker?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="classworker" id="classworker" disabled="disabled" required>
+                                                        <option value="">Select Class of Worker</option>
+                                                        <option value="Working for private household">Working for private household</option>
+                                                        <option value="Working for private business or establishment or farm">Working for private business/establishment/farm</option>
+                                                        <option value="Working for government or government corporation">Working for government/government corporation</option>
+                                                        <option value="Self-employed with no paid employee">Self-employed with no paid employee</option>
+                                                        <option value="Employer in own family-operated farm or business">Employer in own family-operated farm or business</option>
+                                                        <option value="Working with pay on own family-operated farm or business">Working with pay on own family-operated farm or business</option>
+                                                        <option value="Working without pay on own family-operated farm or business">Working without pay on own family-operated farm or business
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">45. Did ___ look for work or try to establish business during the past week?
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="fjobpast" id="fjobpast" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes </option>
+                                                        <option value="No">No (Go to 49)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <small>IF NO IN (34) AND NO IN (35)</small><br>
+                                            <small> IF YES IN (45)</small><br>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">46. Was this ___'s first time to look for work or try to establish a
+                                                    business?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="findwork" id="findwork" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">47. What has ___ been doing to find work?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="rfindwork" id="rfindwork" disabled="disabled" required>
+                                                        <option value="">Select Reason</option>
+                                                        <option value="Registered in public employment agency">Registered in public employment agency</option>
+                                                        <option value="Registered in private employment agency">Registered in private employment agency</option>
+                                                        <option value="Approached employer directly">Approached employer directly</option>
+                                                        <option value="Approached relatives or friends">Approached relatives or friends</option>
+                                                        <option value="Placed or answered advertisements">Placed or answered advertisements</option>
+                                                        <option value="Search and applied online">Search and applied online</option>
+                                                        <option value="Others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">48. How many weeks has ___ been looking for work? </label>
+                                                <div class="col-sm-6">
+                                                    <input name="findworknum" class="form-control input-sm" type="number" min="0" placeholder="" id="findworknum" disabled="disabled" required />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">49. Why did ___ not look for work</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="rfnotwork" id="rfnotwork" disabled="disabled" required>
+                                                        <option value="">Select Reason</option>
+                                                        <option value="Tired or Believes no work is available">Tired/Believes no work is available</option>
+                                                        <option value="Awaiting results of previous job application">Awaiting results of previous job application</option>
+                                                        <option value="Temporary illness or disability">Temporary illness/disability</option>
+                                                        <option value="Bad weather">Bad weather</option>
+                                                        <option value="Waiting for retire">Waiting for retire</option>
+                                                        <option value="Too young or old or retired or permanent disability">Too young/old or retired/permanent disability</option>
+                                                        <option value="Household, family duties">Household, family duties</option>
+                                                        <option value="Schooling">Schooling</option>
+                                                        <option value="Others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">50. When was the last time ___ looked for work?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="lastlookjob" id="lastlookjob" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Within last month">Within last month</option>
+                                                        <option value="One to six months">One to six months</option>
+                                                        <option value="More then six months">More then six months</option>
+                                                        <option value="Never">Never</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">51. Had opportunity for work existed lass week or within two weeks, would ___
+                                                    been available? </label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="pastwillingwork" id="pastwillingwork" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">52. Was ___ willing to take up work during the past week or within 2
+                                                    weeks?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="willingtotakeupwork" id="willingtotakeupwork" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <small>DO NOT INCLUDE SALARY OF HOUSEHOLD MEMBERS WHO ARE OFW AND HOUSEMAID/BOYS</small>
+                                            <div class="form-group row" class="cashsalary">
+                                                <label class="col-sm-5 col-form-label">53. In the past 12 months, how much total salary/wages, did ___ receive? (CASH)</label>
+                                                <div class="col-sm-6">
+                                                    <input name="cashsalary" class="form-control input-sm" type="number" min="0" placeholder="" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" class="kindsalary">
+                                                <label class="col-sm-5 col-form-label">53. In the past 12 months, how much total salary/wages, did ___ receive? (KIND)</label>
+
+                                                <div class="col-sm-6">
+                                                    <input name="kindsalary" class="form-control input-sm" type="number" min="0" placeholder="" required />
+                                                </div>
+                                            </div>
+                                            <small> FOR 18 YEARS OLD AND ABOVE </small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">54. Is ___ a member of SSS?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="sssmember" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">55. Is ___ a member of GSIS?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="gsismember" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">56. Is ___ a member of PhilHealth?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="philhealthmember" id="philhealthmember" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">57. What is ___'s membership type?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="membertype" id="membertype" disabled="disabled" required>
+                                                        <option value="">Select Membership Type</option>
+                                                        <option value="PhilHealth - OFW">PhilHealth - OFW</option>
+                                                        <option value="PhilHealth - Employed">PhilHealth - Employed</option>
+                                                        <option value="PhilHealth - Individually-paying">PhilHealth - Individually-paying</option>
+                                                        <option value="PhilHealth - Sponsored">PhilHealth - Sponsored</option>
+                                                        <option value="PhilHealth - Lifetime">PhilHealth - Lifetime</option>
+                                                        <option value="PhilHealth - Senior Citizen">PhilHealth - Senior-Citizen</option>
+                                                        <option value="PhilHealth - Indigent">PhilHealth - Indigent</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">58. Is a dependendent of a PhilHealth member?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="philhealthdependent" id="philhealthdependent" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab">
+                                    <hr style="height:2px;border-width:0;color:black;background-color:black" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5><strong>G. OTHER CHARACTERISTICS OF HOUSEHOLD MEMBERS</strong></h5>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">59. Is ___ pregnant?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="pregnant" id="pregnant" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">60. Is ___ a solo parent taking care of a child/children?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="soloparent" id="soloparent" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <small> IF YES IN (60)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">61. Does ___ have a Solo Parent ID?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="soloparentid" id="soloparentid" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">62. Does ___ have any physical or mental disability?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="disability" id="disability" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No (Go to 65)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <small> IF YES IN (62)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">63. What type of disability does ___ have?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="disabilitytype" id="disabilitytype" disabled="disabled" required>
+                                                        <option value="">Select type of Disability</option>
+                                                        <option value="Mental or Intellectual">Mental/Intellectual</option>
+                                                        <option value="Hearing Disability">Hearing Disability</option>
+                                                        <option value="Psychosocial Disability">Psychosocial Disability</option>
+                                                        <option value="Visual Disability">Visual Disability</option>
+                                                        <option value="Speech Impairment">Speech Impairment</option>
+                                                        <option value="Disability due to Chronic illness">Disability due to Chronic illness</option>
+                                                        <option value="Orthopedic or Musculoskeletal Disability">Orthopedic (Musculoskeletal) Disability</option>
+                                                        <option value="Multiple Disabilities">Multiple Disabilities</option>
+                                                        <option value="Learning Disability">Learning Disability</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">64. Does ___ have a PWD ID?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="pwdid" id="pwdid" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <small>FOR 60 YEARS OLD AND ABOVE</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">65. Does ___ have a Senior Citizen's ID?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="seniorcitizenid" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h5><strong>H. CRIME</strong></h5>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">66. Has ___ been a victim of crime in the past 12 months?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="crime" id="crime" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes</option>
+                                                        <option value="No">No (Go to 69)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <small>IF YES IN (66)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">67. What crime/s was/were ___ a victim of?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="crimetype" id="crimetype" disabled="disabled" required>
+                                                        <option value="">Select Type of Crime</option>
+                                                        <option value="Theft">Theft</option>
+                                                        <option value="Robbery">Robbery</option>
+                                                        <option value="Rape">Rape</option>
+                                                        <option value="Physical Injury">Physical Injury</option>
+                                                        <option value="Carnapping">Carnapping</option>
+                                                        <option value="Cattle rustling">Cattle rustling</option>
+                                                        <option value="Others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">68. Where did the crime happen?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="crimeloc" id="crimeloc" disabled="disabled" required>
+                                                        <option value="">Select Crime Location</option>
+                                                        <option value="Within the barangay">Within the barangay</option>
+                                                        <option value="Outside the barangay but within municipality or city">Outside the barangay but within municipality/city</option>
+                                                        <option value="Outside the municipality or city but within province">Outside the municipality/city but within province</option>
+                                                        <option value="Outside the province">Outside the province</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <h5><strong> I. HEALTH AND NUTRITION</strong></h5>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">69. What is ___'s blood type?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="bloodtype" id="bloodtype" required>
+                                                        <option value="">Select Blood Type</option>
+                                                        <option value="O">O</option>
+                                                        <option value="A">A</option>
+                                                        <option value="B">B</option>
+                                                        <option value="AB">AB</option>
+                                                        <option value="Dont Know">Don't Know</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">70. What is the Rhesus (Rh) factor of ___'s blood type?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="rhtype" id="rhtype" disabled="disabled" required>
+                                                        <option value="">Select Rh Blood Type</option>
+                                                        <option value="Positive">Positive</option>
+                                                        <option value="Negative">Negative</option>
+                                                        <option value="Dont Know">Don't Know</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <p>FOR 5 YEARS OLD AND BELOW</p>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">71. NUTRITIONAL STATUS OF CHILDREN 0-5 YEARS OLD</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="nutritionstatus">
+                                                        <option value="">Select Nutritional Status</option>
+                                                        <option value="Overweight">Overweight</option>
+                                                        <option value="Normal">Normal</option>
+                                                        <option value="Underweight">Underweight</option>
+                                                        <option value="Severely underweight">Severely underweight</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">72. DATE OF RECORD OF BARANGAY NUTRITION SCHOLARS</label>
+                                                <div class="col-sm-6">
+                                                    <input name="datebns" class="form-control input-sm" type="date" placeholder="" />
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">73. During the past 12 months, did you or any member of the household avail of medical treatment for any ilnness?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="treatment" id="treatment" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Yes">Yes (Go to 74)</option>
+                                                        <option value="No">No</option>
+                                                        <option value="Did not get sick">Did not get sick</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">74. During the last illness of any member of the household, where did you go to
+                                                    avail medical treatment?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="treatmentloc" id="treatmentloc" disabled="disabled" required>
+                                                        <option value="">Select</option>
+                                                        <option value="Public hospital - National">Public hospital (National)</option>
+                                                        <option value="Public hosptital - Provincial">Public hosptital (Provincial)</option>
+                                                        <option value="Public hosptital - Municipal or City">Public hosptital (Municipal/City)</option>
+                                                        <option value="Public hosptital - District">Public hosptital (District)</option>
+                                                        <option value="Public hosptital or clinic">Public hosptital or clinic</option>
+                                                        <option value="Rural health units">Rural health units</option>
+                                                        <option value="Barangay Health Station">Barangay Health Station</option>
+                                                        <option value="Non medical, non-trained Hilot or Personnel">Non-medical/non-trained Hilot/Personnel</option>
+                                                        <option value="Others">Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <hr style="height:2px;border-width:0;color:black;background-color:black" />
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">IX. End Date of Interview:</label>
+                                                <div class="col-sm-6">
+                                                    <input name="enddate" class="form-control input-sm" type="date" placeholder="" required />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">X. Time Ended:</label>
+                                                <div class="col-sm-6">
+                                                    <input name="endtime" class="form-control input-sm" type="time" placeholder="" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-info btn-sm">Submit</button>
+
+                                    <button type="submit" class="btn btn-info btn-sm">Save Changes</button>
                                 </div>
                             </div>
                         </form>
@@ -1207,6 +1241,5 @@
         </div>
     </section>
 </div>
-
 <script src="{{asset('plugins/residents/residents.js')}}"></script>
 @endsection

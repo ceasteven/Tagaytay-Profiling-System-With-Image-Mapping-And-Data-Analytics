@@ -1,3 +1,4 @@
+@if(auth()->user()->role=='System Administrator')
 <style>
      .mypopup {
         width: 250px;
@@ -62,28 +63,97 @@
         margin-top: 5px;
         
     }
+    #legend-wrapper {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    list-style-type: none;
+    -moz-column-count: 2; /* Firefox */
+    -webkit-column-count: 2; /* webkit, Safari, Chrome */
+    column-count: 2;
+    font-size: 1em; /* Adjust as needed */
+}
+
+.legend li {
+    margin-bottom: 2px;
+}
+
+.legend li span {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin-right: 2px;
+}
 
 
-
-
+.legend {
+    list-style-type: none;
+    -moz-column-count: 2; /* Firefox */
+    -webkit-column-count: 2; /* webkit, Safari, Chrome */
+    column-count: 2;
+     font-size: 0.8em;
+     -moz-column-gap: 0px; /* Firefox */
+    -webkit-column-gap: 0px; /* webkit, Safari, Chrome */
+    column-gap: 0px;
+}
    
 </style>
 <div class="col-12">
     <div class="card">
-
-
-
         <link rel="stylesheet" href="{{ asset('plugins/map/style.css') }}">
-        <div class="mapdiv" id="mapdiv">
+        <div class="mapdiv" id="mapdiv" style="background-color: #f2f2f2;">
+        <div id="legend-wrapper">
+            <ul class="legend" style="background-color: #f2f2f2;">
+            <li><span></span><strong>Legend:</strong></li>
+    <li><span style="background-color: #f0b88d;"></span> Asisan</li>
+    <li><span style="background-color: #b8c852;"></span> Bagong Tubig</li>
+    <li><span style="background-color: #9882f0;"></span> Calabuso</li>
+    <li><span style="background-color: #11dc77;"></span> Dapdap East</li>
+    <li><span style="background-color: #d75ebb;"></span> Dapdap West</li>
+    <li><span style="background-color: #a6e064;"></span> Franciso</li>
+    <li><span style="background-color: #5396dd;"></span> Guinhawa North</li>
+    <li><span style="background-color: #4bdead;"></span> Guinhawa South</li>
+    <li><span style="background-color: #1c37e8;"></span> Iruhin Central</li>
+    <li><span style="background-color: #b2e737;"></span> Iruhin East</li>
+    <li><span style="background-color: #42ccb5;"></span> Iruhin West</li>
+    <li><span style="background-color: #7193e2;"></span> Kaybagal Central</li>
+    <li><span style="background-color: #42ccb5;"></span> Kaybagal North</li>
+    <li><span style="background-color: #42ccb5;"></span> Kaybagal South</li>
+    <li><span style="background-color: #68b6c8;"></span> Mag-asawang Ilat</li>
+    <li><span style="background-color: #efe644;"></span> Maharlika East</li>
+    <li><span style="background-color: #ec77aa;"></span> Maharlika West</li>
+    <li><span style="background-color: #6ecf7d;"></span> Maitim II Central</li>
+    <li><span style="background-color: #a349ed;"></span> Maitim II East</li>
+    <li><span style="background-color: #de6ced;"></span> Maitim II West</li>
+    <li><span style="background-color: #de1cd1;"></span> Mendez Crossing East </li>
+    <li><span style="background-color: #de6ced;"></span> Mendez Crossing West </li>
+    <li><span style="background-color: #90f058;"></span> Neogan</li>
+    <li><span style="background-color: #db108a;"></span> Patutong Malaki North </li>
+    <li><span style="background-color: #d081ef;"></span> Patutong Malaki South </li>
+    <li><span style="background-color: #dd525e;"></span> Sambong</li>
+    <li><span style="background-color: #cc6a83;"></span> San Jose</li>
+    <li><span style="background-color: #5d13d3;"></span> Silang East</li>
+    <li><span style="background-color: #f0a01f;"></span> Silang West</li>
+    <li><span style="background-color: #44b1ec;"></span> Sungay East</li>
+    <li><span style="background-color: #dc7066;"></span> Sungay West</li>
+    <li><span style="background-color: #4dd92d;"></span> Tolentino East</li>
+    <li><span style="background-color: #18ca50;"></span> Tolentino West</li>
+    <li><span style="background-color: #44d341;"></span> Zambal</li>
+   
+</ul>
+            </div>
+      
+    
 
-            <div class="zoom-btns">
+            <div class="zoom-btns" >
                 <!-- <div id="fullscreen" class="zoom-btn" ><i class="fas fa-regular fa-expand fa-xs"></i></div> -->
                 <div id="zoom-in" class="zoom-btn"><i class="fas fa-regular fa-plus fa-xs"></i></div>
                 <div id="zoom-out" class="zoom-btn"><i class="fas fa-regular fa-minus fa-xs"></i></div>
 
             </div>
+            
             <svg id="svg" version="1.1" viewBox="0 0 1122.24 793.59998" xmlns="http://www.w3.org/2000/svg" style="background-color: #f2f2f2;">
-
+           
                 <a href="{{ route('kaybagal_south') }}">
                     <path id="kaybagalsouth" d="m 286.27207,629.50002 c -0.01,-1.20617 1.07632,-26.77486 2.41324,-56.81932 1.9097,-42.91657 2.68271,-55.11024 3.60611,-56.88394 1.60776,-3.08824 1.49777,-3.64022 -0.9076,-4.55474 -1.67639,-0.63736 -1.97714,-1.13939 -1.54083,-2.57202 0.29817,-0.97905 0.70894,-8.23954 0.91284,-16.13444 0.2039,-7.89489 0.51838,-14.78007 0.69885,-15.30039 0.18047,-0.52032 1.69388,-1.0586 3.36314,-1.19619 2.88929,-0.23815 3.03501,-0.38417 3.03501,-3.04129 0,-2.63483 0.17861,-2.8213 3.18985,-3.33011 1.75443,-0.29644 5.22395,-0.56558 7.71006,-0.5981 6.1852,-0.0809 7.04303,-0.5275 7.04303,-3.6669 0,-3.09979 2.41145,-9.10779 4.2771,-10.65613 0.71783,-0.59575 1.30515,-1.73578 1.30515,-2.5334 0,-0.79762 0.31251,-1.64336 0.69446,-1.87942 0.38195,-0.23606 0.91127,-1.51325 1.17626,-2.83819 0.38729,-1.93647 0.88705,-2.40899 2.54782,-2.40899 3.10894,0 5.15937,-1.42012 6.42544,-4.45024 1.0181,-2.43666 1.46712,-2.72693 4.21827,-2.72693 1.6934,0 4.62379,-0.54508 6.512,-1.21127 2.74354,-0.96798 3.56436,-1.00803 4.08658,-0.19937 1.29446,2.00445 0.22547,3.40376 -3.14314,4.11438 -2.81635,0.59412 -3.37855,1.02562 -3.37855,2.59308 0,1.13978 0.47111,1.88035 1.19619,1.88035 0.65791,0 1.1962,0.50319 1.1962,1.11819 0,2.20598 4.48335,2.91609 10.13532,1.60531 2.88593,-0.6693 5.50435,-0.92788 5.8187,-0.57464 0.31435,0.35325 2.14646,4.67715 4.07136,9.60867 3.79323,9.71814 3.87295,9.78738 9.43324,8.19271 1.50317,-0.4311 2.89652,-0.62034 3.09632,-0.42054 0.19982,0.19981 -0.37752,2.07468 -1.28296,4.16638 -0.90544,2.09169 -1.5794,3.86994 -1.49768,3.95165 0.0817,0.0817 2.47711,-0.32324 5.3231,-0.8999 11.74994,-2.38079 11.07684,-2.40951 12.30293,0.52493 1.52781,3.65658 0.73327,6.65064 -2.7314,10.29278 l -2.9623,3.11401 -3.36336,24.51758 c -1.84984,13.48467 -3.54255,25.14558 -3.76158,25.91314 -0.28748,1.00749 0.0602,1.39556 1.25045,1.39556 2.05691,0 2.13943,1.27617 0.15133,2.34017 -2.77645,1.48591 -2.45485,4.76596 2.42835,24.76802 2.62418,10.74891 5.81995,24.74691 7.10172,31.10669 2.06282,10.23515 2.58258,11.76886 4.52542,13.35356 1.20721,0.98468 1.95473,1.79212 1.66114,1.79429 -2.71944,0.0202 -71.06605,12.81334 -86.93705,16.27293 -11.26613,2.4558 -20.68617,4.4651 -20.93344,4.4651 -0.24726,0 -0.45745,-0.98686 -0.46709,-2.19302 z" />
                 </a>
@@ -189,6 +259,7 @@
                 </a>
 
             </svg>
+         
             <div id="popup-asisan" class="mypopup">
 
                 <h3 style="text-align:center">Asisan</h3>
@@ -494,6 +565,9 @@
         var svg = document.getElementById("svg");
         var initialViewBox = svg.getAttribute("viewBox");
         var zoomLevel = 1.0;
+    
+var zoomIncrement = 0.1;
+var zoomDecimalPlaces = 1;
         var startX = 0;
         var startY = 0;
         var isDragging = false;
@@ -512,17 +586,18 @@
 
 
 
-        document.getElementById("zoom-in").addEventListener("click", function() {
-            zoomLevel += 0.1;
-            updateViewBox();
-        });
+     
+    document.getElementById("zoom-in").addEventListener("click", function() {
+    zoomLevel = parseFloat((zoomLevel + zoomIncrement).toFixed(zoomDecimalPlaces));
+    updateViewBox();
+});
 
-        document.getElementById("zoom-out").addEventListener("click", function() {
-            if (zoomLevel > 1.0) {
-                zoomLevel -= 0.1;
-                updateViewBox();
-            }
-        });
+document.getElementById("zoom-out").addEventListener("click", function() {
+    if (zoomLevel > 1.0) {
+        zoomLevel = parseFloat((zoomLevel - zoomIncrement).toFixed(zoomDecimalPlaces));
+        updateViewBox();
+    }
+});
 
 
         function updateViewBox() {
@@ -586,66 +661,67 @@
                 e.preventDefault();
             }
         });
-        document.addEventListener("fullscreenchange", function() {
-            var elem = document.fullscreenElement;
-            if (elem) {
-                document.getElementById("fullscreen").style.display = "none";
-            } else {
-                document.getElementById("fullscreen").style.display = "block";
-            }
-        });
+        // document.addEventListener("fullscreenchange", function() {
+        //     var elem = document.fullscreenElement;
+        //     if (elem) {
+        //         document.getElementById("fullscreen").style.display = "none";
+        //     } else {
+        //         document.getElementById("fullscreen").style.display = "block";
+        //     }
+        // });
 
-        document.getElementById("fullscreen").addEventListener("click", function() {
-            var fullWidth = window.screen.width;
-            var fullHeight = window.screen.height;
-            var newViewBoxX = (parseFloat(initialViewBox.split(" ")[2]) - fullWidth / zoomLevel) / 2;
-            var newViewBoxY = (parseFloat(initialViewBox.split(" ")[3]) - fullHeight / zoomLevel) / 2;
-            var newViewBox = newViewBoxX + " " + newViewBoxY + " " + fullWidth / zoomLevel + " " + fullHeight /
-                zoomLevel;
-            svg.setAttribute("viewBox", newViewBox);
+        // document.getElementById("fullscreen").addEventListener("click", function() {
+        //     var fullWidth = window.screen.width;
+        //     var fullHeight = window.screen.height;
+        //     var newViewBoxX = (parseFloat(initialViewBox.split(" ")[2]) - fullWidth / zoomLevel) / 2;
+        //     var newViewBoxY = (parseFloat(initialViewBox.split(" ")[3]) - fullHeight / zoomLevel) / 2;
+        //     var newViewBox = newViewBoxX + " " + newViewBoxY + " " + fullWidth / zoomLevel + " " + fullHeight /
+        //         zoomLevel;
+        //     svg.setAttribute("viewBox", newViewBox);
 
-            var elem = document.getElementById("mapdiv");
-            if (elem.requestFullscreen) {
-                elem.requestFullscreen();
-            } else if (elem.webkitRequestFullscreen) {
-                elem.webkitRequestFullscreen();
-            }
+        //     var elem = document.getElementById("mapdiv");
+        //     if (elem.requestFullscreen) {
+        //         elem.requestFullscreen();
+        //     } else if (elem.webkitRequestFullscreen) {
+        //         elem.webkitRequestFullscreen();
+        //     }
 
-            // enable zoom buttons in full screen mode
-            document.getElementById("zoom-in").style.display = "block";
-            document.getElementById("zoom-out").style.display = "block";
+        //     // enable zoom buttons in full screen mode
+        //     document.getElementById("zoom-in").style.display = "block";
+        //     document.getElementById("zoom-out").style.display = "block";
 
-            // make map draggable in full screen mode
-            svg.addEventListener("mousedown", function(e) {
-                if (zoomLevel > 1.0 && !document.fullscreenElement) {
-                    startX = e.clientX;
-                    startY = e.clientY;
-                    isDragging = true;
-                    svg.style.cursor = "grabbing";
-                }
-            });
+        //     // make map draggable in full screen mode
+        //     svg.addEventListener("mousedown", function(e) {
+        //         if (zoomLevel > 1.0 && !document.fullscreenElement) {
+        //             startX = e.clientX;
+        //             startY = e.clientY;
+        //             isDragging = true;
+        //             svg.style.cursor = "grabbing";
+        //         }
+        //     });
 
 
 
-            svg.addEventListener("mousemove", function(e) {
-                if (isDragging) {
-                    var dx = e.movementX / zoomLevel;
-                    var dy = e.movementY / zoomLevel;
-                    var viewBox = svg.getAttribute("viewBox").split(" ");
-                    viewBox[0] -= dx;
-                    viewBox[1] -= dy;
-                    svg.setAttribute("viewBox", viewBox.join(" "));
-                }
-            });
+        //     svg.addEventListener("mousemove", function(e) {
+        //         if (isDragging) {
+        //             var dx = e.movementX / zoomLevel;
+        //             var dy = e.movementY / zoomLevel;
+        //             var viewBox = svg.getAttribute("viewBox").split(" ");
+        //             viewBox[0] -= dx;
+        //             viewBox[1] -= dy;
+        //             svg.setAttribute("viewBox", viewBox.join(" "));
+        //         }
+        //     });
 
-            svg.addEventListener("mouseup", function(e) {
-                isDragging = false;
-                svg.style.cursor = "grab";
-            });
-        });
+        //     svg.addEventListener("mouseup", function(e) {
+        //         isDragging = false;
+        //         svg.style.cursor = "grab";
+        //     });
+        // });
     </script>
 
 </div>
+
 <div class="col-12">
         <div class="card">
         
@@ -669,7 +745,7 @@
     enabled: false
   },
   title: {
-    text: 'Total Population of 34 Barangays in Tagaytay City'
+    text: 'Total Population per barangay'
   },
   xAxis: {
     categories: ["Asisan", "Bagong Tubig", "Calabuso", "Dapdap East", "Dapdap West", "Francisco", "Guinhawa North", "Guinhawa South", "Iruhin Central", "Iruhin East", "Iruhin West", "Kaybagal Central", "Kaybagal North", "Kaybagal South", "Mag-asawang Ilat", "Maharlika East", "Maharlika West", "Maitim II Central", "Maitim II East", "Maitim II West", "Mendez Crossing East", "Mendez Crossing East","Neogan", "Patutong Malaki North", "Patutong Malaki South", "Sambong", "San Jose", "Silang Crossing East", "Silang Crossing West", "Sungay East", "Sungay West", "Tolentino East", "Tolentino West", "Zambal"],
@@ -683,6 +759,7 @@
     
   },
   tooltip: {
+    enabled:false,
     pointFormat: '{point.category}: <b>{point.y:.0f}</b>',
     formatter: function() {
         return this.point.category + ': <b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
@@ -691,9 +768,9 @@
   },
   plotOptions: {
     
-    series: {
+    series: { 
       dataLabels: {
-        enabled: false,
+        enabled: true,
         format: '{point.y:.0f}'
         
       }
@@ -789,46 +866,50 @@
     },
     xAxis: {
         categories: [
-            ''
+            'Male','Female',
         ],
-        crosshair: true
+     
     },
     yAxis: {
-      tickInterval: 1,
+    tickInterval: 1,
         min: 0,
-        title: {
-            text: 'Number'
-        }
+    title: {
+      text: ' Number'
     },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-        footerFormat: '</table>',
-        shared: false,
-        useHTML: true,
-        valueDecimals: 0,
-    },
-    plotOptions: {
-        column: {
-          
-            borderWidth: 0
-        }
-    },
+    
+  },
+  tooltip: {
+    enabled:false,
+    pointFormat: '{point.category}: <b>{point.y:.0f}</b>',
+    formatter: function() {
+        return this.point.category + ': <b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
+    }
+
+  },
+  plotOptions: {
+    
+    series: {
+      dataLabels: {
+        enabled: true,
+        format: '{point.y:.0f}'
+        
+      }
+    }
+  },
     series: [{
-        name: 'Male',
-        data: [{{$male}}],
-        color: '#003A6B'
+      name:'Total Number of Male and Female',
+      data:[
+      {  y: {{$male}}, color: '#003A6B'},
+    { y: {{$female}},color:'#ff8dc6'}
 
-    }, {
-        name: 'Female',
-        data: [{{$female}}],
-        color:'#ff8dc6'
-
-    },  
+  
 
     ],
-    exporting: { enabled: false }
+                }],
+    exporting: { enabled: false },
+    legend: {
+  enabled: false
+},
     
 });
               </script>
@@ -948,54 +1029,54 @@ Highcharts.chart('school', {
     enabled: false
 },
     title: {
-        text: 'Total Registered and Not Registered Voters'
+        text: 'Total Number of Registered and Not Registered Voters'
     },
-    subtitle: {
-        text: ''
-    },
+  
     xAxis: {
         categories: [
-            ''
+          'Registered Voters','Not Registered Voters',
         ],
-        crosshair: true
+      
     },
     yAxis: {
       tickInterval: 1,
         min: 0,
         title: {
             text: 'Number'
-        }
+        },
     },
     tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-        footerFormat: '</table>',
-        shared: false,
-        useHTML: true,
-        valueDecimals: 0,
-    },
-    plotOptions: {
-        column: {
-          
-            borderWidth: 0
-        }
-    },
+        enabled:false,
+    pointFormat: '{point.category}: <b>{point.y:.0f}</b>',
+    formatter: function() {
+        return this.point.category + ': <b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
+    }
+
+  },
+  plotOptions: {
+    
+    series: {
+      dataLabels: {
+        enabled: true,
+        format: '{point.y:.0f}'
+        
+      }
+    }
+  },
     series: [{
-        name: 'Registered Voters',
-        data: [{{$voter}}],
-        color: '#999999'
+        name: 'Total Number of Registered and Not Registered Voters',
+    data: [
+       { y: {{$voter}}, color: '#999999'},
+       { y: {{$novoter}},  color:'#333333'},
 
-    }, {
-        name: 'Not Registered Voters',
-        data: [{{$novoter}}],
-        color:'#333333'
 
-    },  
 
     ],
-    exporting: { enabled: false }
-    
+}],
+    exporting: { enabled: false },
+    legend: {
+  enabled: false
+},
 });
               </script>
 
@@ -1025,7 +1106,7 @@ Highcharts.chart('school', {
                 Highcharts.chart('age', {
     chart: {
         type: 'column',
-        
+    
         
     },
     credits: {
@@ -1039,64 +1120,143 @@ Highcharts.chart('school', {
     },
     xAxis: {
         categories: [
-            ''
+        'Infants (0-1)', 'Children (2-12)' ,'Teenager (13-19) ','Adult (20-59) ','Senior Citizen (60 above)',
         ],
-        crosshair: true
+    
+      
     },
     yAxis: {
-      tickInterval: 1,
+    tickInterval: 1,
         min: 0,
-        title: {
-            text: 'Number'
-        }
+    title: {
+      text: ' Number'
     },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y}</b></td></tr>',
-        footerFormat: '</table>',
-        shared: false,
-        useHTML: true,
-        valueDecimals: 0,
-    },
-    plotOptions: {
-        column: {
-          
-            borderWidth: 0
-        }
-    },
+    
+  },
+  tooltip: {
+    enabled:false,
+    pointFormat: '{point.category}: <b>{point.y:.0f}</b>',
+    formatter: function() {
+        return this.point.category + ': <b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
+    }
+
+  },
+  plotOptions: {
+    
+    series: {
+      dataLabels: {
+        enabled: true,
+        format: '{point.y:.0f}'
+        
+      }
+    }
+  },
     series: [{
-        name: 'Infants',
-        data: [{{$infants}}],
-        color: '#A0D2E7'
+        name: 'Age Group',
+       data:[
+    {  y: {{$infants}}, color: '#A0D2E7'},
+    {  y: {{$children}}, color:'#81B1D5'},
+    {  y: {{$teenager}}, color:'#3D60A7'},
+    {  y: {{$adults}}, color:'#26408B'},
+    {  y: {{$senior}}, color:'#0F084B'},
 
-    }, {
-        name: 'Children',
-        data: [{{$children}}],
-        color:'#81B1D5'
-
-    },  
-    {
-        name: 'Teenager',
-        data: [{{$teenager}}],
-        color:'#3D60A7'
-
-    },   {
-        name: 'Adult',
-        data: [{{$adults}}],
-        color:'#26408B'
-
-    },  
-       {
-        name: 'Senior Citizen',
-        data: [{{$senior}}],
-        color:'#0F084B'
-
-    },  
+    
     
 
     ],
-    exporting: { enabled: false }
+}],
+    exporting: { enabled: false },
+    legend: {
+  enabled: false
+},
+});
+              </script>
+
+            </div>
+            </div>
+            </div>
+@else
+<div class="col-6">
+          <div class="card">
+            <div class="card-header border-0">
+              <h3 class="card-title">
+            
+                
+              </h3>
+            </div>
+            <div class="card-body">
+              <div>
+
+
+<figure class="highcharts-figure">
+    <div id="container"></div>
+    
+</figure>
+
+              </div>
+             
+              <script>
+                Highcharts.chart('container', {
+    chart: {
+        type: 'column',
+        
+        
+    },
+    credits: {
+    enabled: false
+},
+    title: {
+        text: 'Total Number of Male and Female'
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        categories: [
+            'Male','Female',
+        ],
+     
+    },
+    yAxis: {
+    tickInterval: 1,
+        min: 0,
+    title: {
+      text: ' Number'
+    },
+    
+  },
+  tooltip: {
+    enabled:false,
+    pointFormat: '{point.category}: <b>{point.y:.0f}</b>',
+    formatter: function() {
+        return this.point.category + ': <b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
+    }
+
+  },
+  plotOptions: {
+    
+    series: {
+      dataLabels: {
+        enabled: true,
+        format: '{point.y:.0f}'
+        
+      }
+    }
+  },
+    series: [{
+      name:'Total Number of Male and Female',
+      data:[
+      {  y: {{$male}}, color: '#003A6B'},
+    { y: {{$female}},color:'#ff8dc6'}
+
+  
+
+    ],
+                }],
+    exporting: { enabled: true },
+    legend: {
+  enabled: false
+},
     
 });
               </script>
@@ -1104,3 +1264,262 @@ Highcharts.chart('school', {
             </div>
             </div>
             </div>
+            <div class="col-6">
+          <div class="card">
+            <div class="card-header border-0">
+              <h3 class="card-title">
+            
+                
+              </h3>
+            </div>
+            <div class="card-body">
+              <div>
+
+
+<figure class="highcharts-figure">
+    <div id="school"></div>
+    
+</figure>
+
+              </div>
+             
+              <script>
+                
+Highcharts.chart('school', {
+  chart: {
+    
+    type: 'pie'
+  },
+  credits: {
+    enabled: false
+},
+  title: {
+    text: 'Total Number of Schooling and Not Schooling'
+  },
+  tooltip: {
+    pointFormat: '{point.name}: <b>{point.y:.0f}</b>',
+    shared: false,
+    valueDecimals: 0,
+    formatter: function() {
+        return this.point.name + ': <b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
+    }
+
+  },
+  accessibility: {
+        point: {
+           
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true,
+            states: {
+            hover: null,
+            }
+        }
+    },
+  series: [{
+    name: 'Schooling Status',
+    colorByPoint: true,
+    data: [{
+      name: 'Schooling',
+      y: {{$school}},
+      color: '#A0D2E7'
+    }, {
+      name: 'Not Schooling',
+      y: {{$noschool}},
+      color: '#3D60A7'
+    }]
+  }],
+  exporting: { enabled: true }
+});
+
+
+
+              </script>
+
+            </div>
+            </div>
+            </div>
+            <div class="col-6">
+          <div class="card">
+            <div class="card-header border-0">
+              <h3 class="card-title">
+            
+                
+              </h3>
+            </div>
+            <div class="card-body">
+              <div>
+
+
+<figure class="highcharts-figure">
+    <div id="voter"></div>
+    
+</figure>
+
+              </div>
+             
+              <script>
+                Highcharts.chart('voter', {
+    chart: {
+        type: 'column',
+        
+        
+    },
+    credits: {
+    enabled: false
+},
+    title: {
+        text: 'Total Number of Registered and Not Registered Voters'
+    },
+  
+    xAxis: {
+        categories: [
+          'Registered Voters','Not Registered Voters',
+        ],
+      
+    },
+    yAxis: {
+      tickInterval: 1,
+        min: 0,
+        title: {
+            text: 'Number'
+        },
+    },
+    tooltip: {
+        enabled:false,
+    pointFormat: '{point.category}: <b>{point.y:.0f}</b>',
+    formatter: function() {
+        return this.point.category + ': <b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
+    }
+
+  },
+  plotOptions: {
+    
+    series: {
+      dataLabels: {
+        enabled: true,
+        format: '{point.y:.0f}'
+        
+      }
+    }
+  },
+    series: [{
+        name: 'Total Number of Registered and Not Registered Voters',
+    data: [
+       { y: {{$voter}}, color: '#999999'},
+       { y: {{$novoter}},  color:'#333333'},
+
+
+
+    ],
+}],
+    exporting: { enabled: true },
+    legend: {
+  enabled: false
+},
+});
+              </script>
+
+            </div>
+            </div>
+            </div>
+            <div class="col-6">
+          <div class="card">
+            <div class="card-header border-0">
+              <h3 class="card-title">
+            
+                
+              </h3>
+            </div>
+            <div class="card-body">
+              <div>
+
+
+<figure class="highcharts-figure">
+    <div id="age"></div>
+    
+</figure>
+
+              </div>
+             
+              <script>
+                Highcharts.chart('age', {
+    chart: {
+        type: 'column',
+    
+        
+    },
+    credits: {
+    enabled: false
+},
+    title: {
+        text: 'Age Group'
+    },
+    subtitle: {
+        text: ''
+    },
+    xAxis: {
+        categories: [
+        'Infants (0-1)', 'Children (2-12)' ,'Teenager (13-19) ','Adult (20-59) ','Senior Citizen (60 above)',
+        ],
+    
+      
+    },
+    yAxis: {
+    tickInterval: 1,
+        min: 0,
+    title: {
+      text: ' Number'
+    },
+    
+  },
+  tooltip: {
+    enabled:false,
+    pointFormat: '{point.category}: <b>{point.y:.0f}</b>',
+    formatter: function() {
+        return this.point.category + ': <b>' + Highcharts.numberFormat(this.y, 0) + '</b>';
+    }
+
+  },
+  plotOptions: {
+    
+    series: {
+      dataLabels: {
+        enabled: true,
+        format: '{point.y:.0f}'
+        
+      }
+    }
+  },
+    series: [{
+        name: 'Age Group',
+       data:[
+    {  y: {{$infants}}, color: '#A0D2E7'},
+    {  y: {{$children}}, color:'#81B1D5'},
+    {  y: {{$teenager}}, color:'#3D60A7'},
+    {  y: {{$adults}}, color:'#26408B'},
+    {  y: {{$senior}}, color:'#0F084B'},
+
+    
+    
+
+    ],
+}],
+    exporting: { enabled: true },
+    legend: {
+  enabled: false
+},
+});
+              </script>
+
+            </div>
+            </div>
+            </div>
+            @endif

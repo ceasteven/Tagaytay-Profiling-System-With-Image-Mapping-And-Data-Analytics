@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 use Spatie\Backup\BackupDestination\BackupDestination;
 use Spatie\Backup\Tasks\ListBackups\ListBackups;
+
+use Illuminate\Support\Facades\DB;
+
+use ZipArchive;
 class BackupController extends Controller
 {
    
@@ -30,8 +34,10 @@ class BackupController extends Controller
     }
     
     public function index()
+
 {
-    $backups = collect(Storage::disk('backup')->files('TPS'))
+    if(auth()->user()->role == 'System Administrator') {
+        $backups = collect(Storage::disk('backup')->files('TPS'))
         ->map(function ($file) {
             return [
                 'path' => $file,
@@ -44,6 +50,10 @@ class BackupController extends Controller
         })
         ->reverse();
     return view('backup.backups', compact('backups'));
+    } else {
+        return redirect()->route('dashboard');
+    }
+  
 }
 
 public function create()
@@ -85,4 +95,72 @@ public function destroy($backup)
     }
 }
 
+
+
+
+public function restore($backup)
+{
+    try {
+        $path = "backups/TPS/$backup"; // Use $backup as the full path to the backup file
+
+        // Unzip the backup file and extract the SQL file
+        $tempPath = storage_path('app/temp/');
+        $zip = new \ZipArchive();
+        $zip->open(storage_path('app/' . $path));
+        $zip->extractTo($tempPath);
+        $zip->close();
+
+        $sqlFile = glob($tempPath . 'db-dumps/*.sql')[0]; // Assuming there's only one SQL file
+
+        // Wipe the current database
+        Artisan::call('db:wipe');
+
+        // Get the DB connection details
+        $connection = config('database.default');
+        $host = config("database.connections.{$connection}.host");
+        $port = config("database.connections.{$connection}.port");
+        $database = config("database.connections.{$connection}.database");
+        $username = config("database.connections.{$connection}.username");
+        $password = config("database.connections.{$connection}.password");
+
+        // Build the mysql command to import the backup file
+        $command = sprintf(
+            'mysql --user=%s --password=%s --host=%s --port=%s --database=%s < %s',
+            escapeshellarg($username),
+            escapeshellarg($password),
+            escapeshellarg($host),
+            escapeshellarg($port),
+            escapeshellarg($database),
+            escapeshellarg($sqlFile)
+        );
+
+        // Execute the mysql command
+        if (!empty($password)) {
+            $command = str_replace("--password=" . escapeshellarg($password), "--password=" . escapeshellarg($password), $command);
+        }
+
+        shell_exec($command);
+
+        // Remove temporary files
+        \File::deleteDirectory($tempPath);
+
+        return redirect()->back()->with('success', 'Database restored successfully!');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Unable to restore database: ' . $e->getMessage());
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+

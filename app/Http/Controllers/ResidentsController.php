@@ -18,7 +18,11 @@ class ResidentsController extends Controller
 {
     public function create()
     {
-        return view('enumerator.add_residents');
+        if(auth()->user()->role == 'Enumerator') {
+            return view('enumerator.add_residents');
+        } else {
+            return redirect()->route('home');
+        }
     }
     public function export() 
     {
@@ -35,9 +39,16 @@ class ResidentsController extends Controller
 
     }
     public function show($id)
+    
     {
-        $resident = Residents::findOrFail($id);
+       
+
+        if(auth()->user()->role == 'Enumerator') {
+            $resident = Residents::findOrFail($id);
         return view('enumerator.view_resident', compact('resident'));
+        } else {
+            return redirect()->route('home');
+        }
     }
     
     
@@ -99,9 +110,10 @@ class ResidentsController extends Controller
       
     public function index(Request $request)
     {
+        
         $all = Residents::get();
         if($request->has('view_deleted')) {
-            $all = Residents::onlyTrashed()->get();;
+            $all = Residents::onlyTrashed()->get();
         }
         return view ('enumerator.residents',compact('all'));
 
@@ -109,25 +121,37 @@ class ResidentsController extends Controller
     
     public function reports()
     {
-        $male=DB::table('residents')->where('gender','Male')->count();
-        $female=DB::table('residents')->where('gender','Female')->count();
-        $school=DB::table('residents')->where('attendschool','Yes')->count();
-        $noschool=DB::table('residents')->where('attendschool','No')->count();
-        $voter=DB::table('residents')->where('voter','Yes')->count();
-        $novoter=DB::table('residents')->where('voter','No')->count();
-        
-        $list = Residents::all();
-    $infants=$list->where('age','<=','1')->count();
-    $children=$list->whereBetween('age',[2,12])->count();
-    $teenager=$list->whereBetween('age',[13,19])->count();
-    $adults=$list->whereBetween('age',[20,59])->count();
-    $senior=$list->where('age','>=','60')->count();
-        return view ('systemadmin.reports',compact('male','female','school','noschool','voter','novoter','infants','children','teenager','adults','senior'));
+        if(auth()->user()->role == 'System Administrator') {
+      
+            $male=DB::table('residents')->where('gender','Male')->count();
+            $female=DB::table('residents')->where('gender','Female')->count();
+            $school=DB::table('residents')->where('attendschool','Yes')->count();
+            $noschool=DB::table('residents')->where('attendschool','No')->count();
+            $voter=DB::table('residents')->where('voter','Yes')->count();
+            $novoter=DB::table('residents')->where('voter','No')->count();
+            
+            $list = Residents::all();
+        $infants=$list->where('age','<=','1')->count();
+        $children=$list->whereBetween('age',[2,12])->count();
+        $teenager=$list->whereBetween('age',[13,19])->count();
+        $adults=$list->whereBetween('age',[20,59])->count();
+        $senior=$list->where('age','>=','60')->count();
+            return view ('systemadmin.reports',compact('male','female','school','noschool','voter','novoter','infants','children','teenager','adults','senior'));
+        } else {
+            return redirect()->route('home');
+        }
+       
 }
  
     public function barangays()
     {
-        return view ('systemadmin.barangays');
+        if(auth()->user()->role == 'Enumerator') {
+            return view ('systemadmin.barangays');
+        } else {
+            return redirect()->route('home');
+        }
+
+   
     }
     public function destroy($id)
     {
@@ -272,207 +296,378 @@ class ResidentsController extends Controller
         
 public function asisan(Request $request)
 {
-    $search=['Asisan'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.asisan',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Asisan'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.asisan',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+   
 }
 public function bagongtubig(Request $request)
 {
-    $search=['Bagong Tubig'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.bagongtubig',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Bagong Tubig'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.bagongtubig',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+ 
 }
 public function calabuso(Request $request)
 {
-    $search=['Calabuso'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.calabuso',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Calabuso'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.calabuso',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+  
 }
 public function dapdap_east(Request $request)
 {
-    $search=['Dapdap East'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.dapdap_east',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Dapdap East'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.dapdap_east',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+  
 }
 public function dapdap_west(Request $request)
 {
-    $search=['Dapdap West'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.dapdap_west',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Dapdap West'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.dapdap_west',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+
 }
 public function francisco(Request $request)
 {
-    $search=['Francisco'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.francisco',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Francisco'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.francisco',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+ 
 }
 public function guinhawa_north(Request $request)
 {
-    $search=['Guinhawa North'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.guinhawa_north',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Guinhawa North'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.guinhawa_north',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+  
 }
 public function guinhawa_south(Request $request)
 {
-    $search=['Guinhawa South'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.guinhawa_south',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Guinhawa South'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.guinhawa_south',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+  
 }
 public function iruhin_central(Request $request)
 {
-    $search=['Iruhin Central'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.iruhin_central',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Iruhin Central'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.iruhin_central',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+   
 }
 
 public function iruhin_east(Request $request)
 {
-    $search=['Iruhin East'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.iruhin_east',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Iruhin East'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.iruhin_east',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+  
 }
 public function iruhin_west(Request $request)
 {
-    $search=['Iruhin West'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.iruhin_west',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Iruhin West'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.iruhin_west',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+
 }
 public function kaybagal_central(Request $request)
 {
-    $search=['Kaybagal Central'];
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Kaybagal Central'];
     $all=Residents::wherein('barangay',$search)->get();
     return view ('systemadmin.barangay.kaybagal_central',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+  
 }
 public function kaybagal_north(Request $request)
 {
-    $search=['Kaybagal North'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.kaybagal_north',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Kaybagal North'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.kaybagal_north',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+   
 }
 public function kaybagal_south(Request $request)
 {
-    $search=['Kaybagal South'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.kaybagal_south',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Kaybagal South'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.kaybagal_south',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+
 }
 public function magasawang_ilat(Request $request)
 {
-    $search=['Mag-asawang Ilat'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.magasawang_ilat',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Mag-asawang Ilat'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.magasawang_ilat',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+  
 }
 public function maharlika_east(Request $request)
 {
-    $search=['Maharlika East'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.maharlika_east',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Maharlika East'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.maharlika_east',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+
 }
 public function maharlika_west(Request $request)
 {
-    $search=['Maharlika West'];
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Maharlika West'];
     $all=Residents::wherein('barangay',$search)->get();
     return view ('systemadmin.barangay.maharlika_west',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+
 }
+
 public function maitim_central(Request $request)
 {
-    $search=['Maitim II Central'];
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Maitim II Central'];
     $all=Residents::wherein('barangay',$search)->get();
     return view ('systemadmin.barangay.maitim_central',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+  
 }
 public function maitim_east(Request $request)
 {
-    $search=['Maitim II East'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.maitim_east',compact('all'));
+     if(auth()->user()->role == 'System Administrator') {
+        $search=['Maitim II East'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.maitim_east',compact('all'));
+        } else {
+            return redirect()->route('home');
+        }
+ 
 }
 public function maitim_west(Request $request)
 {
-    $search=['Maitim II West'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.maitim_west',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Maitim II West'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.maitim_west',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+   
 }
 public function mendezcrossing_east(Request $request)
 {
-    $search=['Mendez Crossing East'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.mendezcrossing_east',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Mendez Crossing East'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.mendezcrossing_east',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+
 }
 public function mendezcrossing_west(Request $request)
 {
-    $search=['Mendez Crossing West'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.mendezcrossing_west',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Mendez Crossing West'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.mendezcrossing_west',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+   
 }
 public function neogan(Request $request)
 {
-    $search=['Neogan'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.neogan',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Neogan'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.neogan',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+
 }
 public function patutongmalaki_north(Request $request)
 {
-    $search=['Patutong Malaki North'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.patutongmalaki_north',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Patutong Malaki North'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.patutongmalaki_north',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+
 }
 public function patutongmalaki_south(Request $request)
 {
-    $search=['Patutong Malaki South'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.patutongmalaki_south',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Patutong Malaki South'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.patutongmalaki_south',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+   
 }
 public function sambong(Request $request)
 {
-    $search=['Sambong'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.sambong',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Sambong'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.sambong',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+ 
 }
 public function sanjose(Request $request)
 {
-    $search=['San Jose'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.sanjose',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['San Jose'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.sanjose',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+
 }
 public function silangcrossing_east(Request $request)
 {
-    $search=['Silang Crossing East'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.silangcrossing_east',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Silang Crossing East'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.silangcrossing_east',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+  
 }
 public function silangcrossing_west(Request $request)
 {
-    $search=['Silang Crossing West'];
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Silang Crossing West'];
     $all=Residents::wherein('barangay',$search)->get();
     return view ('systemadmin.barangay.silangcrossing_west',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+  
 }
 public function sungay_east(Request $request)
 {
-    $search=['Sungay East'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.sungay_east',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Sungay East'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.sungay_east',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+
 }
 public function sungay_west(Request $request)
 {
-    $search=['Sungay West'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.sungay_west',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Sungay West'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.sungay_west',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+    
 }
 public function tolentino_east(Request $request)
 {
-    $search=['Tolentino East'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.tolentino_east',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Tolentino East'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.tolentino_east',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+  
 }
 public function tolentino_west(Request $request)
 {
-    $search=['Tolentino West'];
-    $all=Residents::wherein('barangay',$search)->get();
-    return view ('systemadmin.barangay.tolentino_west',compact('all'));
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Tolentino West'];
+        $all=Residents::wherein('barangay',$search)->get();
+        return view ('systemadmin.barangay.tolentino_west',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+ 
 }
 public function zambal(Request $request)
 {
-    $search=['Zambal'];
+    if(auth()->user()->role == 'System Administrator') {
+        $search=['Zambal'];
     $all=Residents::wherein('barangay',$search)->get();
     return view ('systemadmin.barangay.zambal',compact('all'));
+    } else {
+        return redirect()->route('home');
+    }
+   
 }
 }

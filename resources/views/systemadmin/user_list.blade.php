@@ -65,6 +65,7 @@
 
                     <th>Name</th>
                     <th>User Role</th>
+                    <th>Barangay</th>
                     <th>Status</th>
                     <th data-orderable="false">Action</th>
                   </tr>
@@ -75,6 +76,7 @@
                     <td>{{ $users->name }}</td>
 
                     <td>{{$users->role}}</td>
+                    <td>{{$users->barangay}}</td>
                     <td>
                       @if($users->status == 1)
                       <form action="{{ route('users.update', $users->id) }}" method="post">
@@ -87,6 +89,8 @@
                         <input type="hidden" name="email" value="{{ $users->email }}">
                         <input type="hidden" name="role" value="{{ $users->role }}">
                         <input type="hidden" name="status" value="0">
+                        <input type="hidden" name="barangay" value="{{ $users->barangay }}">
+                        <input type="hidden" name="profile" value="{{ $users->profile }}">
                         <button type="submit" class="btn btn-success">Active</button>
                       </form>
                       @else
@@ -100,13 +104,15 @@
                         <input type="hidden" name="email" value="{{ $users->email }}">
                         <input type="hidden" name="role" value="{{ $users->role }}">
                         <input type="hidden" name="status" value="1">
+                        <input type="hidden" name="barangay" value="{{ $users->barangay }}">
+                        <input type="hidden" name="profile" value="{{ $users->profile }}">
                         <button type="submit" class="btn btn-danger">Inactive</button>
                       </form>
                       @endif
                     </td>
                     <td>
                       <!-- <a href="#" button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#viewmodal{{$users->id}}" title="Edit"><i class="fa-solid fa-eye"></i> </button></a> -->
-                      <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-target="#editmodal{{$users->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
+                      <a href="{{route('users.show',$users->id)}}" button class="btn btn-sm btn-info"  title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
 
 
                     </td>
@@ -148,135 +154,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-<!-- @foreach ($all as $users)
-<div class="modal fade text-left" id="viewmodal{{$users->id}}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      
-      <div class="modal-header">
-        <h4 class="modal-title">{{ __('View User') }}</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      </div>
-      <div class="modal-body">
-        
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-              <label>Name: </label>
-              {{$users->name}}
-            </div>
-            <div class="form-group">
-              <label>Username: </label>
-              {{$users->username}}
-            </div>
-            <div class="form-group">
-              <label>Email: </label>
-              {{$users->email}}
-            </div>
-           
-            <div class="form-group">
-              <label> User Role:</label>
-              {{$users->role}}
-            </div>
-            <div class="form-group">
-              <label>Status: </label>
-              @if ($users->status=='1') Active
-              @elseif ($users->status=='0') Inactive
-@endif
-            </div>
-          </div>
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Close</button>
-          </div>
-      </div>
-    </div>
-  </div>
-</div>
 </div>
 
-@endforeach -->
-
-@foreach ($all as $users)
-<div class="modal fade text-left" id="editmodal{{$users->id}}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title">{{ __('Edit User\'s Information') }}</h4>
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-      </div>
-      <div class="modal-body">
-        <form action="{{ route('users.update', $users->id) }}" method="POST">
-          @csrf
-          @method('PUT')
-          <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="form-group">
-              <label>First Name:</label>
-              <input name="firstname" class="form-control input-sm" type="text" placeholder="Enter First Name" value="{{$users->firstname}}" required />
-            </div>
-            <div class="form-group">
-              <label>Middle Name:</label>
-              <input name="middlename" class="form-control input-sm" type="text" placeholder="Enter Middle Name" value="{{$users->middlename}}" />
-            </div>
-            <div class="form-group">
-              <label>Last Name:</label>
-              <input name="lastname" class="form-control input-sm" type="text" placeholder="Enter Last Name" value="{{$users->lastname}}" required />
-            </div>
-
-            <div class="form-group">
-              <label>Username:</label> <i class="fas fa-question-circle" data-toggle="tooltip" data-placement="top" title="(Must contain a mixture of letters numbers, dash and underscore."></i>
-              <input name="username" class="form-control input-sm" type="username" placeholder="Change Username" value="{{$users->username}}" required autocomplete />
-            </div>
-            <div class="form-group">
-              <label>Email:</label>
-              <input name="email" class="form-control input-sm" type="email" placeholder="Change Email" value="{{$users->email}}" required autocomplete />
-            </div>
-            <div class="form-group">
-              <label>New Password:</label> <i class="fa fa-question-circle" data-toggle="tooltip" data-placement="top" title="(Minimum of 8 characters and contain a mixture of uppercase and lowercase letters, numbers, or special characters"></i>
-              <input name="password" class="form-control input-sm" type="password" placeholder="New Password" autocomplete="new-password" />
-            </div>
-            <div class="form-group">
-              <label>Confirm New Password:</label>
-              <input name="password_confirmation" class="form-control input-sm" type="password" placeholder="Confirm New Password" autocomplete="new-password" />
-            </div>
-            <div class="form-group">
-              <label> User Role:</label>
-              <select class="form-control" name="role" value="{{$users->role}}">
-                <option hidden>Select Role</option>
-                <option value="System Admin" {{ $users->role == 'System Admin' ? 'selected':'' }}>System Admin</option>
-                <option value="Enumerator" {{ $users->role == 'Enumerator' ? 'selected':'' }}>Enumerator</option>
-              </select>
-            </div>
-            <input type="hidden" name="status" value="{{ $users->status }}">
-
-            <!-- <div class="form-group">
-              <label>Status:</label>
-              <select class="form-control" name="status" value="{{$users->role}}">
-                <option value="1" {{ $users->status == '1' ? 'selected':'' }}>Active </option>
-                <option value="0" {{ $users->status == ' 0' ? 'selected':'' }}>Inactive</option>
-              </select>
-            </div>
-          </div> -->
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
-              <button type="submit" class="btn btn-primary btn-sm">Save Changes</button>
-            </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-</div>
-
-@endforeach
 
 @endsection

@@ -22,7 +22,13 @@ class SetSessionTimeout
         $route = $request->route();
         if ($route !== null && ($route->getName() === 'login' || $route->getName() === 'password.request' || $route->getName() === 'password.email' || $route->getName() === 'password.reset')) {
             $this->config->set('session.lifetime', 2147483647);
-        } else {
+        } 
+        
+            elseif ($route !== null && ($route->getName() === 'residents.create' ||$route->getName() === 'households.create' ||$route->getName() === 'users.create')) {
+                $this->config->set('session.lifetime', 120);
+            
+        }
+        else {
             $this->config->set('session.lifetime', config('session.lifetime')); // set the default session lifetime for all other routes
             $this->session->put('last_activity', time()); // set the last activity time
         }

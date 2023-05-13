@@ -44,7 +44,7 @@
                                     <p class="col-sm-5 col-form-label">d. Barangay:</p>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="barangay" value="{{$residents->barangay}}" required>
-                                            <option value=""> Select barangay </option>
+                                            <option value="" {{$residents->barangay == '' ? 'selected':'' }}> Select barangay </option>
                                             <option value="Asisan" {{$residents->barangay == 'Asisan' ? 'selected':'' }}>Asisan</option>
                                             <option value="Bagong Tubig" {{$residents->barangay == 'Bagong Tubig' ? 'selected':'' }}>Bagong Tubig</option>
                                             <option value="Calabuso" {{$residents->barangay == 'Calabuso' ? 'selected':'' }}>Calabuso </option>
@@ -187,7 +187,7 @@
                                         household reside?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="housetype" value="{{$residents->housetype}}" required>
-                                            <option value="">Select Building Type</option>
+                                            <option value="" {{$residents->housetype == '' ? 'selected':'' }}>Select Building Type</option>
                                             <option value="Single house" {{$residents->housetype == 'Single house' ? 'selected':'' }}>Single house </option>
                                             <option value="Duplex" {{$residents->housetype == 'Duplex' ? 'selected':'' }}>Duplex </option>
                                             <option value="Multi-unit residential" {{$residents->housetype == 'Multi-unit residential' ? 'selected':'' }}>Multi-unit residential </option>
@@ -212,11 +212,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">4. What type of construction
+                                    <label class="col-sm-5 col-form-label">4. What type of varruction
                                         materials are the roof made of?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="rooftype" value="{{$residents->rooftype}}" required>
-                                            <option value="">Select Roof Type</option>
+                                            <option value="" {{$residents->rooftype == '' ? 'selected':'' }}>Select Roof Type</option>
                                             <option value="Strong materials" {{$residents->rooftype == 'Strong materials' ? 'selected':'' }}>Strong materials (e.g. galvanized iron, aluminum, tile,
                                                 concrete, brick, stone, asbestos)</option>
                                             <option value="Light materials" {{$residents->rooftype == 'Light materials' ? 'selected':'' }}>Light materials (e.g. cogon, nipa, anahaw)
@@ -234,11 +234,11 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">5. What type of construction
+                                    <label class="col-sm-5 col-form-label">5. What type of varruction
                                         materials are the outer walls made of?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="walltype" value="{{$residents->walltype}}" required>
-                                            <option>Select Wall Type</option>
+                                            <option value="" {{$residents->walltype == '' ? 'selected':'' }}>Select Wall Type</option>
                                             <option value="Strong materials" {{$residents->walltype == 'Strong materials' ? 'selected':'' }}>Strong materials (e.g. galvanized iron, aluminum, tile,
                                                 concrete, brick, stone, asbestos)</option>
                                             <option value="Light materials" {{$residents->walltype == 'Light materials' ? 'selected':'' }}>Light materials (e.g. cogon, nipa, anahaw)
@@ -253,11 +253,11 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-sm-5 col-form-label">6. What type of construction
+                                    <label class="col-sm-5 col-form-label">6. What type of varruction
                                         materials are the floors made of?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="floortype" value="{{$residents->floortype}}" required>
-                                            <option value="">Select Floor Type</option>
+                                            <option value="" {{$residents->floortype == '' ? 'selected':'' }}>Select Floor Type</option>
                                             <option value="Marble" {{$residents->floortype == 'Marble' ? 'selected':'' }}>Marble</option>
                                             <option value="Ceramic" {{$residents->floortype == 'Ceramic' ? 'selected':'' }}>Ceramic tiles </option>
                                             <option value="Cement" {{$residents->floortype == 'Cement' ? 'selected':'' }}>Cement</option>
@@ -330,7 +330,7 @@
                                     <label class="col-sm-5 col-form-label">10. What is the ___'s relationship to head of the household?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="reltohead" value="{{$residents->reltohead}}">
-                                            <option value="">Select Relationship</option>
+                                            <option value="" {{$residents->reltohead == '' ? 'selected':'' }}>Select Relationship</option>
                                             <option value="Head" {{$residents->reltohead == 'Head' ? 'selected':'' }}>Head</option>
                                             <option value="Spouse" {{$residents->reltohead == 'Spouse' ? 'selected':'' }}>Spouse</option>
                                             <option value="Son" {{$residents->reltohead == 'Son' ? 'selected':'' }}>Son</option>
@@ -360,7 +360,7 @@
                                     <label class="col-sm-5 col-form-label">12. Is ___ male or female?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="gender" id="gender" value="{{$residents->gender}}">
-                                            <option value="">Select Gender</option>
+                                            <option value="" {{$residents->gender == '' ? 'selected':'' }}>Select Gender</option>
                                             <option value="Male" {{$residents->gender == 'Male' ? 'selected':'' }}>Male</option>
                                             <option value="Female" {{$residents->gender == 'Female' ? 'selected':'' }}>Female</option>
                                         </select>
@@ -385,7 +385,7 @@
                                     <label class="col-sm-5 col-form-label">14. Was ___'s birth registered with the civil registry office?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="birthregistered" value="{{$residents->birthregistered}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->birthregistered == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->birthregistered == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->birthregistered == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -397,7 +397,7 @@
                                     <label class="col-sm-5 col-form-label">15. What is ___'s marital status (civil status)? </label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="civilstatus" value="{{$residents->civilstatus}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->civilstatus == '' ? 'selected':'' }}>Select</option>
                                             <option value="Single" {{$residents->civilstatus == 'Single' ? 'selected':'' }}>Single</option>
                                             <option value="Married" {{$residents->civilstatus == 'Married' ? 'selected':'' }}>Married</option>
                                             <option value="Widowed" {{$residents->civilstatus == 'Widowed' ? 'selected':'' }}>Widowed</option>
@@ -424,7 +424,7 @@
                                     <label class="col-sm-5 col-form-label">18. Is ___ an overseas worker?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="ofw" id="ofw">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->ofw == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->ofw == 'Yes' ? 'selected':'' }}>Yes (Go to 19)</option>
                                             <option value="No" {{$residents->ofw == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -436,16 +436,18 @@
                                     <div class="col-sm-6">
                                     <input name="ofwcountry" class="form-control input-sm" type="text" value="{{$residents->ofwcountry}}" id="ofwcountry" />
                                     </div>
+                                    
 
                                 </div>
-            
+                               
+
                                 <small> (FOR 3 YEARS OLD AND ABOVE)</small>
                                 <div class="form-group row">
 
                                     <label class="col-sm-5 col-form-label">20. Where was___ residing 3 years ago?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="residing" id="residing" >
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->residing == '' ? 'selected':'' }}>Select</option>
                                             <option value="Same address now" {{$residents->residing == 'Same address now' ? 'selected':'' }}>Same address now</option>
                                             <option value="Other address" {{$residents->residing == 'Other address' ? 'selected':'' }}>Other address, specify</option>
                                         </select>
@@ -459,7 +461,7 @@
 
                                     <label class="col-sm-5 col-form-label">Other address</label>
                                     <div class="col-sm-6">
-                                        <input type="text" id="residingo" class="form-control input-sm" name="residingo" value="{{$residents->residingo == 'residingo' ? 'selected':'' }}" />
+                                        <input type="text" id="residingo" class="form-control input-sm" name="residingo" value="{{$residents->residingo}}" />
 
                                     </div>
 
@@ -500,8 +502,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">21. Is ___ currently attending school? </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="attendschool" id="attendschool" value="{{$residents->attendschool}}" >
-                                            <option value="">Select</option>
+                                        <select class="form-control" name="attendschool" id="attendschool" >
+                                            <option value="" {{$residents->attendschool == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->attendschool == 'Yes' ? 'selected':'' }}>Yes </option>
                                             <option value="No" {{$residents->attendschool == 'No' ? 'selected':'' }}>No (Go to 24)</option>
                                         </select>
@@ -511,8 +513,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">22. What grade or year is ___ currently attending?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="yearlevel" value="{{$residents->yearlevel}}" id="yearlevel">
-                                            <option value="">Select Grade</option>
+                                        <select class="form-control" name="yearlevel" id="yearlevel">
+                                            <option value="" {{$residents->yearlevel == '' ? 'selected':'' }}>Select Grade</option>
                                             <option value="No Grade" {{$residents->yearlevel == 'No Grade' ? 'selected':'' }}>No Grade </option>
                                             <option value="Day Care" {{$residents->yearlevel == 'Day Care' ? 'selected':'' }}>Day Care</option>
                                             <option value="Kindergarten" {{$residents->yearlevel == 'Kindergarten' ? 'selected':'' }}>Kindergarten</option>
@@ -546,8 +548,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">23. Where does ___ attend school? </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="schooltype" value="{{$residents->schooltype}}">
-                                            <option value="">Select school type</option>
+                                        <select class="form-control" name="schooltype" id="schooltype" >
+                                            <option value="" {{$residents->schooltype == '' ? 'selected':'' }}>Select school type</option>
                                             <option value="Public" {{$residents->schooltype == 'Public' ? 'selected':'' }}>Public </option>
                                             <option value="Private" {{$residents->schooltype == 'Private' ? 'selected':'' }}>Private </option>
                                         </select>
@@ -557,8 +559,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">24. Why is ___ not attending school?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="notattending" onchange='checkvalue(this.value)' value="{{$residents->notattending}}">
-                                            <option value="">Select reason</option>
+                                        <select class="form-control" name="notattending" id="notattending" >
+                                            <option value="" {{$residents->notattending == '' ? 'selected':'' }}>Select reason</option>
                                             <option value="Schools are very far" {{$residents->notattending == 'Schools are very far' ? 'selected':'' }}>Schools are very far </option>
                                             <option value="No school within the barangay" {{$residents->notattending == 'No school within the barangay' ? 'selected':'' }}>No school within the barangay </option>
                                             <option value="No regular transportation" {{$residents->notattending == 'No regular transportation' ? 'selected':'' }}>No regular transportation </option>
@@ -582,7 +584,7 @@
                                     <label class="col-sm-5 col-form-label">25. What is the highest educational attainment completed by ___?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="educcompleted" value="{{$residents->educcompleted}}">
-                                            <option value="">Select Educational Attainment Completed</option>
+                                            <option value="" {{$residents->educcompleted == '' ? 'selected':'' }}>Select Educational Attainment Completed</option>
                                             <option value="No Grade" {{$residents->educcompleted == 'No Grade' ? 'selected':'' }}>No Grade </option>
                                             <option value="Day Care" {{$residents->educcompleted == 'Day Care' ? 'selected':'' }}>Day Care</option>
                                             <option value="Kindergarten" {{$residents->educcompleted == 'Kindergarten' ? 'selected':'' }}>Kindergarten</option>
@@ -624,7 +626,7 @@
                                     <label class="col-sm-5 col-form-label">26. If senior high school graduate, what is ___'s track/strand?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="shsstrand" value="{{$residents->shsstrand}}">
-                                            <option value="">Select Strand</option>
+                                            <option value="" {{$residents->shsstrand == '' ? 'selected':'' }}>Select Strand</option>
                                             <option value="Accountancy, Business and Management" {{$residents->shsstrand == 'Accountancy, Business and Management' ? 'selected':'' }}>Accountancy, Business and Management</option>
                                             <option value="Science, Technology, Engineering, and Mathematics" {{$residents->shsstrand == 'Science, Technology, Engineering, and Mathematics' ? 'selected':'' }}>Science, Technology, Engineering, and Mathematics</option>
                                             <option value="Humanities and Social Sciences" {{$residents->shsstrand == 'Humanities and Social Sciences' ? 'selected':'' }}>Humanities and Social Sciences</option>
@@ -655,7 +657,7 @@
                                     <label class="col-sm-5 col-form-label">28. Is ___ currently attending any skills training? </label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="training" value="{{$residents->training}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->training == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->training == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->training == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -664,8 +666,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">29. Have ___ attended any skills training in the past?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="pasttraining" value="{{$residents->pastraining}}">
-                                            <option value="">Select</option>
+                                        <select class="form-control" name="pasttraining" id="pasttraining">
+                                            <option value="" {{$residents->pasttraining == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->pasttraining == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->pasttraining == 'No' ? 'selected':'' }}>No (Go to 31)</option>
                                         </select>
@@ -674,13 +676,13 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">30. How many skills training have ___ attended including the current one?</label>
                                     <div class="col-sm-6">
-                                        <input name="trainnum" class="form-control input-sm" type="number" min="0" placeholder="" value="{{$residents->trainum}}" />
+                                        <input name="trainnum" class="form-control input-sm" type="number" min="0" placeholder="" id="trainnum"value="{{$residents->trainum}}" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">Training Programs</label>
                                     <div class="col-sm-6">
-                                        <input name="trainprogram" class="form-control input-sm" type="text" placeholder="" value="{{$residents->trainprogram}}" />
+                                        <input name="trainprogram" class="form-control input-sm" type="text" placeholder="" id="trainprogram" value="{{$residents->trainprogram}}" />
                                     </div>
                                 </div>
                                 <small> IF NOT AT LEAST HIGH SCHOOL GRADUATE</small>
@@ -688,7 +690,7 @@
                                     <label class="col-sm-5 col-form-label">31. Can ___ read and write a simple message in any language or dialect?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="literate" value="{{$residents->literate}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->literate == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->literate == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->literate == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -700,7 +702,7 @@
                                     <label class="col-sm-5 col-form-label">32. Is ____ a registered voter? </label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="voter" value="{{$residents->voter}}" id="voter">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->voter == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->voter == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->voter == 'No' ? 'selected':'' }}>No (GO TO 34)</option>
                                         </select>
@@ -711,12 +713,13 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">33. Did ___ vote in the last election? </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="votedlast" value="{{$residents->votedlast}}">
-                                            <option value="">Select</option>
+                                        <select class="form-control" name="votedlast" id="votedlast">
+                                            <option value="" {{$residents->votedlast == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->votedlast == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->votedlast == 'No' ? 'selected':'' }}>No</option>
                                             <option value="Dont Know" {{$residents->votedlast == 'Dont Know ' ? 'selected':'' }}>Don't know</option>
                                         </select>
+                                        <input type="hidden" name="votedlast_hidden" id="votedlast_hidden" value="{{ $residents->votedlast }}">
                                     </div>
                                 </div>
                             </div>
@@ -755,7 +758,7 @@
                                     <label class="col-sm-5 col-form-label">34. Did ___ do any work for at least 1 hour during the past week?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="job" id="job" value="{{$residents->job}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->job == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->job == 'Yes' ? 'selected':'' }}>Yes (Go to 36)</option>
                                             <option value="No" {{$residents->job == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -766,7 +769,7 @@
                                         week?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="nwork" id="nwork" value="{{$residents->nwork}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->nwork == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->nwork == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->nwork == 'No' ? 'selected':'' }}>No (Go to 45)</option>
                                         </select>
@@ -807,7 +810,7 @@
                                     <label class="col-sm-5 col-form-label">39. What is ___'s nature of employment?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="employ" id="employ" value="{{$residents->employ}}">
-                                            <option value="">Select nature of employment</option>
+                                            <option value="" {{$residents->employ == '' ? 'selected':'' }}>Select nature of employment</option>
                                             <option value="Permanent job or business or unpaid family work" {{$residents->employ == 'Permanent job or business or unpaid family work' ? 'selected':'' }}>Permanent job/business/unpaid family work</option>
                                             <option value="Short-term or seasonal or casual job or business or unpaid family work" {{$residents->employ == 'Short-term or seasonal or casual job or business or unpaid family work' ? 'selected':'' }}>Short-term or seasonal or casual job/business/unpaid family work
                                             </option>
@@ -835,7 +838,7 @@
                                     <label class="col-sm-5 col-form-label">42. Did ___ want more hours or work during the past week?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="addhrsworkpast" id="addhrsworkpast" value="{{$residents->addhrsworkpast}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->addhrsworkpast == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->addhrsworkpast == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->addhrsworkpast == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -846,7 +849,7 @@
                                     <label class="col-sm-5 col-form-label">43. Did ___ look for additional work during the past week?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="addextrawork" id="addextrawork" value="{{$residents->addextrawork}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->addextrawork == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->addextrawork == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->addextrawork == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -856,7 +859,7 @@
                                     <label class="col-sm-5 col-form-label">44. What is ___'s class of worker?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="classworker" id="classworker" value="{{$residents->classworker}} ">
-                                            <option value="">Select Class of Worker</option>
+                                            <option value="" {{$residents->classworker == '' ? 'selected':'' }}>Select Class of Worker</option>
                                             <option value="Working for private household" {{$residents->classworker == 'Working for private household' ? 'selected':'' }}>Working for private household</option>
                                             <option value="Working for private business or establishment or farm" {{$residents->classworker == 'Working for private business or establishment or farm' ? 'selected':'' }}>Working for private business/establishment/farm</option>
                                             <option value="Working for government or government corporation" {{$residents->classworker == 'Working for government or government corporation' ? 'selected':'' }}>Working for government/government corporation</option>
@@ -873,7 +876,7 @@
                                     </label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="fjobpast" id="fjobpast" value="{{$residents->fjobpast}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->fjobpast == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->fjobpast == 'Yes' ? 'selected':'' }}>Yes </option>
                                             <option value="No" {{$residents->fjobpast == 'No' ? 'selected':'' }}>No (Go to 49)</option>
                                         </select>
@@ -894,7 +897,7 @@
                                         business?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="findwork" id="findwork" value="{{$residents->findwork}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->findwork == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->findwork == 'Yes' ? 'selected':'' }}>Yes </option>
                                             <option value="No" {{$residents->findwork == 'No' ? 'selected':'' }}>No </option>
                                         </select>
@@ -904,7 +907,7 @@
                                     <label class="col-sm-5 col-form-label">47. What has ___ been doing to find work?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="rfindwork" id="rfindwork" value="{{$residents->rfindwork}}">
-                                            <option value="">Select Reason</option>
+                                            <option value="" {{$residents->rfindwork == '' ? 'selected':'' }}>Select Reason</option>
                                             <option value="Registered in public employment agency" {{$residents->rfindwork == 'Registered in public employment agency' ? 'selected':'' }}>Registered in public employment agency</option>
                                             <option value="Registered in private employment agency" {{$residents->rfindwork == 'Registered in private employment agency' ? 'selected':'' }}>Registered in private employment agency</option>
                                             <option value="Approached employer directly" {{$residents->rfindwork == 'Approached employer directly' ? 'selected':'' }}>Approached employer directly</option>
@@ -926,7 +929,7 @@
                                     <label class="col-sm-5 col-form-label">49. Why did ___ not look for work</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="rfnotwork" id="rfnotwork" value="{{$residents->rfnotwork}}">
-                                            <option value="">Select Reason</option>
+                                            <option value="" {{$residents->rfnotwork == '' ? 'selected':'' }}>Select Reason</option>
                                             <option value="Tired or Believes no work is available" {{$residents->rfnotwork == 'Tired or Believes no work is available' ? 'selected':'' }}>Tired/Believes no work is available </option>
                                             <option value="Awaiting results of previous job application" {{$residents->rfnotwork == 'Awaiting results of previous job application' ? 'selected':'' }}>Awaiting results of previous job application</option>
                                             <option value="Temporary illness or disability" {{$residents->rfnotwork == 'Temporary illness or disability' ? 'selected':'' }}>Temporary illness/disability</option>
@@ -943,7 +946,7 @@
                                     <label class="col-sm-5 col-form-label">50. When was the last time ___ looked for work?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="lastlookjob" id="lastlookjob" value="{{$residents->lastlookjob}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->lastlookjob == '' ? 'selected':'' }}>Select</option>
                                             <option value="Within last month" {{$residents->lastlookjob == 'Within last month' ? 'selected':'' }}>Within last month</option>
                                             <option value="'One to six months" {{$residents->lastlookjob == 'One to six months' ? 'selected':'' }}>One to six months</option>
                                             <option value="More then six months" {{$residents->lastlookjob == 'More then six months' ? 'selected':'' }}>More then six months</option>
@@ -956,7 +959,7 @@
                                         been available? </label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="pastwillingwork" id="pastwillingwork" value="{{$residents->pastwillingwork}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->pastwillingwork == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->pastwillingwork == 'Yes' ? 'selected':'' }}>Yes </option>
                                             <option value="No" {{$residents->pastwillingwork == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -967,7 +970,7 @@
                                         weeks?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="willingtotakeupwork" id="willingtotakeupwork" value="{{$residents->willingtotakeupwork}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->willingtotakeupwork == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->willingtotakeupwork == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->willingtotakeupwork == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -992,7 +995,7 @@
                                     <label class="col-sm-5 col-form-label">54. Is ___ a member of SSS?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="sssmember" value="{{$residents->sssmember}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->sssmember == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->sssmember == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->sssmember == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -1002,7 +1005,7 @@
                                     <label class="col-sm-5 col-form-label">55. Is ___ a member of GSIS?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="gsismember" value="{{$residents->gsismember}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->gsismember == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->gsismember == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->gsismember == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -1012,7 +1015,7 @@
                                     <label class="col-sm-5 col-form-label">56. Is ___ a member of PhilHealth?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="philhealthmember" id="philhealthmember" value="{{$residents->philhealthmember}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->philhealthmember == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->philhealthmember == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->philhealthmember == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -1024,7 +1027,7 @@
                                     <label class="col-sm-5 col-form-label">57. What is ___'s membership type?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="membertype" id="membertype" value="{{$residents->membertype}}">
-                                            <option value="">Select Membership Type</option>
+                                            <option value="" {{$residents->membertype == '' ? 'selected':'' }}>Select Membership Type</option>
                                             <option value="PhilHealth - OFW" {{$residents->membertype == 'PhilHealth - OFW' ? 'selected':'' }}>PhilHealth - OFW</option>
                                             <option value="PhilHealth - Employed" {{$residents->membertype == 'PhilHealth - Employed' ? 'selected':'' }}>PhilHealth - Employed</option>
                                             <option value="PhilHealth - Individually paying" {{$residents->membertype == 'PhilHealth - Individually paying' ? 'selected':'' }}>PhilHealth - Individually-paying</option>
@@ -1040,7 +1043,7 @@
                                     <label class="col-sm-5 col-form-label">58. Is a dependendent of a PhilHealth member?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="philhealthdependent" id="philhealthdependent" value="{{$residents->philhealthdependent}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->philhealthdependent == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->philhealthdependent == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->philhealthdependent == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -1084,7 +1087,7 @@
                                     <label class="col-sm-5 col-form-label">59. Is ___ pregnant?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="pregnant" id="pregnant" value="{{$residents->pregnant}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->pregnant == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->pregnant == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->pregnant == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -1094,7 +1097,7 @@
                                     <label class="col-sm-5 col-form-label">60. Is ___ a solo parent taking care of a child/children?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="soloparent" id="soloparent" value="{{$residents->soloparent}}" >
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->soloparent == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->soloparent == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->soloparent == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -1105,7 +1108,7 @@
                                     <label class="col-sm-5 col-form-label">61. Does ___ have a Solo Parent ID?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="soloparentid" id="soloparentid" value="{{$residents->soloparentid}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->soloparentid == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->soloparentid == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->soloparentid == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -1115,7 +1118,7 @@
                                     <label class="col-sm-5 col-form-label">62. Does ___ have any physical or mental disability?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="disability" id="disability" value="{{$residents->disability}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->disability == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->disability == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->disability == 'No' ? 'selected':'' }}>No (Go to 65)</option>
                                         </select>
@@ -1126,7 +1129,7 @@
                                     <label class="col-sm-5 col-form-label">63. What type of disability does ___ have?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="disabilitytype" id="disabilitytype" value="{{$residents->disabilitytype}}">
-                                            <option value="">Select type of Disability</option>
+                                            <option value="" {{$residents->disabilitytype == '' ? 'selected':'' }}>Select type of Disability</option>
                                             <option value="Mental or Intellectual" {{$residents->disabilitytype == 'Mental or Intellectual' ? 'selected':'' }}>Mental/Intellectual</option>
                                             <option value="Hearing Disability" {{$residents->disabilitytype == 'Hearing Disability' ? 'selected':'' }}>Hearing Disability</option>
                                             <option value="Psychosocial Disability" {{$residents->disabilitytype == 'Psychosocial Disability' ? 'selected':'' }}>Psychosocial Disability</option>
@@ -1143,7 +1146,7 @@
                                     <label class="col-sm-5 col-form-label">64. Does ___ have a PWD ID?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="pwdid" id="pwdid" value="{{$residents->pwdid}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->pwdid == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->pwdid == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->pwdid == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -1154,7 +1157,7 @@
                                     <label class="col-sm-5 col-form-label">65. Does ___ have a Senior Citizen's ID?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="seniorcitizenid" value="{{$residents->seniorcitizenid}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->seniorcitizenid == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->seniorcitizenid == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->seniorcitizenid == 'No' ? 'selected':'' }}>No</option>
                                         </select>
@@ -1168,7 +1171,7 @@
                                     <label class="col-sm-5 col-form-label">66. Has ___ been a victim of crime in the past 12 months?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="crime" id="crime" value="{{$residents->crime}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->crime == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->crime == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$residents->crime == 'No' ? 'selected':'' }}>No (Go to 69)</option>
                                         </select>
@@ -1179,7 +1182,7 @@
                                     <label class="col-sm-5 col-form-label">67. What crime/s was/were ___ a victim of?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="crimetype" id="crimetype" value="{{$residents->crimetype}}">
-                                            <option value="">Select Type of Crime</option>
+                                            <option value="" {{$residents->crimetype == '' ? 'selected':'' }}>Select Type of Crime</option>
                                             <option value="Theft" {{$residents->crimetype == 'Theft' ? 'selected':'' }}>Theft</option>
                                             <option value="Robbery" {{$residents->crimetype == 'Robbery' ? 'selected':'' }}>Robbery</option>
                                             <option value="Rape" {{$residents->crimetype == 'Rape' ? 'selected':'' }}>Rape</option>
@@ -1194,7 +1197,7 @@
                                     <label class="col-sm-5 col-form-label">68. Where did the crime happen?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="crimeloc" id="crimeloc" value="{{$residents->crimeloc}}">
-                                            <option value="">Select Crime Location</option>
+                                            <option value="" {{$residents->crimeloc == '' ? 'selected':'' }}>Select Crime Location</option>
                                             <option value="Within the barangay" {{$residents->crimeloc == 'Within the barangay' ? 'selected':'' }}>Within the barangay</option>
                                             <option value="Outside the barangay but within municipality/city" {{$residents->crimeloc == 'Outside the barangay but within municipality/city' ? 'selected':'' }}>Outside the barangay but within municipality/city</option>
                                             <option value="Outside the municipality or city but within province" {{$residents->crimeloc == 'Outside the municipality or city but within province' ? 'selected':'' }}>Outside the municipality/city but within province</option>
@@ -1207,8 +1210,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">69. What is ___'s blood type?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="bloodtype" value="{{$residents->bloodtype}}">
-                                            <option value="">Select Blood Type</option>
+                                        <select class="form-control" name="bloodtype" id="bloodtype">
+                                            <option value="" {{$residents->bloodtype == '' ? 'selected':'' }}>Select Blood Type</option>
                                             <option value="O" {{$residents->bloodtype == 'O' ? 'selected':'' }}>O</option>
                                             <option value="A" {{$residents->bloodtype == 'A' ? 'selected':'' }}>A</option>
                                             <option value="B" {{$residents->bloodtype == 'B' ? 'selected':'' }}>B</option>
@@ -1221,8 +1224,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">70. What is the Rhesus (Rh) factor of ___'s blood type?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="rhtype" value="{{$residents->rhtype}}">
-                                            <option value="">Select Rh Blood Type</option>
+                                        <select class="form-control" name="rhtype" id="rhtype">
+                                            <option value="" {{$residents->rhtype == '' ? 'selected':'' }}>Select Rh Blood Type</option>
                                             <option value="Positive" {{$residents->rhtype == 'Positive' ? 'selected':'' }}>Positive</option>
                                             <option value="Negative" {{$residents->rhtype == 'Negative' ? 'selected':'' }}>Negative</option>
                                             <option value="Dont Know" {{$residents->rhtype == 'Dont Know' ? 'selected':'' }}>Don't Know</option>
@@ -1233,8 +1236,8 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">71. NUTRITIONAL STATUS OF CHILDREN 0-5 YEARS OLD</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="nutritionstatus" value="{{$residents->nutritionstatus}}">
-                                            <option value="">Select Nutritional Status</option>
+                                        <select class="form-control" name="nutritionstatus" id="nutritionstatus">
+                                            <option value="" {{$residents->nutritionstatus == '' ? 'selected':'' }}>Select Nutritional Status</option>
                                             <option value="Overweight" {{$residents->nutritionstatus == 'Overweight' ? 'selected':'' }}>Overweight</option>
                                             <option value="Normal" {{$residents->nutritionstatus == 'Normal' ? 'selected':'' }}>Normal</option>
                                             <option value="Underweight" {{$residents->nutritionstatus == 'Underweight' ? 'selected':'' }}>Underweight</option>
@@ -1245,14 +1248,14 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">72. DATE OF RECORD OF BARANGAY NUTRITION SCHOLARS</label>
                                     <div class="col-sm-6">
-                                        <input name="datebns" class="form-control input-sm" type="date" placeholder="" value="{{$residents->datebns}}" />
+                                        <input name="datebns" class="form-control input-sm" type="date" placeholder="" id ="datebns" value="{{$residents->datebns}}" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">73. During the past 12 months, did you or any member of the household avail of medical treatment for any ilnness?</label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" name="treatment" id="treatment" value="{{$residents->treatment}}">
-                                            <option value="">Select</option>
+                                        <select class="form-control" name="treatment" id="treatment" id="treatment">
+                                            <option value="" {{$residents->treatment == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$residents->treatment == 'Yes' ? 'selected':'' }}>Yes (Go to 74)</option>
                                             <option value="No" {{$residents->treatment == 'No' ? 'selected':'' }}>No</option>
                                             <option value="Did not get sick" {{$residents->treatment == 'Did not get sick' ? 'selected':'' }}>Did not get sick</option>
@@ -1264,7 +1267,7 @@
                                         avail medical treatment?</label>
                                     <div class="col-sm-6">
                                         <select class="form-control" name="treatmentloc" id="treatmentloc" value="{{$residents->treatmentloc}}">
-                                            <option value="">Select</option>
+                                            <option value="" {{$residents->treatmentloc == '' ? 'selected':'' }}>Select</option>
                                             <option value="Public hospital - National" {{$residents->treatmentloc == 'Public hospital - National' ? 'selected':'' }}>Public hospital (National)</option>
                                             <option value="Public hosptital - Provincial" {{$residents->treatmentloc == 'Public hosptital - Provincial' ? 'selected':'' }}>Public hosptital (Provincial)</option>
                                             <option value="Public hosptital - Municipal or City" {{$residents->treatmentloc == 'Public hosptital - Municipal or City"' ? 'selected':'' }}>Public hosptital (Municipal/City)</option>
@@ -1280,7 +1283,7 @@
                                 <div class="form-group row">
                                     <label class="col-sm-5 col-form-label">IX. End Date of Interview:</label>
                                     <div class="col-sm-6">
-                                        <input name="enddate" class="form-control input-sm" type="date" placeholder="" value="{{$residents->enddate}}" />
+                                        <input name="enddate" class="form-control input-sm" type="date" placeholder="" id="date" value="{{$residents->enddate}}" />
                                     </div>
                                 </div>
                                 <div class="form-group row">
@@ -1303,4 +1306,5 @@
     </div>
 </div>
 @endforeach
-<script src="{{asset('plugins/residents/residents.js')}}"></script>
+
+<script src="{{asset('plugins/residents/editr.js')}}"></script>

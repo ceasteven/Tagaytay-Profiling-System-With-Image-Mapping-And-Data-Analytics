@@ -113,20 +113,35 @@ class HomeController extends Controller
         $zambal = DB::table('residents')->where('barangay', 'Zambal')->count();
         $zambalh = DB::table('residents')->where('barangay', 'Zambal')->distinct()->count('housecontrolnum');
        
-        $male = DB::table('residents')->where('gender', 'Male')->count();
-        $female = DB::table('residents')->where('gender', 'Female')->count();
-        $school = DB::table('residents')->where('attendschool', 'Yes')->count();
-        $noschool = DB::table('residents')->where('attendschool', 'No')->count();
-        $voter = DB::table('residents')->where('voter', 'Yes')->count();
-        $novoter = DB::table('residents')->where('voter', 'No')->count();
-
-
-        $list = Residents::all();
+        $user = Auth::user();
+        $barangay = $user->barangay;
+        
+        if ($barangay) {
+            $male = DB::table('residents')->where('gender', 'Male')->where('barangay', $barangay)->count();
+            $female = DB::table('residents')->where('gender', 'Female')->where('barangay', $barangay)->count();
+            $school = DB::table('residents')->where('attendschool', 'Yes')->where('barangay', $barangay)->count();
+            $noschool = DB::table('residents')->where('attendschool', 'No')->where('barangay', $barangay)->count();
+            $voter = DB::table('residents')->where('voter', 'Yes')->where('barangay', $barangay)->count();
+            $novoter = DB::table('residents')->where('voter', 'No')->where('barangay', $barangay)->count();
+        
+            $list = Residents::where('barangay', $barangay)->get();
+        } else {
+            $male = DB::table('residents')->where('gender', 'Male')->count();
+            $female = DB::table('residents')->where('gender', 'Female')->count();
+            $school = DB::table('residents')->where('attendschool', 'Yes')->count();
+            $noschool = DB::table('residents')->where('attendschool', 'No')->count();
+            $voter = DB::table('residents')->where('voter', 'Yes')->count();
+            $novoter = DB::table('residents')->where('voter', 'No')->count();
+        
+            $list = Residents::all();
+        }
+        
         $infants = $list->where('age', '<=', '1')->count();
         $children = $list->whereBetween('age', [2, 12])->count();
         $teenager = $list->whereBetween('age', [13, 19])->count();
         $adults = $list->whereBetween('age', [20, 59])->count();
         $senior = $list->where('age', '>=', '60')->count();
+        
         return view('backend.dashboard', compact('resident', 'users', 'hcn','asisan','asisanh', 'bagongtubig', 'bagongtubigh','calabuso', 'calabusoh','dapdapeast','dapdapeasth', 'dapdapwest','dapdapwesth', 'francisco','franciscoh', 'guinhawanorth',  'guinhawanorthh','guinhawasouth', 'guinhawasouthh','iruhincentral','iruhincentralh', 'iruhineast','iruhineasth', 'iruhinwest','iruhinwesth', 'kaybagalcentral','kaybagalcentralh', 'kaybagalnorth','kaybagalnorthh', 'kaybagalsouth','kaybagalsouthh', 'magasawangilat','magasawangilath', 'maharlikaeast','maharlikaeasth', 'maharlikawest', 'maharlikawesth','maitimcentral','maitimcentralh', 'maitimeast','maitimeasth', 'maitimwest', 'maitimwesth','mendezeast','mendezeasth', 'mendezwest','mendezwesth', 'neogan','neoganh', 'patutonorth','patutonorthh', 'patutosouth','patutosouthh', 'sambong','sambongh', 'sanjose','sanjoseh', 'silangeast','silangeasth', 'silangwest','silangwesth', 'sungayeast','sungayeasth', 'sungaywest','sungaywesth' ,'tolentinoeast','tolentinoeasth', 'tolentinowest', 'tolentinowesth', 'zambal', 'zambalh', 'male', 'female', 'school', 'noschool', 'voter', 'novoter', 'infants', 'children', 'teenager', 'adults', 'senior'));
     }
 

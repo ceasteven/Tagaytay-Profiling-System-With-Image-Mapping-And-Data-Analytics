@@ -1,4 +1,3 @@
-
 @extends('backend.app')
 @section('content')
 @if (auth()->user()->role=='Enumerator')
@@ -54,8 +53,8 @@
                             @endif
                         </div>
                         <div class="card-header">
-                       You're viewing/editing the residents information of <strong>{{$resident->householdmembername}}.</strong>
-                            </div>
+                            You're viewing/editing the resident's information of <strong>{{$resident->householdmembername}}.</strong>
+                        </div>
 
 
 
@@ -209,6 +208,7 @@
                                     </div>
                                 </div>
                                 <div class="tab">
+                                    <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h5><strong>B. HOUSING AND HOUSEHOLD CHARACTERISTICS</strong></h5><br>
@@ -479,6 +479,7 @@
                                     </div>
                                 </div>
                                 <div class="tab">
+                                    <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h5><strong>D. EDUCATION AND LITERACY</strong></h5>
@@ -531,7 +532,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">23. Where does ___ attend school? </label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" name="schooltype" value="{{$resident->schooltype}}">
+                                                    <select class="form-control" name="schooltype" id="schooltype" value="{{$resident->schooltype}}">
                                                         <option value="">Select school type</option>
                                                         <option value="Public" {{$resident->schooltype == 'Public' ? 'selected':'' }}>Public </option>
                                                         <option value="Private" {{$resident->schooltype == 'Private' ? 'selected':'' }}>Private </option>
@@ -542,7 +543,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">24. Why is ___ not attending school?</label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" name="notattending" onchange='checkvalue(this.value)' value="{{$resident->notattending}}">
+                                                    <select class="form-control" name="notattending" id="notattending" value="{{$resident->notattending}}">
                                                         <option value="">Select reason</option>
                                                         <option value="Schools are very far" {{$resident->notattending == 'Schools are very far' ? 'selected':'' }}>Schools are very far </option>
                                                         <option value="No school within the barangay" {{$resident->notattending == 'No school within the barangay' ? 'selected':'' }}>No school within the barangay </option>
@@ -566,7 +567,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">25. What is the highest educational attainment completed by ___?</label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" name="educcompleted" value="{{$resident->educcompleted}}">
+                                                    <select class="form-control" name="educcompleted" id="educcompleted" value="{{$resident->educcompleted}}">
                                                         <option value="">Select Educational Attainment Completed</option>
                                                         <option value="No Grade" {{$resident->educcompleted == 'No Grade' ? 'selected':'' }}>No Grade </option>
                                                         <option value="Day Care" {{$resident->educcompleted == 'Day Care' ? 'selected':'' }}>Day Care</option>
@@ -639,7 +640,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">28. Is ___ currently attending any skills training? </label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" name="training" value="{{$resident->training}}">
+                                                    <select class="form-control" name="training" id="training" value="{{$resident->training}}">
                                                         <option value="">Select</option>
                                                         <option value="Yes" {{$resident->training == 'Yes' ? 'selected':'' }}>Yes</option>
                                                         <option value="No" {{$resident->training == 'No' ? 'selected':'' }}>No</option>
@@ -649,7 +650,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">29. Have ___ attended any skills training in the past?</label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" name="pasttraining" value="{{$resident->pastraining}}">
+                                                    <select class="form-control" name="pasttraining" id="pasttraining" value="{{$resident->pasttraining}}">
                                                         <option value="">Select</option>
                                                         <option value="Yes" {{$resident->pasttraining == 'Yes' ? 'selected':'' }}>Yes</option>
                                                         <option value="No" {{$resident->pasttraining == 'No' ? 'selected':'' }}>No (Go to 31)</option>
@@ -659,20 +660,20 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">30. How many skills training have ___ attended including the current one?</label>
                                                 <div class="col-sm-6">
-                                                    <input name="trainnum" class="form-control input-sm" type="number" min="0" placeholder="" value="{{$resident->trainum}}" />
+                                                    <input name="trainnnum" class="form-control input-sm" id="trainnum" type="number" min="0" placeholder="" value="{{$resident->trainnum}}" />
                                                 </div>
                                             </div>
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">Training Programs</label>
                                                 <div class="col-sm-6">
-                                                    <input name="trainprogram" class="form-control input-sm" type="text" placeholder="" value="{{$resident->trainprogram}}" />
+                                                    <input name="trainprogram" class="form-control input-sm" type="text" placeholder="" id="trainprogram" value="{{$resident->trainprogram}}" />
                                                 </div>
                                             </div>
                                             <small> IF NOT AT LEAST HIGH SCHOOL GRADUATE</small>
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">31. Can ___ read and write a simple message in any language or dialect?</label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" name="literate" value="{{$resident->literate}}">
+                                                    <select class="form-control" name="literate" id="literate" value="{{$resident->literate}}">
                                                         <option value="">Select</option>
                                                         <option value="Yes" {{$resident->literate == 'Yes' ? 'selected':'' }}>Yes</option>
                                                         <option value="No" {{$resident->literate == 'No' ? 'selected':'' }}>No</option>
@@ -696,7 +697,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">33. Did ___ vote in the last election? </label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" name="votedlast" value="{{$resident->votedlast}}">
+                                                    <select class="form-control" name="votedlast" id="votedlast" value="{{$resident->votedlast}}">
                                                         <option value="">Select</option>
                                                         <option value="Yes" {{$resident->votedlast == 'Yes' ? 'selected':'' }}>Yes</option>
                                                         <option value="No" {{$resident->votedlast == 'No' ? 'selected':'' }}>No</option>
@@ -707,7 +708,313 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="tab">
+                                    <hr style="height:2px;border-width:0;color:black;background-color:black" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5><strong>F. ECONOMIC ACTIVITY</strong></h5>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">34. Did ___ do any work for at least 1 hour during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="job" id="job" value="{{$resident->job}}">
+                                                        <option value="" {{$resident->job == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->job == 'Yes' ? 'selected':'' }}>Yes (Go to 36)</option>
+                                                        <option value="No" {{$resident->job == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">35. Although ___ did not work, did ___ have a job or business during the past
+                                                    week?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="nwork" id="nwork" value="{{$resident->nwork}}">
+                                                        <option value="" {{$resident->nwork == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->nwork == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$resident->nwork == 'No' ? 'selected':'' }}>No (Go to 45)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <small>IF YES IN 34 OR YES IN 35</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">36. How many work, jobs, or businesses does ___ have?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="jobnum" class="form-control input-sm" type="number" min="0" id="jobnum" value="{{$resident->jobnum}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">37. What was ___'s primary occupation during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="occup" class="form-control input-sm" type="text" id="occup" value="{{$resident->occup}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">Code </label>
+                                                <div class="col-sm-6">
+                                                    <input name="occupcode" class="form-control input-sm" type="number" min="0" id="occupcode" value="{{$resident->occupcode}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">38. In what kind of industry did ___ work during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="industry" class="form-control input-sm" type="text" id="industry" value="{{$resident->industry}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">Code</label>
+                                                <div class="col-sm-6">
+                                                    <input name="industrycode" class="form-control input-sm" type="text" min="0" id="industrycode" value="{{$resident->industrycode}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">39. What is ___'s nature of employment?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="employ" id="employ" value="{{$resident->employ}}">
+                                                        <option value="" {{$resident->employ == '' ? 'selected':'' }}>Select nature of employment</option>
+                                                        <option value="Permanent job or business or unpaid family work" {{$resident->employ == 'Permanent job or business or unpaid family work' ? 'selected':'' }}>Permanent job/business/unpaid family work</option>
+                                                        <option value="Short-term or seasonal or casual job or business or unpaid family work" {{$resident->employ == 'Short-term or seasonal or casual job or business or unpaid family work' ? 'selected':'' }}>Short-term or seasonal or casual job/business/unpaid family work
+                                                        </option>
+                                                        <option value="Worked for different employeers or customers on day-to-day or
+                                                week-to-week basis" {{$resident->employ == 'Worked for different employeers or customers on day-to-day or
+                                                week-to-week basis' ? 'selected':'' }}>Worked for different employeers or customers on day-to-day or
+                                                            week-to-week basis</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">40. What was ___'s normal working number of hours per day during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="employhrs" class="form-control input-sm" type="number" id="employhrs" value="{{$resident->employhrs}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">41. What was __'s total number of hours duing the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="employthrs" class="form-control input-sm" type="number" id="employthrs" value="{{$resident->employthrs}}" />
+                                                </div>
+                                            </div>
+                                            <small> FOR 15 YEARS OLD AND ABOVE</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">42. Did ___ want more hours or work during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="addhrsworkpast" id="addhrsworkpast" value="{{$resident->addhrsworkpast}}">
+                                                        <option value="" {{$resident->addhrsworkpast == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->addhrsworkpast == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$resident->addhrsworkpast == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <small> IF YES IN 34 OR YES IN 35</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">43. Did ___ look for additional work during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="addextrawork" id="addextrawork" value="{{$resident->addextrawork}}">
+                                                        <option value="" {{$resident->addextrawork == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->addextrawork == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$resident->addextrawork == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">44. What is ___'s class of worker?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="classworker" id="classworker" value="{{$resident->classworker}} ">
+                                                        <option value="" {{$resident->classworker == '' ? 'selected':'' }}>Select Class of Worker</option>
+                                                        <option value="Working for private household" {{$resident->classworker == 'Working for private household' ? 'selected':'' }}>Working for private household</option>
+                                                        <option value="Working for private business or establishment or farm" {{$resident->classworker == 'Working for private business or establishment or farm' ? 'selected':'' }}>Working for private business/establishment/farm</option>
+                                                        <option value="Working for government or government corporation" {{$resident->classworker == 'Working for government or government corporation' ? 'selected':'' }}>Working for government/government corporation</option>
+                                                        <option value="Self-employed with no paid employee" {{$resident->classworker == 'Self-employed with no paid employee' ? 'selected':'' }}>Self-employed with no paid employee</option>
+                                                        <option value="Working with pay on own family-operated farm or business' ? 'selected':'' }}>Working with pay on own family-operated farm or business" {{$resident->classworker == 'Employer in own family-operated farm or business' ? 'selected':'' }}>Employer in own family-operated farm or business</option>
+                                                        <option value="Working with pay on own family-operated farm or business" {{$resident->classworker == 'Working with pay on own family-operated farm or business' ? 'selected':'' }}>Working with pay on own family-operated farm or business</option>
+                                                        <option value="Working without pay on own family-operated farm or business" {{$resident->classworker == 'Working without pay on own family-operated farm or business' ? 'selected':'' }}>Working without pay on own family-operated farm or business
+                                                        </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">45. Did ___ look for work or try to establish business during the past week?
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="fjobpast" id="fjobpast" value="{{$resident->fjobpast}}">
+                                                        <option value="" {{$resident->fjobpast == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->fjobpast == 'Yes' ? 'selected':'' }}>Yes </option>
+                                                        <option value="No" {{$resident->fjobpast == 'No' ? 'selected':'' }}>No (Go to 49)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <small>IF NO IN (34) AND NO IN (35)</small><br>
+                                            <small> IF YES IN (45)</small><br>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">46. Was this ___'s first time to look for work or try to establish a
+                                                    business?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="findwork" id="findwork" value="{{$resident->findwork}}">
+                                                        <option value="" {{$resident->findwork == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->findwork == 'Yes' ? 'selected':'' }}>Yes </option>
+                                                        <option value="No" {{$resident->findwork == 'No' ? 'selected':'' }}>No </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">47. What has ___ been doing to find work?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="rfindwork" id="rfindwork" value="{{$resident->rfindwork}}">
+                                                        <option value="" {{$resident->rfindwork == '' ? 'selected':'' }}>Select Reason</option>
+                                                        <option value="Registered in public employment agency" {{$resident->rfindwork == 'Registered in public employment agency' ? 'selected':'' }}>Registered in public employment agency</option>
+                                                        <option value="Registered in private employment agency" {{$resident->rfindwork == 'Registered in private employment agency' ? 'selected':'' }}>Registered in private employment agency</option>
+                                                        <option value="Approached employer directly" {{$resident->rfindwork == 'Approached employer directly' ? 'selected':'' }}>Approached employer directly</option>
+                                                        <option value="Approached relatives or friends" {{$resident->rfindwork == 'Approached relatives or friends' ? 'selected':'' }}>Approached relatives or friends</option>
+                                                        <option value="Placed or answered advertisements" {{$resident->rfindwork == 'Placed or answered advertisements' ? 'selected':'' }}>Placed or answered advertisements</option>
+                                                        <option value="Search and applied online" {{$resident->rfindwork == 'Search and applied online' ? 'selected':'' }}>Search and applied online</option>
+                                                        <option value="Others" {{$resident->rfindwork == 'Others' ? 'selected':'' }}>Others</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">48. How many weeks has ___ been looking for work? </label>
+                                                <div class="col-sm-6">
+                                                    <input name="findworknum" class="form-control input-sm" type="number" min="0" placeholder="" id="findworknum" value="{{$resident->findworknum}}" />
+                                                </div>
+                                            </div>
+                                            <small>IF NO IN (45)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">49. Why did ___ not look for work</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="rfnotwork" id="rfnotwork" value="{{$resident->rfnotwork}}">
+                                                        <option value="" {{$resident->rfnotwork == '' ? 'selected':'' }}>Select Reason</option>
+                                                        <option value="Tired or Believes no work is available" {{$resident->rfnotwork == 'Tired or Believes no work is available' ? 'selected':'' }}>Tired/Believes no work is available </option>
+                                                        <option value="Awaiting results of previous job application" {{$resident->rfnotwork == 'Awaiting results of previous job application' ? 'selected':'' }}>Awaiting results of previous job application</option>
+                                                        <option value="Temporary illness or disability" {{$resident->rfnotwork == 'Temporary illness or disability' ? 'selected':'' }}>Temporary illness/disability</option>
+                                                        <option value="Bad weather" {{$resident->rfnotwork == 'Bad weather' ? 'selected':'' }}>Bad weather </option>
+                                                        <option value="Waiting for retire" {{$resident->rfnotwork == 'Waiting for retire' ? 'selected':'' }}>Waiting for retire</option>
+                                                        <option value="Too young or old or retired or permanent disability" {{$resident->rfnotwork == 'Too young or old or retired or permanent disability' ? 'selected':'' }}>Too young/old or retired/permanent disability</option>
+                                                        <option value="Household and family duties" {{$resident->rfnotwork == 'Household, family duties' ? 'selected':'' }}>Household, family duties</option>
+                                                        <option value="Schooling" {{$resident->rfnotwork == 'Schooling' ? 'selected':'' }}>Schooling</option>
+                                                        <option value="Others" {{$resident->rfnotwork == 'Others' ? 'selected':'' }}>Others </option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">50. When was the last time ___ looked for work?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="lastlookjob" id="lastlookjob" value="{{$resident->lastlookjob}}">
+                                                        <option value="" {{$resident->lastlookjob == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Within last month" {{$resident->lastlookjob == 'Within last month' ? 'selected':'' }}>Within last month</option>
+                                                        <option value="'One to six months" {{$resident->lastlookjob == 'One to six months' ? 'selected':'' }}>One to six months</option>
+                                                        <option value="More then six months" {{$resident->lastlookjob == 'More then six months' ? 'selected':'' }}>More then six months</option>
+                                                        <option value="Never" {{$resident->lastlookjob == 'Never' ? 'selected':'' }}>Never</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">51. Had opportunity for work existed lass week or within two weeks, would ___
+                                                    been available? </label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="pastwillingwork" id="pastwillingwork" value="{{$resident->pastwillingwork}}">
+                                                        <option value="" {{$resident->pastwillingwork == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->pastwillingwork == 'Yes' ? 'selected':'' }}>Yes </option>
+                                                        <option value="No" {{$resident->pastwillingwork == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">52. Was ___ willing to take up work during the past week or within 2
+                                                    weeks?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="willingtotakeupwork" id="willingtotakeupwork" value="{{$resident->willingtotakeupwork}}">
+                                                        <option value="" {{$resident->willingtotakeupwork == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->willingtotakeupwork == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$resident->willingtotakeupwork == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <small>DO NOT INCLUDE SALARY OF HOUSEHOLD MEMBERS WHO ARE OFW AND HOUSEMAID/BOYS</small>
+                                            <div class="form-group row" class="cashsalary">
+                                                <label class="col-sm-5 col-form-label">53. In the past 12 months, how much total salary/wages, did ___ receive? (CASH)</label>
+                                                <div class="col-sm-6">
+                                                    <input name="cashsalary" class="form-control input-sm" type="number" min="0" placeholder="" value="{{$resident->cashsalary}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" class="kindsalary">
+                                                <label class="col-sm-5 col-form-label">53. In the past 12 months, how much total salary/wages, did ___ receive? (KIND)</label>
+
+                                                <div class="col-sm-6">
+                                                    <input name="kindsalary" class="form-control input-sm" type="number" min="0" placeholder="" value="{{$resident->kindsalary}}" />
+                                                </div>
+                                            </div>
+                                            <small> FOR 18 YEARS OLD AND ABOVE </small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">54. Is ___ a member of SSS?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="sssmember" value="{{$resident->sssmember}}">
+                                                        <option value="" {{$resident->sssmember == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->sssmember == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$resident->sssmember == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">55. Is ___ a member of GSIS?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="gsismember" value="{{$resident->gsismember}}">
+                                                        <option value="" {{$resident->gsismember == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->gsismember == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$resident->gsismember == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">56. Is ___ a member of PhilHealth?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="philhealthmember" id="philhealthmember" value="{{$resident->philhealthmember}}">
+                                                        <option value="" {{$resident->philhealthmember == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->philhealthmember == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$resident->philhealthmember == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <small>IF YES IN (56)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">57. What is ___'s membership type?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="membertype" id="membertype" value="{{$resident->membertype}}">
+                                                        <option value="" {{$resident->membertype == '' ? 'selected':'' }}>Select Membership Type</option>
+                                                        <option value="PhilHealth - OFW" {{$resident->membertype == 'PhilHealth - OFW' ? 'selected':'' }}>PhilHealth - OFW</option>
+                                                        <option value="PhilHealth - Employed" {{$resident->membertype == 'PhilHealth - Employed' ? 'selected':'' }}>PhilHealth - Employed</option>
+                                                        <option value="PhilHealth - Individually paying" {{$resident->membertype == 'PhilHealth - Individually paying' ? 'selected':'' }}>PhilHealth - Individually-paying</option>
+                                                        <option value="PhilHealth - Sponsored" {{$resident->membertype == 'PhilHealth - Sponsored' ? 'selected':'' }}>PhilHealth - Sponsored</option>
+                                                        <option value="PhilHealth - Lifetime" {{$resident->membertype == 'PhilHealth - Lifetime' ? 'selected':'' }}>PhilHealth - Lifetime</option>
+                                                        <option value="PhilHealth - Senior Citizen" {{$resident->membertype == 'PhilHealth - Senior Citizen' ? 'selected':'' }}>PhilHealth - Senior-Citizen</option>
+                                                        <option value="PhilHealth - Indigent" {{$resident->membertype == 'PhilHealth - Indigent' ? 'selected':'' }}>PhilHealth - Indigent</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <small>IF NO IN (56)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">58. Is a dependendent of a PhilHealth member?</label>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" name="philhealthdependent" id="philhealthdependent" value="{{$resident->philhealthdependent}}">
+                                                        <option value="" {{$resident->philhealthdependent == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$resident->philhealthdependent == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$resident->philhealthdependent == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab">
+                                    <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h5><strong>G. OTHER CHARACTERISTICS OF HOUSEHOLD MEMBERS</strong></h5>
@@ -839,7 +1146,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">69. What is ___'s blood type?</label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" name="bloodtype" value="{{$resident->bloodtype}}">
+                                                    <select class="form-control" id="bloodtype" name="bloodtype" value="{{$resident->bloodtype}}">
                                                         <option value="">Select Blood Type</option>
                                                         <option value="O" {{$resident->bloodtype == 'O' ? 'selected':'' }}>O</option>
                                                         <option value="A" {{$resident->bloodtype == 'A' ? 'selected':'' }}>A</option>
@@ -853,7 +1160,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">70. What is the Rhesus (Rh) factor of ___'s blood type?</label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" name="rhtype" value="{{$resident->rhtype}}">
+                                                    <select class="form-control" id="rhtype" name="rhtype" value="{{$resident->rhtype}}">
                                                         <option value="">Select Rh Blood Type</option>
                                                         <option value="Positive" {{$resident->rhtype == 'Positive' ? 'selected':'' }}>Positive</option>
                                                         <option value="Negative" {{$resident->rhtype == 'Negative' ? 'selected':'' }}>Negative</option>
@@ -865,7 +1172,7 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">71. NUTRITIONAL STATUS OF CHILDREN 0-5 YEARS OLD</label>
                                                 <div class="col-sm-6">
-                                                    <select class="form-control" name="nutritionstatus" value="{{$resident->nutritionstatus}}">
+                                                    <select class="form-control" id="nutritionstatus" name="nutritionstatus" value="{{$resident->nutritionstatus}}">
                                                         <option value="">Select Nutritional Status</option>
                                                         <option value="Overweight" {{$resident->nutritionstatus == 'Overweight' ? 'selected':'' }}>Overweight</option>
                                                         <option value="Normal" {{$resident->nutritionstatus == 'Normal' ? 'selected':'' }}>Normal</option>
@@ -990,8 +1297,8 @@
                             @endif
                         </div>
                         <div class="card-header">
-                       You're viewing the residents information of <strong>{{$resident->householdmembername}}.</strong>
-                            </div>
+                            You're viewing the resident information of <strong>{{$resident->householdmembername}}.</strong>
+                        </div>
                         <form action="{{ route('residents.update', $resident->id) }}" method="POST">
                             @csrf
                             @method('PUT')
@@ -1031,7 +1338,7 @@
                                                 <p class="col-sm-5 col-form-label">d. Barangay:</p>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="barangay" readonly value="{{$resident->barangay}}">
-                                                     
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1107,6 +1414,7 @@
                                     </div>
                                 </div>
                                 <div class="tab">
+                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h5><strong>B. HOUSING AND HOUSEHOLD CHARACTERISTICS</strong></h5><br>
@@ -1115,7 +1423,7 @@
                                                     household reside?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="housetype" readonly value="{{$resident->housetype}}">
-                                                     
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1138,7 +1446,7 @@
                                                     materials are the roof made of?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="rooftype" readonly value="{{$resident->rooftype}}">
-                                                     
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1151,7 +1459,7 @@
                                                     materials are the outer walls made of?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="walltype" readonly value="{{$resident->walltype}}">
-                                                      
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1160,7 +1468,7 @@
                                                     materials are the floors made of?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="floortype" readonly value="{{$resident->floortype}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1183,6 +1491,7 @@
                                     </div>
                                 </div>
                                 <div class="tab">
+                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h5><strong> C. DEMOGRAPHY</strong></h5>
@@ -1202,7 +1511,7 @@
                                                 <label class="col-sm-5 col-form-label">10. What is the ___'s relationship to head of the household?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="reltohead" readonly value="{{$resident->reltohead}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1216,7 +1525,7 @@
                                                 <label class="col-sm-5 col-form-label">12. Is ___ male or female?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="gender" id="gender" readonly value="{{$resident->gender}}">
-                                                      
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1240,7 +1549,7 @@
                                                 <label class="col-sm-5 col-form-label">14. Was ___'s birth registered with the civil registry office?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="birthregistered" readonly value="{{$resident->birthregistered}}">
-                                                      
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1250,7 +1559,7 @@
                                                 <label class="col-sm-5 col-form-label">15. What is ___'s marital status (civil status)? </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="civilstatus" readonly value="{{$resident->civilstatus}}">
-                                                  
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1271,7 +1580,7 @@
                                                 <label class="col-sm-5 col-form-label">18. Is ___ an overseas worker?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" readonly name="ofw" id="ofw">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1290,7 +1599,7 @@
                                                 <label class="col-sm-5 col-form-label">20. Where was___ residing 3 years ago?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" readonly name="residing" id="residing">
-                                                      
+
                                                     </input>
 
                                                 </div>
@@ -1313,6 +1622,7 @@
                                     </div>
                                 </div>
                                 <div class="tab">
+                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h5><strong>D. EDUCATION AND LITERACY</strong></h5>
@@ -1320,7 +1630,7 @@
                                                 <label class="col-sm-5 col-form-label">21. Is ___ currently attending school? </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="attendschool" id="attendschool" readonly value="{{$resident->attendschool}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1329,7 +1639,7 @@
                                                 <label class="col-sm-5 col-form-label">22. What grade or year is ___ currently attending?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="yearlevel" readonly value="{{$resident->yearlevel}}" id="yearlevel">
-                                                        
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1338,7 +1648,7 @@
                                                 <label class="col-sm-5 col-form-label">23. Where does ___ attend school? </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="schooltype" readonly value="{{$resident->schooltype}}">
-                                                        
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1346,8 +1656,8 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-5 col-form-label">24. Why is ___ not attending school?</label>
                                                 <div class="col-sm-6">
-                                                    <input class="form-control" name="notattending" onchange='checkvalue(this.value)' readonly value="{{$resident->notattending}}">
-                                                      
+                                                    <input class="form-control" name="notattending" readonly value="{{$resident->notattending}}">
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1356,7 +1666,7 @@
                                                 <label class="col-sm-5 col-form-label">25. What is the highest educational attainment completed by ___?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="educcompleted" readonly value="{{$resident->educcompleted}}">
-                                                        
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1365,7 +1675,7 @@
                                                 <label class="col-sm-5 col-form-label">26. If senior high school graduate, what is ___'s track/strand?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="shsstrand" readonly value="{{$resident->shsstrand}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1386,7 +1696,7 @@
                                                 <label class="col-sm-5 col-form-label">28. Is ___ currently attending any skills training? </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="training" readonly value="{{$resident->training}}">
-                                                      
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1394,7 +1704,7 @@
                                                 <label class="col-sm-5 col-form-label">29. Have ___ attended any skills training in the past?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="pasttraining" readonly value="{{$resident->pastraining}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1415,9 +1725,10 @@
                                                 <label class="col-sm-5 col-form-label">31. Can ___ read and write a simple message in any language or dialect?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="literate" readonly value="{{$resident->literate}}">
-                                                       
+
                                                     </input>
                                                 </div>
+
                                             </div>
                                             <h5><strong>E. POLITICAL PARTICIPATION</strong></h5>
                                             <small> (FOR 16 YEARS OLD AND ABOVE)</small>
@@ -1425,7 +1736,7 @@
                                                 <label class="col-sm-5 col-form-label">32. Is ____ a registered voter? </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="voter" readonly value="{{$resident->voter}}" id="voter">
-                                                      
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1435,7 +1746,7 @@
                                                 <label class="col-sm-5 col-form-label">33. Did ___ vote in the last election? </label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="votedlast" readonly value="{{$resident->votedlast}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1443,6 +1754,229 @@
                                     </div>
                                 </div>
                                 <div class="tab">
+                                    <hr style="height:2px;border-width:0;color:black;background-color:black" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <h5><strong>F. ECONOMIC ACTIVITY</strong></h5>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">34. Did ___ do any work for at least 1 hour during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="job" readonly id="job" value="{{$resident->job}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">35. Although ___ did not work, did ___ have a job or business during the past
+                                                    week?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="nwork" id="nwork" value="{{$resident->nwork}}">
+
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small>IF YES IN 34 OR YES IN 35</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">36. How many work, jobs, or businesses does ___ have?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="jobnum" class="form-control input-sm" type="number" min="0" readonly id="jobnum" value="{{$resident->jobnum}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">37. What was ___'s primary occupation during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="occup" class="form-control input-sm" type="text" readonly id="occup" value="{{$resident->occup}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">Code </label>
+                                                <div class="col-sm-6">
+                                                    <input name="occupcode" class="form-control input-sm" type="number" min="0" readonly id="occupcode" value="{{$resident->occupcode}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">38. In what kind of industry did ___ work during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="industry" class="form-control input-sm" type="text" readonly id="industry" value="{{$resident->industry}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">Code</label>
+                                                <div class="col-sm-6">
+                                                    <input name="industrycode" class="form-control input-sm" type="text" min="0" readonly id="industrycode" value="{{$resident->industrycode}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">39. What is ___'s nature of employment?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="employ" readonly id="employ" value="{{$resident->employ}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">40. What was ___'s normal working number of hours per day during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="employhrs" class="form-control input-sm" type="number" readonly id="employhrs" value="{{$resident->employhrs}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">41. What was __'s total number of hours duing the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input name="employthrs" class="form-control input-sm" type="number" readonly id="employthrs" value="{{$resident->employthrs}}" />
+                                                </div>
+                                            </div>
+                                            <small> FOR 15 YEARS OLD AND ABOVE</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">42. Did ___ want more hours or work during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="addhrsworkpast" readonly id="addhrsworkpast" value="{{$resident->addhrsworkpast}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small> IF YES IN 34 OR YES IN 35</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">43. Did ___ look for additional work during the past week?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="addextrawork" readonly id="addextrawork" value="{{$resident->addextrawork}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">44. What is ___'s class of worker?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="classworker" readonly id="classworker" value="{{$resident->classworker}} ">
+
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">45. Did ___ look for work or try to establish business during the past week?
+                                                </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="fjobpast" readonly id="fjobpast" value="{{$resident->fjobpast}}">
+
+                                                </div>
+                                            </div>
+
+
+
+
+                                        </div>
+
+                                        <div class="col-md-6">
+
+                                            <small>IF NO IN (34) AND NO IN (35)</small><br>
+                                            <small> IF YES IN (45)</small><br>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">46. Was this ___'s first time to look for work or try to establish a
+                                                    business?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="findwork" readonly id="findwork" value="{{$resident->findwork}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">47. What has ___ been doing to find work?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="rfindwork" readonly id="rfindwork" value="{{$resident->rfindwork}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">48. How many weeks has ___ been looking for work? </label>
+                                                <div class="col-sm-6">
+                                                    <input name="findworknum" class="form-control input-sm" type="number" min="0" placeholder="" readonly id="findworknum" value="{{$resident->findworknum}}" />
+                                                </div>
+                                            </div>
+                                            <small>IF NO IN (45)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">49. Why did ___ not look for work</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="rfnotwork" readonly id="rfnotwork" value="{{$resident->rfnotwork}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">50. When was the last time ___ looked for work?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="lastlookjob" readonly id="lastlookjob" value="{{$resident->lastlookjob}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">51. Had opportunity for work existed lass week or within two weeks, would ___
+                                                    been available? </label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="pastwillingwork" readonly id="pastwillingwork" value="{{$resident->pastwillingwork}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">52. Was ___ willing to take up work during the past week or within 2
+                                                    weeks?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="willingtotakeupwork" readonly id="willingtotakeupwork" value="{{$resident->willingtotakeupwork}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small>DO NOT INCLUDE SALARY OF HOUSEHOLD MEMBERS WHO ARE OFW AND HOUSEMAID/BOYS</small>
+                                            <div class="form-group row" class="cashsalary">
+                                                <label class="col-sm-5 col-form-label">53. In the past 12 months, how much total salary/wages, did ___ receive? (CASH)</label>
+                                                <div class="col-sm-6">
+                                                    <input name="cashsalary" class="form-control input-sm" readonly type="number" min="0" placeholder="" value="{{$resident->cashsalary}}" />
+                                                </div>
+                                            </div>
+                                            <div class="form-group row" class="kindsalary">
+                                                <label class="col-sm-5 col-form-label">53. In the past 12 months, how much total salary/wages, did ___ receive? (KIND)</label>
+
+                                                <div class="col-sm-6">
+                                                    <input name="kindsalary" class="form-control input-sm" readonly type="number" min="0" placeholder="" value="{{$resident->kindsalary}}" />
+                                                </div>
+                                            </div>
+                                            <small> FOR 18 YEARS OLD AND ABOVE </small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">54. Is ___ a member of SSS?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="sssmember" readonly value="{{$resident->sssmember}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">55. Is ___ a member of GSIS?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="gsismember" readonly value="{{$resident->gsismember}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">56. Is ___ a member of PhilHealth?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="philhealthmember" readonly id="philhealthmember" value="{{$resident->philhealthmember}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+
+                                            <small>IF YES IN (56)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">57. What is ___'s membership type?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="membertype" readonly id="membertype" value="{{$resident->membertype}}">
+                                                    </input>
+                                                </div>
+                                            </div>
+                                            <small>IF NO IN (56)</small>
+                                            <div class="form-group row">
+                                                <label class="col-sm-5 col-form-label">58. Is a dependendent of a PhilHealth member?</label>
+                                                <div class="col-sm-6">
+                                                    <input class="form-control" name="philhealthdependent" readonly id="philhealthdependent" value="{{$resident->philhealthdependent}}">
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab">
+                                <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                     <div class="row">
                                         <div class="col-md-6">
                                             <h5><strong>G. OTHER CHARACTERISTICS OF HOUSEHOLD MEMBERS</strong></h5>
@@ -1451,7 +1985,7 @@
                                                 <label class="col-sm-5 col-form-label">59. Is ___ pregnant?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="pregnant" id="pregnant" readonly value="{{$resident->pregnant}}">
-                                                      
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1459,7 +1993,7 @@
                                                 <label class="col-sm-5 col-form-label">60. Is ___ a solo parent taking care of a child/children?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="soloparent" id="soloparent" readonly value="{{$resident->soloparent}}">
-                                                        
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1468,7 +2002,7 @@
                                                 <label class="col-sm-5 col-form-label">61. Does ___ have a Solo Parent ID?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="soloparentid" id="soloparentid" readonly value="{{$resident->soloparentid}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1476,7 +2010,7 @@
                                                 <label class="col-sm-5 col-form-label">62. Does ___ have any physical or mental disability?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="disability" id="disability" readonly value="{{$resident->disability}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1485,7 +2019,7 @@
                                                 <label class="col-sm-5 col-form-label">63. What type of disability does ___ have?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="disabilitytype" id="disabilitytype" readonly value="{{$resident->disabilitytype}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1493,7 +2027,7 @@
                                                 <label class="col-sm-5 col-form-label">64. Does ___ have a PWD ID?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="pwdid" id="pwdid" readonly value="{{$resident->pwdid}}">
-                                                        
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1502,7 +2036,7 @@
                                                 <label class="col-sm-5 col-form-label">65. Does ___ have a Senior Citizen's ID?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="seniorcitizenid" readonly value="{{$resident->seniorcitizenid}}">
-                                                        
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1514,7 +2048,7 @@
                                                 <label class="col-sm-5 col-form-label">66. Has ___ been a victim of crime in the past 12 months?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="crime" id="crime" readonly value="{{$resident->crime}}">
-                                                        
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1523,7 +2057,7 @@
                                                 <label class="col-sm-5 col-form-label">67. What crime/s was/were ___ a victim of?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="crimetype" id="crimetype" readonly value="{{$resident->crimetype}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1531,7 +2065,7 @@
                                                 <label class="col-sm-5 col-form-label">68. Where did the crime happen?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="crimeloc" id="crimeloc" readonly value="{{$resident->crimeloc}}">
-                                                        
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1541,7 +2075,7 @@
                                                 <label class="col-sm-5 col-form-label">69. What is ___'s blood type?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="bloodtype" readonly value="{{$resident->bloodtype}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1550,7 +2084,7 @@
                                                 <label class="col-sm-5 col-form-label">70. What is the Rhesus (Rh) factor of ___'s blood type?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="rhtype" readonly value="{{$resident->rhtype}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1559,7 +2093,7 @@
                                                 <label class="col-sm-5 col-form-label">71. NUTRITIONAL STATUS OF CHILDREN 0-5 YEARS OLD</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="nutritionstatus" readonly value="{{$resident->nutritionstatus}}">
-                                                      
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1573,7 +2107,7 @@
                                                 <label class="col-sm-5 col-form-label">73. During the past 12 months, did you or any member of the household avail of medical treatment for any ilnness?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="treatment" id="treatment" readonly value="{{$resident->treatment}}">
-                                                       
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1582,7 +2116,7 @@
                                                     avail medical treatment?</label>
                                                 <div class="col-sm-6">
                                                     <input class="form-control" name="treatmentloc" id="treatmentloc" readonly value="{{$resident->treatmentloc}}">
-                                                      
+
                                                     </input>
                                                 </div>
                                             </div>
@@ -1600,9 +2134,7 @@
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-                    
                             </div>
                         </form>
                     </div>
@@ -1613,4 +2145,5 @@
 </div>
 
 @endif
+<script src="{{asset('plugins/residents/editrr.js')}}"></script>
 @endsection

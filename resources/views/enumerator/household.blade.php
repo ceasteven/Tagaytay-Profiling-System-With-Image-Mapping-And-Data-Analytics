@@ -85,7 +85,7 @@
                      <hr>
                      @if (request() ->has('view_deleted'))
                      <!-- <a href="{{route('household.index')}} " class="btn btn-info btn-sm"><i class="fas fa-solid fa-eye"></i> View Household</a> -->
-                     <a href="{{ route('households.restoreAll') }}" class="btn btn-success btn-sm"><i class="fas fa-arrows-rotate"></i> Restore All</a>
+                     <a href="{{ route('households.restoreAll') }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i> Restore All</a>
                      @else
 
                      @if (auth()->user()->role=='Enumerator')
@@ -94,7 +94,7 @@
 
                      <a href="#" id="test">
                      </a>
-                     @elseif (auth()->user()->role=='System Admin')
+                     @elseif (auth()->user()->role=='System Administrator')
                      <a href="#" id="test">
                      </a>
                      @endif
@@ -112,7 +112,7 @@
                            <table id="example10" class="table table-bordered table-hover dataTable nowrap " width="100%">
                               <thead>
                                  <tr>
-                                    <th>HCN</th>
+                                    <th>House Control Number</th>
                                     <th>Head Name</th>
                                     <th>Water Supply</th>
                                     <th>In Meters</th>
@@ -209,7 +209,15 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                 @foreach ($all as $household)
+                              @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $households = $all->where('barangay', $barangay);
+    } else {
+        $households = $all;
+    }
+@endphp
+                              @foreach ($households as $household)
                                  <tr>
                                     <td>{{$household->housecontrolnum}}</td>
                                     <td>{{$household->headname}}</td>
@@ -304,7 +312,7 @@
                                     @if (auth()->user()->role=='Enumerator')
                                     <td>
                                        @if(request()->has('view_deleted'))
-                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
                                        @else
                                        <a href="{{ route('household.show', $household->id) }}" class="btn btn-sm btn-primary" title="View"><i class="fa-solid fa-eye"></i></a>
                                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit1" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
@@ -324,6 +332,7 @@
                            <table id="example11" class="table table-bordered table-hover dataTable nowrap" width="100%">
                               <thead>
                                  <tr>
+                                    <th>Household Control Number</th>
                                     <th>Crop Farming</th>
                                     <th>Cash</th>
                                     <th>Kind</th>
@@ -391,8 +400,17 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                 @foreach ($all as $household)
+                              @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $households = $all->where('barangay', $barangay);
+    } else {
+        $households = $all;
+    }
+@endphp
+                              @foreach ($households as $household)
                                  <tr>
+                                 <td>{{$household->housecontrolnum}}</td>
                                  <td>{{$household->crop}}</td>
                                  <td>{{$household->cropcash}}</td>
                                  <td>{{$household->cropkind}}</td>
@@ -458,7 +476,7 @@
                                     @if (auth()->user()->role=='Enumerator')
                                     <td>
                                        @if(request()->has('view_deleted'))
-                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
                                        @else
                                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit2" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                        {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}
@@ -475,7 +493,7 @@
                            <table id="example12" class="table table-bordered table-hover dataTable nowrap" width="100%">
                               <thead>
                                  <tr>
-
+<th>Household Control Number</th>
                                     <th>Agricultural Land Tenure Status</th>
                                     <th>Area of Agricultural Land</th>
                                     <th>Temporary Crops</th>
@@ -598,9 +616,17 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                 @foreach ($all as $household)
+                              @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $households = $all->where('barangay', $barangay);
+    } else {
+        $households = $all;
+    }
+@endphp
+                              @foreach ($households as $household)
                                  <tr>
-
+                                 <td>{{$household->housecontrolnum}}</td>
                                     <td>{{$household->tenurestatus}}</td>
                                     <td>{{$household->agrilandnum}}</td>
                                     <td>{{$household->tempcrops}}</td>
@@ -719,7 +745,7 @@
                                     @if (auth()->user()->role=='Enumerator')
                                     <td>
                                        @if(request()->has('view_deleted'))
-                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
                                        @else
                                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit3" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                        {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}
@@ -737,7 +763,7 @@
                            <table id="example13" class="table table-bordered table-hover dataTable nowrap " width="100%">
                               <thead>
                                  <tr>
-
+<th>Household Cotrol Number</th>
                                     <th>Poultry Years</th>
                                     <th>Poultry</th>
                                     <th>Decrease Reason</th>
@@ -769,9 +795,17 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                 @foreach ($all as $household)
+                              @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $households = $all->where('barangay', $barangay);
+    } else {
+        $households = $all;
+    }
+@endphp
+                              @foreach ($households as $household)
                                  <tr>
-
+                                 <td>{{$household->housecontrolnum}}</td>
                                     <td>{{$household->livestocknum}}</td>
                                     <td>{{$household->livestockc}}</td>
                                     <td>{{$household->livestockr}}</td>
@@ -800,7 +834,7 @@
                                     @if (auth()->user()->role=='Enumerator')
                                     <td>
                                        @if(request()->has('view_deleted'))
-                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
                                        @else
                                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit4" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                        {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}
@@ -817,7 +851,7 @@
                            <table id="example14" class="table table-bordered table-hover dataTable nowrap " width="100%">
                               <thead>
                                  <tr>
-
+<th>Household Control Number</th>
                                     <th>Typhoon</th>
                                     <th>Number</th>
                                     <th>Assistance</th>
@@ -916,9 +950,17 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                 @foreach ($all as $household)
+                              @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $households = $all->where('barangay', $barangay);
+    } else {
+        $households = $all;
+    }
+@endphp
+                              @foreach ($households as $household)
                                  <tr>
-
+                                 <td>{{$household->housecontrolnum}}</td>
                                     <td>{{$household->typhoon}}</td>
                                     <td>{{$household->typhoonnum}}</td>
                                     <td>{{$household->typhoona}}</td>
@@ -1013,7 +1055,7 @@
                                     @if (auth()->user()->role=='Enumerator')
                                     <td>
                                        @if(request()->has('view_deleted'))
-                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
                                        @else
                                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit5" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                        {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}
@@ -1030,6 +1072,7 @@
                            <table id="example15" class="table table-bordered table-hover dataTable nowrap" width="100%">
                               <thead>
                                  <tr>
+                                    <th>Household Control Number</th>
                                     <th>Sustainable Livelihood Program</th>
                                     <th>Program Name</th>
                                     <th>Household Member Covered #</th>
@@ -1152,9 +1195,17 @@
                                  </tr>
                               </thead>
                               <tbody>
-                                 @foreach ($all as $household)
+                              @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $households = $all->where('barangay', $barangay);
+    } else {
+        $households = $all;
+    }
+@endphp
+                              @foreach ($households as $household)
                                  <tr>
-
+                                 <td>{{$household->housecontrolnum}}</td>
                                     <td>{{$household->slp}}</td>
                                     <td>{{$household->slpname}}</td>
                                     <td>{{$household->memo}}</td>
@@ -1273,7 +1324,7 @@
                                     @if (auth()->user()->role=='Enumerator')
                                     <td>
                                        @if(request()->has('view_deleted'))
-                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                                       <a href="{{ route('households.restore', $household->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
                                        @else
                                        <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#edit6" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                                        {!! Form::open(['method' => 'DELETE','route' => ['household.destroy', $household->id],'style'=>'display:inline']) !!}

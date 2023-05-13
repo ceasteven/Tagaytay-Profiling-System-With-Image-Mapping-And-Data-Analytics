@@ -191,7 +191,7 @@
               <label> User Role:</label>
               <select class="form-control" name="role" value="{{$users->role}}">
                 <option hidden>Select Role</option>
-                <option value="System Admin" {{ $users->role == 'System Admin' ? 'selected':'' }}>System Admin</option>
+                <option value="System Administrator" {{ $users->role == 'System Administrator' ? 'selected':'' }}>System Administrator</option>
                 <option value="Enumerator" {{ $users->role == 'Enumerator' ? 'selected':'' }}>Enumerator</option>
               </select>
             </div>

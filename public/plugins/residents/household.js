@@ -432,7 +432,7 @@ document.getElementById("crop").onchange = function () {
         document.getElementById("planternum").disabled = false;
         document.getElementById("planterown").disabled = false;
         document.getElementById("dryernum").disabled = false;
-        document.getElementById("dryeown").disabled = false;
+        document.getElementById("dryerown").disabled = false;
         document.getElementById("mdrynum").disabled = false;
         document.getElementById("mdryown").disabled = false;
         document.getElementById("millnum").disabled = false;
@@ -581,7 +581,7 @@ document.getElementById("fishing").onchange = function () {
         document.getElementById("fishfive").disabled = true;
         document.getElementById("fishfiveown").disabled = true;
         document.getElementById("fishyrs").disabled = true;
-        document.getElementById("fishysrc").disabled = true;
+        document.getElementById("fishyrsc").disabled = true;
         document.getElementById("fishr").disabled = true;
         document.getElementById("fishi").disabled = true;
         document.getElementById("fiship").disabled = true;
@@ -1158,14 +1158,14 @@ document.getElementById("drough").onchange = function () {
 document.getElementById("droughta").onchange = function () {
     if (this.value == 'No' || this.value == '') {
 
-        document.getElementById("droughsrc").disabled = true;
+        document.getElementById("droughtsrc").disabled = true;
 
 
 
     }
     else {
 
-        document.getElementById("droughsrc").disabled = false;
+        document.getElementById("droughtsrc").disabled = false;
 
 
 
@@ -1939,7 +1939,7 @@ document.getElementById("deathhousehold").onchange = function () {
         document.getElementById("deathth").disabled = true;
         document.getElementById("deaththsex").disabled = true;
         document.getElementById("deaththtime").disabled = true;
-        document.getElementById("deaththcause").disabled = true;
+        document.getElementById("deatthcause").disabled = true;
 
 
 
@@ -1960,7 +1960,7 @@ document.getElementById("deathhousehold").onchange = function () {
         document.getElementById("deathth").disabled = false;
         document.getElementById("deaththsex").disabled = false;
         document.getElementById("deaththtime").disabled = false;
-        document.getElementById("deaththcause").disabled = false;
+        document.getElementById("deatthcause").disabled = false;
 
 
     }

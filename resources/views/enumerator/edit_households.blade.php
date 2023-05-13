@@ -236,23 +236,77 @@
                                 </div>
                                 <hr style="height:2px;border-width:0;color:black;background-color:black" />
                                 <h5><strong>L. WASTE MANAGEMENT</strong></h5>
-                                <div class="form-group row">
-                                    <p class="col-sm-5 col-form-label">88. What is the system of garbage disposal adopted by the household?</p>
-                                    <div class="col-sm-6">
-                                        <select class="form-control" name="garbage" id="garbage">
-                                            <option value="" {{$household->garbage == '' ? 'selected':'' }}>Select</option>
-                                            <option value="Garbage collected" {{$household->garbage == 'Garbage collection' ? 'selected':'' }}>Garbage collection</option>
-                                            <option value="Burning" {{$household->garbage == 'Burning' ? 'selected':'' }}>Burning</option>
-                                            <option value="Composting" {{$household->garbage == 'Composting' ? 'selected':'' }}>Composting</option>
-                                            <option value="Recycling" {{$household->garbage == 'Recycling' ? 'selected':'' }}>Recycling</option>
-                                            <option value="Waste segregation" {{$household->garbage == 'Waste segregation' ? 'selected':'' }}>Waste segregation</option>
-                                            <option value="Pit with cover" {{$household->garbage == 'Pit with cover' ? 'selected':'' }}>Pit with cover</option>
-                                            <option value="Pit without cover" {{$household->garbage == 'Pit without cover' ? 'selected':'' }}>Pit without cover</option>
-                                            <option value="Throwing garbage in river, vacant lot" {{$household->garbage == 'Throwing garbage in river, vacant lot' ? 'selected':'' }}>Throwing garbage in river, vacant lot</option>
-                                            <option value="Others" {{$household->garbage == 'Others' ? 'selected':'' }}>Others</option>
-                                        </select>
-                                    </div>
-                                </div>
+                                            <p class="col-sm-6 col-form-label">88. What is the system of garbage disposal adopted by the household?</p>
+                                            <div class="form-group row">
+                                                <p class="col-sm-3 col-form-label">1 Garbage collection</p>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" name="gcollection" id="gcollection">
+                                                        <option value="" {{$household->gcollection == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$household->gcollection == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$household->gcollection == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                                <p class="col-sm-2 col-form-label">2 Burning</p>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" name="burn" id="burn">
+                                                        <option value="" {{$household->burn == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$household->burn == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$household->burn == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                                <p class="col-sm-3 col-form-label">3 Composting</p>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" name="compost" id="compost">
+                                                        <option value="" {{$household->compost == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$household->compost == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$household->compost == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                                <p class="col-sm-2 col-form-label">4 Recycling</p>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" name="recycle" id="recycle">
+                                                        <option value="" {{$household->recycle == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$household->recycle == '' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$household->recycle == '' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                                <p class="col-sm-3 col-form-label">5 Waste segregation</p>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" name="waste" id="waste">
+                                                        <option value="" {{$household->waste == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$household->waste == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$household->waste == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                                <p class="col-sm-2 col-form-label">6 Pit with cover</p>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" name="pitw" id="pitw">
+                                                        <option value="" {{$household->pitw == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$household->pitw == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$household->pitw == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                                <p class="col-sm-3 col-form-label">7 Pit without cover</p>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" name="pitwo" id="pitwo">
+                                                        <option value="" {{$household->pitwo == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$household->pitwo == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$household->pitwo == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                                <p class="col-sm-2 col-form-label">8 Throwing of garbage in river</p>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" name="throwing" id="throwing">
+                                                        <option value="" {{$household->throwing == '' ? 'selected':'' }}>Select</option>
+                                                        <option value="Yes" {{$household->throwing == 'Yes' ? 'selected':'' }}>Yes</option>
+                                                        <option value="No" {{$household->throwing == 'No' ? 'selected':'' }}>No</option>
+                                                    </select>
+                                                </div>
+                                                <p class="col-sm-2 col-form-label">9 Others</p>
+                                                <div class="col-sm-3">
+                                                    <input name="gothers" class="form-control input-sm" type="text" placeholder="" id="gothers" value="{{$household->gothers}}" />
+                                                </div>
+                                            </div>
 
                                 <div class="form-group row">
                                     <p class="col-sm-5 col-form-label">89. Who collects the garbage?</p>
@@ -318,7 +372,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-5">
-                                        <input name="landcomnum" class="form-control input-sm" type="number" min="0" placeholder="" id="landocomnum" value="{{$household->landcomnum}}" />
+                                        <input name="landcomnum" class="form-control input-sm" type="number" min="0" placeholder="" id="landcomnum" value="{{$household->landcomnum}}" />
                                     </div>
                                     <p class="col-sm-3 col-form-label">4. Car, jeep, van</p>
                                     <div class="col-sm-3">
@@ -340,7 +394,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-5">
-                                        <input name="trciyclenum" class="form-control input-sm" type="number" min="0" id="tricylenum" placeholder="" value="{{$household->tricyclenum}}" />
+                                        <input name="trciyclenum" class="form-control input-sm" type="number" min="0" id="trciyclenum" placeholder="" value="{{$household->trciyclenum}}" />
                                     </div>
                                     <p class="col-sm-3 col-form-label">6. Bicycle</p>
                                     <div class="col-sm-3">
@@ -366,7 +420,7 @@
                                     </div>
                                     <p class="col-sm-3 col-form-label">8. Television</p>
                                     <div class="col-sm-3">
-                                        <select class="form-control" name="tv">
+                                        <select class="form-control" name="tv" id="tv">
                                             <option value="" {{$household->tv == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$household->tv == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$household->tv == 'No' ? 'selected':'' }}>No</option>
@@ -377,7 +431,7 @@
                                     </div>
                                     <p class="col-sm-3 col-form-label">9. Radio/Radio casette</p>
                                     <div class="col-sm-3">
-                                        <select class="form-control" name="cassette">
+                                        <select class="form-control" name="cassette" id="casette">
                                             <option value="" {{$household->cassette == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$household->cassette == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$household->cassette == 'No' ? 'selected':'' }}>No</option>
@@ -571,7 +625,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-5">
-                                        <input name="matsnum" class="form-control input-sm" type="number" min="0" placeholder="" id="matnum" value="{{$household->matnum}}" />
+                                        <input name="matsnum" class="form-control input-sm" type="number" min="0" placeholder="" id="matsnum" value="{{$household->matsnum}}" />
                                     </div>
                                     <p class="col-sm-3 col-form-label">27. Frame without mattress (papag, folding bed)</p>
                                     <div class="col-sm-3">
@@ -629,7 +683,7 @@
     <div class="modal-dialog modal-dialog-scrollable modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title">Edit Source of Income</h4>
+                <h4 class="modal-title">Edit Sources of Income</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="modal-body">
@@ -1261,7 +1315,7 @@
                                         <input name="dryernum" class="form-control input-sm" type="number" min="0" placeholder="" id="dryernum" value="{{$household->dryernum}}" />
                                     </div>
                                     <div class="col-sm-5">
-                                        <input name="dryeown" class="form-control input-sm" type="number" min="0" placeholder="" id="dryerown" value="{{$household->dryerown}}" />
+                                        <input name="dryeown" class="form-control input-sm" type="number" min="0" placeholder="" id="dryeown" value="{{$household->dryeown}}" />
                                     </div>
                                     <p class="col-sm-3 col-form-label">Multipurpose drying pavement</p>
                                     <div class="col-sm-3">
@@ -1282,7 +1336,7 @@
                                         <input name="harvesternum" class="form-control input-sm" type="number" min="0" placeholder="" id="harvesternum" value="{{$household->harvestnum}}" />
                                     </div>
                                     <div class="col-sm-5">
-                                        <input name="harvesterown" class="form-control input-sm" type="number" min="0" placeholder="" id="harvestown" value="{{$household->harvestown}}" />
+                                        <input name="harvesterown" class="form-control input-sm" type="number" min="0" placeholder="" id="harvesterown" value="{{$household->harvesterown}}" />
                                     </div>
                                     <p class="col-sm-3 col-form-label">Warehouse granary</p>
                                     <div class="col-sm-3">
@@ -1399,7 +1453,7 @@
                                     </div>
                                     <p class="col-sm-2 col-form-label">Others</p>
                                     <div class="col-sm-3">
-                                        <input name="otherlivestock" class="form-control input-sm" type="text" placeholder="" requid="otherlivestock" value="{{$household->otherlivestock}}" />
+                                        <input name="otherlivestock" class="form-control input-sm" type="text" placeholder="" id="otherlivestock" value="{{$household->otherlivestock}}" />
                                     </div>
                                     <div class="col-sm-3">
                                         <input name="otherlivestocksold" class="form-control input-sm" type="number" min="0" placeholder="" id="otherlivestocksold" value="{{$household->otherlivestocksold}}" />
@@ -1472,7 +1526,7 @@
                                         <input name="boatthree" class="form-control input-sm" type="number" min="0" placeholder="" id="boatthree" value="{{$household->boathree}}" />
                                     </div>
                                     <div class="col-sm-5">
-                                        <input name="boathreeown" class="form-control input-sm" type="number" min="0" placeholder="" id="boatthreeown" value="{{$household->boathreeown}}" />
+                                        <input name="boathreeown" class="form-control input-sm" type="number" min="0" placeholder="" id="boathreeown" value="{{$household->boathreeown}}" />
                                     </div>
                                     <p class="col-sm-3 col-form-label">4. Boat without engine and outrigger</p>
                                     <div class="col-sm-3">
@@ -1910,7 +1964,7 @@
                                 <div class="form-group row">
                                     <p class="col-sm-6 col-form-label">148. Compared with 3 years ago, did your fish catch?</p>
                                     <div class="col-sm-5">
-                                        <select class="form-control" name="fishyrsc" id="fishyrs">
+                                        <select class="form-control" name="fishyrsc" id="fishyrsc">
                                             <option value="" {{$household->fishyrsc == '' ? 'selected':'' }}>Select</option>
                                             <option value="Decrease" {{$household->fishyrsc == 'Decrease' ? 'selected':'' }}>Decrease (GO TO 149)</option>
                                             <option value="Remain the same" {{$household->fishyrsc == 'Remain the same' ? 'selected':'' }}>Remain the same (GO TO 150)</option>
@@ -2065,7 +2119,7 @@
                                     <p class="col-sm-6 col-form-label">160. Compared with 3 years ago, does drought occur more often in your area
                                         now?</p>
                                     <div class="col-sm-5">
-                                        <select class="form-control" name="drought" id="">
+                                        <select class="form-control" name="drought" id="drought">
                                             <option value="" {{$household->drought == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$household->drought == 'Yes' ? 'selected':'' }}>Yes (GO TO 161)</option>
                                             <option value="No" {{$household->drought == 'No' ? 'selected':'' }}>No (GO TO 162)</option>
@@ -2143,7 +2197,7 @@
                                 <div class="form-group row">
                                     <p class="col-sm-6 col-form-label">166. How long did you stay in the evacuation area? (in days)</p>
                                     <div class="col-sm-5">
-                                        <input name="evacuatenum" class="form-control input-sm" type="number" min="0" placeholder="" value="{{$household->evacuatenum}}" />
+                                        <input name="evacuatenum" class="form-control input-sm" type="number" min="0" placeholder="" id="evacuatenum" value="{{$household->evacuatenum}}" />
                                     </div>
                                 </div>
 
@@ -2475,7 +2529,7 @@
                                         </select>
                                     </div>
                                     <div class="col-sm-2">
-                                        <select class="form-control" name="conflicta" id="conflict">
+                                        <select class="form-control" name="conflicta" id="conflicta">
                                             <option value="" {{$household->conflicta == '' ? 'selected':'' }}>Select</option>
                                             <option value="Yes" {{$household->conflicta == 'Yes' ? 'selected':'' }}>Yes</option>
                                             <option value="No" {{$household->conflicta == 'No' ? 'selected':'' }}>No</option>
@@ -3483,7 +3537,7 @@
                                             <option value="Dont know" {{$household->memfoupi == 'Dont know' ? 'selected':'' }}>Don't know</option>
                                             <option value="Others" {{$household->memfoupi == 'Others' ? 'selected':'' }}>Others</option>
                                         </select>
-                                        <select class="form-control" name="memfourpi" id="memfifpi">
+                                        <select class="form-control" name="memfourpi" id="memfourpi">
                                             <option value="" {{$household->memfifpi == '' ? 'selected':'' }}>Select</option>
                                             <option value="National" {{$household->memfifpi == 'National' ? 'selected':'' }}>National</option>
                                             <option value="Province" {{$household->memfifpi == 'Province' ? 'selected':'' }}>Province</option>
@@ -3594,3 +3648,4 @@
 
 
 @endforeach
+<script src="{{asset('plugins/residents/hedit.js')}}"></script>

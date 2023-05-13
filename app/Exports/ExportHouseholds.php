@@ -5,6 +5,7 @@ namespace App\Exports;
 use App\Models\Households;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Illuminate\Support\Facades\Auth;
 class ExportHouseholds implements FromCollection,WithHeadings
 {
     /**
@@ -12,7 +13,13 @@ class ExportHouseholds implements FromCollection,WithHeadings
     */
    public function collection()
 {
-    $households = Households::all();
+    $user = Auth::user();
+    
+    if ($user->barangay) {
+        $households = Households::where('barangay', $user->barangay)->get();
+    } else {
+        $households = Households::all();
+    }
 
     return $households->map(function($household) {
         $household = $household->toArray();

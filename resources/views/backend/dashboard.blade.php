@@ -31,11 +31,12 @@
       <!-- Small boxes (Stat box) -->
      
       <div class="row">
-        @if(auth()->user()->role=='System Admin')
+        @if(auth()->user()->role=='System Administrator')
         @include('systemadmin.dashboard')
         @include('backend.chart')
         @else
         @include('enumerator.dashboard')
+        @include('backend.chart')
         <!-- ./col -->
         @endif
         <!-- ./col -->

@@ -52,7 +52,7 @@
               </div>
 
               @elseif ($errors->any())
-              {!! implode('', $errors->all('<div class="alert alert-danger alert-dismissible" role="alert">
+              {!! implode('', $errors->residents('<div class="alert alert-danger alert-dismissible" role="alert">
                 <button type="button" class="close" data-dismiss="alert">
                   <i class="fa fa-times"></i>
                 </button><i class="fas  fa-xmark fa-lg"></i><strong> :message</strong>
@@ -84,7 +84,7 @@
               <hr>
               @if (request()->has('view_deleted'))
               <!-- <a href="{{route('residents.index')}}" class="btn btn-info btn-sm"><i class="fas fa-solid fa-eye"></i> View Residents</a> -->
-              <a href="{{route('residents.allrestore')}}" class="btn btn-success btn-sm"><i class="fas fa-arrows-rotate"></i> Restore All</a>
+              <a href="{{route('residents.allrestore')}}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i> Restore All</a>
               @else
 
               @if (auth()->user()->role=='Enumerator')
@@ -96,7 +96,7 @@
               </a>
 
 
-              @elseif (auth()->user()->role=='System Admin')
+              @elseif (auth()->user()->role=='System Administrator')
               <a href="#" id="test">
               </a>
               @endif
@@ -106,16 +106,21 @@
 
 
             </div>
-
+   
             <!-- /.card-header -->
             <div class="card-body">
               <div class="tab-content">
                 <div class="tab-pane active" id="tab-table1">
 
-                  <table id="example4" class="table table-bordered table-hover dataTable nowrap " width="100%">
+                  <table id="example4" class=
+                  
+                  
+                  
+                  
+                  "table table-bordered table-hover dataTable nowrap " width="100%">
                     <thead>
                       <tr>
-                        <th>No.</th>
+                        
                         <th>Region</th>
                         <th>Province</th>
                         <th>City</th>
@@ -130,7 +135,7 @@
                         <th>Start Date of Interview</th>
                         <th>Time Started</th>
                         <th>Enumerator Name</th>
-                        <th>House Control Number</th>
+                        
                         @if (auth()->user()->role=='Enumerator')
                         <th data-orderable="false">Action</th>
                      @endif
@@ -138,9 +143,18 @@
                     </thead>
 
                     <tbody>
-                      @foreach ($all as $resident)
+           @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $residents = $all->where('barangay', $barangay);
+    } else {
+        $residents = $all;
+    }
+@endphp
+
+                      @foreach ($residents as $resident)
                       <tr>
-                        <td>{{$resident->id}}</td>
+                     
                         <td>{{$resident->region}}</td>
                         <td>{{$resident->province}}</td>
                         <td>{{$resident->city}}</td>
@@ -155,12 +169,12 @@
                         <td>{{$resident->startdate}}</td>
                         <td>{{$resident->timestart}}</td>
                         <td>{{$resident->enumname}}</td>
-                        <td>{{$resident->housecontrolnum}}</td>
+                   
                         @if (auth()->user()->role=='Enumerator')
                        
                         <td>
                           @if(request()->has('view_deleted'))
-                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></i></a>
                           @else
                           <a href="{{ route('residents.show', $resident->id) }}" class="btn btn-sm btn-primary" title="View"><i class="fa-solid fa-eye"></i></a>
                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal1{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
@@ -185,12 +199,12 @@
                   <table id="example5" class="table table-bordered table-hover dataTable nowrap" width="100%">
                     <thead>
                       <tr>
-                        <th>No.</th>
+                        
                         <th>Building Type</th>
                         <th>Bedrooms Number</th>
                         <th>Storeys Number</th>
                         <th>Roof Type</th>
-                        <th>Wall Type</th>
+                        <th>Wresidents Type</th>
                         <th>Floor Type</th>
                         <th>Nuclear Families Number</th>
                         <th>Household Members Numbers</th>
@@ -200,21 +214,30 @@
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($all as $resident)
+                    @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $residents = $all->where('barangay', $barangay);
+    } else {
+        $residents = $all;
+    }
+@endphp
+
+                      @foreach ($residents as $resident)
                       <tr>
-                        <td>{{$resident->id}}</td>
+                       
                         <td>{{$resident->housetype}}</td>
                         <td>{{$resident->bedroomnum}}</td>
                         <td>{{$resident->storeysnum}}</td>
                         <td>{{$resident->rooftype}}</td>
-                        <td>{{$resident->walltype}}</td>
+                        <td>{{$resident->wresidentstype}}</td>
                         <td>{{$resident->floortype}}</td>
                         <td>{{$resident->nucfam}}</td>
                         <td>{{$resident->housemembernum}}</td>
                         @if (auth()->user()->role=='Enumerator')
                         <td>
                           @if(request()->has('view_deleted'))
-                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
                           @else
                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal2{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                           {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
@@ -234,7 +257,7 @@
                   <table id="example6" class="table table-bordered table-hover dataTable nowrap " width="100%">
                     <thead>
                       <tr>
-                        <th>No.</th>
+                        
                         <th>Household Head Name</th>
                         <th>Household Member Name</th>
                         <th>Relationship to the Household Head</th>
@@ -256,10 +279,19 @@
                         @endif
                       </tr>
                     </thead>
-                    <tbody>
-                      @foreach ($all as $resident)
+          <tbody>
+          @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $residents = $all->where('barangay', $barangay);
+    } else {
+        $residents = $all;
+    }
+@endphp
+ 
+                      @foreach ($residents as $resident)
                       <tr>
-                        <td>{{$resident->id}}</td>
+                       
                         <td>{{$resident->householdhead}}</td>
                         <td>{{$resident->householdmembername}}</td>
                         <td>{{$resident->reltohead}}</td>
@@ -279,7 +311,7 @@
                         @if (auth()->user()->role=='Enumerator')
                         <td>
                           @if(request()->has('view_deleted'))
-                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
                           @else
                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal3{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                           {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
@@ -298,7 +330,7 @@
                 <div class="tab-pane" id="tab-table4">
                   <table id="example7" class="table table-bordered table-hover dataTable nowrap " width="100%">
                     <thead>
-                      <th>No.</th>
+                      
                       <th>Currenty Attending School</th>
                       <th>Grade or Year</th>
                       <th>School Type</th>
@@ -318,10 +350,19 @@
                       @endif
                       </tr>
                     </thead>
-                    <tbody>
-                      @foreach ($all as $resident)
+          <tbody>
+          @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $residents = $all->where('barangay', $barangay);
+    } else {
+        $residents = $all;
+    }
+@endphp
+
+                      @foreach ($residents as $resident)
                       <tr>
-                        <td>{{$resident->id}}</td>
+                       
                         <td>{{$resident->attendschool}}</td>
                         <td>{{$resident->yearlevel}}</td>
                         <td>{{$resident->schooltype}}</td>
@@ -339,7 +380,7 @@
                         @if (auth()->user()->role=='Enumerator')
                         <td>
                           @if(request()->has('view_deleted'))
-                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
                           @else
                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal4{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                           {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
@@ -358,7 +399,7 @@
                   <table id="example8" class="table table-bordered table-hover dataTable nowrap " width="100%">
                     <thead>
                       <tr>
-                        <th>No.</th>
+                        
                         <th>Work in the past week</th>
                         <th>Past week Work </th>
                         <th>Work Number</th>
@@ -392,10 +433,19 @@
                         @endif
                       </tr>
                     </thead>
-                    <tbody>
-                      @foreach ($all as $resident)
+          <tbody>
+          @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $residents = $all->where('barangay', $barangay);
+    } else {
+        $residents = $all;
+    }
+@endphp
+
+                      @foreach ($residents as $resident)
                       <tr>
-                        <td>{{$resident->id}}</td>
+                       
                         <td>{{$resident->job}}</td>
                         <td>{{$resident->nwork}}</td>
                         <td>{{$resident->jobnum}}</td>
@@ -427,7 +477,7 @@
                         @if (auth()->user()->role=='Enumerator')
                         <td>
                           @if(request()->has('view_deleted'))
-                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
                           @else
                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal5{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                           {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}
@@ -445,7 +495,7 @@
                   <table id="example9" class="table table-bordered table-hover dataTable nowrap" width="100%">
                     <thead>
                       <tr>
-
+                     
                         <th>Pregnant</th>
                         <th>Solo Parent</th>
                         <th>Solo Parent ID</th>
@@ -469,8 +519,17 @@
                         @endif
                       </tr>
                     </thead>
-                    <tbody>
-                      @foreach ($all as $resident)
+          <tbody>
+          @php
+    $barangay = auth()->user()->barangay;
+    if ($barangay) {
+        $residents = $all->where('barangay', $barangay);
+    } else {
+        $residents = $all;
+    }
+@endphp
+
+                      @foreach ($residents as $resident)
                       <tr>
 
                         <td>{{$resident->pregnant}}</td>
@@ -494,7 +553,7 @@
                         @if (auth()->user()->role=='Enumerator')
                         <td>
                           @if(request()->has('view_deleted'))
-                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-rotate-left"></i></a>
+                          <a href="{{ route('residents.repair', $resident->id) }}" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
                           @else
                           <a href="#" button class="btn btn-sm btn-info" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#editmodal6{{$resident->id}}" title="Edit"><i class="fa-solid fa-pen-to-square"></i> </button></a>
                           {!! Form::open(['method' => 'DELETE','route' => ['residents.destroy', $resident->id],'style'=>'display:inline']) !!}

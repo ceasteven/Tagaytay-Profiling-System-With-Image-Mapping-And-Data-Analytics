@@ -21,15 +21,11 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Define a new middleware group
-    // Define your login and password reset routes here
 
-
-    // Define your login and password reset routes here
     Route::get('/', function () {
         return redirect()->route('login');
     });    
-        Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('setSessionTimeout');
+        Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('setSessionTimeout', 'guest');
 Route::post('/login', [LoginController::class, 'login'])->name('login.post');
 
 
@@ -56,8 +52,8 @@ Route::get('/users/inactive', [UserController::class, 'inactive'])->name('inacti
 
 Route::get('activity/log', [App\Http\Controllers\UserController::class, 'activityLog'])->middleware('auth')->name('activityLog');
 Route::get('/activity-log/clear', [UserController::class, 'clearLogs'])->name('logsclear');
-Route::resource('/residents', ResidentsController::class)->middleware('auth');
-Route::resource('/household', HouseholdsController::class)->middleware('auth');
+Route::resource('/residents', ResidentsController::class)->middleware('auth')->middleware('setSessionTimeout');
+Route::resource('/household', HouseholdsController::class)->middleware('auth')->middleware('setSessionTimeout');
 Route::get('/reports', [App\Http\Controllers\ResidentsController::class, 'reports'])->middleware('auth')->name('reports');
 Route::get('/barangays', [App\Http\Controllers\ResidentsController::class, 'barangays'])->middleware('auth')->name('barangays');
 Route::get('/asisan', [App\Http\Controllers\ResidentsController::class, 'asisan'])->middleware('auth')->name('asisan');
@@ -117,5 +113,5 @@ Route::post('/imports', [App\Http\Controllers\HouseholdsController::class, 'impo
 Route::get('/backup', [App\Http\Controllers\BackupController::class, 'index'])->middleware('auth')->name('backup.backups');
 Route::post('/backups', [App\Http\Controllers\BackupController::class, 'create'])->middleware('auth')->name('backup.create');
 Route::delete('/backups/{backup}', [App\Http\Controllers\BackupController::class, 'destroy'])->middleware('auth')->name('backup.destroy');
-
+Route::get('/backup/restore/{backup}', [BackupController::class, 'restore'])->name('backup.restore');
 });

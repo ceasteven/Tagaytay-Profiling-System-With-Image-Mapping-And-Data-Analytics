@@ -22,7 +22,7 @@ class UsersTableSeeder extends Seeder
             'lastname' => 'Cea',
             'username' => 'steven_123',
             'email' => 'stevencea143@gmail.com',
-            'role' => 'System Admin',
+            'role' => 'System Administrator',
             'password' => Hash::make('Fourteen@14'),
             'status' => 1,
             'created_at' => now(),

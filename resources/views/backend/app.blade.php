@@ -131,6 +131,7 @@ All rights reserved.
   <!-- overlayScrollbars -->
   <!-- DataTables  & Plugins -->
   <script src="{{asset('plugins/datatables/jquery.dataTables.min.js')}}"></script>
+  <script src="{{asset('plugins/datatables/fixed.js')}}"></script>
   <script src="{{asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
   <script src="{{asset('plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
   <script src="{{asset('plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
@@ -169,16 +170,13 @@ All rights reserved.
             extend: "pdf",
             filename: 'residents_list',
             title: 'List of Residents',
-            exportOptions: {
-              columns: ':not(:last-child)' // exclude last column
-            },
+      
+         
 
           }, {
             extend: "print",
             title: 'List of Residents',
-            exportOptions: {
-              columns: ':not(:last-child)' // exclude last column
-            },
+
             customize: function(win) {
               // Add logo to the left of the title
               $(win.document.body).prepend('<div style="text-align:center;"><img src="{{asset('dist /img/seal.png')}}" style="float:left;width:100px;height:100px;margin-right:5px;"><h1 style="display:inline-block;font-size:20px;font-weight:bold;margin:0; font-family:sans-serif;">Republic of the Philippines <br> City of Tagaytay <br> OFFICE OF THE CITY PLANNING AND DEVELOPMENT</h1></div>');
@@ -259,7 +257,7 @@ All rights reserved.
       $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
     var table = $(e.target.hash).find('table').DataTable();
     $('#test').html(table.buttons().container());
-    $($.fn.dataTable.tables(true)).DataTable().columns.adjust().fixedColumns().relayout();
+    $($.fn.dataTable.tables(true)).DataTable().columns.adjust().fixedColumns();
 });
 
 
@@ -305,7 +303,7 @@ All rights reserved.
       $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
     var table = $(e.target.hash).find('table').DataTable();
     $('#test').html(table.buttons().container());
-    $($.fn.dataTable.tables(true)).DataTable().columns.adjust().fixedColumns().relayout();
+    $($.fn.dataTable.tables(true)).DataTable().columns.adjust().fixedColumns();
 });
 
 

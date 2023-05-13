@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Exports;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Residents;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
@@ -11,9 +11,16 @@ class ExportResidents implements FromCollection,WithHeadings
     /**
     * @return \Illuminate\Support\Collection
     */
+    
     public function collection()
     {
+        $user = Auth::user();
+    
+    if ($user->barangay) {
+        $residents = Residents::where('barangay', $user->barangay)->get();
+    } else {
         $residents = Residents::all();
+    }
     
         return $residents->map(function($resident) {
             $resident = $resident->toArray();

@@ -24,7 +24,11 @@
        </a>
        <ul class="dropdown-menu">
          <li class="user-header " style="background-color: #30819C;">
-           <img src="{{asset('dist/img/default.jpg')}}" class="img-circle" alt="User Image">
+         @if(auth()->user()->profile)
+        <img src="{{ asset('dist/img/' . auth()->user()->profile) }}" class="img-circle" alt="User Image">
+    @else
+        <img src="{{ asset('dist/img/default.jpg') }}" class="img-circle" alt="User Image">
+    @endif
            <p>
              @auth
              <a style="color:#fff;"> {{auth()->user()->name}}</a>

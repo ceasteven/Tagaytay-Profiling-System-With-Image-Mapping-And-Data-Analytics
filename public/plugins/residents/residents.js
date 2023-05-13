@@ -44,12 +44,12 @@ document.getElementById("pasttraining").onchange = function () {
 
 }
 document.getElementById("voter").onchange = function () {
-    if (this.value == 'No' || this.value=='') {
+    if (this.value == 'No' || this.value=='' || this.value=='Dont Know') {
         document.getElementById("votedlast").disabled = true;
 
 
     } else {
-        document.getElementById("votedlast").disabled = false;
+        document.getElementById("votedlast").disabled = false; 
 
 
 

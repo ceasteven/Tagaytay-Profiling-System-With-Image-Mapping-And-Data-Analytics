@@ -69,7 +69,7 @@
                 <th>Name</th>
                 <th>Date</th>
                 <th>Size</th>
-                <th>Action</th>
+                <th data-orderable="false">Action</th>
             </tr>
         </thead>
 
@@ -80,10 +80,14 @@
                     <td>{{ $backup['date'] }}</td>
                     <td>{{ $backup['size'] }}</td>
                     <td>
-                        <form action="{{ route('backup.destroy', $backup['name']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this backup? This action cannot be undone.')">
+                    <a href="{{route('backup.restore',  $backup['name'])}}" title="Restore"  onclick="return confirm('Are you sure you want to restore this backup?')" class="btn btn-success btn-sm"><i class="fas fa-trash-restore"></i></a>
+                    <form action="{{ route('backup.destroy', $backup['name']) }}" method="post" onsubmit="return confirm('Are you sure you want to delete this backup? This action cannot be undone.')" style="display:inline-block;">
                             @csrf
                             @method('delete')
-                            <button type="submit" class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
+                    <button type="submit" class="btn btn-danger" title="Delete"><i class="fa-solid fa-trash"></i></button>
+                    
+
+                           
                         </form>
                     </td>
                 </tr>

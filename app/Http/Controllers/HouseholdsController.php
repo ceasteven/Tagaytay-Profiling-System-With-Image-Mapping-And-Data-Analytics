@@ -18,7 +18,12 @@ class HouseholdsController extends Controller
 {
     public function create()
     {
-        return view('enumerator.add_household');
+        if(auth()->user()->role == 'Enumerator') {
+            return view('enumerator.add_household');
+        } else {
+            return redirect()->route('home');
+        }
+     
     }
     public function exports()
     {
@@ -35,8 +40,13 @@ class HouseholdsController extends Controller
     }
     public function show($id)
     {
-        $household = Households::findOrFail($id);
-        return view('enumerator.view_household', compact('household'));
+        if(auth()->user()->role == 'Enumerator') {
+            $household = Households::findOrFail($id);
+            return view('enumerator.view_household', compact('household'));
+        } else {
+            return redirect()->route('home');
+        }
+      
     }
 
     public function imports(Request $request)
@@ -90,7 +100,7 @@ class HouseholdsController extends Controller
     {
         $all = Households::get();
         if ($request->has('view_deleted')) {
-            $all = Households::onlyTrashed()->get();;
+            $all = Households::onlyTrashed()->get();
         }
         return view('enumerator.household', compact('all'));
     }

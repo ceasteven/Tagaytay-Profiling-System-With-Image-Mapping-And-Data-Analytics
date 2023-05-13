@@ -23,9 +23,14 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $all = User::get();
+        if(auth()->user()->role == 'System Administrator') {
+            $all = User::get();
     
-        return view ('systemadmin.user_list',compact('all'));
+            return view ('systemadmin.user_list',compact('all'));
+        } else {
+            return redirect()->route('dashboard');
+        }
+     
     }
     // public function index(Request $request)
     // {
@@ -48,7 +53,14 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('systemadmin.add_user');
+        if(auth()->user()->role == 'System Administrator') {
+
+    
+            return view('systemadmin.add_user');
+        } else {
+            return redirect()->route('dashboard');
+        }
+      
     }
 
     /**
@@ -73,6 +85,8 @@ class UserController extends Controller
             ],
             'status' => 'required',
             'role' => 'required',
+            'barangay' => 'nullable|string|max:255',
+            'profile' => 'required|image|mimes:jpeg,png,jpg|max:2048',
         
         ], [
             'firstname.required' => 'Please enter a first name.',
@@ -91,12 +105,15 @@ class UserController extends Controller
             'password.regex' => 'The password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character (!%&@#$^*?_~-).',
             'status.required' => 'Please select a status.',
             'role.required' => 'Please select a role.',
-
+            'profile.image' => 'The file must be an image.',
+            'profile.mimes' => 'The image must be a jpeg, png, jpg, or gif.',
+            'profile.max' => 'The profile size must not exceed more than 2MB.'
         ]);
     
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         }
+     
     
         $user = new User;
      // Generate the initial username
@@ -121,6 +138,7 @@ while (User::where('username', $username)->exists()) {
 }
 
 // Set the username of the user object
+
 $user->username = $username;
 
 
@@ -133,12 +151,23 @@ $user->username = $username;
         $user->password = Hash::make($request->password);
         $user->role = $request->role;
         $user->status = $request->status;
-        $user->save();
-    
-        return redirect('/users')->with('success', 'User added successfully!');
-    }
-    
+        $user->barangay = $request->barangay;
+      
+            if ($request->hasFile('profile')) {
+                // Save uploaded image
+                $filename = public_path('dist/img/') . time() . '_' . $request->file('profile')->getClientOriginalName();
+                $request->file('profile')->move(public_path('dist/img/'), basename($filename));
+            $user->profile = basename($filename);
 
+        } else {
+            $user->profile = 'default.jpg'; // fallback to default image
+        }
+    
+        $user->save();
+        return redirect('/users')->with('success', 'User added successfully!');
+  
+    
+    }
     /**
      * Display the specified resource.
      *
@@ -147,8 +176,15 @@ $user->username = $username;
      */
     public function show($id)
     {
-        $users = User::find($id);
-        return redirect('/users');
+        
+            if(auth()->user()->role == 'System Administrator') {
+                $users = User::findOrFail($id);
+                return view('systemadmin.view_users', compact('users'));
+            } else {
+                return redirect()->route('dashboard');
+            }
+        
+      
     }
 
     /**
@@ -194,9 +230,11 @@ $user->username = $username;
             ],
             'password' => 'nullable|string|min:8|confirmed|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!%&@#$^*?_~-]).{8,}$/',
           
-            'role' => 'required|string|in:System Admin,Enumerator',
+            'role' => 'required|string|in:System Administrator,Enumerator',
+            'barangay' => 'nullable|string|max:255',
+            'profile' => 'image|mimes:jpeg,png,jpg|max:2048',
             [
-                'firstname.required' => 'Please enter a first name.',
+            'firstname.required' => 'Please enter a first name.',
             'firstname.string' => 'The first name should be a string.',
             'firstname.max' => 'The first name should not exceed 255 characters.',
             'middlename.string' => 'The middle name should be a string.',
@@ -215,6 +253,9 @@ $user->username = $username;
             'password.regex' => 'The password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter, one number, and one special character (!%&@#$^*?_~-).',
             'status.required' => 'Please select a status.',
             'role.required' => 'Please select a role.',
+            'profile.image' => 'The file must be an image.',
+            'profile.mimes' => 'The image must be a jpeg, png, jpg, or gif.',
+            'profile.max' => 'The profile size must not exceed more than 2MB.'
             ]
         ]);
     
@@ -229,11 +270,23 @@ $user->username = $username;
         $user->email = strtolower($request->email);
         $user->status = $request->status;
         $user->role = $request->role;
+        $user->barangay = $request->barangay;
     
         if ($request->filled('password')) {
             $user->password = Hash::make($request->password);
         }
+        if ($request->hasFile('profile')) {
+            // Save uploaded image
+            $filename = public_path('dist/img/') . time() . '_' . $request->file('profile')->getClientOriginalName();
+            $request->file('profile')->move(public_path('dist/img/'), basename($filename));
+            $user->profile = basename($filename);
+        } else {
+            // Use existing profile picture
+            $user->profile = $user->profile ?? 'default.jpg'; // fallback to default image if no profile picture is set
+        }
+        
     
+        
         if ($user->isDirty()) {
             $user->save();
             return redirect('/users')->with('success', 'User updated successfully!');
@@ -259,12 +312,18 @@ $user->username = $username;
     }
     public function activityLog()
     {
-        $activityLog = DB::table('activity_log')->orderBy('created_at', 'desc')->get();
-        return view('systemadmin.user_activitylogs',compact('activityLog'));
+        if(auth()->user()->role == 'System Administrator') {
+            $activityLog = DB::table('activity_log')->orderBy('created_at', 'desc')->get();
+            return view('systemadmin.user_activitylogs',compact('activityLog'));
+        } else {
+            return redirect()->route('dashboard');
+        }
+     
     }
 
     public function restore($id) 
 {
+    
     User::withTrashed()->find($id)->restore();
 
     return redirect()->route('users.index', )->with('success','User restored successfully!');
