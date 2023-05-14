@@ -112,12 +112,7 @@
               <div class="tab-content">
                 <div class="tab-pane active" id="tab-table1">
 
-                  <table id="example4" class=
-                  
-                  
-                  
-                  
-                  "table table-bordered table-hover dataTable nowrap " width="100%">
+                  <table id="example4" class="table table-bordered table-hover dataTable nowrap " width="100%">
                     <thead>
                       <tr>
                         

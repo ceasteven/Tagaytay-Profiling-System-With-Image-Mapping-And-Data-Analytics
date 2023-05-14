@@ -148,53 +148,223 @@ All rights reserved.
   <!-- AdminLTE for demo purposes -->
 
   <script>
-    $(function() {
 
-      $('#example1').DataTable({
-        "responsive": false,
-        "lengthChange": true,
-        "autoWidth": false,
-        "scrollX": false,
-        "buttons": [{
-          extend: 'collection',
-          text: '<i class="fa-solid fa-download"></i> Export',
 
-          buttons: [{
-            extend: "csv",
-            filename: 'residents_list',
+      $(function() {
+        var route = window.location.pathname; // Get the current route
 
-          }, {
-            extend: "excel",
-            filename: 'residents_list'
-          }, {
-            extend: "pdf",
-            filename: 'residents_list',
-            title: 'List of Residents',
-      
-         
+  var barangay;
+  if (route.includes('asisan')) {
+    barangay = 'Asisan';
+  } else if (route.includes('bagongtubig')) {
+    barangay = 'Bagong Tubig';
+  } else if (route.includes('calabuso')) {
+    barangay = 'Calabuso';
+  }
+  else if (route.includes('dapdap_east')) {
+    barangay = 'Dapdap East';
+  }
+  else if (route.includes('dapdap_west')) {
+    barangay = 'Dapdap West';
+  }
+  else if (route.includes('francisco')) {
+    barangay = 'Francisco';
+  }
+  else if (route.includes('guinhawa_north')) {
+    barangay = 'Guinhawa North';
+  }
+  else if (route.includes('guinhawa_south')) {
+    barangay = 'Guinhawa South';
+  }
+  else if (route.includes('iruhin_central')) {
+    barangay = 'Iruhin Central';
+  }
+  else if (route.includes('iruhin_east')) {
+    barangay = 'Iruhin East';
+  }
+  else if (route.includes('iruhin_west')) {
+    barangay = 'Iruhin West';
+  }
+  else if (route.includes('kaybagal_central')) {
+    barangay = 'Kaybagal Central';
+  }
+  else if (route.includes('kaybagal_north')) {
+    barangay = 'Kaybagal North';
+  }
+  else if (route.includes('kaybagal_south')) {
+    barangay = 'Kaybagal South';
+  }
+  else if (route.includes('magasawang_ilat')) {
+    barangay = 'Mag-asawang ILat';
+  }
+  else if (route.includes('maharlika_east')) {
+    barangay = 'Maharlika East';
+  }
+  else if (route.includes('maharlika_west')) {
+    barangay = 'Maharlika West';
+  }
+  else if (route.includes('maitim_central')) {
+    barangay = 'Maitim II Central';
+  }
+  else if (route.includes('maitim_east')) {
+    barangay = 'Maitim II East';
+  }
+  else if (route.includes('maitim_west')) {
+    barangay = 'Maitim II West';
+  }
+  else if (route.includes('mendezcrossing_east')) {
+    barangay = 'Mendez Crossing East';
+  }
+  else if (route.includes('mendezcrossing_west')) {
+    barangay = 'Mendez Crossing West';
+  }
+  else if (route.includes('neogan')) {
+    barangay = 'Neogan';
+  }
+  else if (route.includes('patutongmalaki_north')) {
+    barangay = 'Patutong Malaki North';
+  }
+  else if (route.includes('patutongmalaki_south')) {
+    barangay = 'Patutong Malaki South';
+  }
+  else if (route.includes('sambong')) {
+    barangay = 'Sambong';
+  }
+  else if (route.includes('sanjose')) {
+    barangay = 'San Jose';
+  }
+  else if (route.includes('silangcrossing_east')) {
+    barangay = 'Silang Crossing East';
+  }
+  else if (route.includes('silangcrossing_west')) {
+    barangay = 'Silang Crossing West';
+  }
+  else if (route.includes('sungay_east')) {
+    barangay = 'Sungay East';
+  }
+  else if (route.includes('sungay_west')) {
+    barangay = 'sungay_west';
+  }
+  else if (route.includes('tolentino_East')) {
+    barangay = 'Tolentino East';
+  }
+  else if (route.includes('tolentino_west')) {
+    barangay = 'Tolentino West';
+  }
+  else if (route.includes('zambal')) {
+    barangay = 'Zambal';
+  }
+  $('#example1').DataTable({
+    "responsive": false,
+    "lengthChange": true,
+    "autoWidth": false,
+    "scrollX": false,
+    
+    "buttons": [{
+      extend: 'collection',
+      text: '<i class="fa-solid fa-download"></i> Export',
+      buttons: [{
+        extend: "csv",
+        filename: '' + barangay + ' residents',
+      }, {
+        extend: "excel",
+        filename: '' + barangay + ' residents',
+      }, {
+        extend: "pdf",
+        filename: '' + barangay + ' residents',
+        title: '',
+        orientation: 'portrait', // Adjust orientation if needed
+        
+        customize: function(doc) {
+          var currentDate = new Date().toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
 
-          }, {
-            extend: "print",
-            title: 'List of Residents',
+          // Prepend header
+          doc.content.unshift(
+          {
+            columns: [
+              {
+                image: 'data:image/png;base64,{{ base64_encode(file_get_contents(public_path('dist/img/seal.png'))) }}',
+                width: 50,
+                height: 50,
+                alignment: 'left'
+              },
+              {
+                text: [
+                  { text: 'Republic of the Philippines\n', fontSize: 12 },
+                  { text: 'City of Tagaytay\n', fontSize: 12 },
+                  { text: 'OFFICE OF THE CITY PLANNING AND DEVELOPMENT\n', fontSize: 12, bold: true }
+                ],
+                alignment: 'center'
+              }
+            ],
+            margin: [0, 0, 0, 10]
+          },
+          { canvas: [{ type: 'line', x1: 0, y1: 10, x2: 520, y2: 10, lineWidth: 1 }] },
+          { text: '\n' },
+          { text: 'List of ' + barangay + ' Residents', alignment: 'center', fontSize: 14, bold: true },
+          { text: 'As of ' + currentDate, alignment: 'center', fontSize: 8 },
+          { text: '\n' }
+        );
 
-            customize: function(win) {
-              // Add logo to the left of the title
-              var currentDate = new Date();
-  var formattedDate = currentDate.toLocaleDateString();
-              $(win.document.body).prepend('<div style="text-align:center;"><img src="{{asset('dist /img/seal.png')}}" style="float:left;width:100px;height:100px;margin-right:10px;"><h1 style="display:inline-block;font-size:20px;font-weight:bold;margin:0; font-family:sans-serif;">Republic of the Philippines <br> City of Tagaytay <br> OFFICE OF THE CITY PLANNING AND DEVELOPMENT<br>As of  +formattedDate</h1></div>');
+  var tableNodes = doc.content.filter(function(node) {
+    return node.table !== undefined;
+  });
 
-              // Style the title
+  if (tableNodes.length > 0) {
+    var table = tableNodes[0].table;
+    table.widths = Array(table.body[0].length + 1).join('*').split('');
+    
+  }
+          // Footer
+          doc.footer = function(currentPage, pageCount) {
+            return {
+              text: 'Printed by: {{auth()->user()->firstname}} {{auth()->user()->lastname}}   |   Page ' + currentPage.toString() + ' of ' + pageCount.toString(),
+              alignment: 'right',
+              fontSize: 8,
+              margin: [0, 10, 20, 0]
+            };
+          };
+          doc.styles = {
+    header: {
+      font: 'Helvetica',
+      bold: true
+    }
+  };
+        }
+      }, {
+        extend: "print",
+        title: '',
+        customize: function(win) {
+          var currentDate = new Date().toLocaleDateString(undefined, {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          });
 
-              $(win.document.body).find('h1')
-                .css('text-align', 'center')
-                .css('font-size', '20')
-                .css('font-weight', 'bold')
-                .css('margin-top', '20px')
-                .css('margin-bottom', '30px');
-            }
-          }]
-        }]
-      }).buttons().container().appendTo('#test');
+          // Prepend header
+          $(win.document.body).prepend('<div style="text-align:center;"><img src="{{asset('dist/img/seal.png')}}" style="float:left;width:100px;height:100px;"><h1 style="display:inline-block;">Republic of the Philippines <br> City of Tagaytay <br><b> OFFICE OF THE CITY PLANNING AND DEVELOPMENT</b><br></h1></div><hr><h1 style="text-align:center";><b>List of ' + barangay + ' Residents </b><br><small>As of ' + currentDate + '</small></h1>');
+
+          // Style the title
+          $(win.document.body).find('h1')
+   
+            .css('font-size', '20px')
+            .css('margin-top', '20px')
+            .css('margin-bottom', '30px')
+.css('font-family', 'sans-serif');
+          // Add footer
+          var footer = '<div style="text-align:right;font-size:12px;margin-top:20px;">Printed by: {{auth()->user()->firstname}} {{auth()->user()->lastname}} </div>';
+          $(win.document.body).append(footer);
+        }
+      }]
+    }]
+  }).buttons().container().appendTo('#test');
+      });
+
+      $(function() {
       $('#example2').DataTable({
         "responsive": false,
         "lengthChange": true,
@@ -239,18 +409,18 @@ All rights reserved.
                 window.location.href = "{{ route('residents.exportcsv') }}";
               }
             },
-            {
-              extend: 'pdf',
-              text: 'Print',
-              title: 'Residents',
-              download: 'open',
-              orientation: 'landscape',
-              pageSize: 'LEGAL',
-              exportOptions: {
-                columns: '{{ auth()->user()->role == "Enumerator" ? ":not(:last-child)" : "" }}' // exclude last column for System Admins
-   // exclude last column
-              },
-            }
+  //           {
+  //             extend: 'pdf',
+  //             text: 'Print',
+  //             title: 'Residents',
+  //             download: 'open',
+  //             orientation: 'landscape',
+  //             pageSize: 'LEGAL',
+  //             exportOptions: {
+  //               columns: '{{ auth()->user()->role == "Enumerator" ? ":not(:last-child)" : "" }}' // exclude last column for System Admins
+  //  // exclude last column
+  //             },
+      //      }
           ]
         }]
       });
@@ -260,7 +430,7 @@ All rights reserved.
       $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
     var table = $(e.target.hash).find('table').DataTable();
     $('#test').html(table.buttons().container());
-    $($.fn.dataTable.tables(true)).DataTable().columns.adjust().fixedColumns();
+    $($.fn.dataTable.tables(true)).DataTable().columns.adjust().fixedColumns().relayout();
 });
 
 
@@ -285,18 +455,18 @@ All rights reserved.
                 window.location.href = "{{ route('households.csvexport') }}";
               }
             },
-            {
-              extend: 'pdf',
-              text: 'Print',
-              title: 'Households',
-              download: 'open',
-              orientation: 'landscape',
-              pageSize: 'A0',
-              exportOptions: {
-                columns: '{{ auth()->user()->role == "Enumerator" ? ":not(:last-child)" : "" }}' // exclude last column for System Admins
-              },
+            // {
+            //   extend: 'pdf',
+            //   text: 'Print',
+            //   title: 'Households',
+            //   download: 'open',
+            //   orientation: 'landscape',
+            //   pageSize: 'A0',
+            //   exportOptions: {
+            //     columns: '{{ auth()->user()->role == "Enumerator" ? ":not(:last-child)" : "" }}' // exclude last column for System Admins
+            //   },
              
-            }
+            // }
           ]
         }]
       });

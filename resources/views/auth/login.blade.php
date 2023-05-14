@@ -27,7 +27,7 @@
       <!-- <script src="{{asset('plugins/alpine/alpine.min.js')}}"></script> -->
 </head>
 
-<body class="hold-transition login-page" style="background-image:url('{{ asset('dist/img/tc.jpg') }}'); background-repeat:no-repeat; background-size:cover;">
+<body class="hold-transition login-page" style="background-image:url('{{ asset('dist/img/tc.jpg') }}');;background-repeat:no-repeat; background-size:cover;">
 
     <div class="login-box">
         <div class="login-logo">

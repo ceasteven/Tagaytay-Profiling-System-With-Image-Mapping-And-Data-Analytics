@@ -31,7 +31,8 @@
     @endif
            <p>
              @auth
-             <a style="color:#fff;"> {{auth()->user()->name}}</a>
+             <a style="color:#fff;">{{ auth()->user()->firstname . ' ' . auth()->user()->lastname }}</a>
+
              @endauth
            </p>
          </li>
