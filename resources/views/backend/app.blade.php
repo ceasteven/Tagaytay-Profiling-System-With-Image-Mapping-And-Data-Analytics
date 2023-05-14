@@ -179,9 +179,12 @@ All rights reserved.
 
             customize: function(win) {
               // Add logo to the left of the title
-              $(win.document.body).prepend('<div style="text-align:center;"><img src="{{asset('dist /img/seal.png')}}" style="float:left;width:100px;height:100px;margin-right:5px;"><h1 style="display:inline-block;font-size:20px;font-weight:bold;margin:0; font-family:sans-serif;">Republic of the Philippines <br> City of Tagaytay <br> OFFICE OF THE CITY PLANNING AND DEVELOPMENT</h1></div>');
+              var currentDate = new Date();
+  var formattedDate = currentDate.toLocaleDateString();
+              $(win.document.body).prepend('<div style="text-align:center;"><img src="{{asset('dist /img/seal.png')}}" style="float:left;width:100px;height:100px;margin-right:10px;"><h1 style="display:inline-block;font-size:20px;font-weight:bold;margin:0; font-family:sans-serif;">Republic of the Philippines <br> City of Tagaytay <br> OFFICE OF THE CITY PLANNING AND DEVELOPMENT<br>As of  +formattedDate</h1></div>');
 
               // Style the title
+
               $(win.document.body).find('h1')
                 .css('text-align', 'center')
                 .css('font-size', '20')
